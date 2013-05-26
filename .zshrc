@@ -48,3 +48,10 @@ alias pyflakes='pyflakes3k'
 alias e='emacsclient -a="" -c -t'
 alias r='trash-put'
 alias mv='mv -i'
+
+# A hack to remove danid.log. Each time a terminal is opened, remove
+# make danid.log hidden if it exists. 
+if [ -f /tmp/foo.txt ];
+    then
+    mv ~/danid.log ~/.danid.log
+fi 
