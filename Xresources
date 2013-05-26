@@ -1,0 +1,77 @@
+!===============================================================================
+! urxvt
+!===============================================================================
+
+! Extensions
+URxvt.perl-ext-common: default,selection,matcher,font-size
+
+! Handle urls
+URxvt.url-select.underline: true
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+
+! Number of lines to save
+URxvt*saveLines: 65535
+
+! Disable scroll bar
+URxvt*scrollBar: false
+
+! Font
+URxvt*font: xft:DejavuSansMono:pixelsize=12
+
+! Icon
+URxvt.iconFile: /usr/share/icons/gnome/32x32/apps/terminal.png
+
+! Hide mouse pointer when typing
+URxvt*pointerBlank: true
+
+! Visual bell
+URxvt*visualBell: true
+URxvt*urgentOnBell: true
+
+! Text zooming
+URxvt.keysym.C-Up: perl:font-size:increase
+URxvt.keysym.C-Down: perl:font-size:decrease
+
+! Disable keycap picture insert mode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!===============================================================================
+! Colors
+!===============================================================================
+
+*foreground: #FFFFFF
+*background: #161616
+
+! Red
+*color1: #FF0080
+*color9: #FF4DA6
+! Green
+*color2: #00B31B
+*color10: #00ff27
+! Yellow
+*color3: #AEB300
+*color11: #f8ff00
+! Blue
+*color4: #0065B3
+*color12: #0090ff
+! Purple
+*color5: #E700FF
+*color13: #EE4DFF
+! Cyan
+*color6: #F28A00
+*color14: #FF9C19
+
+
+!===============================================================================
+! Font
+!===============================================================================
+
+! Better looking font for applications that ignore fontconfig. 
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
