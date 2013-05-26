@@ -1,3 +1,8 @@
+# Calibrate monitor colors on laptop
+if [ `hostname` = "Balder" ]; then
+    $HOME/.monicarc
+fi
+
 # Keyboard settings
 setxkbmap dk
 xset r rate 250
