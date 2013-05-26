@@ -1,5 +1,7 @@
 [user]
 	email = muldvang@gmail.com
 	name = Torben Muldvang Andersen
+[color]
+	ui = true
 [push]
 	default = simple
