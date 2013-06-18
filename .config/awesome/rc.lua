@@ -216,9 +216,9 @@ local layouts = {awful.layout.suit.tile,
 
 -- Set the wallpaper
 gears.wallpaper.maximized(
-   '/home/muldvang/pictures/wallpapers/awesome_arch_1280x1024.jpg', 1, true)
+   '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
 gears.wallpaper.maximized(
-   '/home/muldvang/pictures/wallpapers/awesome_arch_1920x1080.jpg', 2, true)
+   '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
 
 -- Define a tag table which hold all screen tags.
 local tags = {}
