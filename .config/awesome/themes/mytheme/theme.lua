@@ -3,38 +3,57 @@
 ---------------------------
 
 -- Color palette
+local background   = "#262626"
+local foreground   = "#FFFFFF"
 
---local transparent = "#00000000"
-local transparent = "#161616"
+local dark_black   = "#000000"
+local light_black  = "#666666"
 
-local white = "#ffffff"
-local black = "#161616"
+local dark_red     = "#ff0087"
+local light_red    = "#ff5faf"
 
-local gray = "#888888"
+local dark_green   = "#5fd700"
+local light_green  = "#87ff00"
 
-local pink   = "#FF4DA6"
-local blue   = "#0090ff"
+local dark_yellow  = "#d7d700"
+local light_yellow = "#d7ff5f"
+
+local dark_blue    = "#005fff"
+local light_blue   = "#00afff"
+
+local dark_purple  = "#af00d7"
+local light_purple = "#d75fd7"
+
+local dark_cyan    = "#00d7ff"
+local light_cyan   = "#5fffff"
+
+local dark_white   = "#DDDDDD"
+local light_white  = "#FFFFFF"
+
 
 theme = {}
 
-theme.font_tags     = "DejaVuSansMono 8"
+theme.font_tags     = "DejaVuSans 8"
 theme.font          = "DejaVuSans 8"
 
-theme.bg_normal     = transparent
-theme.bg_focus      = transparent
-theme.bg_urgent     = transparent
-theme.bg_minimize   = transparent
-theme.bg_systray    = transparent
+theme.bg_normal     = background
+theme.bg_focus      = light_blue
+theme.bg_urgent     = background
+theme.bg_minimize   = background
+theme.bg_systray    = background
 
-theme.fg_normal     = white
-theme.fg_focus      = blue
-theme.fg_urgent     = pink
-theme.fg_minimize   = gray
+theme.fg_normal     = light_white
+theme.fg_focus      = background
+theme.fg_urgent     = light_red
+theme.fg_minimize   = dark_blue
 
 theme.border_width  = 1
-theme.border_normal = black
-theme.border_focus  = blue
-theme.border_marked = pink
+theme.border_normal = background
+theme.border_focus  = light_blue
+theme.border_marked = light_red
+
+theme.taglist_bg_focus = dark_green
+theme.tooltip_fg_color = light_blue
 
 -- There are other variable sets
 -- overriding the default one when
@@ -55,9 +74,6 @@ theme.taglist_squares_unsel = "~/.config/awesome/themes/mytheme/taglist/squarez.
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
-
---theme.wallpaper = "/home/muldvang/pictures/wallpapers/Archlinux_Wallpaper_1680x1050_3691.jpg"
-theme.wallpaper = "/home/muldvang/pictures/wallpapers/awesome_arch_1280x1024.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
@@ -80,4 +96,3 @@ theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 theme.icon_theme = nil
 
 return theme
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

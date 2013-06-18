@@ -78,7 +78,7 @@ end
 
 function clock_widget()
    local clock = wibox.widget.textbox()
-   vicious.register(clock, vicious.widgets.date, "%b %d, %R", 30)
+   vicious.register(clock, vicious.widgets.date, "%R", 30)
    return clock
 end
 
@@ -92,7 +92,7 @@ function battery_widget()
                     if args[2] <= 10 and args[1] == "-" then
                        naughty.notify({ text="Battery is low! " .. args[2] .. " percent remaining." })
                     end
-                    return args[2] .. "%"
+                    return "<span color='#5fd700'>⚡</span>" .. args[2] .. "%"
                  end,
                  120,
                  "BAT0")
@@ -110,11 +110,11 @@ function wifi_widget()
                        
                        local vpn = awful.util.pread("ifconfig | grep tun0") 
                        if vpn ~= "" then
-                          return "VPN"
+                          return "<span color='#5fd700'>⚶</span>VPN"
                        elseif args["{link}"] > 0 then
-                          return "ON"
+                          return "<span color='#5fd700'>⚶</span>ON"
                        else
-                          return "OFF"
+                          return "<span color='#5fd700'>⚶</span>OFF"
                        end
                     end,
                     3,
@@ -129,12 +129,12 @@ function sound_widget()
 end
 
 function set_sound_widget_volume(widget)
-   widget:set_text(string.sub(awful.util.pread("amixer get Master | grep % | awk '{print $5}'"), 2, -10) .. "%")
+   widget:set_text("♪" .. string.sub(awful.util.pread("amixer get Master | grep % | awk '{print $5}'"), 2, -10) .. "%")
 end
 
 function seperator_widget()
    local seperator_widget = wibox.widget.textbox()
-   seperator_widget:set_text(" | ")
+   seperator_widget:set_text("   ")
    return seperator_widget
 end
 
@@ -232,7 +232,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
-   tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7 }, s, layouts[2])
+   tags[s] = awful.tag({ " 1 ", " 2 ", " 3 ", " 4 "}, s, layouts[2])
 end
 
 -- Create a menu to shutdown computer and stuff like that.
@@ -258,22 +258,25 @@ for s = 1, screen.count() do
    local clock = clock_widget()
    local seperator = seperator_widget()
 
+   local mail = wibox.widget.textbox()
+   mail:set_text("✉2")
+   local dropbox = wibox.widget.textbox()
+   dropbox:set_text("▣")
+   local pacman = wibox.widget.textbox()
+   pacman:set_text('⬇5')
+
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mainmenu_launcher)
    left_layout:add(taglist[s])
    left_layout:add(promptbox[s])
 
    local right_layout = wibox.layout.fixed.horizontal()
-   right_layout:add(systray)
-   right_layout:add(seperator)
-   right_layout:add(battery)
-   right_layout:add(seperator)
-   right_layout:add(wifi)
-   right_layout:add(seperator)
-   right_layout:add(sound)
-   right_layout:add(seperator)
-   right_layout:add(clock)
-   right_layout:add(seperator)
+
+   widgets = { systray, battery, wifi, sound, mail, dropbox, pacman, clock }
+   for _, widget in pairs(widgets) do
+      right_layout:add(widget)
+      right_layout:add(seperator)
+   end
    right_layout:add(layoutbox[s])
 
    local layout = wibox.layout.align.horizontal()
@@ -437,7 +440,7 @@ globalkeys = awful.util.table.join(
    -- Show prompt
    awful.key({ modkey }, "r",
              function ()
-                promptbox:run()
+                promptbox[mouse.screen]:run()
              end),
 
    -- Show menubar
