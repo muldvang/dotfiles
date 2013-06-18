@@ -555,9 +555,7 @@ awful.rules.rules = {
      properties = { floating = true } },
    { rule = { class = "xbmc" },
      properties = { tag = tags[math.min(screen.count(), 2)][1],
-                    maximized_horizontal = true,
-                    maximized_vertical = true,
-                    border_width = 0 } },
+                    fullscreen = true } },
    { rule = { class = "Gmusicbrowser" },
      properties = { tag = tags[1][7],
                     border_width = 0
