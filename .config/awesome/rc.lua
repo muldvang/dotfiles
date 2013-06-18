@@ -230,7 +230,7 @@ else
 end
 
 -- Define a tag table which hold all screen tags.
-local tags = {}
+tags = {}
 for s = 1, screen.count() do
    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7 }, s, layouts[2])
 end
@@ -554,7 +554,7 @@ awful.rules.rules = {
    { rule = { class = "Gimp-2.8" },
      properties = { floating = true } },
    { rule = { class = "xbmc" },
-     properties = { tag = tags[math.max(screen.count(), 2)][1],
+     properties = { tag = tags[math.min(screen.count(), 2)][1],
                     maximized_horizontal = true,
                     maximized_vertical = true,
                     border_width = 0 } },
