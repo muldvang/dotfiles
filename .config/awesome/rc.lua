@@ -554,7 +554,7 @@ awful.rules.rules = {
    { rule = { class = "Gimp-2.8" },
      properties = { floating = true } },
    { rule = { class = "xbmc" },
-     properties = { tag = tags[2][1],
+     properties = { tag = tags[math.max(screen.count(), 2)][1],
                     maximized_horizontal = true,
                     maximized_vertical = true,
                     border_width = 0 } },
