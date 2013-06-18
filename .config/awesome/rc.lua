@@ -215,10 +215,19 @@ local layouts = {awful.layout.suit.tile,
 }
 
 -- Set the wallpaper
-gears.wallpaper.maximized(
-   '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
-gears.wallpaper.maximized(
-   '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
+local hostname = awful.util.pread("hostname")
+
+if hostname == "Tor\n" then 
+   gears.wallpaper.maximized(
+      '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
+   gears.wallpaper.maximized(
+      '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
+else
+   for s = 1, screen.count() do
+         gears.wallpaper.maximized(
+                  '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1440x900.jpg', s, true)
+   end
+end
 
 -- Define a tag table which hold all screen tags.
 local tags = {}
