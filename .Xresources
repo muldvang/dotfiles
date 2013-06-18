@@ -42,26 +42,32 @@ URxvt.iso14755_52: false
 !===============================================================================
 
 *foreground: #FFFFFF
-*background: #161616
+*background: #262626
 
+! Black
+*color0: #000000
+*color8: #666666
 ! Red
-*color1: #FF0080
-*color9: #FF4DA6
+*color1: #ff0087
+*color9: #ff5faf
 ! Green
-*color2: #00B31B
-*color10: #00ff27
+*color2: #5fd700
+*color10: #87ff00
 ! Yellow
-*color3: #AEB300
-*color11: #f8ff00
+*color3: #d7d700
+*color11: #d7ff5f
 ! Blue
-*color4: #0065B3
-*color12: #0090ff
+*color4: #005fff
+*color12: #00afff
 ! Purple
-*color5: #E700FF
-*color13: #EE4DFF
+*color5: #af00d7
+*color13: #d75fd7
 ! Cyan
-*color6: #F28A00
-*color14: #FF9C19
+*color6: #00d7ff
+*color14: #5fffff
+! White
+*color7: #DDDDDD
+*color15: #FFFFFF
 
 
 !===============================================================================
