@@ -204,6 +204,7 @@ modkey = "Mod4"
 beautiful.init("/home/muldvang/.config/awesome/themes/mytheme/theme.lua")
 
 -- Settings for the menubar
+menubar.utils.terminal = "urxvt"
 menubar.show_categories = false
 menubar.cache_entries = true
 
