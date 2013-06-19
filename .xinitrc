@@ -20,6 +20,7 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # Auto start applications
 dropboxd &
 emacs --daemon
+mpd
 
 # XBMC is only started on my desktop pc
 if [ `hostname` = "Tor" ]; then
