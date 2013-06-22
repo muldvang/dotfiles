@@ -252,7 +252,6 @@ for s = 1, screen.count() do
    layoutbox[s] = awful.widget.layoutbox(1)
 
    local mainmenu_launcher = awesome_launcher(mainmenu) 
-   local systray = wibox.widget.systray()
    local battery = battery_widget()
    local wifi = wifi_widget()
    sound = sound_widget()
@@ -272,8 +271,11 @@ for s = 1, screen.count() do
    left_layout:add(promptbox[s])
 
    local right_layout = wibox.layout.fixed.horizontal()
-
-   widgets = { systray, battery, wifi, sound, mail, dropbox, pacman, clock }
+   if s == 1 then
+      local systray = wibox.widget.systray()
+      right_layout:add(systray)
+   end
+   widgets = { battery, wifi, sound, mail, dropbox, pacman, clock }
    for _, widget in pairs(widgets) do
       right_layout:add(widget)
       right_layout:add(seperator)
