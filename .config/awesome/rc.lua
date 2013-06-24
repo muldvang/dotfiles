@@ -313,13 +313,13 @@ globalkeys = awful.util.table.join(
    
    -- Control gmusicbrowser
    spawn_with_shell_on_keypress({}, "#171",
-                                "gmusicbrowser -nolaunch -cmd NextSong"),
+                                "ncmpcpp next"),
    spawn_with_shell_on_keypress({}, "#172",
-                                "gmusicbrowser -nolaunch -cmd PlayPause"),
+                                "ncmpcpp toggle"),
    spawn_with_shell_on_keypress({}, "#173",
-                                "gmusicbrowser -nolaunch -cmd PrevSong"),
+                                "ncmpcpp prev"),
    spawn_with_shell_on_keypress({}, "#174",
-                                "gmusicbrowser -nolaunch -cmd Stop"),
+                                "ncmpcpp stop"),
 
    -- Lock screen when pressing Fn + F2
    awful.key({},
