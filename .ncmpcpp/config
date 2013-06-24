@@ -112,7 +112,7 @@ mpd_music_dir = "~/Music"
 #
 ## delay after playlist highlighting will be disabled (0 = don't disable)
 #
-#playlist_disable_highlight_delay = "5"
+playlist_disable_highlight_delay = "4"
 #
 ## defines how long various messages are supposed to be visible
 #
@@ -267,21 +267,16 @@ mpd_music_dir = "~/Music"
 ##
 #execute_on_song_change = ""
 #
-#playlist_show_remaining_time = "no"
+playlist_show_remaining_time = "no"
 #
 #playlist_shorten_total_times = "no"
 #
-#playlist_separate_albums = "no"
-#
-#playlist_display_mode = "classic" (classic/columns)
-#
-#browser_display_mode = "classic" (classic/columns)
-#
-#search_engine_display_mode = "classic" (classic/columns)
-#
-#playlist_editor_display_mode = "classic" (classic/columns)
-#
-#discard_colors_if_item_is_selected = "yes"
+playlist_separate_albums = "no"
+playlist_display_mode = "columns"
+browser_display_mode = "columns"
+search_engine_display_mode = "columns"
+playlist_editor_display_mode = "columns"
+discard_colors_if_item_is_selected = "no"
 #
 #incremental_seeking = "yes"
 #
@@ -289,42 +284,33 @@ mpd_music_dir = "~/Music"
 #
 #autocenter_mode = "no"
 #
-#centered_cursor = "no"
-#
+centered_cursor = "no"
 ##
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
 ##
-#progressbar_look = "=>"
+progressbar_look = "━╾─"
 #
 #default_place_to_search_in = "database" (database/playlist)
 #
-#user_interface = "classic" (classic/alternative)
-#
-#media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
-#
-#default_find_mode = "wrapped" (wrapped/normal)
-#
-#default_space_mode = "add" (add/select)
+user_interface = "alternative"
+media_library_left_column = "a"
+default_find_mode = "wrapped"
+default_space_mode = "add"
 #
 #default_tag_editor_left_col = "albums" (albums/dirs)
-#
 #default_tag_editor_pattern = "%n - %t"
 #
-#header_visibility = "yes"
-#
-#statusbar_visibility = "yes"
-#
-#titles_visibility = "yes"
-#
+header_visibility = "yes"
+statusbar_visibility = "no"
+titles_visibility = "no"
+
 #header_text_scrolling = "yes"
-#
-#fancy_scrolling = "yes"
-#
-#cyclic_scrolling = "no"
-#
-#lines_scrolled = "2"
-#
+
+fancy_scrolling = "yes"
+cyclic_scrolling = "no"
+lines_scrolled = "3"
+
 #follow_now_playing_lyrics = "no"
 #
 #fetch_lyrics_for_current_song_in_background = "no"
@@ -369,7 +355,7 @@ mpd_music_dir = "~/Music"
 ## As you can see, above example will switch between
 ## playlist, visualizer and media library screens.
 ##
-#screen_switcher_mode = "sequence: 2 -> 3"
+screen_switcher_mode = "sequence: 2 -> 5"
 #
 ##
 ## Default width of locked screen (in %).
@@ -384,8 +370,8 @@ mpd_music_dir = "~/Music"
 ## Note: You can define startup screen for ncmpcpp
 ## by choosing screen number from the list above.
 ##
-#startup_screen = "2"
-#
+startup_screen = "2"
+
 #jump_to_now_playing_song_at_start = "yes"
 #
 #ask_before_clearing_main_playlist = "no"
@@ -409,35 +395,28 @@ mpd_music_dir = "~/Music"
 #
 #block_search_constraints_change_if_items_found = "yes"
 #
-#mouse_support = "yes"
-#
-#mouse_list_scroll_whole_page = "yes"
-#
-#empty_tag_marker = "<empty>"
+mouse_support = "yes"
+mouse_list_scroll_whole_page = "no"
+empty_tag_marker = "<empty>"
 #
 #tag_editor_extended_numeration = "no"
 #
-#media_library_display_date = "yes"
+media_library_display_date = "yes"
+media_library_display_empty_tag = "yes"
+media_library_disable_two_column_mode = "no"
+enable_window_title = "yes"
 #
-#media_library_display_empty_tag = "yes"
+# Note: You can choose default search mode for search
+# engine. Available modes are:
 #
-#media_library_disable_two_column_mode = "no"
+# - 1 - use mpd built-in searching (no regexes, pattern matching)
+# - 2 - use ncmpcpp searching (pattern matching with support for regexes,
+#       but if your mpd is on a remote machine, downloading big database
+#       to process it can take a while
+# - 3 - match only exact values (this mode uses mpd function for searching
+#       in database and local one for searching in current playlist)
 #
-#enable_window_title = "yes"
-#
-##
-## Note: You can choose default search mode for search
-## engine. Available modes are:
-##
-## - 1 - use mpd built-in searching (no regexes, pattern matching)
-## - 2 - use ncmpcpp searching (pattern matching with support for regexes,
-##       but if your mpd is on a remote machine, downloading big database
-##       to process it can take a while
-## - 3 - match only exact values (this mode uses mpd function for searching
-##       in database and local one for searching in current playlist)
-##
-#
-#search_engine_default_search_mode = "1"
+search_engine_default_search_mode = "1"
 #
 ##
 ## Note: Below variables can allow you to physically
@@ -454,38 +433,21 @@ mpd_music_dir = "~/Music"
 #use_console_editor = "no" (set to yes, if your editor is console app)
 #
 ##### colors definitions #####
-#
-#colors_enabled = "yes"
-#
-#empty_tag_color = "cyan"
-#
-#header_window_color = "default"
-#
-#volume_color = "default"
-#
-#state_line_color = "default"
-#
-#state_flags_color = "default"
-#
-#main_window_color = "yellow"
-#
-#color1 = "white"
-#
-#color2 = "green"
-#
-#main_window_highlight_color = "yellow"
-#
-#progressbar_color = "default"
-#
-#statusbar_color = "default"
-#
-#alternative_ui_separator_color = "black"
-#
-#active_column_color = "red"
-#
-#visualizer_color = "yellow"
-#
-#window_border_color = "green"
-#
-#active_window_border = "red"
-#
+# colors_enabled = "yes"
+# empty_tag_color = "cyan"
+# header_window_color = "default"
+# volume_color = "default"
+# state_line_color = "default"
+# state_flags_color = "default"
+# main_window_color = "yellow"
+# color1 = "white"
+# color2 = "green"
+# main_window_highlight_color = "yellow"
+# progressbar_color = "default"
+# statusbar_color = "default"
+# alternative_ui_separator_color = "black"
+# active_column_color = "red"
+# visualizer_color = "yellow"
+# window_border_color = "green"
+# active_window_border = "red"
+
