@@ -42,17 +42,17 @@ theme.bg_urgent     = background
 theme.bg_minimize   = background
 theme.bg_systray    = background
 
-theme.fg_normal     = light_white
+theme.fg_normal     = foreground
 theme.fg_focus      = background
 theme.fg_urgent     = light_red
-theme.fg_minimize   = dark_blue
+theme.fg_minimize   = light_blue
 
 theme.border_width  = 1
 theme.border_normal = background
 theme.border_focus  = light_blue
 theme.border_marked = light_red
 
-theme.taglist_bg_focus = dark_green
+theme.taglist_bg_focus = light_green
 theme.tooltip_fg_color = light_blue
 
 -- There are other variable sets
