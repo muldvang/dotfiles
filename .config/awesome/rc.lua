@@ -209,10 +209,9 @@ menubar.show_categories = false
 menubar.cache_entries = true
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts = {awful.layout.suit.tile,
-           awful.layout.suit.max,
-           awful.layout.suit.floating,
-           awful.layout.suit.tile.bottom,
+local layouts = {awful.layout.suit.max,
+                 awful.layout.suit.tile,
+                 awful.layout.suit.tile.bottom
 }
 
 -- Set the wallpaper
@@ -233,7 +232,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
-   tags[s] = awful.tag({ " 1 ", " 2 ", " 3 ", " 4 "}, s, layouts[2])
+   tags[s] = awful.tag({ " 1 ", " 2 ", " 3 ", " 4 "}, s, layouts[1])
 end
 
 -- Create a menu to shutdown computer and stuff like that.
