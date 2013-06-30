@@ -99,11 +99,26 @@ function battery_widget()
    return batwidget
 end
 
-function wifi_widget()
-   local widget = wibox.widget.textbox()
-   local widget_t = awful.tooltip({ objects = { widget },})
+function mpd_widget()
+   local w = wibox.widget.textbox()
+   local w_t = awful.tooltip({ objects = { w },})
+   vicious.register(w,
+                    vicious.widgets.mpd,
+                    function (widget, args)
+                       -- w_t:set_text(args[1][1][1] .. " remaining")
+                       return args["{state}"]
+                    end,
+                    3,
+                    "BAT0")
+   w = widget_button(w, "ncmpcpp")
+   return w
+end
 
-   vicious.register(widget,
+function wifi_widget()
+   local w = wibox.widget.textbox()
+   local widget_t = awful.tooltip({ objects = { w },})
+
+   vicious.register(w,
                     vicious.widgets.wifi,
                     function (widget, args)
                        widget_t:set_text(args["{ssid}"])
@@ -119,12 +134,14 @@ function wifi_widget()
                     end,
                     3,
                     "wlp3s0")
-   return widget
+   w = widget_button(w, "~/vpn.sh", true)
+   return w
 end
 
 function sound_widget()
    local sound_widget = wibox.widget.textbox()
    set_sound_widget_volume(sound_widget)
+   sound_widget = widget_button(sound_widget, "alsamixer", false)
    return sound_widget
 end
 
@@ -220,8 +237,8 @@ local hostname = awful.util.pread("hostname")
 if hostname == "Tor\n" then 
    gears.wallpaper.maximized(
       '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
-   gears.wallpaper.maximized(
-      '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
+   -- gears.wallpaper.maximized(
+   --    '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
 else
    for s = 1, screen.count() do
          gears.wallpaper.maximized(
@@ -234,6 +251,23 @@ tags = {}
 for s = 1, screen.count() do
    tags[s] = awful.tag({ " 1 ", " 2 ", " 3 ", " 4 "}, s, layouts[1])
 end
+
+
+function widget_button(widget, cmd, keep_open)
+   widget:buttons(awful.util.table.join(awful.button({ },
+                                                     1,
+                                                     function()
+                                                        if keep_open then
+                                                           spawn_cmd = "urxvt -T tray -e zsh -c \"" .. cmd .. " && zsh -i\""
+                                                        else
+                                                           spawn_cmd = "urxvt -T tray -e " .. cmd
+                                                        end
+                                                        awful.util.spawn(spawn_cmd)
+                                                     end)))
+   return widget
+end
+
+
 
 -- Create a menu to shutdown computer and stuff like that.
 local mainmenu = create_main_menu()
@@ -255,14 +289,20 @@ for s = 1, screen.count() do
    local wifi = wifi_widget()
    sound = sound_widget()
    local clock = clock_widget()
+   clock = widget_button(clock, "firefox calendar.google.com", false)
    local seperator = seperator_widget()
+   local mpd = mpd_widget()
 
    local mail = wibox.widget.textbox()
    mail:set_text("✉2")
+   mail = widget_button(mail, "firefox gmail.com", false)
+   
    local dropbox = wibox.widget.textbox()
    dropbox:set_text("▣")
+
    local pacman = wibox.widget.textbox()
    pacman:set_text('⬇5')
+   pacman = widget_button(pacman, "pacaur -Syu", true)
 
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mainmenu_launcher)
@@ -274,7 +314,7 @@ for s = 1, screen.count() do
       local systray = wibox.widget.systray()
       right_layout:add(systray)
    end
-   widgets = { battery, wifi, sound, mail, dropbox, pacman, clock }
+   widgets = { battery, wifi, sound, mail, dropbox, pacman, clock, mpd }
    for _, widget in pairs(widgets) do
       right_layout:add(widget)
       right_layout:add(seperator)
@@ -568,7 +608,19 @@ awful.rules.rules = {
    },
    { rule = { instance = "plugin-container" },
      properties = { floating = true }
+   },
+   { rule = { name = "tray" },
+     properties = { floating = true,
+                    skip_taskbar = true
+     },
+     callback = function( c )
+        local w_area = screen[ c.screen ].workarea
+        local winwidth = 726
+        local winheight = 350
+        c:geometry( { x = w_area.width - winwidth, width = winwidth, y = 19, height = winheight } )
+     end
    }
+
 }
 
 --------------------------------------------------------------------------------
