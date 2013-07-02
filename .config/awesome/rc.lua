@@ -614,7 +614,7 @@ awful.rules.rules = {
                     skip_taskbar = true
      },
      callback = function( c )
-        local w_area = screen[ c.screen ].workarea
+        local w_area = screen[c.screen].geometry
         local winwidth = 726
         local winheight = 350
         c:geometry( { x = w_area.width - winwidth, width = winwidth, y = 19, height = winheight } )
