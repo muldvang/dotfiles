@@ -54,5 +54,5 @@ alias diff='colordiff'
 # make danid.log hidden if it exists. 
 if [ -f ~/danid.log ];
     then
-    mv ~/danid.log ~/.danid.log
+    mv -f ~/danid.log ~/.danid.log
 fi 
