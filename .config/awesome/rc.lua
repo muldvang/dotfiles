@@ -209,7 +209,15 @@ function spawn_with_shell_on_keypress(modkeys, key, cmd)
                    )
 end
 
-
+function clone_screen_vga()
+   local xrandr = io.popen("xrandr -q | grep \"VGA1 connected\"")
+   if xrandr then
+      awful.util.spawn("xrandr --output LVDS1 --mode 1440x900")
+   else
+      awful.util.spawn("xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768")
+   end
+   
+end
 
 -- First check for errors.
 check_for_startup_errors()
@@ -335,6 +343,9 @@ end
 --------------------------------------------------------------------------------
 
 globalkeys = awful.util.table.join(
+   -- Clone screen
+   awful.key({}, "#235", function() clone_screen_vga() end),
+
    -- Use modkey + F1-F2 to launch most used programs
    spawn_on_keypress({ modkey }, "F1", "emacsclient -c -a=\"\" "),
    spawn_on_keypress({ modkey }, "F2", "firefox"),
