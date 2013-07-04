@@ -262,16 +262,16 @@ end
 
 
 function widget_button(widget, cmd, keep_open)
-   widget:buttons(awful.util.table.join(awful.button({ },
-                                                     1,
-                                                     function()
-                                                        if keep_open then
-                                                           spawn_cmd = "urxvt -T tray -e zsh -c \"" .. cmd .. " && zsh -i\""
-                                                        else
-                                                           spawn_cmd = "urxvt -T tray -e " .. cmd
-                                                        end
-                                                        awful.util.spawn(spawn_cmd)
-                                                     end)))
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  if keep_open then
+                                     spawn_cmd = "urxvt -T tray -e zsh -c \"" .. cmd .. " && zsh -i\""
+                                  else
+                                     spawn_cmd = "urxvt -T tray -e " .. cmd
+                                  end
+                                  awful.util.spawn(spawn_cmd)
+                               end))
    return widget
 end
 
