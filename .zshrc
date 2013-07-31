@@ -12,6 +12,10 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 autoload -Uz compinit 
 compinit
 
+# Moving multiple files
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
 # Promt
 autoload -U colors && colors
 PROMPT="%{$fg[blue]%}%3~ %{$reset_color%}%# "
