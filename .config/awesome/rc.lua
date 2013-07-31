@@ -77,8 +77,20 @@ function awesome_launcher(menu)
 end
 
 function clock_widget()
-   local clock = wibox.widget.textbox()
-   vicious.register(clock, vicious.widgets.date, "%R", 30)
+   local clock = awful.widget.textclock("%R", 30)
+   local tooltip = awful.tooltip({objects = { clock },
+                                  timer_function = function()
+                                     return os.date("%A\n%B %d, %Y\n%T")
+                                  end,
+                                 })
+   -- local clock = wibox.widget.textbox()
+   -- local tooltip = awful.tooltip({ objects = { clock },})
+   -- vicious.register(clock,
+   --                  vicious.widgets.date,
+   --                  function(widget, args)
+   --                     return "%R"
+   --                  end,
+   --                  30)
    return clock
 end
 
@@ -90,9 +102,9 @@ function battery_widget()
                  function (widget, args)
                     batwidget_t:set_text(args[3] .. " remaining")
                     if args[2] <= 10 and args[1] == "-" then
-                       naughty.notify({ text="Battery is low! " .. args[2] .. " percent remaining." })
+                       naughty.notify({ text="Low battery level! " .. args[2] .. " percent remaining." })
                     end
-                    return "<span color='#5fd700'>⚡</span>" .. args[2] .. "%"
+                    return args[2] .. "%"
                  end,
                  120,
                  "BAT0")
@@ -100,18 +112,15 @@ function battery_widget()
 end
 
 function mpd_widget()
-   local w = wibox.widget.textbox()
-   local w_t = awful.tooltip({ objects = { w },})
-   vicious.register(w,
+   local widget = wibox.widget.textbox()
+   vicious.register(widget,
                     vicious.widgets.mpd,
                     function (widget, args)
-                       -- w_t:set_text(args[1][1][1] .. " remaining")
                        return args["{state}"]
                     end,
-                    3,
-                    "BAT0")
-   w = widget_button(w, "ncmpcpp")
-   return w
+                    5)
+   widget = widget_button(widget, "ncmpcpp", false)
+   return widget
 end
 
 function wifi_widget()
@@ -125,28 +134,79 @@ function wifi_widget()
                        
                        local vpn = awful.util.pread("ifconfig | grep tun0") 
                        if vpn ~= "" then
-                          return "<span color='#5fd700'>⚶</span>VPN"
+                          return "VPN"
                        elseif args["{link}"] > 0 then
-                          return "<span color='#5fd700'>⚶</span>ON"
+                          return "ON"
                        else
-                          return "<span color='#5fd700'>⚶</span>OFF"
+                          return "OFF"
                        end
                     end,
-                    3,
+                    5,
                     "wlp3s0")
    w = widget_button(w, "~/vpn.sh", true)
    return w
 end
 
 function sound_widget()
-   local sound_widget = wibox.widget.textbox()
-   set_sound_widget_volume(sound_widget)
-   sound_widget = widget_button(sound_widget, "alsamixer", false)
-   return sound_widget
+   sound_w = wibox.widget.textbox()
+   vicious.register(sound_w,
+                    vicious.widgets.volume,
+                    function (widget, args)
+                       return args[1] .. "%"
+                    end,
+                    5,
+                    "Master")
+   function sound_widget_update()
+      vicious.force({ sound_w })
+   end
+   w = widget_button(sound_w, "alsamixer", false)
+   return w
 end
 
-function set_sound_widget_volume(widget)
-   widget:set_text("♪" .. string.sub(awful.util.pread("amixer get Master | grep % | awk '{print $5}'"), 2, -10) .. "%")
+function package_widget()
+   local widget = wibox.widget.textbox()
+   vicious.register(widget,
+                    vicious.widgets.pkg,
+                    function (widget, args)
+                       return args[1] .. " pkgs"
+                    end,
+                    120,
+                    "Arch")
+   widget = widget_button(widget, "pacaur -Su", true)
+   return widget
+end
+
+function gmail_widget()
+   local widget = wibox.widget.textbox()
+   local tooltip = awful.tooltip({ objects = { widget },})
+
+   vicious.register(widget,
+                    vicious.widgets.gmail,
+                    function(widget, args)
+                       local count = args["{count}"]
+                       if count > 0 then
+                          tooltip:set_text("Subject of newest mail: " .. args["{subject}"])
+                       else
+                          tooltip:set_text("No unread mail")
+                       end
+                       if count == 1 then
+                          return count .. " mail"
+                       else
+                          return count .. " mails"
+                       end
+                    end,
+                    120)
+   widget = widget_button(widget, "firefox gmail.com", false)
+   return widget
+end
+                    
+function dropbox_widget()
+   local widget = wibox.widget.textbox()
+   widget:set_text("D")
+   local tooltip = awful.tooltip({ objects = { widget },})
+   local status = awful.util.pread("dropbox status")
+   tooltip:set_text(status:sub(0, #status - 1))
+   return widget
 end
 
 function seperator_widget()
@@ -219,6 +279,14 @@ function clone_screen_vga()
    
 end
 
+function add_rule(rule)
+   if awful.rules.rules then
+      table.insert(awful.rules.rules, rule)
+   else
+      awful.rules.rules = { rule }
+   end
+end
+
 -- First check for errors.
 check_for_startup_errors()
 
@@ -262,17 +330,49 @@ end
 
 
 function widget_button(widget, cmd, keep_open)
+   local bg = wibox.widget.background()
+   local window_name = "tray" .. cmd:gsub("%s+", "")
    widget:buttons(awful.button({ },
-                               1,
-                               function()
-                                  if keep_open then
-                                     spawn_cmd = "urxvt -T tray -e zsh -c \"" .. cmd .. " && zsh -i\""
-                                  else
-                                     spawn_cmd = "urxvt -T tray -e " .. cmd
-                                  end
-                                  awful.util.spawn(spawn_cmd)
-                               end))
-   return widget
+                          1,
+                          function()
+                             local matcher = function (c)                             
+                                return awful.rules.match(c, {name = window_name})
+                             end 
+                             if keep_open then
+                                spawn_cmd = "urxvt -T " .. window_name .. " -e zsh -c \"" .. cmd .. " && zsh -i\""
+                             else
+                                spawn_cmd = "urxvt -T " .. window_name .. " -e " .. cmd
+                             end
+                             awful.client.run_or_raise(spawn_cmd, matcher)
+
+                          end))
+   bg:set_widget(widget)
+   local rule = { rule = { name = window_name },
+                  properties = { floating = true,
+                                 skip_taskbar = true,
+                                 tags = tags[1] },
+                  callback = function(c)
+                     local w_area = screen[c.screen].geometry
+                     local winwidth = 726
+                     local winheight = 350
+                     c:geometry( { x = w_area.width - winwidth, width = winwidth, y = 19, height = winheight } )
+                     c:connect_signal("unmanage",
+                                           function(c)
+                                              bg:set_bg(beautiful.bg_normal)
+                                           end)
+                     c:connect_signal("focus",
+                                           function(c)
+                                              bg:set_bg(beautiful.bg_focus)
+                                           end)
+                     c:connect_signal("unfocus",
+                                           function(c)
+                                              bg:set_bg(beautiful.taglist_bg_focus)
+                                           end)
+
+                  end }
+   add_rule(rule)
+
+   return bg
 end
 
 
@@ -301,16 +401,11 @@ for s = 1, screen.count() do
    local seperator = seperator_widget()
    local mpd = mpd_widget()
 
-   local mail = wibox.widget.textbox()
-   mail:set_text("✉2")
-   mail = widget_button(mail, "firefox gmail.com", false)
+   local mail = gmail_widget()
    
-   local dropbox = wibox.widget.textbox()
-   dropbox:set_text("▣")
+   local dropbox = dropbox_widget()
 
-   local pacman = wibox.widget.textbox()
-   pacman:set_text('⬇5')
-   pacman = widget_button(pacman, "pacaur -Syu", true)
+   local pacman = package_widget()
 
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mainmenu_launcher)
@@ -359,7 +454,7 @@ globalkeys = awful.util.table.join(
    spawn_on_keypress({ }, "#107", "gnome-screenshot --interactive"),
 
    -- urxvt
-   spawn_on_keypress({ modkey }, "Return", "urxvt"),
+   spawn_on_keypress({ modkey }, "Return", "urxvt -e tmux"),
    
    -- Control gmusicbrowser
    spawn_with_shell_on_keypress({}, "#171",
@@ -383,7 +478,7 @@ globalkeys = awful.util.table.join(
              "#122",
              function ()
                 io.popen("amixer set Master 1dB- unmute")
-                set_sound_widget_volume(sound)
+                sound_widget_update()
              end ),
 
    -- Volume up
@@ -391,7 +486,7 @@ globalkeys = awful.util.table.join(
              "#123",
              function ()
                 io.popen("amixer set Master 1dB+ unmute")
-                set_sound_widget_volume(sound)
+                sound_widget_update()
              end ),
 
 
@@ -598,41 +693,26 @@ clientbuttons = awful.util.table.join(
 -- RULES
 --------------------------------------------------------------------------------
 
-awful.rules.rules = {
-  -- All clients will match this rule.
-   { rule = { },
-     properties = { border_width = beautiful.border_width,
-                    border_color = beautiful.border_normal,
-                    focus = awful.client.focus.filter,
-                    keys = clientkeys,
-                    buttons = clientbuttons,
-     } },
-   { rule = { class = "Gimp-2.8" },
-     properties = { floating = true } },
-   { rule = { class = "xbmc" },
-     properties = { tag = tags[math.min(screen.count(), 2)][1],
-                    fullscreen = true } },
-   { rule = { class = "Gmusicbrowser" },
-     properties = { tag = tags[1][7],
-                    border_width = 0
-     }
-   },
-   { rule = { instance = "plugin-container" },
-     properties = { floating = true }
-   },
-   { rule = { name = "tray" },
-     properties = { floating = true,
-                    skip_taskbar = true
-     },
-     callback = function(c)
-        local w_area = screen[c.screen].geometry
-        local winwidth = 726
-        local winheight = 350
-        c:geometry( { x = w_area.width - winwidth, width = winwidth, y = 19, height = winheight } )
-     end
-   }
+local all_clients_rule = { rule = { },
+                           properties = { border_width = beautiful.border_width,
+                                          border_color = beautiful.border_normal,
+                                          focus = awful.client.focus.filter,
+                                          keys = clientkeys,
+                                          buttons = clientbuttons,
+                           } }
 
-}
+local gimp_rule = { rule = { class = "Gimp-2.8" },
+                    properties = { floating = true } }
+local xbmc_rule = { rule = { class = "xbmc" },
+                    properties = { tag = tags[math.min(screen.count(), 2)][1],
+                                   fullscreen = true } }
+local firefox_plugins_rule = { rule = { instance = "plugin-container" },
+                               properties = { floating = true } }
+
+add_rule(all_clients_rule)
+add_rule(gimp_rule)
+add_rule(xbmc_rule)
+add_rule(firefox_plugins_rule)
 
 --------------------------------------------------------------------------------
 -- SIGNALS
