@@ -56,3 +56,10 @@ if [ -f ~/danid.log ];
     then
     mv -f ~/danid.log ~/.danid.log
 fi 
+
+precmd () {
+  print -Pn "\e]0;%~\a"
+}
+preexec () {
+  print -Pn "\e]0;%~ - $1\a"
+}
