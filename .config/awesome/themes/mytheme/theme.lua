@@ -38,13 +38,13 @@ theme.font          = "DejaVuSans 8"
 
 theme.bg_normal     = background
 theme.bg_focus      = light_blue
-theme.bg_urgent     = background
+theme.bg_urgent     = light_red
 theme.bg_minimize   = background
 theme.bg_systray    = background
 
 theme.fg_normal     = foreground
 theme.fg_focus      = background
-theme.fg_urgent     = light_red
+theme.fg_urgent     = background
 theme.fg_minimize   = light_blue
 
 theme.border_width  = 1
