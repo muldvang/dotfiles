@@ -67,3 +67,7 @@ precmd () {
 preexec () {
   print -Pn "\e]0;%~ - $1\a"
 }
+
+# Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
+# will display it in a different color if it unfocused.
+alias alert='echo -n "\007\c"'
