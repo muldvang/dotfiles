@@ -1,0 +1,4 @@
+set window-title-basename true
+set statusbar-basename true
+set page-cache-size 100
+set font "dejavusans 8"
