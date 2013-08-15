@@ -331,7 +331,11 @@ end
 
 function widget_button(widget, cmd, keep_open)
    local bg = wibox.widget.background()
-   local window_name                           
+   local window_name = "tray" .. cmd:gsub("%s+", "")
+   widget:buttons(awful.button({ },
+                          1,
+                          function()
+                             local matcher = function (c)                             
                                 return awful.rules.match(c, {name = window_name})
                              end 
                              if keep_open then
