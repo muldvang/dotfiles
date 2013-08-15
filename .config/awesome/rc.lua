@@ -331,11 +331,7 @@ end
 
 function widget_button(widget, cmd, keep_open)
    local bg = wibox.widget.background()
-   local window_name = "tray" .. cmd:gsub("%s+", "")
-   widget:buttons(awful.button({ },
-                          1,
-                          function()
-                             local matcher = function (c)                             
+   local window_name                           
                                 return awful.rules.match(c, {name = window_name})
                              end 
                              if keep_open then
@@ -344,34 +340,8 @@ function widget_button(widget, cmd, keep_open)
                                 spawn_cmd = "urxvt -T " .. window_name .. " -e " .. cmd
                              end
                              awful.client.run_or_raise(spawn_cmd, matcher)
-
                           end))
    bg:set_widget(widget)
-   local rule = { rule = { name = window_name },
-                  properties = { floating = true,
-                                 skip_taskbar = true,
-                                 tags = tags[1] },
-                  callback = function(c)
-                     local w_area = screen[c.screen].geometry
-                     local winwidth = 726
-                     local winheight = 350
-                     c:geometry( { x = w_area.width - winwidth, width = winwidth, y = 19, height = winheight } )
-                     c:connect_signal("unmanage",
-                                           function(c)
-                                              bg:set_bg(beautiful.bg_normal)
-                                           end)
-                     c:connect_signal("focus",
-                                           function(c)
-                                              bg:set_bg(beautiful.bg_focus)
-                                           end)
-                     c:connect_signal("unfocus",
-                                           function(c)
-                                              bg:set_bg(beautiful.taglist_bg_focus)
-                                           end)
-
-                  end }
-   add_rule(rule)
-
    return bg
 end
 
