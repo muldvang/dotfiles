@@ -172,7 +172,7 @@ function package_widget()
                     end,
                     120,
                     "Arch")
-   widget = widget_button(widget, "pacaur -Su", true)
+   widget = widget_button(widget, "pacaur -Su ; alert", true)
    return widget
 end
 
