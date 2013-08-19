@@ -419,7 +419,7 @@ globalkeys = awful.util.table.join(
    spawn_on_keypress({ modkey }, "F1", "emacsclient -c -a=\"\" "),
    spawn_on_keypress({ modkey }, "F2", "firefox"),
    spawn_on_keypress({ modkey }, "F3", "urxvt -e ranger"),
-   spawn_on_keypress({ modkey }, "F4", "gmusicbrowser"),
+   spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
 
    -- Lock screen
    spawn_on_keypress({ }, "#160", "slimlock"),
@@ -430,7 +430,7 @@ globalkeys = awful.util.table.join(
    -- urxvt
    spawn_on_keypress({ modkey }, "Return", "urxvt -e tmux"),
    
-   -- Control gmusicbrowser
+   -- Control ncmpcpp
    spawn_with_shell_on_keypress({}, "#171",
                                 "ncmpcpp next"),
    spawn_with_shell_on_keypress({}, "#172",
