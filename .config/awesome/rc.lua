@@ -77,20 +77,12 @@ function awesome_launcher(menu)
 end
 
 function clock_widget()
-   local clock = awful.widget.textclock("%R", 30)
+   local clock = awful.widget.textclock(" %R ", 30)
    local tooltip = awful.tooltip({objects = { clock },
                                   timer_function = function()
                                      return os.date("%A\n%B %d, %Y\n%T")
                                   end,
                                  })
-   -- local clock = wibox.widget.textbox()
-   -- local tooltip = awful.tooltip({ objects = { clock },})
-   -- vicious.register(clock,
-   --                  vicious.widgets.date,
-   --                  function(widget, args)
-   --                     return "%R"
-   --                  end,
-   --                  30)
    return clock
 end
 
@@ -104,7 +96,7 @@ function battery_widget()
                     if args[2] <= 10 and args[1] == "-" then
                        naughty.notify({ text="Low battery level! " .. args[2] .. " percent remaining." })
                     end
-                    return args[2] .. "%"
+                    return " " .. args[2] .. "% "
                  end,
                  120,
                  "BAT0")
@@ -116,7 +108,7 @@ function mpd_widget()
    vicious.register(widget,
                     vicious.widgets.mpd,
                     function (widget, args)
-                       return args["{state}"]
+                       return " " .. args["{state}"] .. " "
                     end,
                     5)
    widget = widget_button(widget, "ncmpcpp", false)
@@ -134,11 +126,11 @@ function wifi_widget()
                        
                        local vpn = awful.util.pread("ifconfig | grep tun0") 
                        if vpn ~= "" then
-                          return "VPN"
+                          return " VPN "
                        elseif args["{link}"] > 0 then
-                          return "ON"
+                          return " ON "
                        else
-                          return "OFF"
+                          return " OFF "
                        end
                     end,
                     5,
@@ -152,7 +144,7 @@ function sound_widget()
    vicious.register(sound_w,
                     vicious.widgets.volume,
                     function (widget, args)
-                       return args[1] .. "%"
+                       return " " .. args[1] .. "% "
                     end,
                     5,
                     "Master")
@@ -168,7 +160,10 @@ function package_widget()
    vicious.register(widget,
                     vicious.widgets.pkg,
                     function (widget, args)
-                       return args[1] .. " pkgs"
+                       if args[1] == 0 then
+                          return ""
+                       end
+                       return " " .. args[1] .. " pkgs "
                     end,
                     120,
                     "Arch")
@@ -189,10 +184,12 @@ function gmail_widget()
                        else
                           tooltip:set_text("No unread mail")
                        end
-                       if count == 1 then
-                          return count .. " mail"
+                       if count == 0 then
+                          return ""
+                       elseif count == 1 then 
+                          return " " .. count .. " mail "
                        else
-                          return count .. " mails"
+                          return " " .. count .. " mails "
                        end
                     end,
                     120)
@@ -202,17 +199,9 @@ end
                     
 function dropbox_widget()
    local widget = wibox.widget.textbox()
-   widget:set_text("D")
-   local tooltip = awful.tooltip({ objects = { widget },})
    local status = awful.util.pread("dropbox status")
-   tooltip:set_text(status:sub(0, #status - 1))
+   widget:set_text(" " .. status:sub(0, #status - 1) .. " ")
    return widget
-end
-
-function seperator_widget()
-   local seperator_widget = wibox.widget.textbox()
-   seperator_widget:set_text("   ")
-   return seperator_widget
 end
 
 function tasklist_widget(screen)
@@ -372,7 +361,6 @@ for s = 1, screen.count() do
    sound = sound_widget()
    local clock = clock_widget()
    clock = widget_button(clock, "firefox calendar.google.com", false)
-   local seperator = seperator_widget()
    local mpd = mpd_widget()
 
    local mail = gmail_widget()
@@ -394,7 +382,6 @@ for s = 1, screen.count() do
    widgets = { battery, wifi, sound, mail, dropbox, pacman, clock, mpd }
    for _, widget in pairs(widgets) do
       right_layout:add(widget)
-      right_layout:add(seperator)
    end
    right_layout:add(layoutbox[s])
 
