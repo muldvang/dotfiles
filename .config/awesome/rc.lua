@@ -67,6 +67,10 @@ function create_main_menu()
                   { "Shutdown",
                     function ()
                        awful.util.spawn("systemctl poweroff")
+                    end },
+                  { "Restart XBMC",
+                    function ()
+                       awful.util.spawn("pkill --signal 9 xbmc && xbmc &")
                     end }}})
 end
 
