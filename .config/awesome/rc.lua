@@ -90,16 +90,16 @@ function battery_widget()
    local batwidget = wibox.widget.textbox()
    local batwidget_t = awful.tooltip({ objects = { batwidget },})
    vicious.register(batwidget,
-                 vicious.widgets.bat,
-                 function (widget, args)
-                    batwidget_t:set_text(args[3] .. " remaining")
-                    if args[2] <= 10 and args[1] == "-" then
-                       naughty.notify({ text="Low battery level! " .. args[2] .. " percent remaining." })
-                    end
-                    return " " .. args[2] .. "% "
-                 end,
-                 120,
-                 "BAT0")
+                    vicious.widgets.bat,
+                    function (widget, args)
+                       batwidget_t:set_text(args[3] .. " remaining")
+                       if args[2] <= 10 and args[1] == "-" then
+                          naughty.notify({ text="Low battery level! " .. args[2] .. " percent remaining." })
+                       end
+                       return " " .. args[2] .. "% "
+                    end,
+                    120,
+                    "BAT0")
    return batwidget
 end
 
@@ -108,7 +108,14 @@ function mpd_widget()
    vicious.register(widget,
                     vicious.widgets.mpd,
                     function (widget, args)
-                       return " " .. args["{state}"] .. " "
+                       local state = args["{state}"]
+                       if state == "Play" then
+                          return " ▶ "
+                       elseif state == "Pause" then
+                          return " ❚❚ "
+                       else
+                          return " ◼ "
+                       end
                     end,
                     5)
    widget = widget_button(widget, "ncmpcpp", false)
@@ -140,18 +147,30 @@ function wifi_widget()
 end
 
 function sound_widget()
-   sound_w = wibox.widget.textbox()
-   vicious.register(sound_w,
+   local master = wibox.widget.textbox()
+   local pcm = wibox.widget.textbox()
+   vicious.register(master,
                     vicious.widgets.volume,
                     function (widget, args)
                        return " " .. args[1] .. "% "
                     end,
                     5,
                     "Master")
+   vicious.register(pcm,
+                    vicious.widgets.volume,
+                    function (widget, args)
+                       return " " .. args[1] .. "% "
+                    end,
+                    5,
+                    "PCM")
    function sound_widget_update()
-      vicious.force({ sound_w })
+      vicious.force({ master })
+      vicious.force({ pcm })
    end
-   w = widget_button(sound_w, "alsamixer", false)
+   local widgets = wibox.layout.fixed.horizontal()
+   widgets:add(master)
+   widgets:add(pcm)
+   w = widget_button(widgets, "alsamixer", false)
    return w
 end
 
@@ -200,7 +219,12 @@ end
 function dropbox_widget()
    local widget = wibox.widget.textbox()
    local status = awful.util.pread("dropbox status")
-   widget:set_text(" " .. status:sub(0, #status - 1) .. " ")
+   vicious.register(widget,
+                    vicious.widgets.mpd,
+                    function (widget, args)
+                       return " " .. status:sub(0, #status - 1) .. " "
+                    end,
+                    5)
    return widget
 end
 
@@ -379,7 +403,7 @@ for s = 1, screen.count() do
       local systray = wibox.widget.systray()
       right_layout:add(systray)
    end
-   widgets = { battery, wifi, sound, mail, dropbox, pacman, clock, mpd }
+   widgets = { battery, wifi, sound, mail, dropbox, pacman, mpd, clock }
    for _, widget in pairs(widgets) do
       right_layout:add(widget)
    end
