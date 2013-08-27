@@ -1,0 +1,20 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-view-program-selection (quote (((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "xdg-open") (output-html "xdg-open"))))
+ '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/auto-saves/\\1" t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(flymake-gui-warnings-enabled nil)
+ '(flymake-no-changes-timeout 2)
+ '(global-git-gutter-mode t)
+ '(hippie-expand-ignore-buffers (quote (dired-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
+ '(ido-only-match ((t (:foreground "#8ae234"))))
+ '(ido-subdir ((t (:foreground "#729fcf")))))
