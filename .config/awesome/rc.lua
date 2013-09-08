@@ -70,7 +70,7 @@ function create_main_menu()
                     end },
                   { "Restart XBMC",
                     function ()
-                       awful.util.spawn("pkill --signal 9 xbmc && xbmc &")
+                       awful.util.spawn_with_shell("pkill --signal 9 xbmc && xbmc &")
                     end }}})
 end
 
