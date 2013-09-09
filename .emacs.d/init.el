@@ -40,9 +40,12 @@
 (global-git-gutter+-mode t)
 
 ;; Auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+;; (ac-config-default)
+
+;; Company
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Outline minor mode
 (outline-minor-mode 1)
