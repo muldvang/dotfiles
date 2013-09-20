@@ -19,9 +19,6 @@ URxvt*scrollBar: false
 ! Font
 URxvt*font: xft:DejavuSansMono:pixelsize=12
 
-! Icon
-URxvt.iconFile: /usr/share/icons/gnome/32x32/apps/terminal.png
-
 ! Hide mouse pointer when typing
 URxvt*pointerBlank: true
 
