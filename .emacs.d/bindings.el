@@ -65,3 +65,6 @@
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
+
+;; company-complete
+(global-set-key [M-tab] 'company-complete)
