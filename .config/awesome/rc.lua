@@ -145,7 +145,7 @@ function wifi_widget()
                        end
                     end,
                     5,
-                    "wlp3s0")
+                    "wls1")
    w = widget_button(w, "~/vpn.sh", true)
    return w
 end
