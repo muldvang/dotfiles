@@ -432,7 +432,7 @@ globalkeys = awful.util.table.join(
 
    -- Use modkey + F1-F2 to launch most used programs
    spawn_on_keypress({ modkey }, "F1", "emacsclient -c -a=\"\" "),
-   spawn_on_keypress({ modkey }, "F2", "firefox"),
+   spawn_on_keypress({ modkey }, "F2", "dwb"),
    spawn_on_keypress({ modkey }, "F3", "urxvt -e ranger"),
    spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
 
