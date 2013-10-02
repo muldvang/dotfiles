@@ -314,7 +314,7 @@ modkey = "Mod4"
 beautiful.init("/home/muldvang/.config/awesome/themes/mytheme/theme.lua")
 
 -- Settings for the menubar
-menubar.utils.terminal = "urxvt"
+menubar.utils.terminal = "termite"
 menubar.show_categories = false
 menubar.cache_entries = true
 
@@ -442,8 +442,8 @@ globalkeys = awful.util.table.join(
    -- Screenshot
    spawn_on_keypress({ }, "#107", "gnome-screenshot --interactive"),
 
-   -- urxvt
-   spawn_on_keypress({ modkey }, "Return", "urxvt -e tmux"),
+   -- Termite
+   spawn_on_keypress({ modkey }, "Return", "termite"),
    
    -- Control ncmpcpp
    spawn_with_shell_on_keypress({}, "#171",
