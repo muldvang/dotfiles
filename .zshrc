@@ -61,11 +61,12 @@ if [ -f ~/danid.log ];
     mv -f ~/danid.log ~/.danid.log
 fi 
 
+# Set the window title
 precmd () {
   print -Pn "\e]0;%~\a"
 }
 preexec () {
-  print -Pn "\e]0;%~ - $1\a"
+  print -Pn "\e]0;$1\a"
 }
 
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
