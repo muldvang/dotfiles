@@ -348,7 +348,7 @@ end
 
 function widget_button(widget, cmd, keep_open)
    local bg = wibox.widget.background()
-   local window_name = "tray" .. cmd:gsub("%s+", "")
+   local window_name = cmd:gsub("%s+", "")
    widget:buttons(awful.button({ },
                           1,
                           function()
@@ -356,9 +356,9 @@ function widget_button(widget, cmd, keep_open)
                                 return awful.rules.match(c, {name = window_name})
                              end 
                              if keep_open then
-                                spawn_cmd = "urxvt -T " .. window_name .. " -e zsh -c \"" .. cmd .. " && zsh -i\""
+                                spawn_cmd = "termite --hold -e ".. cmd
                              else
-                                spawn_cmd = "urxvt -T " .. window_name .. " -e " .. cmd
+                                spawn_cmd = "termite -e " .. cmd
                              end
                              awful.client.run_or_raise(spawn_cmd, matcher)
                           end))
@@ -433,8 +433,8 @@ globalkeys = awful.util.table.join(
    -- Use modkey + F1-F2 to launch most used programs
    spawn_on_keypress({ modkey }, "F1", "emacsclient -c -a=\"\" "),
    spawn_on_keypress({ modkey }, "F2", "dwb"),
-   spawn_on_keypress({ modkey }, "F3", "urxvt -e ranger"),
-   spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
+   spawn_on_keypress({ modkey }, "F3", "termite -e ranger"),
+   spawn_on_keypress({ modkey }, "F4", "termite -e ncmpcpp"),
 
    -- Lock screen
    spawn_on_keypress({ }, "#160", "slimlock"),
