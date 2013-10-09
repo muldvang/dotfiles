@@ -29,6 +29,7 @@
 
 ;; Ido
 (ido-mode 'both)
+(setq ido-ignore-buffers '("^\*"))
 
 ;; Flymake
 (custom-set-variables
@@ -49,6 +50,7 @@
 
 ;; Outline minor mode
 (outline-minor-mode 1)
+
 
 ;; Programming modes settings
 
