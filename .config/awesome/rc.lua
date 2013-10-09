@@ -190,7 +190,7 @@ function package_widget()
                     end,
                     120,
                     "Arch")
-   widget = widget_button(widget, "pacaur -Sur ; alert", true)
+   widget = widget_button(widget, "pacaur -Sur", true)
    return widget
 end
 
@@ -216,7 +216,7 @@ function gmail_widget()
                        end
                     end,
                     120)
-   widget = widget_button(widget, "firefox gmail.com", false)
+   widget = widget_button(widget, "dwb gmail.com", false)
    return widget
 end
                     
@@ -356,9 +356,9 @@ function widget_button(widget, cmd, keep_open)
                                 return awful.rules.match(c, {name = window_name})
                              end 
                              if keep_open then
-                                spawn_cmd = "termite --hold -e ".. cmd
+                                spawn_cmd = "termite --hold -e \"".. cmd .. "\""
                              else
-                                spawn_cmd = "termite -e " .. cmd
+                                spawn_cmd = "termite -e \"" .. cmd .. "\""
                              end
                              awful.client.run_or_raise(spawn_cmd, matcher)
                           end))
@@ -388,7 +388,7 @@ for s = 1, screen.count() do
    local wifi = wifi_widget()
    sound = sound_widget()
    local clock = clock_widget()
-   clock = widget_button(clock, "firefox calendar.google.com", false)
+   clock = widget_button(clock, "dwb calendar.google.com", false)
    local mpd = mpd_widget()
 
    local mail = gmail_widget()
