@@ -196,3 +196,5 @@
 ;; Python
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
+;; C / C++
+(setq-default c-basic-offset 4)
