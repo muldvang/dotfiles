@@ -144,7 +144,7 @@
 
 ;; Ido
 (ido-mode 'both)
-(setq ido-ignore-buffers '("^\*"))
+(setq ido-ignore-buffers '("\\` " "^\*"))
 
 ;; Flymake
 (custom-set-variables
