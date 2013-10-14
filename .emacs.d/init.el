@@ -187,6 +187,8 @@
 
 (setq TeX-PDF-mode t)
 
+(require 'latex-pretty-symbols)
+
 ;; Lua
 (add-hook 'lua-mode-hook 'flymake-lua-load)
 
