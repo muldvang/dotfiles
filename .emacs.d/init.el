@@ -11,14 +11,10 @@
 
 ;; Set up the package manager
 (require 'package)
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives
-             '("gnu" . "http://elpa.gnu.org/packages/"))
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; Set the font
 (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
@@ -148,7 +144,7 @@
 
 ;; Ido
 (ido-mode 'both)
-(setq ido-ignore-buffers '("^\*"))
+(setq ido-ignore-buffers '("\\` " "^\*"))
 
 ;; Flymake
 (custom-set-variables

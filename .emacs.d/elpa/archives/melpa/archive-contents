@@ -1864,7 +1864,7 @@
 		     (9)))
 		   "decompilation extension for nrepl.el [github]" single])
  (nrepl .
-	[(20131010 1649)
+	[(20131008 1619)
 	 ((clojure-mode
 	   (2 0 0))
 	  (cl-lib
@@ -1875,7 +1875,8 @@
 	   (0 1)))
 	 "Client for Clojure nREPL [github]" single])
  (notmuch .
-	  [(20131010 742)
+	  [(20131007 2032)
+>>>>>>> 92fc36f0d4da2316603e896cb492ce2977e8046d
 	   nil "No description available. [git]" tar])
  (nose .
        [(20110804 819)
@@ -2244,7 +2245,7 @@
 	 (0)))
        "Linewise User Interface [github]" tar])
  (lua-mode .
-	   [(20131010 43)
+	   [(20131008 943)
 	    nil "a major-mode for editing Lua scripts [github]" single])
  (love-minor-mode .
 		  [(20130429 1759)
@@ -2645,7 +2646,7 @@
 	      [(20121016 957)
 	       nil "convert english words between singular and plural [github]" single])
  (inf-ruby .
-	   [(20131011 224)
+	   [(20131009 1604)
 	    nil "Run a Ruby process in a buffer [github]" single])
  (inf-php .
 	  [(20130414 1621)
@@ -2698,7 +2699,7 @@
 		    [(20130422 1226)
 		     nil "Makes ido-mode display vertically. [github]" single])
  (ido-ubiquitous .
-		 [(20131009 1047)
+		 [(20131002 1511)
 		  ((emacs
 		    (24 1)))
 		  "Use ido (nearly) everywhere. [github]" single])
@@ -2724,7 +2725,7 @@
 			       [(20130228 956)
 				nil "Complete SPACE or HYPHEN when type SPACE in ido [github]" single])
  (ido-at-point .
-	       [(20131009 2135)
+	       [(20130926 2040)
 		((emacs
 		  (24))
 		 (cl-lib
@@ -3027,7 +3028,7 @@
 	    (20120509)))
 	  "helm-sources and some utilities for GNU R. [github]" single])
  (helm .
-       [(20131010 1914)
+       [(20131007 1533)
 	nil "Helm is an Emacs incremental and narrowing framework [github]" tar])
  (header2 .
 	  [(20130723 2321)
@@ -3165,7 +3166,7 @@
 	  [(20120914 2148)
 	   nil "Paste to play.golang.org [github]" single])
  (go-mode .
-	  [(20131010 1649)
+	  [(20131007 1308)
 	   nil "Major mode for the Go programming language [hg]" tar])
  (go-errcheck .
 	      [(20130308 1757)
@@ -3656,8 +3657,9 @@
 	  [(20120211 1557)
 	   nil "Fast navigation and editing routines. [github]" single])
  (fasm-mode .
-	    [(20131010 1234)
-	     nil "Fasm major mode [github]" single])
+	    [(20130925 1319)
+	     nil "Fasm major mode [hg]" single])
+>>>>>>> 92fc36f0d4da2316603e896cb492ce2977e8046d
  (fasd .
        [(20130831 1903)
 	((grizzl
@@ -3834,7 +3836,7 @@
 	 [(20130827 1016)
 	  nil "Erlang major mode [github]" tar])
  (ergoemacs-mode .
-		 [(20131010 1950)
+		 [(20131009 36)
 		  nil "Emacs mode based on common modern software interface and ergonomics. [github]" tar])
  (erefactor .
 	    [(20130521 1838)
@@ -4024,7 +4026,7 @@
 		(24 1)))
 	      "web interface to Elfeed [github]" tar])
  (elfeed .
-	 [(20131010 1038)
+	 [(20131008 1446)
 	  ((emacs
 	    (24 1)))
 	  "an Emacs Atom/RSS feed reader [github]" tar])
@@ -4431,9 +4433,6 @@
  (cperl-mode .
 	     [(20130716 858)
 	      nil "Perl code editing commands for Emacs [github]" single])
- (control-mode .
-	       [(20131010 2119)
-		nil "A \"control\" mode, similar to vim's \"normal\" mode [github]" single])
  (connection .
 	     [(20131005 1021)
 	      nil "TCP-based client connection [github]" single])
@@ -4472,7 +4471,7 @@
 		[(20121128 843)
 		 nil "Highlight certain character columns [wiki]" single])
  (colorsarenice-theme .
-		      [(20131010 1226)
+		      [(20130930 1224)
 		       ((emacs
 			 (24)))
 		       "A color theme. [github]" tar])
@@ -4777,7 +4776,7 @@
 	 [(20130917 1848)
 	  nil "Run AWK interactively on region! [wiki]" single])
  (autopair .
-	   [(20131009 1902)
+	   [(20131007 150)
 	    nil "Automagically pair braces and quotes like TextMate [github]" single])
  (automargin .
 	     [(20130910 40)
@@ -5044,7 +5043,7 @@
 	   [(20130607 917)
 	    nil "Major mode for editing abc music files [github]" single])
  (4clojure .
-	   [(20131009 2058)
+	   [(20131007 1818)
 	    ((json
 	      (1 2))
 	     (request
