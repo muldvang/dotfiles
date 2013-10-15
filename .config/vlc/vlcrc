@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 2.0.8
+###  vlc 2.1.0
 ###
 
 ###
@@ -84,7 +84,7 @@
 # Systray icon (boolean)
 #qt-system-tray=1
 
-# Show notification popup on track change (boolean)
+# Show notification popup on track change (integer)
 #qt-notification=1
 
 # Start VLC with only a systray icon (boolean)
@@ -113,9 +113,6 @@
 
 # List of words separated by | to filter (string)
 #qt-recentplay-filter=
-
-# Automatically save the volume on exit (boolean)
-#qt-autosave-volume=1
 
 # Embed the file browser in open dialog (boolean)
 #qt-embedded-open=0
@@ -146,6 +143,9 @@ qt-privacy-ask=0
 
 # Allow automatic icon changes (boolean)
 #qt-icon-change=1
+
+# Maximum Volume displayed (integer)
+#qt-max-volume=125
 
 [ncurses] # Ncurses interface
 
@@ -322,7 +322,7 @@ qt-privacy-ask=0
 #sout-transcode-fps=0.000000
 
 # Hurry up (boolean)
-#sout-transcode-hurry-up=1
+#sout-transcode-hurry-up=0
 
 # Deinterlace video (boolean)
 #sout-transcode-deinterlace=0
@@ -354,7 +354,7 @@ qt-privacy-ask=0
 # Audio bitrate (integer)
 #sout-transcode-ab=96
 
-# Audio Language (string)
+# Audio language (string)
 #sout-transcode-alang=
 
 # Audio channels (integer)
@@ -369,13 +369,13 @@ qt-privacy-ask=0
 # Audio filter (string)
 #sout-transcode-afilter=
 
-# Subtitles encoder (string)
+# Subtitle encoder (string)
 #sout-transcode-senc=
 
-# Destination subtitles codec (string)
+# Destination subtitle codec (string)
 #sout-transcode-scodec=
 
-# Destination subtitles codec (boolean)
+# Destination subtitle codec (boolean)
 #sout-transcode-soverlay=0
 
 # Overlays (string)
@@ -451,17 +451,6 @@ qt-privacy-ask=0
 # Session phone number (string)
 #sout-standard-phone=
 
-[stream_out_select] # Select individual es to enable or disable from stream
-
-# Command UDP port (integer)
-#sout-select-port=5001
-
-# Disable ES id (integer)
-#sout-select-disable=-1
-
-# Enable ES id (integer)
-#sout-select-enable=-1
-
 [stream_out_es] # Elementary stream output
 
 # Output access method (string)
@@ -529,7 +518,16 @@ qt-privacy-ask=0
 # SAP Strict mode (boolean)
 #sap-strict=0
 
-[telepathy] # Telepathy "Now Playing" (MissionControl)
+[dash] # Dynamic Adaptive Streaming over HTTP
+
+# Preferred Width (integer)
+#dash-prefwidth=480
+
+# Preferred Height (integer)
+#dash-prefheight=360
+
+# Buffer Size (Seconds) (integer)
+#dash-buffersize=30
 
 [mux_asf] # ASF muxer
 
@@ -638,6 +636,11 @@ qt-privacy-ask=0
 # PES maximum size (integer)
 #sout-ps-pes-max-size=65500
 
+[gl] # OpenGL video output (experimental)
+
+# OpenGL extension (string)
+#gl=
+
 [xcb_xv] # XVideo output (XCB)
 
 # XVideo adaptor number (integer)
@@ -705,7 +708,29 @@ qt-privacy-ask=0
 # SDL chroma format (string)
 #sdl-chroma=
 
-[aout_file] # File audio output
+[alsa] # ALSA audio output
+
+# Audio output device (string)
+alsa-audio-device=default:CARD=CMI8770
+
+# Audio output channels (integer)
+#alsa-audio-channels=6
+
+# Software gain (float)
+alsa-gain=0.216000
+
+[jack] # JACK audio output
+
+# Automatically connect to writable clients (boolean)
+#jack-auto-connect=1
+
+# Connect to clients matching (string)
+#jack-connect-regex=system
+
+# Software gain (float)
+#jack-gain=1.000000
+
+[afile] # File audio output
 
 # Output file (string)
 #audiofile-file=audiofile.wav
@@ -718,27 +743,6 @@ qt-privacy-ask=0
 
 # Add WAVE header (boolean)
 #audiofile-wav=1
-
-[alsa] # ALSA audio output
-
-# Audio output device (string)
-alsa-audio-device=default:CARD=CMI8770
-
-# Audio output channels (integer)
-#alsa-audio-channels=6
-
-[jack] # JACK audio output
-
-# Automatically connect to writable clients (boolean)
-#jack-auto-connect=1
-
-# Connect to clients matching (string)
-#jack-connect-regex=system
-
-[oss] # Open Sound System
-
-# OSS DSP device (string)
-#oss-audio-device=/dev/dsp
 
 [amem] # Audio memory output
 
@@ -775,124 +779,127 @@ alsa-audio-device=default:CARD=CMI8770
 [avcodec] # FFmpeg audio/video decoder
 
 # Direct rendering (boolean)
-#ffmpeg-dr=1
+#avcodec-dr=1
 
 # Error resilience (integer)
-#ffmpeg-error-resilience=1
+#avcodec-error-resilience=1
 
 # Workaround bugs (integer)
-#ffmpeg-workaround-bugs=1
+#avcodec-workaround-bugs=1
 
 # Hurry up (boolean)
-#ffmpeg-hurry-up=1
+#avcodec-hurry-up=1
 
 # Skip frame (default=0) (integer)
-#ffmpeg-skip-frame=0
+#avcodec-skip-frame=0
 
 # Skip idct (default=0) (integer)
-#ffmpeg-skip-idct=0
+#avcodec-skip-idct=0
 
 # Visualize motion vectors (integer)
-#ffmpeg-vismv=0
-
-# Low resolution decoding (integer)
-#ffmpeg-lowres=0
+#avcodec-vismv=0
 
 # Allow speed tricks (boolean)
-#ffmpeg-fast=0
+#avcodec-fast=0
 
 # Skip the loop filter for H.264 decoding (integer)
-#ffmpeg-skiploopfilter=0
+#avcodec-skiploopfilter=0
 
 # Debug mask (integer)
-#ffmpeg-debug=0
+#avcodec-debug=0
 
 # Codec name (string)
-#ffmpeg-codec=
+#avcodec-codec=
 
-# Hardware decoding (boolean)
-#ffmpeg-hw=0
+# Hardware decoding (string)
+#avcodec-hw=none
 
 # Threads (integer)
-#ffmpeg-threads=0
+#avcodec-threads=0
+
+# Advanced options. (string)
+#avcodec-options=
 
 # Codec name (string)
-#sout-ffmpeg-codec=
+#sout-avcodec-codec=
 
 # Quality level (string)
-#sout-ffmpeg-hq=simple
+#sout-avcodec-hq=rd
 
 # Ratio of key frames (integer)
-#sout-ffmpeg-keyint=0
+#sout-avcodec-keyint=0
 
 # Ratio of B frames (integer)
-#sout-ffmpeg-bframes=0
+#sout-avcodec-bframes=0
 
 # Hurry up (boolean)
-#sout-ffmpeg-hurry-up=0
+#sout-avcodec-hurry-up=0
 
 # Interlaced encoding (boolean)
-#sout-ffmpeg-interlace=0
+#sout-avcodec-interlace=0
 
 # Interlaced motion estimation (boolean)
-#sout-ffmpeg-interlace-me=1
+#sout-avcodec-interlace-me=1
 
 # Video bitrate tolerance (integer)
-#sout-ffmpeg-vt=0
+#sout-avcodec-vt=0
 
 # Pre-motion estimation (boolean)
-#sout-ffmpeg-pre-me=0
+#sout-avcodec-pre-me=0
 
 # Rate control buffer size (integer)
-#sout-ffmpeg-rc-buffer-size=0
+#sout-avcodec-rc-buffer-size=0
 
 # Rate control buffer aggressiveness (float)
-#sout-ffmpeg-rc-buffer-aggressivity=1.000000
+#sout-avcodec-rc-buffer-aggressivity=1.000000
 
 # I quantization factor (float)
-#sout-ffmpeg-i-quant-factor=0.000000
+#sout-avcodec-i-quant-factor=0.000000
 
 # Noise reduction (integer)
-#sout-ffmpeg-noise-reduction=0
+#sout-avcodec-noise-reduction=0
 
 # MPEG4 quantization matrix (boolean)
-#sout-ffmpeg-mpeg4-matrix=0
+#sout-avcodec-mpeg4-matrix=0
 
 # Minimum video quantizer scale (integer)
-#sout-ffmpeg-qmin=0
+#sout-avcodec-qmin=0
 
 # Maximum video quantizer scale (integer)
-#sout-ffmpeg-qmax=0
+#sout-avcodec-qmax=0
 
 # Trellis quantization (boolean)
-#sout-ffmpeg-trellis=0
+#sout-avcodec-trellis=0
 
 # Fixed quantizer scale (float)
-#sout-ffmpeg-qscale=0.000000
+#sout-avcodec-qscale=0.000000
 
 # Strict standard compliance (integer)
-#sout-ffmpeg-strict=0
+#sout-avcodec-strict=0
 
 # Luminance masking (float)
-#sout-ffmpeg-lumi-masking=0.000000
+#sout-avcodec-lumi-masking=0.000000
 
 # Darkness masking (float)
-#sout-ffmpeg-dark-masking=0.000000
+#sout-avcodec-dark-masking=0.000000
 
 # Motion masking (float)
-#sout-ffmpeg-p-masking=0.000000
+#sout-avcodec-p-masking=0.000000
 
 # Border masking (float)
-#sout-ffmpeg-border-masking=0.000000
+#sout-avcodec-border-masking=0.000000
 
 # Luminance elimination (integer)
-#sout-ffmpeg-luma-elim-threshold=0
+#sout-avcodec-luma-elim-threshold=0
 
 # Chrominance elimination (integer)
-#sout-ffmpeg-chroma-elim-threshold=0
+#sout-avcodec-chroma-elim-threshold=0
 
 # Specify AAC audio profile to use (string)
-#sout-ffmpeg-aac-profile=low
+#sout-avcodec-aac-profile=low
+
+# Advanced options. (string)
+#sout-avcodec-options=
 
 [schroedinger] # Dirac video decoder using libschroedinger
 
@@ -1034,15 +1041,15 @@ alsa-audio-device=default:CARD=CMI8770
 # Teletext text subtitles (boolean)
 #vbi-text=0
 
-[subsdec] # Text subtitles decoder
+[subsdec] # Text subtitle decoder
 
-# Subtitles justification (integer)
+# Subtitle justification (integer)
 #subsdec-align=0
 
-# Subtitles text encoding (string)
+# Subtitle text encoding (string)
 #subsdec-encoding=
 
-# UTF-8 subtitles autodetection (boolean)
+# UTF-8 subtitle autodetection (boolean)
 #subsdec-autodetect-utf8=1
 
 # Formatted Subtitles (boolean)
@@ -1076,7 +1083,7 @@ alsa-audio-device=default:CARD=CMI8770
 # Encoding Y coordinate (integer)
 #sout-dvbsub-y=-1
 
-[x264] # H.264/MPEG4 AVC encoder (x264)
+[x264] # H.264/MPEG-4 Part 10/AVC encoder (x264)
 
 # Maximum GOP size (integer)
 #sout-x264-keyint=250
@@ -1108,6 +1115,9 @@ alsa-audio-device=default:CARD=CMI8770
 # CABAC (boolean)
 #sout-x264-cabac=1
 
+# Use fullrange instead of TV colorrange (boolean)
+#sout-x264-fullrange=0
+
 # Number of reference frames (integer)
 #sout-x264-ref=3
 
@@ -1131,6 +1141,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Interlaced mode (boolean)
 #sout-x264-interlaced=0
+
+# Frame packing (integer)
+#sout-x264-frame-packing=-1
 
 # Force number of slices per frame (integer)
 #sout-x264-slices=0
@@ -1291,11 +1304,14 @@ alsa-audio-device=default:CARD=CMI8770
 # Filename for 2 pass stats file (string)
 #sout-x264-stats=x264_2pass.log
 
-# Use preset as default settings. Overridden by user settings. (string)
+# Default preset setting used (string)
 #sout-x264-preset=
 
-# Tune the settings for a particular type of source or situation. Overridden by user settings. (string)
+# Default tune setting used (string)
 #sout-x264-tune=
+
+# x264 advanced options. (string)
+#sout-x264-options=
 
 [kate] # Kate overlay decoder
 
@@ -1339,7 +1355,7 @@ alsa-audio-device=default:CARD=CMI8770
 # TLS cipher priorities (string)
 #gnutls-priorities=NORMAL
 
-[vod_rtsp] # RTSP VoD server
+[vod_rtsp] # Legacy RTSP VoD server
 
 # MUX for RAW RTSP transport (string)
 #rtsp-raw-mux=ts
@@ -1368,6 +1384,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Log format (string)
 #logmode=text
+
+# Syslog ident (string)
+#syslog-ident=vlc
 
 # Syslog facility (string)
 #syslog-facility=user
@@ -1412,6 +1431,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 [demuxdump] # File dumper
 
+# Dump module (string)
+#demuxdump-access=file
+
 # Dump filename (string)
 #demuxdump-file=stream-demux.dump
 
@@ -1440,18 +1462,6 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Packet size in bytes to decrypt (integer)
 #ts-csa-pkt=188
-
-# Silent mode (boolean)
-#ts-silent=0
-
-# Filename of dump (string)
-#ts-dump-file=
-
-# Append (boolean)
-#ts-dump-append=0
-
-# Dump buffer size (integer)
-#ts-dump-size=16384
 
 # Separate sub-streams (boolean)
 #ts-split-es=1
@@ -1487,18 +1497,18 @@ alsa-audio-device=default:CARD=CMI8770
 # Trust MPEG timestamps (boolean)
 #ps-trust-timestamps=1
 
-[subtitle] # Text subtitles parser
+[subtitle] # Text subtitle parser
 
-# Frames per second (float)
+# Frames per Second (float)
 #sub-fps=0.000000
 
-# Subtitles delay (integer)
+# Subtitle delay (integer)
 #sub-delay=0
 
-# Subtitles format (string)
+# Subtitle format (string)
 #sub-type=auto
 
-# Subtitles description (string)
+# Subtitle description (string)
 #sub-description=
 
 [mjpeg] # M-JPEG camera demuxer
@@ -1510,35 +1520,6 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Hurry up (boolean)
 #rawdv-hurry-up=0
-
-[live555] # RTP/RTSP/SDP demuxer (using Live555)
-
-# Use RTP over RTSP (TCP) (boolean)
-#rtsp-tcp=0
-
-# Client port (integer)
-#rtp-client-port=-1
-
-# Force multicast RTP via RTSP (boolean)
-#rtsp-mcast=0
-
-# Tunnel RTSP and RTP over HTTP (boolean)
-#rtsp-http=0
-
-# HTTP tunnel port (integer)
-#rtsp-http-port=80
-
-# Kasenna RTSP dialect (boolean)
-#rtsp-kasenna=0
-
-# WMServer RTSP dialect (boolean)
-#rtsp-wmserver=0
-
-# RTSP user name (string)
-#rtsp-user=
-
-# RTSP password (string)
-#rtsp-pwd=
 
 [dirac] # Dirac video demuxer
 
@@ -1624,10 +1605,16 @@ alsa-audio-device=default:CARD=CMI8770
 [avformat] # Avformat demuxer
 
 # Format name (string)
-#ffmpeg-format=
+#avformat-format=
+
+# Advanced options. (string)
+#avformat-options=
 
 # Avformat mux (string)
-#ffmpeg-mux=
+#sout-avformat-mux=
+
+# Advanced options. (string)
+#sout-avformat-options=
 
 [packetizer_mpegvideo] # MPEG-I/II video packetizer
 
@@ -1653,6 +1640,11 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Teletext language (string)
 #linsys-sdi-telx-lang=
+
+[timecode] # Time code subpicture elementary stream generator
+
+# Frame rate (string)
+#timecode-fps=25/1
 
 [dvdnav] # DVDnav Input
 
@@ -1682,9 +1674,9 @@ alsa-audio-device=default:CARD=CMI8770
 # Follow the mouse (boolean)
 #screen-follow-mouse=0
 
-[libbluray] # Blu-Ray Disc support (libbluray)
+[libbluray] # Blu-ray Disc support (libbluray)
 
-# Bluray menus (boolean)
+# Blu-ray menus (boolean)
 #bluray-menu=0
 
 [dvdread] # DVDRead Input (no menu support)
@@ -1718,53 +1710,6 @@ alsa-audio-device=default:CARD=CMI8770
 # RTP payload format assumed for dynamic payloads (string)
 #rtp-dynamic-pt=
 
-[pvr] # IVTV MPEG Encoding cards input
-
-# Device (string)
-#pvr-device=/dev/video0
-
-# Radio device (string)
-#pvr-radio-device=/dev/radio0
-
-# Norm (integer)
-#pvr-norm=0
-
-# Width (integer)
-#pvr-width=-1
-
-# Height (integer)
-#pvr-height=-1
-
-# Frequency (integer)
-#pvr-frequency=-1
-
-# Framerate (integer)
-#pvr-framerate=-1
-
-# Key interval (integer)
-#pvr-keyint=-1
-
-# Framerate (integer)
-#pvr-bframes=-1
-
-# Bitrate (integer)
-#pvr-bitrate=-1
-
-# Bitrate peak (integer)
-#pvr-bitrate-peak=-1
-
-# Bitrate mode (integer)
-#pvr-bitrate-mode=-1
-
-# Audio bitmask (integer)
-#pvr-audio-bitmask=-1
-
-# Volume (integer)
-#pvr-audio-volume=-1
-
-# Channel (integer)
-#pvr-channel=-1
-
 [access_ftp] # FTP input
 
 # FTP user name (string)
@@ -1776,10 +1721,13 @@ alsa-audio-device=default:CARD=CMI8770
 # FTP account (string)
 #ftp-account=anonymous
 
-[v4l2] # Video4Linux2 input
+[v4l2] # Video4Linux input
 
-# Device (string)
+# Video capture device (string)
 #v4l2-dev=/dev/video0
+
+# VBI capture device (string)
+#v4l2-vbidev=
 
 # Standard (string)
 #v4l2-standard=
@@ -1794,28 +1742,22 @@ alsa-audio-device=default:CARD=CMI8770
 #v4l2-audio-input=-1
 
 # Width (integer)
-#v4l2-width=-1
+#v4l2-width=0
 
 # Height (integer)
-#v4l2-height=-1
+#v4l2-height=0
 
 # Picture aspect-ratio n:m (string)
 #v4l2-aspect-ratio=4:3
 
-# Framerate (float)
-#v4l2-fps=0.000000
-
-# Use libv4l2 (boolean)
-#v4l2-use-libv4l2=0
-
-# Tuner id (integer)
-#v4l2-tuner=0
+# Radio device (string)
+#v4l2-radio-dev=/dev/radio0
 
 # Frequency (integer)
 #v4l2-tuner-frequency=-1
 
 # Audio mode (integer)
-#v4l2-tuner-audio-mode=-1
+#v4l2-tuner-audio-mode=3
 
 # Reset controls (boolean)
 #v4l2-controls-reset=0
@@ -1951,6 +1893,14 @@ alsa-audio-device=default:CARD=CMI8770
 # Size (integer)
 #imem-size=0
 
+[dvb] # DVB input with v4l2 support
+
+# Probe DVB card for capabilities (boolean)
+#dvb-probe=1
+
+# Satellite scanning config (string)
+#dvb-satellite=
+
 [cdda] # Audio CD input
 
 # CDDB Server (string)
@@ -1959,15 +1909,12 @@ alsa-audio-device=default:CARD=CMI8770
 # CDDB port (integer)
 #cddb-port=80
 
-[access_alsa] # ALSA audio capture input
+[access_alsa] # ALSA audio capture
 
 # Stereo (boolean)
 #alsa-stereo=1
 
-# Capture format (default s16l) (string)
-#alsa-format=s16l
-
-# Samplerate (integer)
+# Sample rate (integer)
 #alsa-samplerate=48000
 
 [access_mms] # Microsoft Media Server (MMS) input
@@ -1984,19 +1931,37 @@ alsa-audio-device=default:CARD=CMI8770
 # HTTP proxy (string)
 #mmsh-proxy=
 
-[access_shm] # Shared memory framebuffer
+[live555] # RTP/RTSP/SDP demuxer (using Live555)
 
-# Frame rate (float)
-#shm-fps=10.000000
+# Use RTP over RTSP (TCP) (boolean)
+#rtsp-tcp=0
 
-# Frame buffer width (integer)
-#shm-width=800
+# Client port (integer)
+#rtp-client-port=-1
 
-# Frame buffer height (integer)
-#shm-height=480
+# Force multicast RTP via RTSP (boolean)
+#rtsp-mcast=0
 
-# Frame buffer depth (integer)
-#shm-depth=32
+# Tunnel RTSP and RTP over HTTP (boolean)
+#rtsp-http=0
+
+# HTTP tunnel port (integer)
+#rtsp-http-port=80
+
+# Kasenna RTSP dialect (boolean)
+#rtsp-kasenna=0
+
+# WMServer RTSP dialect (boolean)
+#rtsp-wmserver=0
+
+# RTSP user name (string)
+#rtsp-user=
+
+# RTSP password (string)
+#rtsp-pwd=
+
+# RTSP frame buffer size (integer)
+#rtsp-frame-buffer-size=100000
 
 [access_http] # HTTP input
 
@@ -2020,6 +1985,14 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Forward Cookies (boolean)
 #http-forward-cookies=1
+
+[access_avio] # FFmpeg access
+
+# Advanced options. (string)
+#avio-options=
+
+# Advanced options. (string)
+#sout-avio-options=
 
 [access_smb] # SMB input
 
@@ -2066,6 +2039,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Hierarchy mode (integer)
 #dvb-hierarchy=-1
+
+# DVB-T2 Physical Layer Pipe (integer)
+#dvb-plp-id=0
 
 # Layer A modulation (string)
 #dvb-a-modulation=
@@ -2124,7 +2100,7 @@ alsa-audio-device=default:CARD=CMI8770
 # Polarization (Voltage) (string)
 #dvb-polarization=
 
-#  (integer)
+# ? (integer)
 #dvb-voltage=13
 
 # High LNB voltage (boolean)
@@ -2141,6 +2117,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 # DiSEqC LNB number (integer)
 #dvb-satno=0
+
+# Uncommitted DiSEqC LNB number (integer)
+#dvb-uncommitted=0
 
 # Continuous 22kHz tone (integer)
 #dvb-tone=-1
@@ -2169,13 +2148,19 @@ alsa-audio-device=default:CARD=CMI8770
 # SFTP port (integer)
 #sftp-port=22
 
-[access_oss] # OSS input
+[shm] # Shared memory framebuffer
 
-# Stereo (boolean)
-#oss-stereo=1
+# Frame rate (float)
+#shm-fps=10.000000
 
-# Samplerate (integer)
-#oss-samplerate=48000
+# Frame buffer depth (integer)
+#shm-depth=0
+
+# Frame buffer width (integer)
+#shm-width=800
+
+# Frame buffer height (integer)
+#shm-height=480
 
 [filesystem] # File input
 
@@ -2184,6 +2169,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Ignored extensions (string)
 #ignore-filetypes=m3u,db,nfo,ini,jpg,jpeg,ljpg,gif,png,pgm,pgmyuv,pbm,pam,tga,bmp,pnm,xpm,xcf,pcx,tif,tiff,lbm,sfv,txt,sub,idx,srt,cue,ssa
+
+# Directory sort order (string)
+#directory-sort=collate
 
 [access_vdr] # VDR recordings
 
@@ -2198,7 +2186,7 @@ alsa-audio-device=default:CARD=CMI8770
 # Pace (boolean)
 #jack-input-use-vlc-pace=0
 
-# Auto Connection (boolean)
+# Auto connection (boolean)
 #jack-input-auto-connect=0
 
 [folder] # Folder meta data
@@ -2210,6 +2198,9 @@ alsa-audio-device=default:CARD=CMI8770
 
 # Font (string)
 #freetype-font=Serif Bold
+
+# Monospace Font (string)
+#freetype-monofont=Monospace
 
 # Font size in pixels (integer)
 #freetype-fontsize=0
@@ -2263,14 +2254,6 @@ alsa-audio-device=default:CARD=CMI8770
 
 [motion] # motion control interface
 
-# Use the rotate video filter instead of transform (boolean)
-#motion-use-rotate=0
-
-[hotkeys] # Hotkeys management interface
-
-# MouseWheel up-down axis Control (integer)
-#hotkeys-mousewheel-mode=0
-
 [oldrc] # Remote control interface
 
 # Show stream position (boolean)
@@ -2296,7 +2279,7 @@ alsa-audio-device=default:CARD=CMI8770
 #gestures-threshold=30
 
 # Trigger button (string)
-#gestures-button=right
+#gestures-button=left
 
 [netsync] # Network synchronization
 
@@ -2309,10 +2292,47 @@ alsa-audio-device=default:CARD=CMI8770
 # UDP timeout (in ms) (integer)
 #netsync-timeout=500
 
+[remap] # Audio channel remapper
+
+# Left (integer)
+#aout-remap-channel-left=0
+
+# Center (integer)
+#aout-remap-channel-center=1
+
+# Right (integer)
+#aout-remap-channel-right=2
+
+# Rear left (integer)
+#aout-remap-channel-rearleft=3
+
+# Rear center (integer)
+#aout-remap-channel-rearcenter=4
+
+# Rear right (integer)
+#aout-remap-channel-rearright=5
+
+# Side left (integer)
+#aout-remap-channel-middleleft=6
+
+# Side right (integer)
+#aout-remap-channel-middleright=7
+
+# Low-frequency effects (integer)
+#aout-remap-channel-lfe=8
+
+# Normalize channels (boolean)
+#aout-remap-normalize=1
+
 [dtstofloat32] # DTS Coherent Acoustics audio decoder
 
 # DTS dynamic range compression (boolean)
 #dts-dynrng=1
+
+[gain] # Gain control filter
+
+# Gain multiplier (float)
+#gain-value=1.000000
 
 [spatializer] # Audio Spatializer
 
@@ -2381,7 +2401,7 @@ compressor-makeup-gain=0.000000
 [chorus_flanger] # Sound Delay
 
 # Delay time (float)
-#delay-time=40.000000
+#delay-time=20.000000
 
 # Sweep Depth (float)
 #sweep-depth=6.000000
@@ -2389,7 +2409,7 @@ compressor-makeup-gain=0.000000
 # Sweep Rate (float)
 #sweep-rate=6.000000
 
-# Feedback Gain (float)
+# Feedback gain (float)
 #feedback-gain=0.500000
 
 # Wet mix (float)
@@ -2409,6 +2429,9 @@ compressor-makeup-gain=0.000000
 # Two pass (boolean)
 #equalizer-2pass=0
 
+# Use VLC frequency bands (boolean)
+#equalizer-vlcfreqs=1
+
 # Global gain (float)
 equalizer-preamp=0.000000
 
@@ -2422,31 +2445,31 @@ equalizer-preamp=0.000000
 
 [audiobargraph_a] # Audio part of the BarGraph function
 
-# TCP address to use (default localhost) (string)
+# TCP address to use (string)
 #audiobargraph_a-address=localhost
 
-# TCP port to use (default 12345) (integer)
+# TCP port to use (integer)
 #audiobargraph_a-port=12345
 
-# Defines if BarGraph information should be sent (default 1) (integer)
+# Defines if BarGraph information should be sent (integer)
 #audiobargraph_a-bargraph=1
 
-# Sends the barGraph information every n audio packets (default 4) (integer)
+# Sends the barGraph information every n audio packets (integer)
 #audiobargraph_a-bargraph_repetition=4
 
-# Defines if silence alarm information should be sent (default 1) (integer)
+# Defines if silence alarm information should be sent (integer)
 #audiobargraph_a-silence=1
 
-# Time window to use in ms (default 5000) (integer)
+# Time window to use in ms (integer)
 #audiobargraph_a-time_window=5000
 
-# Minimum Audio level to raise the alarm (default 0.1) (float)
+# Minimum Audio level to raise the alarm (float)
 #audiobargraph_a-alarm_threshold=0.100000
 
-# Time between two alarm messages in ms (default 2000) (integer)
+# Time between two alarm messages in ms (integer)
 #audiobargraph_a-repetition_time=2000
 
-# Force connection reset regularly (default 1) (integer)
+# Force connection reset regularly (integer)
 #audiobargraph_a-connection_reset=1
 
 [param_eq] # Parametric Equalizer
@@ -2508,6 +2531,20 @@ equalizer-preamp=0.000000
 
 # Enable internal upmixing (boolean)
 #a52-upmix=0
+
+[stereo_widen] # Simple stereo widening effect
+
+# Delay time (float)
+#delay=20.000000
+
+# Feedback gain (float)
+#feedback=0.300000
+
+# Crossfeed (float)
+#crossfeed=0.300000
+
+# Dry mix (float)
+#dry-mix=0.800000
 
 [speex_resampler] # Speex resampler
 
@@ -2819,6 +2856,11 @@ equalizer-preamp=0.000000
 # Scaling mode (integer)
 #swscale-mode=2
 
+[anaglyph] # Convert 3D picture to anaglyph image video filter
+
+# Color scheme (string)
+#anaglyph-scheme=red-cyan
+
 [panoramix] # Panoramix: wall with overlap video filter
 
 # Number of columns (integer)
@@ -2906,8 +2948,11 @@ equalizer-preamp=0.000000
 
 [rotate] # Rotate video filter
 
-# Angle in degrees (integer)
-#rotate-angle=30
+# Angle in degrees (float)
+#rotate-angle=30.000000
+
+# Use motion sensors (boolean)
+#rotate-use-motion=0
 
 [blendbench] # Blending benchmark filter
 
@@ -2929,7 +2974,7 @@ equalizer-preamp=0.000000
 # Chroma for the blend image (string)
 #blendbench-blend-chroma=YUVA
 
-[subsdelay] # Subtitles delay
+[subsdelay] # Subtitle delay
 
 # Delay calculation mode (integer)
 #subsdelay-mode=1
@@ -2956,32 +3001,6 @@ equalizer-preamp=0.000000
 
 # Posterize level (integer)
 #posterize-level=6
-
-[osdmenu] # On Screen Display menu
-
-# X coordinate (integer)
-#osdmenu-x=-1
-
-# Y coordinate (integer)
-#osdmenu-y=-1
-
-# Menu position (integer)
-#osdmenu-position=8
-
-# Configuration file (string)
-#osdmenu-file=/usr/share/vlc/osdmenu/default.cfg
-
-# Path to OSD menu images (string)
-#osdmenu-file-path=
-
-# Menu timeout (integer)
-#osdmenu-timeout=15
-
-# Menu update interval (integer)
-#osdmenu-update=300
-
-# Alpha transparency value (default 255) (integer)
-#osdmenu-alpha=255
 
 [croppadd] # Video scaling filter
 
@@ -3068,13 +3087,13 @@ equalizer-preamp=0.000000
 # Calculate a average zone (boolean)
 #atmo-zone-summary=0
 
-# Edge Weightning (integer)
+# Edge weightning (integer)
 #atmo-edgeweightning=3
 
 # Brightness (integer)
 #atmo-brightness=100
 
-# Darkness Limit (integer)
+# Darkness limit (integer)
 #atmo-darknesslimit=3
 
 # Hue windowing (integer)
@@ -3092,7 +3111,7 @@ equalizer-preamp=0.000000
 # Filter threshold (integer)
 #atmo-meanthreshold=40
 
-# Filter Smoothness (in %) (integer)
+# Filter smoothness (%) (integer)
 #atmo-percentnew=50
 
 # Frame delay (ms) (integer)
@@ -3159,6 +3178,9 @@ equalizer-preamp=0.000000
 
 # Text (string)
 #marq-marquee=VLC
+
+# Text file (string)
+#marq-file=
 
 # X offset (integer)
 #marq-x=0
@@ -3243,8 +3265,29 @@ equalizer-preamp=0.000000
 # Number of puzzle columns (integer)
 #puzzle-cols=4
 
-# Make one tile a black slot (boolean)
-#puzzle-black-slot=0
+# Border (integer)
+#puzzle-border=3
+
+# Small preview (boolean)
+#puzzle-preview=0
+
+# Small preview size (integer)
+#puzzle-preview-size=15
+
+# Piece edge shape size (integer)
+#puzzle-shape-size=90
+
+# Auto shuffle (integer)
+#puzzle-auto-shuffle=0
+
+# Auto solve (integer)
+#puzzle-auto-solve=0
+
+# Rotation (integer)
+#puzzle-rotation=0
+
+# Game mode (integer)
+#puzzle-mode=0
 
 [colorthres] # Color threshold filter
 
@@ -3309,6 +3352,9 @@ equalizer-preamp=0.000000
 # Lua interface configuration (string)
 #lua-config=
 
+# Password (string)
+#http-password=
+
 # Source directory (string)
 #http-src=
 
@@ -3328,7 +3374,7 @@ equalizer-preamp=0.000000
 #telnet-port=4212
 
 # Password (string)
-#telnet-password=admin
+#telnet-password=
 
 [access_output_shout] # IceCAST output
 
@@ -3375,8 +3421,14 @@ equalizer-preamp=0.000000
 
 [access_output_file] # File stream output
 
+# Overwrite existing file (boolean)
+#sout-file-overwrite=1
+
 # Append to file (boolean)
 #sout-file-append=0
+
+# Format time and date (boolean)
+#sout-file-format=0
 
 # Synchronous writing (boolean)
 #sout-file-sync=0
@@ -3406,25 +3458,40 @@ equalizer-preamp=0.000000
 # Use muxers rate control mechanism (boolean)
 #sout-livehttp-ratecontrol=0
 
+# Allow cache (boolean)
+#sout-livehttp-caching=0
+
+# Use randomized IV for encryption (boolean)
+#sout-livehttp-generate-iv=0
+
 # Index file (string)
 #sout-livehttp-index=
 
 # Full URL to put in index file (string)
 #sout-livehttp-index-url=
 
+# AES key URI to place in playlist (string)
+#sout-livehttp-key-uri=
+
+# AES key file (string)
+#sout-livehttp-key-file=
+
+# File where vlc reads key-uri and keyfile-location (string)
+#sout-livehttp-key-loadfile=
+
 [main] # main program
 
 # Enable audio (boolean)
 #audio=1
 
-# Default audio volume (integer)
-volume=160
+# Audio gain (float)
+#gain=1.000000
 
-# Audio output volume step (integer)
-#volume-step=32
+# Audio output volume step (float)
+#volume-step=12.800000
 
-# High quality audio resampling (boolean)
-#hq-resampling=1
+# Remember the audio volume (boolean)
+#volume-save=1
 
 # Use S/PDIF when available (boolean)
 #spdif=0
@@ -3432,8 +3499,14 @@ volume=160
 # Force detection of Dolby Surround (integer)
 #force-dolby-surround=0
 
+# Stereo audio output mode (integer)
+#stereo-mode=0
+
 # Audio desynchronization compensation (integer)
 #audio-desync=0
+
+# Audio resampler (string)
+#audio-resampler=
 
 # Replay gain mode (string)
 #audio-replay-gain-mode=none
@@ -3456,8 +3529,8 @@ aout=alsa
 # Audio filters (string)
 #audio-filter=
 
-# Audio visualizations  (string)
-#audio-visual=
+# Audio visualizations (string)
+#audio-visual=none
 
 # Enable video (boolean)
 #video=1
@@ -3636,7 +3709,7 @@ aout=alsa
 # Audio track (integer)
 #audio-track=-1
 
-# Subtitles track (integer)
+# Subtitle track (integer)
 #sub-track=-1
 
 # Audio language (string)
@@ -3648,7 +3721,7 @@ aout=alsa
 # Audio track ID (integer)
 #audio-track-id=-1
 
-# Subtitles track ID (integer)
+# Subtitle track ID (integer)
 #sub-track-id=-1
 
 # Preferred video resolution (integer)
@@ -3682,13 +3755,13 @@ aout=alsa
 #bookmarks=
 
 # DVD device (string)
-#dvd=/dev/dvd
+#dvd=/dev/dvd1
 
 # VCD device (string)
-#vcd=/dev/cdrom
+#vcd=/dev/cdrom1
 
 # Audio CD device (string)
-#cd-audio=/dev/cdrom
+#cd-audio=/dev/cdrom1
 
 # MTU of the network interface (integer)
 #mtu=1400
@@ -3837,6 +3910,9 @@ aout=alsa
 # VLM configuration file (string)
 #vlm-conf=
 
+# SAP announcement interval (integer)
+#sap-interval=5
+
 # Mux module (string)
 #mux=
 
@@ -3855,20 +3931,11 @@ aout=alsa
 # Preferred packetizer list (string)
 #packetizer=
 
-# SAP announcement interval (integer)
-#sap-interval=5
-
-# Memory copy module (string)
-#memcpy=
-
 # VoD server module (string)
 #vod-server=
 
 # Use a plugins cache (boolean)
 #plugins-cache=1
-
-# Data search path (string)
-#data-path=
 
 # Allow real-time priority (boolean)
 #rt-priority=0
@@ -3878,15 +3945,6 @@ aout=alsa
 
 # Inhibit the power management daemon during playback (boolean)
 #inhibit=1
-
-# Allow only one running instance (boolean)
-#one-instance=0
-
-# One instance when started from file (boolean)
-#one-instance-when-started-from-file=1
-
-# Enqueue items to playlist when in one instance mode (boolean)
-#playlist-enqueue=0
 
 # Play files randomly forever (boolean)
 random=1
@@ -3909,6 +3967,18 @@ random=1
 # Auto start (boolean)
 #playlist-autostart=1
 
+# Pause on audio communication (boolean)
+#playlist-cork=1
+
+# Allow only one running instance (boolean)
+#one-instance=0
+
+# Use only one instance when started from file manager (boolean)
+#one-instance-when-started-from-file=1
+
+# Enqueue items into playlist in one instance mode (boolean)
+#playlist-enqueue=0
+
 # Use media library (boolean)
 #media-library=0
 
@@ -3927,15 +3997,6 @@ album-art=2
 # Services discovery modules (string)
 #services-discovery=
 
-# Verbosity (0,1,2) (integer)
-#verbose=0
-
-# Choose which objects should print debug message (string)
-#verbose-objects=
-
-# Be quiet (boolean)
-#quiet=0
-
 # Run as daemon process (boolean)
 #daemon=0
 
@@ -3947,9 +4008,6 @@ album-art=2
 
 # Log to syslog (boolean)
 #syslog=0
-
-# Color messages (boolean)
-#color=1
 
 # Show advanced options (boolean)
 #advanced=0
@@ -3969,35 +4027,38 @@ intf=dummy
 # Control interfaces (string)
 #control=
 
+# MouseWheel up-down axis Control (integer)
+#hotkeys-mousewheel-mode=0
+
 # Fullscreen (string)
 #global-key-toggle-fullscreen=
 
 # Fullscreen (string)
 #key-toggle-fullscreen=f
 
-# Leave fullscreen (string)
+# Exit fullscreen (string)
 #global-key-leave-fullscreen=
 
-# Leave fullscreen (string)
+# Exit fullscreen (string)
 #key-leave-fullscreen=Esc
 
 # Play/Pause (string)
 #global-key-play-pause=
 
 # Play/Pause (string)
-#key-play-pause=Space
+#key-play-pause=Space	Media Play Pause
 
 # Pause only (string)
 #global-key-pause=
 
 # Pause only (string)
-#key-pause=
+#key-pause=Browser Stop
 
 # Play only (string)
 #global-key-play=
 
 # Play only (string)
-#key-play=
+#key-play=Browser Refresh
 
 # Faster (string)
 #global-key-faster=
@@ -4033,19 +4094,19 @@ intf=dummy
 #global-key-next=
 
 # Next (string)
-#key-next=n
+#key-next=n	Media Next Track
 
 # Previous (string)
 #global-key-prev=
 
 # Previous (string)
-#key-prev=p
+#key-prev=p	Media Prev Track
 
 # Stop (string)
 #global-key-stop=
 
 # Stop (string)
-#key-stop=s
+#key-stop=s	Media Stop
 
 # Position (string)
 #global-key-position=
@@ -4105,7 +4166,7 @@ intf=dummy
 #global-key-frame-next=
 
 # Next frame (string)
-#key-frame-next=e
+#key-frame-next=e	Browser Next
 
 # Activate (string)
 #global-key-nav-activate=
@@ -4177,19 +4238,19 @@ intf=dummy
 #global-key-vol-up=
 
 # Volume up (string)
-#key-vol-up=Ctrl+Up
+#key-vol-up=Ctrl+Up	Volume Up
 
 # Volume down (string)
 #global-key-vol-down=
 
 # Volume down (string)
-#key-vol-down=Ctrl+Down
+#key-vol-down=Ctrl+Down	Volume Down
 
 # Mute (string)
 #global-key-vol-mute=
 
 # Mute (string)
-#key-vol-mute=m
+#key-vol-mute=m	Volume Mute
 
 # Subtitle delay up (string)
 #global-key-subdelay-up=
@@ -4202,6 +4263,30 @@ intf=dummy
 
 # Subtitle delay down (string)
 #key-subdelay-down=g
+
+# Subtitle sync / bookmark audio timestamp (string)
+#global-key-subsync-markaudio=
+
+# Subtitle sync / bookmark audio timestamp (string)
+#key-subsync-markaudio=Shift+h
+
+# Subtitle sync / bookmark subtitle timestamp (string)
+#global-key-subsync-marksub=
+
+# Subtitle sync / bookmark subtitle timestamp (string)
+#key-subsync-marksub=Shift+j
+
+# Subtitle sync / synchronize audio & subtitle timestamps (string)
+#global-key-subsync-apply=
+
+# Subtitle sync / synchronize audio & subtitle timestamps (string)
+#key-subsync-apply=Shift+k
+
+# Subtitle sync / reset audio & subtitle synchronization (string)
+#global-key-subsync-reset=
+
+# Subtitle sync / reset audio & subtitle synchronization (string)
+#key-subsync-reset=Ctrl+Shift+k
 
 # Subtitle position up (string)
 #global-key-subpos-up=
@@ -4245,6 +4330,18 @@ intf=dummy
 # Cycle subtitle track (string)
 #key-subtitle-track=v
 
+# Cycle next program Service ID (string)
+#global-key-program-sid-next=
+
+# Cycle next program Service ID (string)
+#key-program-sid-next=x
+
+# Cycle previous program Service ID (string)
+#global-key-program-sid-prev=
+
+# Cycle previous program Service ID (string)
+#key-program-sid-prev=Shift+x
+
 # Cycle source aspect ratio (string)
 #global-key-aspect-ratio=
 
@@ -4275,11 +4372,17 @@ intf=dummy
 # Decrease scale factor (string)
 #key-decr-scalefactor=Alt+Shift+o
 
-# Cycle deinterlace modes (string)
+# Toggle deinterlacing (string)
 #global-key-deinterlace=
 
-# Cycle deinterlace modes (string)
+# Toggle deinterlacing (string)
 #key-deinterlace=d
+
+# Cycle deinterlace modes (string)
+#global-key-deinterlace-mode=
+
+# Cycle deinterlace modes (string)
+#key-deinterlace-mode=Shift+d
 
 # Show controller in fullscreen (string)
 #global-key-intf-show=
@@ -4292,6 +4395,12 @@ intf=dummy
 
 # Boss key (string)
 #key-intf-boss=
+
+# Context menu (string)
+#global-key-intf-popup-menu=
+
+# Context menu (string)
+#key-intf-popup-menu=Menu
 
 # Take video snapshot (string)
 #global-key-snapshot=
@@ -4322,48 +4431,6 @@ intf=dummy
 
 # Toggle wallpaper mode in video output (string)
 #key-wallpaper=w
-
-# Display OSD menu on top of video output (string)
-#global-key-menu-on=
-
-# Display OSD menu on top of video output (string)
-#key-menu-on=Alt+Shift+m
-
-# Do not display OSD menu on video output (string)
-#global-key-menu-off=
-
-# Do not display OSD menu on video output (string)
-#key-menu-off=Ctrl+Alt+m
-
-# Highlight widget on the right (string)
-#global-key-menu-right=
-
-# Highlight widget on the right (string)
-#key-menu-right=Alt+Shift+Right
-
-# Highlight widget on the left (string)
-#global-key-menu-left=
-
-# Highlight widget on the left (string)
-#key-menu-left=Alt+Shift+Left
-
-# Highlight widget on top (string)
-#global-key-menu-up=
-
-# Highlight widget on top (string)
-#key-menu-up=Alt+Shift+Up
-
-# Highlight widget below (string)
-#global-key-menu-down=
-
-# Highlight widget below (string)
-#key-menu-down=Alt+Shift+Down
-
-# Select current widget (string)
-#global-key-menu-select=
-
-# Select current widget (string)
-#key-menu-select=Alt+Shift+Enter
 
 # Crop one pixel from the top of the video (string)
 #global-key-crop-top=
@@ -4419,10 +4486,10 @@ intf=dummy
 # Random (string)
 #key-random=r
 
-# Normal/Repeat/Loop (string)
+# Normal/Loop/Repeat (string)
 #global-key-loop=
 
-# Normal/Repeat/Loop (string)
+# Normal/Loop/Repeat (string)
 #key-loop=l
 
 # 1:4 Quarter (string)
@@ -4580,6 +4647,12 @@ intf=dummy
 
 # Play playlist bookmark 10 (string)
 #key-play-bookmark10=F10
+
+# Clear the playlist (string)
+#global-key-clear-playlist=
+
+# Clear the playlist (string)
+#key-clear-playlist=Ctrl+w
 
 # Playlist bookmark 1 (string)
 #bookmark1=
