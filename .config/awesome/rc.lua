@@ -146,8 +146,20 @@ function sound_widget()
                     end,
                     5,
                     "PCM")
+
+   local menu_items = {}
+   local vol_step = 5
+   for i = 0, 100, 5 do
+      table.insert(menu_items, { i .. " %",
+                                 function()
+                                    io.popen("amixer set PCM " .. i .. "%")
+                                 end
+                               }
+      )
+   end
+
    local menu = awful.menu(
-      { items = { }})
+      { items = menu_items})
 
    widget:buttons(awful.button({ },
                                1,
@@ -175,17 +187,17 @@ function package_widget()
    local menu = awful.menu(
       { items = { { "Update repo",
                     function ()
-                       awful.util.spawn_with_shell(pacaur -Sur)
+                       awful.util.spawn("termite -e \"pacaur -Sur\"")
                     end
                   },
                   { "Update AUR",
                     function ()
-                       awful.util.spawn_with_shell(pacaur -Sur)
+                       awful.util.spawn_with_shell("termite -e \"pacaur -Sur\"")
                     end
                   },
                   { "Update both",
                     function ()
-                       awful.util.spawn_with_shell(pacaur -Sur)
+                       awful.util.spawn_with_shell("termite -e \"pacaur -Sur\"")
                     end
                   }
    }})
