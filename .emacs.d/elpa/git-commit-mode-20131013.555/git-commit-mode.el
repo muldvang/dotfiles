@@ -6,7 +6,7 @@
 ;; Authors: Sebastian Wiesner <lunaryorn@gmail.com>
 ;;	Florian Ragwitz <rafl@debian.org>
 ;; Maintainer: Jonas Bernoulli <jonas@bernoul.li>
-;; Version: 20130919.341
+;; Version: 20131013.555
 ;; X-Original-Version: 0.14.0
 ;; Homepage: https://github.com/magit/git-modes
 ;; Keywords: convenience vc git
@@ -64,7 +64,6 @@
 
 (require 'log-edit)
 (require 'ring)
-(require 'saveplace)
 (require 'server)
 
 ;;; Options
@@ -208,6 +207,34 @@ default comments in git commit messages"
     map)
   "Key map used by `git-commit-mode'.")
 
+;;; Menu
+
+(require 'easymenu)
+(easy-menu-define git-commit-mode-menu git-commit-mode-map
+  "Git Commit Mode Menu"
+  '("Commit"
+    ["Previous" git-commit-prev-message t]
+    ["Next" git-commit-next-message t]
+    "-"
+    ["Ack" git-commit-ack :active t
+     :help "Insert an 'Acked-by' header"]
+    ["Sign-Off" git-commit-signoff :active t
+     :help "Insert a 'Signed-off-by' header"]
+    ["Tested-by" git-commit-test :active t
+     :help "Insert a 'Tested-by' header"]
+    ["Reviewed-by" git-commit-review :active t
+     :help "Insert a 'Reviewed-by' header"]
+    ["CC" git-commit-cc t
+     :help "Insert a 'Cc' header"]
+    ["Reported" git-commit-reported :active t
+     :help "Insert a 'Reported-by' header"]
+    ["Suggested" git-commit-suggested t
+     :help "Insert a 'Suggested-by' header"]
+    "-"
+    ["Save" git-commit-save-message t]
+    ["Cancel" git-commit-abort t]
+    ["Commit" git-commit-commit t]))
+
 ;;; Committing
 
 (defvar git-commit-commit-hook nil
@@ -283,8 +310,9 @@ The commit message is saved to the kill ring."
   "Save current message to `log-edit-comment-ring'."
   (interactive)
   (let ((message (buffer-string)))
-    (when (or (ring-empty-p log-edit-comment-ring)
-              (not (equal message (ring-ref log-edit-comment-ring 0))))
+    (when (and (string-match "^\\s-*\\sw" message)
+               (or (ring-empty-p log-edit-comment-ring)
+                   (not (ring-member log-edit-comment-ring message))))
       (ring-insert log-edit-comment-ring message))))
 
 (defun git-commit-prev-message (arg)
@@ -555,8 +583,12 @@ basic structure of and errors in git commit messages."
        (concat paragraph-start "\\|*\\|("))
   ;; Treat lines starting with a hash/pound as comments
   (set (make-local-variable 'comment-start) "#")
+  (set (make-local-variable 'comment-start-skip)
+       (concat "^" (regexp-quote comment-start) "+"
+               "\\s-*"))
+  (set (make-local-variable 'comment-use-syntax) nil)
   ;; Do not remember point location in commit messages
-  (when (fboundp 'toggle-save-place)
+  (when (boundp 'save-place)
     (setq save-place nil))
   ;; If the commit summary is empty, insert a newline after point
   (when (string= "" (buffer-substring-no-properties
