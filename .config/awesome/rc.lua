@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- IMPORTS
 --------------------------------------------------------------------------------
 
@@ -80,13 +80,19 @@ function awesome_launcher(menu)
         menu = menu })
 end
 
-function clock_widget()
-   local clock = awful.widget.textclock(" %R ", 30)
-   local tooltip = awful.tooltip({objects = { clock },
-                                  timer_function = function()
-                                     return os.date("%A\n%B %d, %Y\n%T")
-                                  end,
-                                 })
+function date_clock_widget()
+   local clock = awful.widget.textclock(" %b %d, %H:%M ", 30)
+   local menu = awful.menu(
+      { items = { { "Google Calendar",
+                    function ()
+                       awful.util.spawn("dwb calendar.google.com")
+                    end }}})
+
+   clock:buttons(awful.button({ },
+                          1,
+                          function()
+                             menu:toggle()
+                          end))
    return clock
 end
 
@@ -105,25 +111,6 @@ function battery_widget()
                     120,
                     "BAT0")
    return batwidget
-end
-
-function mpd_widget()
-   local widget = wibox.widget.textbox()
-   vicious.register(widget,
-                    vicious.widgets.mpd,
-                    function (widget, args)
-                       local state = args["{state}"]
-                       if state == "Play" then
-                          return " ▶ "
-                       elseif state == "Pause" then
-                          return " ❚❚ "
-                       else
-                          return " ◼ "
-                       end
-                    end,
-                    5)
-   widget = widget_button(widget, "ncmpcpp", false)
-   return widget
 end
 
 function wifi_widget()
@@ -151,31 +138,26 @@ function wifi_widget()
 end
 
 function sound_widget()
-   local master = wibox.widget.textbox()
-   local pcm = wibox.widget.textbox()
-   vicious.register(master,
+   local widget = wibox.widget.textbox()
+   vicious.register(widget,
                     vicious.widgets.volume,
                     function (widget, args)
-                       return " " .. args[1] .. "% "
-                    end,
-                    5,
-                    "Master")
-   vicious.register(pcm,
-                    vicious.widgets.volume,
-                    function (widget, args)
-                       return " " .. args[1] .. "% "
+                       return " Sound: " .. args[1] .. " "
                     end,
                     5,
                     "PCM")
-   function sound_widget_update()
-      vicious.force({ master })
-      vicious.force({ pcm })
-   end
-   local widgets = wibox.layout.fixed.horizontal()
-   widgets:add(master)
-   widgets:add(pcm)
-   w = widget_button(widgets, "alsamixer", false)
-   return w
+   local menu = awful.menu(
+      { items = { }})
+
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  menu:toggle()
+                               end
+   ))
+
+   
+   return widget
 end
 
 function package_widget()
@@ -186,49 +168,113 @@ function package_widget()
                        if args[1] == 0 then
                           return ""
                        end
-                       return " " .. args[1] .. " pkgs "
+                       return " Pacman: " .. args[1] .. " "
                     end,
                     120,
                     "Arch")
-   widget = widget_button(widget, "pacaur -Sur", true)
+   local menu = awful.menu(
+      { items = { { "Update repo",
+                    function ()
+                       awful.util.spawn_with_shell(pacaur -Sur)
+                    end
+                  },
+                  { "Update AUR",
+                    function ()
+                       awful.util.spawn_with_shell(pacaur -Sur)
+                    end
+                  },
+                  { "Update both",
+                    function ()
+                       awful.util.spawn_with_shell(pacaur -Sur)
+                    end
+                  }
+   }})
+
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  menu:toggle()
+                               end
+   ))
    return widget
 end
 
 function gmail_widget()
    local widget = wibox.widget.textbox()
-   local tooltip = awful.tooltip({ objects = { widget },})
+   local menu = {}
 
    vicious.register(widget,
                     vicious.widgets.gmail,
                     function(widget, args)
                        local count = args["{count}"]
                        if count > 0 then
-                          tooltip:set_text("Subject of newest mail: " .. args["{subject}"])
+                          menu = awful.menu(
+                             { items = { { args["{subject}"],
+                                           function ()
+                                              awful.util.spawn("dwb gmail.com")
+                                           end
+                          }}})
                        else
-                          tooltip:set_text("No unread mail")
+                          menu = awful.menu(
+                             { items = { { "Google Mail",
+                                           function ()
+                                              awful.util.spawn("dwb gmail.com")
+                                           end
+                          }}})
                        end
-                       if count == 0 then
-                          return ""
-                       elseif count == 1 then 
-                          return " " .. count .. " mail "
-                       else
-                          return " " .. count .. " mails "
-                       end
+                       return " Mail: " .. count .. " "
                     end,
                     120)
-   widget = widget_button(widget, "dwb gmail.com", false)
+
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  menu:toggle()
+                               end
+   ))
    return widget
 end
                     
 function dropbox_widget()
    local widget = wibox.widget.textbox()
-   local status = awful.util.pread("dropbox status")
+   local menu = awful.menu(
+      { items = { { "Restart",
+                    function ()
+                       awful.util.spawn_with_shell("dropbox stop && dropbox start")
+                    end
+                  },
+                  { "Close",
+                    function ()
+                       awful.util.spawn_with_shell("dropbox stop")
+                    end
+                  }
+   }})
+
    vicious.register(widget,
                     vicious.widgets.mpd,
-                    function (widget, args)
-                       return " " .. status:sub(0, #status - 1) .. " "
+                    function(widget, args)
+                       local status = awful.util.pread("dropbox status")
+
+                       status = status:sub(0, 2)
+                       if status == "Dr" or status == "Sy" then
+                          return " Dropbox: N "
+                       elseif status == "In" or status == "St" or status == "Up" then
+                          return " Dropbox: S "
+                       elseif status == "Co" then
+                          return " Dropbox: C "
+                       elseif status == "Id" then
+                          return " Dropbox: I "
+                       else 
+                          return " Dropbox: " .. status .. " "
+                       end
                     end,
                     5)
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  menu:toggle()
+                               end
+   ))
    return widget
 end
 
@@ -366,8 +412,6 @@ function widget_button(widget, cmd, keep_open)
    return bg
 end
 
-
-
 -- Create a menu to shutdown computer and stuff like that.
 local mainmenu = create_main_menu()
 
@@ -387,15 +431,13 @@ for s = 1, screen.count() do
    local battery = battery_widget()
    local wifi = wifi_widget()
    sound = sound_widget()
-   local clock = clock_widget()
-   clock = widget_button(clock, "dwb calendar.google.com", false)
-   local mpd = mpd_widget()
 
    local mail = gmail_widget()
    
    local dropbox = dropbox_widget()
 
    local pacman = package_widget()
+   local date_clock = date_clock_widget()
 
    local left_layout = wibox.layout.fixed.horizontal()
    left_layout:add(mainmenu_launcher)
@@ -407,7 +449,11 @@ for s = 1, screen.count() do
       local systray = wibox.widget.systray()
       right_layout:add(systray)
    end
-   widgets = { battery, wifi, sound, mail, dropbox, pacman, mpd, clock }
+   if hostname == "Tor\n" then
+      widgets = { sound, mail, dropbox, pacman, date_clock }
+   else
+      widgets = { battery, wifi, sound, mail, dropbox, pacman, date_clock }
+   end
    for _, widget in pairs(widgets) do
       right_layout:add(widget)
    end
@@ -466,16 +512,14 @@ globalkeys = awful.util.table.join(
    awful.key({},
              "#122",
              function ()
-                io.popen("amixer set Master 1dB- unmute")
-                sound_widget_update()
+                io.popen("amixer set PCM 1-")
              end ),
 
    -- Volume up
    awful.key({},
              "#123",
              function ()
-                io.popen("amixer set Master 1dB+ unmute")
-                sound_widget_update()
+                io.popen("amixer set PCM 1+")
              end ),
 
 
