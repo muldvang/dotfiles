@@ -12,7 +12,7 @@
 ;;              Aaron Smith <aaron-lua@gelatinous.com>.
 ;;
 ;; URL:         http://immerrr.github.com/lua-mode
-;; Version: 20131008.943
+;; Version: 20131010.43
 ;; X-Original-Version:     20130419
 ;;
 ;; This file is NOT part of Emacs.
@@ -1525,6 +1525,34 @@ This function just searches for a `end' at the beginning of a line."
           (forward-line)))
     ret))
 
+(defvar lua-process-init-code
+  (mapconcat
+   'identity
+   '("function luamode_loadstring(str, displayname, lineoffset)"
+     "  if lineoffset > 1 then"
+     "    str = string.rep('\\n', lineoffset - 1) .. str"
+     "  end"
+     ""
+     "  x, e = loadstring(str, '@'..displayname)"
+     "  if e then"
+     "    error(e)"
+     "  end"
+     "  return x()"
+     "end")
+   " "))
+
+(defun lua-make-lua-string (str)
+  "Convert string to Lua literal."
+  (save-match-data
+    (with-temp-buffer
+      (insert str)
+      (goto-char (point-min))
+      (while (re-search-forward "[\"'\\\n]" nil t)
+        (if (string= (match-string 0) "\n")
+            (replace-match "\\\\n")
+          (replace-match "\\\\\\&" t)))
+      (concat "'" (buffer-string) "'"))))
+
 (defun lua-start-process (&optional name program startfile &rest switches)
   "Start a lua process named NAME, running PROGRAM.
 PROGRAM defaults to NAME, which defaults to `lua-default-application'.
@@ -1536,37 +1564,34 @@ When called interactively, switch to the process buffer."
   (setq program (or program name))
   (setq lua-process-buffer (apply 'make-comint name program startfile switches))
   (setq lua-process (get-buffer-process lua-process-buffer))
-  ;; wait for prompt
+  (set-process-query-on-exit-flag lua-process nil)
   (with-current-buffer lua-process-buffer
+    ;; wait for prompt
     (while (not (lua-prompt-line))
       (accept-process-output (get-buffer-process (current-buffer)))
-      (goto-char (point-max))))
+      (goto-char (point-max)))
+    ;; send initialization code
+    (comint-simple-send nil lua-process-init-code)
+
+    ;; enable error highlighting in stack traces
+    (require 'compile)
+    (make-local-variable 'compilation-error-regexp-alist)
+    (setq compilation-error-regexp-alist
+          (cons '("^\t*\\([^:\n]+\\):\\([^:\n]+\\):" 1 2)
+                ;; Remove 'gnu entry from error regexp alist, it somehow forces
+                ;; leading TAB to be recognized as part of filename in Emacs23.
+                (delq 'gnu compilation-error-regexp-alist)))
+    (compilation-shell-minor-mode))
+
   ;; when called interactively, switch to process buffer
   (if (lua--called-interactively-p 'any)
       (switch-to-buffer lua-process-buffer)))
 
-(defvar lua-process-init-code
-  (concat "function luamode_dofile(fname, displayname)"
-          "  local f = assert(io.open(fname))"
-          "  local d = f:read('*all')"
-          "  f:close()"
-          "  x, e = loadstring(d, '@'..displayname)"
-          "  if fname ~= displayname then"
-          "    os.remove(fname)"
-          "  end"
-          "  if e then"
-          "    error(e)"
-          "  end"
-          "  return x()"
-          "end"))
-
 (defun lua-get-create-process ()
+  "Return active Lua process creating one if necessary."
   (or (and (comint-check-proc lua-process-buffer)
            lua-process)
-      (prog1 (lua-start-process)
-        (when (fboundp 'process-kill-without-query)
-          (process-kill-without-query lua-process))))
-  (comint-simple-send lua-process lua-process-init-code)
+      (lua-start-process))
   lua-process)
 
 (defun lua-kill-process ()
@@ -1617,14 +1642,13 @@ If `lua-process' is nil or dead, start a new process first."
   (interactive "r")
   (let* ((lineno (line-number-at-pos start))
          (lua-tempfile (lua-make-temp-file "lua-"))
-         (lua-file (or (buffer-file-name) lua-tempfile))
-         (command (format "luamode_dofile('%s', '%s')"
-                          (replace-regexp-in-string "\\\\" "\\\\\\\\" lua-tempfile)
-                          (replace-regexp-in-string "\\\\" "\\\\\\\\" lua-file))))
-
-    (write-region (concat (make-string (1- lineno) ?\n)
-                          (buffer-substring-no-properties start end)) nil lua-tempfile)
-
+         (lua-file (or (buffer-file-name) (buffer-name)))
+         (region-str (buffer-substring-no-properties start end))
+         (command
+          (format "luamode_loadstring(%s, %s, %s)"
+                  (lua-make-lua-string region-str)
+                  (lua-make-lua-string lua-file)
+                  lineno)))
     (comint-simple-send (lua-get-create-process) command)
     (when lua-always-show (lua-show-process-buffer))))
 
@@ -1644,7 +1668,6 @@ If `lua-process' is nil or dead, start a new process first."
 
 (defalias 'lua-send-proc 'lua-send-defun)
 
-;; FIXME: This needs work... -Bret
 (defun lua-send-buffer ()
   "Send whole buffer to lua subprocess."
   (interactive)
