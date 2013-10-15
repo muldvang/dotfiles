@@ -40,7 +40,7 @@
 	     [(20130501 727)
 	      nil "provide framework about exception like Java for elisp [github]" single])
  (yasnippet .
-	    [(20130907 1855)
+	    [(20131010 2)
 	     nil "Yet another snippet extension for Emacs. [github]" tar])
  (yascroll .
 	   [(20130321 334)
@@ -394,7 +394,7 @@
 			     [(20120713 1116)
 			      nil "A soothing Emacs 24 light-on-dark theme [github]" single])
  (tup-mode .
-	   [(20130129 1533)
+	   [(20131010 113)
 	    nil "Major mode for editing files for Tup [github]" single])
  (tumblesocks .
 	      [(20130526 1503)
@@ -662,12 +662,12 @@
 	       [(20111113 1231)
 		nil "special lisp mode for evaluating code into running stumpwm [git]" single])
  (stripe-buffer .
-		[(20130728 1355)
+		[(20131010 2326)
 		 ((cl-lib
 		   (1 0)))
 		 "Use a different background for even and odd lines [github]" single])
  (string-utils .
-	       [(20121108 1917)
+	       [(20131009 1649)
 		((list-utils
 		  (0 1 2)))
 		"String-manipulation utilities [github]" single])
@@ -806,7 +806,7 @@
 	   [(20130312 1839)
 	    nil "Support sequential operation which omitted prefix keys. [github]" single])
  (smartparens .
-	      [(20131009 1805)
+	      [(20131010 751)
 	       ((cl-lib
 		 (0 1))
 		(dash
@@ -1058,8 +1058,8 @@
 		   [(20130626 1837)
 		    nil "Toggle ruby hash syntax between classic and 1.9 styles [github]" single])
  (ruby-end .
-	   [(20130426 909)
-	    nil "Automatic insertion of end blocks for Ruby. [github]" tar])
+	   [(20131010 1958)
+	    nil "Automatic insertion of end blocks for Ruby [github]" single])
  (ruby-electric .
 		[(20130127 1902)
 		 nil "Minor mode with electric editing commands for Ruby files [github]" single])
@@ -1193,7 +1193,7 @@
 	  [(20121017 157)
 	   nil "No description available. [github]" single])
  (quickrun .
-	   [(20130915 2230)
+	   [(20131010 1314)
 	    nil "Run commands quickly [github]" single])
  (quickref .
 	   [(20130113 1700)
@@ -1397,9 +1397,9 @@
 			  [(20130306 1515)
 			   nil "Monochromatic version of the Phoenix theme [github]" single])
  (phi-search-mc .
-		[(20130910 47)
+		[(20131010 1958)
 		 ((phi-search
-		   (1 1 3))
+		   (2 0 0))
 		  (multiple-cursors
 		   (1 2 1)))
 		 "multiple-cursors extension for phi-search [github]" single])
@@ -1499,7 +1499,7 @@
 	       [(20130923 2054)
 		nil "Adds a menu to paredit.el as memory aid [hg]" single])
  (paredit-everywhere .
-		     [(20130430 1059)
+		     [(20131010 1118)
 		      ((paredit
 			(22)))
 		      "Enable some paredit features in non-lisp buffers [github]" single])
@@ -1544,7 +1544,7 @@
 		   (0 2)))
 		 "Tools for assembling a package archive [github]" tar])
  (package+ .
-	   [(20130827 1626)
+	   [(20131007 1559)
 	    nil "Extensions for the package library. [github]" single])
  (pabbrev .
 	  [(20130923 2057)
@@ -1668,7 +1668,7 @@
 	     [(20130729 2050)
 	      nil "Export from Org using Pandoc [github]" tar])
  (org-page .
-	   [(20130903 1701)
+	   [(20130904 1217)
 	    ((ht
 	      (1 5))
 	     (mustache
@@ -1876,6 +1876,7 @@
 	 "Client for Clojure nREPL [github]" single])
  (notmuch .
 	  [(20131007 2032)
+>>>>>>> 92fc36f0d4da2316603e896cb492ce2977e8046d
 	   nil "No description available. [git]" tar])
  (nose .
        [(20110804 819)
@@ -2312,7 +2313,7 @@
 	     (1 1 0)))
 	   "dynamic evaluation replacement with emacs [github]" single])
  (list-utils .
-	     [(20121205 1456)
+	     [(20131009 1733)
 	      nil "List-manipulation utility functions [github]" single])
  (list-packages-ext .
 		    [(20130927 1808)
@@ -2633,6 +2634,11 @@
  (init-loader .
 	      [(20130218 1210)
 	       nil "Loader for configuration files [github]" single])
+ (inform7-mode .
+	       [(20131009 1643)
+		((sws-mode
+		  (0 1)))
+		"Major mode for editing Inform 7 source files [git]" single])
  (info+ .
 	[(20130723 2335)
 	 nil "Extensions to `info.el'. [wiki]" single])
@@ -2853,6 +2859,13 @@
 	       ((helm
 		 (1 0)))
 	       "Color theme selection with helm interface [github]" single])
+ (helm-spotify .
+	       [(20131010 2106)
+		((helm
+		  (0 0 0))
+		 (multi
+		  (2 0 0)))
+		"Control Spotify with Helm. [github]" single])
  (helm-spaces .
 	      [(20130606 100)
 	       ((helm
@@ -3646,6 +3659,7 @@
  (fasm-mode .
 	    [(20130925 1319)
 	     nil "Fasm major mode [hg]" single])
+>>>>>>> 92fc36f0d4da2316603e896cb492ce2977e8046d
  (fasd .
        [(20130831 1903)
 	((grizzl
@@ -4120,6 +4134,11 @@
  (ebib .
        [(20131002 39)
 	nil "a BibTeX database manager [github]" tar])
+ (easy-kill .
+	    [(20131011 736)
+	     ((emacs
+	       (24)))
+	     "kill things easily [github]" single])
  (easy-after-load .
 		  [(20121224 2049)
 		   nil "eval-after-load for all files in a directory [github]" single])
@@ -4380,7 +4399,7 @@
 	      [(20130824 1200)
 	       nil "C# mode derived mode [wiki]" single])
  (cryptol-mode .
-	       [(20130406 2043)
+	       [(20131010 1554)
 		nil "Cryptol major mode for Emacs [github]" single])
  (crosshairs .
 	     [(20130903 2344)
@@ -4455,7 +4474,7 @@
 		      [(20130930 1224)
 		       ((emacs
 			 (24)))
-		       "A color theme. [hg]" tar])
+		       "A color theme. [github]" tar])
  (color-theme-solarized .
 			[(20130307 1350)
 			 ((color-theme
@@ -4653,6 +4672,9 @@
  (browse-kill-ring .
 		   [(20130810 1136)
 		    nil "interactively insert items from kill-ring [github]" single])
+ (bpe .
+      [(20131010 1440)
+       nil "Blogger Post progrom for Emacs [github]" single])
  (boxquote .
 	   [(20081011 2126)
 	    nil "Quote text with a semi-box. [github]" single])
