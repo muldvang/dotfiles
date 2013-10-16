@@ -1876,7 +1876,6 @@
 	 "Client for Clojure nREPL [github]" single])
  (notmuch .
 	  [(20131007 2032)
->>>>>>> 92fc36f0d4da2316603e896cb492ce2977e8046d
 	   nil "No description available. [git]" tar])
  (nose .
        [(20110804 819)
@@ -3659,7 +3658,6 @@
  (fasm-mode .
 	    [(20130925 1319)
 	     nil "Fasm major mode [hg]" single])
->>>>>>> 92fc36f0d4da2316603e896cb492ce2977e8046d
  (fasd .
        [(20130831 1903)
 	((grizzl
