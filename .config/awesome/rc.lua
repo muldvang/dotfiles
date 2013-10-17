@@ -192,12 +192,12 @@ function package_widget()
                   },
                   { "Update AUR",
                     function ()
-                       awful.util.spawn_with_shell("termite -e \"pacaur -Sur\"")
+                       awful.util.spawn_with_shell("termite -e \"pacaur -Sua\"")
                     end
                   },
                   { "Update both",
                     function ()
-                       awful.util.spawn_with_shell("termite -e \"pacaur -Sur\"")
+                       awful.util.spawn_with_shell("termite -e \"pacaur -Su\"")
                     end
                   }
    }})
@@ -388,12 +388,12 @@ local hostname = awful.util.pread("hostname")
 if hostname == "Tor\n" then 
    gears.wallpaper.maximized(
       '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
-   -- gears.wallpaper.maximized(
-   --    '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
+   gears.wallpaper.maximized(
+      '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
 else
    for s = 1, screen.count() do
          gears.wallpaper.maximized(
-                  '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1440x900.jpg', s, true)
+            '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1440x900.jpg', s, true)
    end
 end
 
