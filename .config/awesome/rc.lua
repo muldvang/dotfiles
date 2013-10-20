@@ -472,12 +472,9 @@ for s = 1, screen.count() do
    local mainmenu_launcher = awesome_launcher(mainmenu) 
    local battery = battery_widget()
    local wifi = wifi_widget()
-   sound = sound_widget()
-
+   local sound = sound_widget()
    local mail = gmail_widget()
-   
    local dropbox = dropbox_widget()
-
    local pacman = package_widget()
    local date_clock = date_clock_widget()
 
@@ -506,7 +503,7 @@ for s = 1, screen.count() do
    layout:set_middle(tasklist[s])
    layout:set_right(right_layout)
 
-   wibox_top[s] = awful.wibox({ position = "top", screen = s })
+   wibox_top[s] = awful.wibox({ position = "top", height = "16", screen = s })
    wibox_top[s]:set_widget(layout)
 end
 
@@ -554,14 +551,14 @@ globalkeys = awful.util.table.join(
    awful.key({},
              "#122",
              function ()
-                io.popen("amixer set PCM 1-")
+                io.popen("amixer set PCM 5-")
              end ),
 
    -- Volume up
    awful.key({},
              "#123",
              function ()
-                io.popen("amixer set PCM 1+")
+                io.popen("amixer set PCM 5+")
              end ),
 
 
