@@ -98,43 +98,73 @@ end
 
 function battery_widget()
    local batwidget = wibox.widget.textbox()
-   local batwidget_t = awful.tooltip({ objects = { batwidget },})
+   local menu
    vicious.register(batwidget,
                     vicious.widgets.bat,
                     function (widget, args)
-                       batwidget_t:set_text(args[3] .. " remaining")
+                       -- Crease menu
+                       menu = awful.menu(
+                          { items = { { args[3] .. " remaining",
+                                        function ()
+                                        end
+                       }}})
+                       
+                       -- Notify if battery level is below 10 percent
                        if args[2] <= 10 and args[1] == "-" then
                           naughty.notify({ text="Low battery level! " .. args[2] .. " percent remaining." })
                        end
-                       return " " .. args[2] .. "% "
+
+                       -- Return text for widget
+                       return " Bat: " .. args[2] .. "% "
                     end,
                     120,
                     "BAT0")
+   batwidget:buttons(awful.button({ },
+                                  1,
+                                  function()
+                                     menu:toggle()
+                                  end
+   ))
    return batwidget
 end
 
 function wifi_widget()
-   local w = wibox.widget.textbox()
-   local widget_t = awful.tooltip({ objects = { w },})
-
-   vicious.register(w,
+   local widget = wibox.widget.textbox()
+   vicious.register(widget,
                     vicious.widgets.wifi,
                     function (widget, args)
-                       widget_t:set_text(args["{ssid}"])
-                       
-                       local vpn = awful.util.pread("ifconfig | grep tun0") 
-                       if vpn ~= "" then
-                          return " VPN "
-                       elseif args["{link}"] > 0 then
-                          return " ON "
+                       if args["{link}"] > 0 then
+                          return " Wifi: ON "
                        else
-                          return " OFF "
+                          return " Wifi: OFF "
                        end
                     end,
                     5,
                     "wls1")
-   w = widget_button(w, "~/vpn.sh", true)
-   return w
+   local menu = awful.menu()
+   for profile in string.gmatch(awful.util.pread("netctl list"), "%S*\n") do
+      menu:add({ profile,
+                 function()
+                    awful.util.spawn("termite -e \" sudo netctl switch-to " .. profile .. "\"")
+                 end
+      })
+   end
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  local i = 0
+                                  for profile in string.gmatch(awful.util.pread("netctl list"), "%S*\n") do
+                                     menu:delete(1)
+                                     menu:add({ profile,
+                                                function()
+                                                   awful.util.spawn("termite --hold -e \" sudo netctl switch-to " .. profile .. "\"")
+                                                end
+                                     })
+                                  end
+                                  menu:toggle()
+                               end
+                              ))
+   return widget
 end
 
 function sound_widget()
