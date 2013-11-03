@@ -98,43 +98,73 @@ end
 
 function battery_widget()
    local batwidget = wibox.widget.textbox()
-   local batwidget_t = awful.tooltip({ objects = { batwidget },})
+   local menu
    vicious.register(batwidget,
                     vicious.widgets.bat,
                     function (widget, args)
-                       batwidget_t:set_text(args[3] .. " remaining")
+                       -- Crease menu
+                       menu = awful.menu(
+                          { items = { { args[3] .. " remaining",
+                                        function ()
+                                        end
+                       }}})
+                       
+                       -- Notify if battery level is below 10 percent
                        if args[2] <= 10 and args[1] == "-" then
                           naughty.notify({ text="Low battery level! " .. args[2] .. " percent remaining." })
                        end
-                       return " " .. args[2] .. "% "
+
+                       -- Return text for widget
+                       return " Bat: " .. args[2] .. "% "
                     end,
                     120,
                     "BAT0")
+   batwidget:buttons(awful.button({ },
+                                  1,
+                                  function()
+                                     menu:toggle()
+                                  end
+   ))
    return batwidget
 end
 
 function wifi_widget()
-   local w = wibox.widget.textbox()
-   local widget_t = awful.tooltip({ objects = { w },})
-
-   vicious.register(w,
+   local widget = wibox.widget.textbox()
+   vicious.register(widget,
                     vicious.widgets.wifi,
                     function (widget, args)
-                       widget_t:set_text(args["{ssid}"])
-                       
-                       local vpn = awful.util.pread("ifconfig | grep tun0") 
-                       if vpn ~= "" then
-                          return " VPN "
-                       elseif args["{link}"] > 0 then
-                          return " ON "
+                       if args["{link}"] > 0 then
+                          return " Wifi: ON "
                        else
-                          return " OFF "
+                          return " Wifi: OFF "
                        end
                     end,
                     5,
                     "wls1")
-   w = widget_button(w, "~/vpn.sh", true)
-   return w
+   local menu = awful.menu()
+   for profile in string.gmatch(awful.util.pread("netctl list"), "%S*\n") do
+      menu:add({ profile,
+                 function()
+                    awful.util.spawn("termite -e \" sudo netctl switch-to " .. profile .. "\"")
+                 end
+      })
+   end
+   widget:buttons(awful.button({ },
+                               1,
+                               function()
+                                  local i = 0
+                                  for profile in string.gmatch(awful.util.pread("netctl list"), "%S*\n") do
+                                     menu:delete(1)
+                                     menu:add({ profile,
+                                                function()
+                                                   awful.util.spawn("termite --hold -e \" sudo netctl switch-to " .. profile .. "\"")
+                                                end
+                                     })
+                                  end
+                                  menu:toggle()
+                               end
+                              ))
+   return widget
 end
 
 function sound_widget()
@@ -192,12 +222,12 @@ function package_widget()
                   },
                   { "Update AUR",
                     function ()
-                       awful.util.spawn_with_shell("termite -e \"pacaur -Sur\"")
+                       awful.util.spawn_with_shell("termite -e \"pacaur -Sua\"")
                     end
                   },
                   { "Update both",
                     function ()
-                       awful.util.spawn_with_shell("termite -e \"pacaur -Sur\"")
+                       awful.util.spawn_with_shell("termite -e \"pacaur -Su\"")
                     end
                   }
    }})
@@ -388,12 +418,12 @@ local hostname = awful.util.pread("hostname")
 if hostname == "Tor\n" then 
    gears.wallpaper.maximized(
       '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
-   -- gears.wallpaper.maximized(
-   --    '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
+   gears.wallpaper.maximized(
+      '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1920x1080.jpg', 2, true)
 else
    for s = 1, screen.count() do
          gears.wallpaper.maximized(
-                  '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1440x900.jpg', s, true)
+            '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1440x900.jpg', s, true)
    end
 end
 
@@ -442,12 +472,9 @@ for s = 1, screen.count() do
    local mainmenu_launcher = awesome_launcher(mainmenu) 
    local battery = battery_widget()
    local wifi = wifi_widget()
-   sound = sound_widget()
-
+   local sound = sound_widget()
    local mail = gmail_widget()
-   
    local dropbox = dropbox_widget()
-
    local pacman = package_widget()
    local date_clock = date_clock_widget()
 
@@ -476,7 +503,7 @@ for s = 1, screen.count() do
    layout:set_middle(tasklist[s])
    layout:set_right(right_layout)
 
-   wibox_top[s] = awful.wibox({ position = "top", screen = s })
+   wibox_top[s] = awful.wibox({ position = "top", height = "16", screen = s })
    wibox_top[s]:set_widget(layout)
 end
 
@@ -524,14 +551,14 @@ globalkeys = awful.util.table.join(
    awful.key({},
              "#122",
              function ()
-                io.popen("amixer set PCM 1-")
+                io.popen("amixer set PCM 5-")
              end ),
 
    -- Volume up
    awful.key({},
              "#123",
              function ()
-                io.popen("amixer set PCM 1+")
+                io.popen("amixer set PCM 5+")
              end ),
 
 
