@@ -28,5 +28,10 @@ if [ `hostname` = "Tor" ]; then
     xbmc &
 fi
 
+# Block bluetooth and wireless wan on laptop
+if [ `hostname` = "Balder" ]; then
+    rfkill block bluetooth && rfkill block wwan
+fi
+
 # Execute window manager
 exec dbus-launch awesome

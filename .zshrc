@@ -72,3 +72,7 @@ preexec () {
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
 alias alert='echo -n "\007\c"'
+
+# Use clang and clang++ compilers.
+export CC=clang
+export CXX=clang++

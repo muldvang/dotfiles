@@ -175,15 +175,13 @@
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 
-(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
 (setq TeX-PDF-mode t)
-
-(require 'latex-pretty-symbols)
+;; (require 'latex-pretty-symbols)
 
 ;; Lua
 (add-hook 'lua-mode-hook 'flymake-lua-load)
@@ -199,4 +197,8 @@
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 ;; C / C++
+(add-hook 'c-mode-hook(lambda () (c++-mode)))
 (setq-default c-basic-offset 4)
+
+;; Proof General
+(load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
