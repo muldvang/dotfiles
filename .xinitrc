@@ -3,12 +3,13 @@ if [ `hostname` = "Balder" ]; then
     $HOME/.monicarc
 fi
 
+if [ `hostname` = "Tor" ]; then
+    xrandr --output DVI-1 --mode 1920x1080 --pos 1280x1024 --output DVI-0 --mode 1280x1024
+fi
+
 # Keyboard settings
 setxkbmap dk
 xset r rate 250
-xmodmap -e 'keycode 66 = Control_L'
-xmodmap -e 'clear Lock'
-xmodmap -e 'add Control = Control_L'
 
 # Make all fonts available
 xset +fp /usr/share/fonts/local
