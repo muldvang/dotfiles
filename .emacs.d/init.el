@@ -134,6 +134,12 @@
 ;; Imenu-anywhere
 (global-set-key (kbd "C-c g") 'imenu-anywhere)
 
+;; Better mouse scrolling
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -165,6 +171,10 @@
 (global-set-key (kbd "C-M-n") 'outline-forward-same-level)
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
+;; Adaptive wrap
+(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
+  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
+(global-adaptive-wrap-prefix-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
