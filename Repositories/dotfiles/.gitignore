@@ -1,11 +1,6 @@
-Desktop
-Downloads
-Dropbox
-Music
-Pictures
-movies
-series
-storage
+*
+!.*
+!Repositories/dotfiles
 
 .bash_history
 .cmus
@@ -23,6 +18,7 @@ storage
 .aspell*
 .cache
 .config/autostart
+.config/coq
 .config/pulse
 .config/Pinta
 .config/Skype
@@ -55,6 +51,9 @@ storage
 .emacs.d/%backup%~
 .emacs.d/auto-save-list
 .emacs.d/backups
+.emacs.d/elpa/archives
+.emacs.d/url
+.gervill
 .gimp*
 .gksu.lock
 .gnupg
@@ -87,3 +86,4 @@ storage
 .Trolltech
 .xbmc
 .zcompdump
+.wine
