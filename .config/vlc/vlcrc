@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 2.1.0
+###  vlc 2.1.1
 ###
 
 ###
@@ -58,6 +58,23 @@
 
 # Peak height (integer)
 #spect-peak-height=1
+
+[skins2] # Skinnable Interface
+
+# Skin to use (string)
+#skins2-last=
+
+# Config of last used skin (string)
+#skins2-config=
+
+# Enable transparency effects (boolean)
+#skins2-transparency=0
+
+# Use a skinned playlist (boolean)
+#skinned-playlist=1
+
+# Display video in a skinned window if any (boolean)
+#skinned-video=1
 
 [qt4] # Qt interface
 
@@ -700,7 +717,7 @@ alsa-audio-device=default:CARD=CMI8770
 #alsa-audio-channels=6
 
 # Software gain (float)
-alsa-gain=0.000000
+alsa-gain=3.723881
 
 [jack] # JACK audio output
 
