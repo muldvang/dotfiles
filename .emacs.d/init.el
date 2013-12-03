@@ -53,6 +53,9 @@
 ;; Stop blinking cursor
 (blink-cursor-mode 0)
 
+;; Highlight current line
+(global-hl-line-mode 1)
+
 ;; Use visible bell
 (setq visible-bell t)
 

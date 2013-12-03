@@ -20,6 +20,8 @@
  ;; If there is more than one, they won't work right.
  '(company-preview ((t (:foreground "wheat"))))
  '(company-preview-common ((t (:foreground "dark gray"))))
+ '(highlight ((t (:background "grey12"))))
+ '(hl-line ((t (:background "#393f3f"))))
  '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
  '(ido-only-match ((t (:foreground "#8ae234"))))
  '(ido-subdir ((t (:foreground "#729fcf")))))
