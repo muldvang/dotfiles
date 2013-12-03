@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- IMPORTS
 --------------------------------------------------------------------------------
 
@@ -100,12 +100,21 @@ end
 
 function battery_widget()
    local icon = wibox.widget.imagebox()
+   local test = wibox.widget.textbox()
    local menu = awful.menu()
    menu.theme.width = 200
+   local old_state = -1
    vicious.register(icon,
                     vicious.widgets.bat,
                     function (widget, args)
-                       -- Crease menu
+                       local new_state = "" .. args[1] .. args[2]
+                       if old_state == new_state then
+                          old_state = new_state
+                          return
+                       end
+                       old_state = new_state
+                       
+                       -- Create menu
                        menu:delete(1)
                        menu:delete(1)
                        menu:delete(1)
@@ -141,14 +150,23 @@ function battery_widget()
                                 menu:toggle({ coords = { x = 1100, y = 0 }})
                              end
    ))
+
    return icon
 end
 
 function wifi_widget()
    local icon = wibox.widget.imagebox()
+   local old_state = -1
    vicious.register(icon,
                     vicious.widgets.wifi,
                     function (widget, args)
+                       local new_state = args["{link}"]
+                       if old_state == new_state then
+                          old_state = new_state
+                          return
+                       end
+                       old_state = new_state
+
                        if args["{link}"] > 0 then
                           icon:set_image("/home/muldvang/awesome_icons/wifi_on.png")
                        else
@@ -187,19 +205,36 @@ end
 
 function sound_widget() 
    local icon = wibox.widget.imagebox()
-   icon:set_image("/home/muldvang/awesome_icons/sound.png")
+   local menu = awful.menu()
+   local old_state = -1
    vicious.register(icon,
                     vicious.widgets.volume,
                     function (widget, args)
-                       local level = math.floor(args[1] / 25.0001)
-                       icon:set_image("/home/muldvang/awesome_icons/sound" .. level .. ".png")
+                       local new_state = args[1]
+                       if old_state == new_state then
+                          old_state = new_state
+                          return
+                       end
+                       old_state = new_state
+
+                       -- High, medium, low, zero
+                       local level = args[1]
+                       local level_name
+                       if level > 66 then
+                          level_name = "high"
+                       elseif level > 33 then
+                          level_name = "medium"
+                       elseif level >= 1 then
+                          level_name = "low"
+                       else
+                          level_name = "low-zero"
+                       end
+                       icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/22/audio-volume-" .. level_name .. "-panel.svg")
                     end,
                     5,
                     "PCM")
 
-   local menu = awful.menu()
    menu.theme.width = 200
-   local vol_step = 5
    for i = 0, 100, 5 do
       menu:add({ i .. " %",
                  function()
@@ -220,43 +255,43 @@ end
 
 function package_widget()
    local icon =  wibox.widget.imagebox()
+   local update_count = 0
    vicious.register(icon,
                     vicious.widgets.pkg,
                     function (widget, args)
-                       if args[1] == 0 then
-                          icon:set_image("/home/muldvang/awesome_icons/pacman.png")
+                       update_count = args[1]
+
+                       local new_state = update_count
+                       if old_state == new_state then
+                          old_state = new_state
+                          return
+                       end
+                       old_state = new_state
+
+                       if update_count == 0 then
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/22/system-devices-panel.svg")
                        else
-                          icon:set_image("/home/muldvang/awesome_icons/pacman.png")
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/22/system-devices-panel.svg")
                        end
                     end,
-                    120,
+                    5,
                     "Arch")
-   local menu = awful.menu(
-      { items = { { "Update repo",
-                    function ()
-                       awful.util.spawn("termite -e \"pacaur -Sur\"")
-                    end
-                  },
-                  { "Update AUR",
-                    function ()
-                       awful.util.spawn_with_shell("termite -e \"pacaur -Sua\"")
-                    end
-                  },
-                  { "Update both",
-                    function ()
-                       awful.util.spawn_with_shell("termite -e \"pacaur -Su\"")
-                    end
-                  }
-   }})
+   local menu = awful.menu()
    menu.theme.width = 200
 
    icon:buttons(awful.button({ },
                                1,
                                function()
+                                  menu:delete(1)
+                                  menu:add({ "Sync " .. update_count .. " packages",
+                                             function ()
+                                                awful.util.spawn("termite -e \"pacaur -Su\"")
+                                             end
+                                           })
                                   menu:toggle()
                                end
    ))
-   return layout
+   return icon
 end
 
 function gmail_widget()
@@ -268,10 +303,17 @@ function gmail_widget()
    vicious.register(icon,
                     vicious.widgets.gmail,
                     function(widget, args)
-                       menu:delete(1)
                        local count = args["{count}"]
+                       local new_state = count
+                       if old_state == new_state then
+                          old_state = new_state
+                          return
+                       end
+                       old_state = new_state
+
+                       menu:delete(1)
                        if count > 0 then
-                          icon:set_image("/home/muldvang/awesome_icons/mail.png")
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/indicator-messages-new.svg")
                           menu:add({ args["{subject}"],
                                      function ()
                                         awful.util.spawn("dwb gmail.com")
@@ -279,7 +321,7 @@ function gmail_widget()
                           })
 
                        else
-                          icon:set_image("/home/muldvang/awesome_icons/mail_gray.png")
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/indicator-messages.svg")
                           menu:add({ "Open gmail.com",
                                      function ()
                                         awful.util.spawn("dwb gmail.com")
@@ -299,11 +341,10 @@ function gmail_widget()
 end
                     
 function dropbox_widget()
-   local widget = wibox.widget.textbox()
    local icon = wibox.widget.imagebox()
-   icon:set_image("/home/muldvang/awesome_icons/dropbox.png")
    local menu = awful.menu()
    menu.theme.width = 200
+
    menu:add({ "Restart",
               function ()
                  awful.util.spawn_with_shell("dropbox stop && dropbox start")
@@ -315,35 +356,62 @@ function dropbox_widget()
               end
    })
 
-   vicious.register(widget,
+   local image
+   vicious.register(icon,
                     vicious.widgets.mpd,
                     function(widget, args)
                        local status = awful.util.pread("dropbox status")
 
-                       status = status:sub(0, 2)
-                       if status == "Dr" or status == "Sy" then
-                          return "N "
-                       elseif status == "In" or status == "St" or status == "Up" or status == "Do" then
-                          return "S "
-                       elseif status == "Co" then
-                          return "C "
-                       elseif status == "Id" then
-                          return "I "
-                       else 
-                          return status .. " "
+                       local new_state = status
+                       if old_state == new_state then
+                          old_state = new_state
+                          if status == "Do" or status == "Sy" then
+                             -- Downloading
+                             if image == "busy" then
+                                image = "busy2"
+                             else 
+                                image = "busy"
+                             end
+                             icon:set_image("/usr/share/icons/ubuntu-mono-dark/apps/22/dropboxstatus-" .. image .. ".svg")
+                          end
+                          return
                        end
+                       old_state = new_state
+
+
+                       status = status:sub(0, 2)
+
+                       if status == "Do" or status == "Sy" then
+                          -- Downloading
+                          if image == "busy" then
+                             image = "busy2"
+                          else 
+                             image = "busy"
+                          end
+                       elseif status == "Co" then
+                          -- Connecting
+                          image = "x"
+                       elseif status == "Id" or status == "Up" then
+                          -- Idle, Up to date
+                          image = "idle"
+                       else
+                          image = "logo"
+                       end
+                       icon:set_image("/usr/share/icons/ubuntu-mono-dark/apps/22/dropboxstatus-" .. image .. ".svg")
                     end,
-                    5)
-   local layout = wibox.layout.fixed:horizontal()
-   layout:add(icon)
-   layout:add(widget)
-   layout:buttons(awful.button({ },
-                                  1,
-                                  function()
-                                     menu:toggle({ coords = { x = 1000, y = 0 }})
-                                  end
+                    1)
+   icon:buttons(awful.button({ },
+                             1,
+                             function()
+                                local status = awful.util.pread("dropbox status")
+                                menu:delete(3)
+                                menu:add({ status,
+                                           function() end
+                                         })
+                                menu:toggle({ coords = { x = 1000, y = 0 }})
+                             end
    ))
-   return layout
+   return icon
 end
 
 function tasklist_widget(screen)
@@ -515,9 +583,9 @@ for s = 1, screen.count() do
    --    right_layout:add(systray)
    -- end
    if hostname == "Tor\n" then
-      widgets = { sound, mail, dropbox, pacman, date_clock }
+      widgets = { pacman, mail, dropbox, sound, date_clock }
    else
-      widgets = { battery, wifi, sound, mail, dropbox, pacman, date_clock }
+      widgets = { pacman, mail, dropbox, wifi, battery, sound, date_clock }
    end
    for _, widget in pairs(widgets) do
       right_layout:add(widget)
