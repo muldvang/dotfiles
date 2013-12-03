@@ -9,7 +9,7 @@ dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
 font = DejaVuSansMono 10
-scrollback_lines = 1000
+scrollback_lines = 100000
 search_wrap = true
 
 # 0.0: opaque, 1.0: transparent
