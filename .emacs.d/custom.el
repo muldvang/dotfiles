@@ -24,4 +24,5 @@
  '(hl-line ((t (:background "#393f3f"))))
  '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
  '(ido-only-match ((t (:foreground "#8ae234"))))
- '(ido-subdir ((t (:foreground "#729fcf")))))
+ '(ido-subdir ((t (:foreground "#729fcf"))))
+ '(proof-locked-face ((t (:background "dark slate gray")))))
