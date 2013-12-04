@@ -496,7 +496,7 @@ modkey = "Mod4"
 beautiful.init("/home/muldvang/.config/awesome/themes/mytheme/theme.lua")
 
 -- Settings for the menubar
-menubar.utils.terminal = "termite"
+menubar.utils.terminal = "urxvt"
 menubar.show_categories = false
 menubar.cache_entries = true
 
@@ -612,8 +612,8 @@ globalkeys = awful.util.table.join(
    -- Use modkey + F1-F2 to launch most used programs
    spawn_on_keypress({ modkey }, "F1", "emacsclient -c -a=\"\" "),
    spawn_on_keypress({ modkey }, "F2", "dwb"),
-   spawn_on_keypress({ modkey }, "F3", "termite -e ranger"),
-   spawn_on_keypress({ modkey }, "F4", "termite -e ncmpcpp"),
+   spawn_on_keypress({ modkey }, "F3", "urxvt -e ranger"),
+   spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
 
    -- Lock screen
    spawn_on_keypress({ }, "#160", "slimlock"),
