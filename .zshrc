@@ -76,3 +76,7 @@ alias alert='echo -n "\007\c"'
 # Use clang and clang++ compilers.
 export CC=clang
 export CXX=clang++
+
+# Termites terminfo file misses some color escape sequences. Fix that
+# by using xterms terminfo file instead.
+export TERM=xterm
