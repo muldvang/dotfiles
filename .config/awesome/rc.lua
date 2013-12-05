@@ -381,8 +381,8 @@ function dropbox_widget()
 
                        status = status:sub(0, 2)
 
-                       if status == "Do" or status == "Sy" then
-                          -- Downloading
+                       if status == "Do" or status == "Sy" or status == "Id" then
+                          -- Downloading, indexing
                           if image == "busy" then
                              image = "busy2"
                           else 
