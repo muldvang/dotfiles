@@ -80,3 +80,6 @@ export CXX=clang++
 # Termites terminfo file misses some color escape sequences. Fix that
 # by using xterms terminfo file instead.
 export TERM=xterm
+
+# 80 column width for man pages
+export MANWIDTH=80
