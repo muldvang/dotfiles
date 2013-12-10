@@ -139,15 +139,34 @@ function battery_widget()
                        end
 
                        -- Set icon image
-                       local level = math.floor(args[2] / 8.3334)
-                       icon:set_image("/home/muldvang/awesome_icons/battery" .. level .. ".png")
+                       local image
+
+                       if args[2] < 10 then
+                          image = "000"
+                       elseif args[2] < 20 then
+                          image = "020"
+                       elseif args[2] < 40 then
+                          image = "040"
+                       elseif args[2] < 60 then
+                          image = "060"
+                       elseif args[2] < 80 then
+                          image = "080"
+                       else
+                          image = "100"
+                       end
+
+                       if args[1] == "+" then
+                          -- Charging
+                          image = image .. "-charging"
+                       end
+                       icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/battery-" .. image .. ".svg")
                     end,
                     5,
                     "BAT0")
    icon:buttons(awful.button({ },
                              1,
                              function()
-                                menu:toggle({ coords = { x = 1100, y = 0 }})
+                                menu:toggle()
                              end
    ))
 
@@ -167,10 +186,24 @@ function wifi_widget()
                        end
                        old_state = new_state
 
-                       if args["{link}"] > 0 then
-                          icon:set_image("/home/muldvang/awesome_icons/wifi_on.png")
+                       if args["{ssid}"] == "N/A" then
+                          -- Not connected
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/nm-no-connection.svg")
                        else
-                          icon:set_image("/home/muldvang/awesome_icons/wifi_off.png")
+                          -- Connected
+                          local image
+                          if args["{link}"] == 0 then
+                             image = "0"
+                          elseif args["{link}"] < 25 then
+                             image = "25"
+                          elseif args["{link}"] < 50 then
+                             image = "50"
+                          elseif args["{link}"] < 75 then
+                             image = "75"
+                          else
+                             image = "100"
+                          end
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/nm-signal-" .. image .. ".svg")
                        end
                     end,
                     5,
@@ -256,6 +289,7 @@ end
 function package_widget()
    local icon =  wibox.widget.imagebox()
    local update_count = 0
+   local old_state = -1
    vicious.register(icon,
                     vicious.widgets.pkg,
                     function (widget, args)
@@ -296,10 +330,10 @@ end
 
 function gmail_widget()
    local icon = wibox.widget.imagebox()
-   icon:set_image("/home/muldvang/awesome_icons/mail.png")
    local menu = awful.menu()
    menu.theme.width = 200
 
+   local old_state = -1
    vicious.register(icon,
                     vicious.widgets.gmail,
                     function(widget, args)
@@ -357,6 +391,7 @@ function dropbox_widget()
    })
 
    local image
+   local old_state = -1
    vicious.register(icon,
                     vicious.widgets.mpd,
                     function(widget, args)
@@ -381,7 +416,7 @@ function dropbox_widget()
 
                        status = status:sub(0, 2)
 
-                       if status == "Do" or status == "Sy" or status == "Id" then
+                       if status == "Do" or status == "Sy" or status == "In" then
                           -- Downloading, indexing
                           if image == "busy" then
                              image = "busy2"
