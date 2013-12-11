@@ -15,9 +15,7 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
-
-;; Set the font
-(set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
+(package-initialize)
 
 ;; Switch yes-no to y-n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -76,8 +74,10 @@
 (setq inhibit-startup-message t)
 
 ;; Set color theme
-(require 'color-theme-tangotango)
-(color-theme-tangotango)
+(load-theme 'tangotango t)  
+
+;; Set the font
+(set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
 
 ;; Visualize indenting with tabs
 (require 'whitespace)
@@ -161,7 +161,6 @@
  '(help-at-pt-display-when-idle '(flymake-overlay)))
 
 ;; Git-gutter+
-(package-initialize)
 (global-git-gutter+-mode t)
 
 ;; Company
