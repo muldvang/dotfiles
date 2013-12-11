@@ -319,7 +319,7 @@ function package_widget()
                                   menu:delete(1)
                                   menu:add({ "Sync " .. update_count .. " packages",
                                              function ()
-                                                awful.util.spawn("termite -e \"pacaur -Su\"")
+                                                awful.util.spawn("termite --hold -e \"pacaur -Su\"")
                                              end
                                            })
                                   menu:toggle()
@@ -416,8 +416,8 @@ function dropbox_widget()
 
                        status = status:sub(0, 2)
 
-                       if status == "Do" or status == "Sy" or status == "In" then
-                          -- Downloading, indexing
+                       if status == "Do" or status == "Sy" or status == "In" or status == "St" then
+                          -- Downloading, indexing, starting
                           if image == "busy" then
                              image = "busy2"
                           else 
