@@ -717,7 +717,7 @@ alsa-audio-device=default:CARD=CMI8770
 #alsa-audio-channels=6
 
 # Software gain (float)
-alsa-gain=3.723881
+alsa-gain=1
 
 [jack] # JACK audio output
 
@@ -3494,7 +3494,7 @@ equalizer-preamp=0.000000
 #volume-step=12.800000
 
 # Remember the audio volume (boolean)
-#volume-save=1
+volume-save=0
 
 # Use S/PDIF when available (boolean)
 #spdif=0
