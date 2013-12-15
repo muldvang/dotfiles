@@ -303,7 +303,13 @@ function package_widget()
                        old_state = new_state
 
                        if update_count == 0 then
-                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/22/system-devices-panel.svg")
+                          -- Find a better way to hide the widget?
+                          -- E.g. by letting the cron-job update the
+                          -- widget after each repository sync. The
+                          -- widget could be updated to zero after
+                          -- each upgrade by issueing pacman -Su &&
+                          -- "update".  
+                          icon:set_image()
                        else
                           icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/22/system-devices-panel.svg")
                        end
