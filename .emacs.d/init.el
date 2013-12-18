@@ -142,6 +142,8 @@
 ;(setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
 
+;; Indicate empty lines in left fringe
+(setq-default indicate-empty-lines t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
