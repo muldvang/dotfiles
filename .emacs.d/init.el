@@ -216,3 +216,8 @@
 
 ;; Proof General
 (load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+
+;; Haskell
+(require 'flymake-haskell-multi)
+(add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
