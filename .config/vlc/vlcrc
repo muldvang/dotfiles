@@ -711,7 +711,7 @@ qt-privacy-ask=0
 [alsa] # ALSA audio output
 
 # Audio output device (string)
-alsa-audio-device=default:CARD=CMI8770
+# alsa-audio-device=default:CARD=CMI8770
 
 # Audio output channels (integer)
 #alsa-audio-channels=6
