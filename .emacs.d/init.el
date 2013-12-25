@@ -79,6 +79,7 @@
 ;; Set the font
 (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
 
+
 ;; Visualize indenting with tabs
 (require 'whitespace)
 (setq whitespace-style '(tabs tab-mark))
@@ -165,10 +166,6 @@
 ;; Git-gutter+
 (global-git-gutter+-mode t)
 
-;; Company
-(add-hook 'after-init-hook 'global-company-mode)
-(global-set-key [M-tab] 'company-complete)
-
 ;; Outline minor mode
 (outline-minor-mode 1)
 (global-set-key (kbd "C-M-u") 'outline-up-heading)
@@ -179,6 +176,11 @@
 (define-globalized-minor-mode global-adaptive-wrap-prefix-mode
   adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
 (global-adaptive-wrap-prefix-mode 1)
+
+;; Auto-complete
+(require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
@@ -206,16 +208,19 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
+(add-hook 'cmake-mode-hook 'company-mode)
 
 ;; Python
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 ;; C / C++
 (add-hook 'c-mode-hook(lambda () (c++-mode)))
+(add-hook 'c-mode-hook 'company-mode)
 (setq-default c-basic-offset 4)
 
 ;; Proof General
 (load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+(add-hook 'proof-mode-hook 'auto-complete-mode)
 
 ;; Haskell
 (require 'flymake-haskell-multi)
