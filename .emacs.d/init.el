@@ -10,7 +10,6 @@
 (setq load-path (append '("~/.emacs.d") load-path))
 
 ;; Set up the package manager
-(require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
@@ -81,7 +80,6 @@
 
 
 ;; Visualize indenting with tabs
-(require 'whitespace)
 (setq whitespace-style '(tabs tab-mark))
 (global-whitespace-mode 1)
 
@@ -178,7 +176,6 @@
 (global-adaptive-wrap-prefix-mode 1)
 
 ;; Auto-complete
-(require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -197,7 +194,6 @@
 (setq reftex-plug-into-AUCTeX t)
 
 (setq TeX-PDF-mode t)
-;; (require 'latex-pretty-symbols)
 
 ;; Lua
 (add-hook 'lua-mode-hook 'flymake-lua-load)
@@ -223,6 +219,5 @@
 (add-hook 'proof-mode-hook 'auto-complete-mode)
 
 ;; Haskell
-(require 'flymake-haskell-multi)
 (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
