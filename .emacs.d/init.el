@@ -140,7 +140,7 @@
 ;; Imenu-anywhere
 (global-set-key (kbd "C-c g") 'imenu-anywhere)
 
-;; Better mouse scrolling
+;;Better mouse scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 ;(setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
@@ -186,6 +186,10 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+;; Fill Column Indicator
+(require 'fill-column-indicator)
+(setq fci-rule-color "#393f3f")
+
 ;; Electric Pair Mode
 (electric-pair-mode 1)
 
@@ -199,6 +203,7 @@
 (setq-default TeX-master nil)
 
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'electric-pair-mode)
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
@@ -207,6 +212,7 @@
 
 ;; Lua
 (add-hook 'lua-mode-hook 'flymake-lua-load)
+(add-hook 'lua-mode-hook 'fci-mode)
 
 ;; CMake
 (require 'cmake-mode)
@@ -218,11 +224,23 @@
 
 ;; Python
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(add-hook 'python-mode-hook 'fci-mode)
 
+;; C
+(add-hook 'c-mode-hook 'fci-mode)
+(add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
+
+<<<<<<< HEAD
 ;; C / C++
 (add-hook 'c-mode-hook(lambda () (c++-mode)))
 (add-hook 'c-mode-hook 'company-mode)
 (setq-default c-basic-offset 4)
+=======
+;; C++
+(add-hook 'c++-mode-hook 'fci-mode)
+(add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+>>>>>>> Fill column indicator.
 
 ;; Proof General
 (load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
