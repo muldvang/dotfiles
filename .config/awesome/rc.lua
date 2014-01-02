@@ -688,8 +688,9 @@ globalkeys = awful.util.table.join(
              function ()
                 local amixer = awful.util.pread("amixer set PCM 1%-")
                 local volume = string.match(amixer, "%d+%%")
-                naughty.destroy(volume_notification)
-                volume_notification = naughty.notify({ title="Volume", text="Volume lowered to " .. volume })
+                volume_notification = naughty.notify({ title="Volume",
+                                                       text="Volume lowered to " .. volume,
+                                                       replaces_id=volume_notification }).id
              end ),
 
    -- Volume up
@@ -698,8 +699,9 @@ globalkeys = awful.util.table.join(
              function ()
                 local amixer = awful.util.pread("amixer set PCM 1%+")
                 local volume = string.match(amixer, "%d+%%")
-                naughty.destroy(volume_notification)
-                volume_notification = naughty.notify({ title="Volume", text="Volume raised to " .. volume })
+                volume_notification = naughty.notify({ title="Volume",
+                                                       text="Volume raised to " .. volume,
+                                                       replaces_id=volume_notification }).id
              end ),
 
 
