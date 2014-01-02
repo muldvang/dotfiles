@@ -80,6 +80,7 @@
 
 ;; Set the font
 (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
+(setq auto-window-vscroll nil)
 
 
 ;; Visualize indenting with tabs
