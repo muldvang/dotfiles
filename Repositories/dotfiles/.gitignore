@@ -4,7 +4,6 @@
 .bash_history
 .cmus
 .config/vlc/vlc-qt-interface.conf
-.emacs.d/auto-saves/
 .python-eggs/
 .w3m/
 .FontForge
@@ -49,9 +48,11 @@
 .dvdcss
 .emacs.d/%backup%~
 .emacs.d/auto-save-list
+.emacs.d/auto-saves/
 .emacs.d/backups
 .emacs.d/elpa/archives
 .emacs.d/url
+.emacs.d/ac-comphist.dat
 .gervill
 .gimp*
 .gksu.lock
