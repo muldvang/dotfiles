@@ -168,8 +168,8 @@
  '(help-at-pt-timer-delay 0)
  '(help-at-pt-display-when-idle '(flymake-overlay)))
 
-;; Git-gutter+
-(global-git-gutter+-mode t)
+;; diff-hl
+(global-diff-hl-mode t)
 
 ;; Outline minor mode
 (outline-minor-mode 1)
