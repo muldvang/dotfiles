@@ -36,6 +36,9 @@
 ; "C-k" also kills newline if the cursor is at the beginning of a line 
 (setq kill-whole-line t)
 
+; Set the preferred length of a line to 80.
+(setq-default fill-column 80)
+
 ; Highlight paranthesises
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
