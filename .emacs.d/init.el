@@ -33,7 +33,7 @@
  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/\\1" t)))
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
 
-; "C-k" also kills newline if the cursor is at the beginning of a line 
+; "C-k" also kills newline if the cursor is at the beginning of a line
 (setq kill-whole-line t)
 
 ; Set the preferred length of a line to 80.
@@ -76,7 +76,7 @@
 (setq inhibit-startup-message t)
 
 ;; Set color theme
-(load-theme 'tangotango t)  
+(load-theme 'tangotango t)
 
 ;; Set the font
 (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
@@ -147,6 +147,9 @@
 
 ;; Indicate empty lines in left fringe
 (setq-default indicate-empty-lines t)
+
+;; Remove trailing white space before saving
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
