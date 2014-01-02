@@ -230,17 +230,10 @@
 (add-hook 'c-mode-hook 'fci-mode)
 (add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
 
-<<<<<<< HEAD
-;; C / C++
-(add-hook 'c-mode-hook(lambda () (c++-mode)))
-(add-hook 'c-mode-hook 'company-mode)
-(setq-default c-basic-offset 4)
-=======
 ;; C++
 (add-hook 'c++-mode-hook 'fci-mode)
 (add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
->>>>>>> Fill column indicator.
 
 ;; Proof General
 (load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
