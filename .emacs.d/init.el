@@ -242,6 +242,7 @@
 ;; Haskell
 (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(add-hook 'haskell-mode-hook 'fci-mode)
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'fci-mode)
