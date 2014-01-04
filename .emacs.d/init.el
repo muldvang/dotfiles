@@ -205,6 +205,18 @@
 
 (setq TeX-PDF-mode t)
 
+(require 'ac-math) 
+(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+
+(defun ac-LaTeX-mode-setup () ; add ac-sources to default ac-sources
+  (setq ac-sources
+        (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+                ac-sources))
+  )
+(add-hook 'LaTeX-mode-hook 'ac-LaTeX-mode-setup)
+ 
+(setq ac-math-unicode-in-math-p t)
+
 ;; Lua
 (add-hook 'lua-mode-hook 'flymake-lua-load)
 (add-hook 'lua-mode-hook 'fci-mode)
