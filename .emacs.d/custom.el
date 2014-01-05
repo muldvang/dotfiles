@@ -20,9 +20,11 @@
  ;; If there is more than one, they won't work right.
  '(company-preview ((t (:foreground "wheat"))) t)
  '(company-preview-common ((t (:foreground "dark gray"))) t)
+ '(flymake-errline ((t nil)))
+ '(flymake-warnline ((t nil)))
  '(highlight ((t (:background "grey12"))))
  '(hl-line ((t (:background "#393f3f"))))
  '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
  '(ido-only-match ((t (:foreground "#8ae234"))))
  '(ido-subdir ((t (:foreground "#729fcf"))))
- '(proof-locked-face ((t (:background "#282d4b")))))
+ '(proof-locked-face ((t (:background "#282d4b"))) t))
