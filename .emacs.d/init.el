@@ -6,9 +6,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; Search for files in ~/.emacs.d
-(setq load-path (append '("~/.emacs.d") load-path))
-
 ;; Set up the package manager
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
