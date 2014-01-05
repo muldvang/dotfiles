@@ -184,7 +184,6 @@
 
 ;; Auto-complete
 (require 'auto-complete-config)
-(ac-config-default)
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
@@ -204,7 +203,6 @@
 
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
-
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
@@ -243,6 +241,7 @@
 (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'fci-mode)
+(add-hook 'haskell-mode-hook 'auto-complete-mode)
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'fci-mode)
