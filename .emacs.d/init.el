@@ -129,7 +129,7 @@
          (insert (expand-file-name filename)))
         (t
          (insert filename))))
-(global-set-key "\C-c\C-i" 'my-insert-file-name)
+(global-set-key (kbd "C-c i") 'my-insert-file-name)
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
@@ -200,12 +200,17 @@
 
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
+
+; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
+; characters while text is wrapped at 80 columns.
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
 (setq TeX-PDF-mode t)
 
-(require 'ac-math) 
+(require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 
 (defun ac-LaTeX-mode-setup () ; add ac-sources to default ac-sources
@@ -214,7 +219,7 @@
                 ac-sources))
   )
 (add-hook 'LaTeX-mode-hook 'ac-LaTeX-mode-setup)
- 
+
 (setq ac-math-unicode-in-math-p t)
 
 ;; Lua
