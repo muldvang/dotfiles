@@ -190,6 +190,9 @@
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 
+;; Expand-region
+(global-set-key (kbd "C-c SPC") 'er/expand-region)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -251,6 +254,7 @@
 ;; Proof General
 (load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 (add-hook 'proof-mode-hook 'auto-complete-mode)
+(add-hook 'proof-mode-hook 'rainbow-delimiters-mode)
 
 ;; Haskell
 (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
@@ -260,3 +264,5 @@
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'fci-mode)
+(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
