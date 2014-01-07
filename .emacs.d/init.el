@@ -106,9 +106,6 @@
 ;; Split horizontally
 (global-set-key (kbd "C-x 3") 'split-window-horizontally)
 
-;; Delete indentation and line break
-(global-set-key (kbd "C-c DEL") 'delete-indentation)
-
 ;; Scroll buffer
 (define-key global-map (kbd "M-p") 'scroll-down-line)
 (define-key global-map (kbd "M-n") 'scroll-up-line)
@@ -188,6 +185,10 @@
 
 ;; Electric Pair Mode
 (electric-pair-mode 1)
+
+;; Hungry delete
+(require 'hungry-delete)
+(global-hungry-delete-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
