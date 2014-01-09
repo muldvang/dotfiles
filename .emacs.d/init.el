@@ -178,6 +178,11 @@
 
 ;; Auto-complete
 (require 'auto-complete-config)
+(ac-config-default)
+(setq ac-delay 0)
+(setq ac-quick-help-delay 0.3)
+(ac-flyspell-workaround)
+;; (setq ac-use-fuzzy t)
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
@@ -255,6 +260,7 @@
 (load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
 (add-hook 'proof-mode-hook 'auto-complete-mode)
 (add-hook 'proof-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'proof-mode-hook 'flyspell-prog-mode)
 
 ;; Haskell
 (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
@@ -263,6 +269,10 @@
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
 
 ;; Elisp
-(add-hook 'emacs-lisp-mode-hook 'fci-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+(add-hook 'emacs-lisp-mode-hook 'fci-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
+
+;; Org-mode
+(add-hook 'org-mode-hook 'flyspell-mode)
