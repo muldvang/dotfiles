@@ -1,2 +1,3 @@
 application/x-bittorrent xdg-open
 application/pdf xdg-open
+application/octet-stream xdg-open
