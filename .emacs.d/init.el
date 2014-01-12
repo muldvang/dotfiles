@@ -97,8 +97,8 @@
 ;; Truncate long lines
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 
-;; Auto-fill-mode
-(global-set-key (kbd "C-c f") 'auto-fill-mode)
+;; Refill mode
+(global-set-key (kbd "C-c f") 'refill-mode)
 
 ;; Revert from file
 (global-set-key (kbd "C-c o") 'revert-buffer)
@@ -210,9 +210,9 @@
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
 
-; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
+; refill-mode is nice in LaTeX since tables and math then may extend 80
 ; characters while text is wrapped at 80 columns.
-(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+(add-hook 'LaTeX-mode-hook 'refill-mode)
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
