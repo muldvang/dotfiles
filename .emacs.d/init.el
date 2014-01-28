@@ -98,7 +98,7 @@
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 
 ;; Refill mode
-(global-set-key (kbd "C-c f") 'refill-mode)
+(global-set-key (kbd "C-c f") 'auto-fill-mode)
 
 ;; Revert from file
 (global-set-key (kbd "C-c o") 'revert-buffer)
@@ -157,10 +157,12 @@
 (ido-mode 'both)
 (setq ido-ignore-buffers '("\\` " "^\*"))
 
-;; Flymake
-(custom-set-variables
- '(help-at-pt-timer-delay 0)
- '(help-at-pt-display-when-idle '(flymake-overlay)))
+;; Icicles
+;; (require 'icicles)
+;; (icy-mode 1)
+
+;; Flycheck mode
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; diff-hl
 (global-diff-hl-mode t)
@@ -182,7 +184,8 @@
 (setq ac-delay 0)
 (setq ac-quick-help-delay 0.3)
 (ac-flyspell-workaround)
-;; (setq ac-use-fuzzy t)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+(setq ac-use-fuzzy t)
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
@@ -203,36 +206,28 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; LaTeX
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
 (setq-default TeX-master nil)
-
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'electric-pair-mode)
-
-; refill-mode is nice in LaTeX since tables and math then may extend 80
-; characters while text is wrapped at 80 columns.
-(add-hook 'LaTeX-mode-hook 'refill-mode)
-
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
-(setq TeX-PDF-mode t)
+; Easily insert math symbols using e.g. ` t to insert \tau.
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
+; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+
+; Auto-complete
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 
 (defun ac-LaTeX-mode-setup () ; add ac-sources to default ac-sources
-  (setq ac-sources
-        (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-                ac-sources))
-  )
+  (setq ac-sources (append '(ac-source-math-unicode
+                             ac-source-latex-commands)
+                           ac-sources)))
 (add-hook 'LaTeX-mode-hook 'ac-LaTeX-mode-setup)
-
 (setq ac-math-unicode-in-math-p t)
 
 ;; Lua
-(add-hook 'lua-mode-hook 'flymake-lua-load)
 (add-hook 'lua-mode-hook 'fci-mode)
 
 ;; CMake
@@ -241,11 +236,10 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
-(add-hook 'cmake-mode-hook 'company-mode)
 
 ;; Python
-(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (add-hook 'python-mode-hook 'fci-mode)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; C
 (add-hook 'c-mode-hook 'fci-mode)
@@ -256,14 +250,7 @@
 (add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-;; Proof General
-(load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
-(add-hook 'proof-mode-hook 'auto-complete-mode)
-(add-hook 'proof-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'proof-mode-hook 'flyspell-prog-mode)
-
 ;; Haskell
-(add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'fci-mode)
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
