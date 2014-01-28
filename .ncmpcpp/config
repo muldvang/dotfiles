@@ -284,7 +284,7 @@ discard_colors_if_item_is_selected = "no"
 #
 #autocenter_mode = "no"
 #
-centered_cursor = "no"
+centered_cursor = "yes"
 ##
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
@@ -450,4 +450,3 @@ search_engine_default_search_mode = "1"
 # visualizer_color = "yellow"
 # window_border_color = "green"
 # active_window_border = "red"
-
