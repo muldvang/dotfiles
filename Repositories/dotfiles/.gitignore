@@ -89,3 +89,6 @@
 .wine
 .cabal
 .ghc
+.calc_history
+.nv
+.nvidia-settings-rc
