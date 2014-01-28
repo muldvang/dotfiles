@@ -113,7 +113,7 @@ function battery_widget()
                           return
                        end
                        old_state = new_state
-                       
+
                        -- Create menu
                        menu:delete(1)
                        menu:delete(1)
@@ -236,7 +236,7 @@ function wifi_widget()
    return icon
 end
 
-function sound_widget() 
+function sound_widget()
    local icon = wibox.widget.imagebox()
    local menu = awful.menu()
    local old_state = -1
@@ -308,7 +308,7 @@ function package_widget()
                           -- widget after each repository sync. The
                           -- widget could be updated to zero after
                           -- each upgrade by issueing pacman -Su &&
-                          -- "update".  
+                          -- "update".
                           icon:set_image()
                        else
                           icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/22/system-devices-panel.svg")
@@ -379,7 +379,7 @@ function gmail_widget()
    ))
    return icon
 end
-                    
+
 function dropbox_widget()
    local icon = wibox.widget.imagebox()
    local menu = awful.menu()
@@ -410,7 +410,7 @@ function dropbox_widget()
                              -- Downloading
                              if image == "busy" then
                                 image = "busy2"
-                             else 
+                             else
                                 image = "busy"
                              end
                              icon:set_image("/usr/share/icons/ubuntu-mono-dark/apps/22/dropboxstatus-" .. image .. ".svg")
@@ -426,7 +426,7 @@ function dropbox_widget()
                           -- Downloading, indexing, starting
                           if image == "busy" then
                              image = "busy2"
-                          else 
+                          else
                              image = "busy"
                           end
                        elseif status == "Co" then
@@ -516,7 +516,7 @@ function clone_screen_vga()
    else
       awful.util.spawn("xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768")
    end
-   
+
 end
 
 function add_rule(rule)
@@ -550,7 +550,7 @@ local layouts = {awful.layout.suit.max,
 -- Set the wallpaper
 local hostname = awful.util.pread("hostname")
 
-if hostname == "Tor\n" then 
+if hostname == "Tor\n" then
    gears.wallpaper.maximized(
       '/home/muldvang/.config/awesome/themes/mytheme/awesome_arch_1280x1024.jpg', 1, true)
    gears.wallpaper.maximized(
@@ -565,7 +565,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
-   tags[s] = awful.tag({ " 1 ", " 2 ", " 3 ", " 4 "}, s, layouts[1])
+   tags[s] = awful.tag({ "1", "2", "3"}, s, layouts[1])
 end
 
 
@@ -575,9 +575,9 @@ function widget_button(widget, cmd, keep_open)
    widget:buttons(awful.button({ },
                           1,
                           function()
-                             local matcher = function (c)                             
+                             local matcher = function (c)
                                 return awful.rules.match(c, {name = window_name})
-                             end 
+                             end
                              if keep_open then
                                 spawn_cmd = "termite --hold -e \"".. cmd .. "\""
                              else
@@ -604,7 +604,7 @@ for s = 1, screen.count() do
    tasklist[s] = tasklist_widget(s)
    layoutbox[s] = awful.widget.layoutbox(1)
 
-   local mainmenu_launcher = awesome_launcher(mainmenu) 
+   local mainmenu_launcher = awesome_launcher(mainmenu)
    local battery = battery_widget()
    local wifi = wifi_widget()
    local sound = sound_widget()
@@ -664,7 +664,7 @@ globalkeys = awful.util.table.join(
 
    -- Termite
    spawn_on_keypress({ modkey }, "Return", "termite"),
-   
+
    -- Control ncmpcpp
    spawn_with_shell_on_keypress({}, "#171",
                                 "ncmpcpp next"),
@@ -715,7 +715,7 @@ globalkeys = awful.util.table.join(
            awful.client.focus.byidx(1)
            if client.focus then client.focus:raise() end
          end),
-  
+
    awful.key({ modkey }, "k",
          function ()
            awful.client.focus.byidx(-1)
@@ -780,7 +780,7 @@ globalkeys = awful.util.table.join(
              function ()
                 awful.tag.incncol(1)
              end),
-   
+
    awful.key({ modkey, "Control" }, "l",
              function ()
                 awful.tag.incncol(-1)
@@ -810,8 +810,22 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, "p",
              function()
                 menubar.show()
-             end)
-                                  )
+   end),
+
+   -- Add and remove tags
+   awful.key({ modkey }, "+",
+             function()
+                awful.tag.add(#awful.tag.gettags(mouse.screen) + 1, {})
+             end
+   ),
+
+   awful.key({ modkey }, "-",
+             function()
+                local tags = awful.tag.gettags(mouse.screen)
+                awful.tag.delete(tags[#tags], tags[1])
+             end
+   )
+)
 
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -865,33 +879,33 @@ clientkeys = awful.util.table.join(
          function (c)
            c.fullscreen = not c.fullscreen
          end),
-  
+
   awful.key({ modkey }, "c",
          function (c)
            c:kill()
          end),
-  
+
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle),
-  
+
   awful.key({ modkey, "Control" }, "Return",
          function (c)
            c:swap(awful.client.getmaster())
          end),
-  
+
   awful.key({ modkey }, "o", awful.client.movetoscreen),
-  
+
   awful.key({ modkey }, "t",
          function (c)
            c.ontop = not c.ontop
          end),
-  
+
   awful.key({ modkey }, "n",
          function (c)
            -- The client currently has the input focus, so it cannot be
            -- minimized, since minimized clients can't have the focus.
            c.minimized = true
          end),
-  
+
   awful.key({ modkey }, "m",
          function (c)
            c.maximized_horizontal = not c.maximized_horizontal
