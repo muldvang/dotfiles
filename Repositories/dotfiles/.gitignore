@@ -92,3 +92,10 @@
 .calc_history
 .nv
 .nvidia-settings-rc
+.plexht
+.pylint.d
+.subversion
+.tvtime
+.config/menus
+.emacs.d/tramp
+.emacs.d/recentf
