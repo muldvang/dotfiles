@@ -163,6 +163,8 @@
 
 ;; Flycheck mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-clang-language-standard "c++11")
+
 
 ;; diff-hl
 (global-diff-hl-mode t)
