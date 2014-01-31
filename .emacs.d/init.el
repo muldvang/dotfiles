@@ -216,6 +216,9 @@
 ; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 
+; Compile to pdf
+(setq TeX-PDF-mode t)
+
 ; Auto-complete
 (require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
