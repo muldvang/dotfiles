@@ -161,10 +161,18 @@
 ;; (require 'icicles)
 ;; (icy-mode 1)
 
+;; Powerline
+(require 'powerline)
+(powerline-default-theme)
+
 ;; Flycheck mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-clang-language-standard "c++11")
 
+; Add color for the mode-line
+(require 'flycheck-color-mode-line)
+(eval-after-load "flycheck"
+  '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
 ;; diff-hl
 (global-diff-hl-mode t)
