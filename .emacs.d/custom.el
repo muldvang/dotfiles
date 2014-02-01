@@ -22,6 +22,7 @@
  '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
  '(help-at-pt-timer-delay 0)
  '(hippie-expand-ignore-buffers (quote (dired-mode)))
+ '(powerline-default-separator nil)
  '(proof-layout-windows-on-visit-file t)
  '(proof-three-window-mode-policy (quote hybrid)))
 (custom-set-faces
@@ -31,6 +32,9 @@
  ;; If there is more than one, they won't work right.
  '(company-preview ((t (:foreground "wheat"))) t)
  '(company-preview-common ((t (:foreground "dark gray"))) t)
+ '(flycheck-color-mode-line-error-face ((t (:inherit flycheck-fringe-error :background "#806065" :foreground "#efefef" :weight normal))))
+ '(flycheck-color-mode-line-info-face ((t (:inherit flycheck-fringe-info :background "#008000" :foreground "#efefef" :weight normal))))
+ '(flycheck-color-mode-line-warning-face ((t (:inherit flycheck-fringe-warning :background "#804600" :foreground "#efefef" :weight normal))))
  '(flymake-errline ((t nil)))
  '(flymake-warnline ((t nil)))
  '(highlight ((t (:background "grey12"))))
