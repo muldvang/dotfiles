@@ -64,6 +64,13 @@ alias r='trash-put'
 alias mv='mv -i'
 alias cp='cp -i'
 alias diff='colordiff'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gf='git fetch'
+alias gr='git rebase'
+alias gp='git push'
+alias gd='git diff'
 
 # A hack to remove danid.log. Each time a terminal is opened, remove
 # make danid.log hidden if it exists.
