@@ -260,13 +260,12 @@
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 
-;; C
-(add-hook 'c-mode-hook 'fci-mode)
-(add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
-
-;; C++
-(add-hook 'c++-mode-hook 'fci-mode)
-(add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
+;; C / C++
+(add-hook 'c-mode-common-hook 'fci-mode)
+(add-hook 'c-mode-common-hook (lambda () (setq c-basic-offset 4)))
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (local-set-key  (kbd "M-o") 'ff-find-other-file)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; Haskell
