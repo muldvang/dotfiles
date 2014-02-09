@@ -6,7 +6,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; Set up the package manager
+;; Set up the ELPA package manager
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
@@ -205,6 +205,32 @@
 (ac-flyspell-workaround)
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 (setq ac-use-fuzzy t)
+
+
+
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas-global-mode 1)
+
+(add-to-list 'load-path "~/.emacs.d/emacs-clang-complete-async")
+(require 'auto-complete-clang-async)
+
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable "~/.emacs.d/emacs-clang-complete-async/clang-complete")
+  (setq ac-sources '(ac-source-clang-async ac-source-yasnippet))
+  (ac-clang-launch-completion-process)
+)
+
+(defun my-ac-config ()
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+
+(my-ac-config)
+
+
+
+
+
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
