@@ -656,6 +656,9 @@ globalkeys = awful.util.table.join(
    spawn_on_keypress({ modkey }, "F3", "urxvt -e ranger"),
    spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
 
+   -- Start radio with DR P6 BEAT
+   spawn_with_shell_on_keypress({ }, "#156", "mpc clear && mpc load \"DR P6 BEAT\" && mpc play"),
+
    -- Lock screen
    spawn_on_keypress({ }, "#160", "slimlock"),
 
