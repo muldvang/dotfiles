@@ -134,6 +134,9 @@
 ;; Imenu-anywhere
 (global-set-key (kbd "C-c g") 'imenu-anywhere)
 
+;; Go to line easier
+(global-set-key (kbd "M-g") 'goto-line)
+
 ;;Better mouse scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 ;(setq mouse-wheel-progressive-speed nil)
