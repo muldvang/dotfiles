@@ -1,6 +1,32 @@
+;;; init.el --- Initialization file for Emacs        -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2014
+
+;; Author:  <muldvang@gmail.com>
+;; Keywords:
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;;; Code:
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Standard settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq user-mail-address "muldvang@gmail.com")
 
 ;; Write custom settings to custon.el
 (setq custom-file "~/.emacs.d/custom.el")
@@ -25,7 +51,7 @@
 ;; Integrate system clipboard
 (setq x-select-enable-clipboard t)
 
-;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+;; Put auto-save files (i.e. #foo#) and backup files (i.e. foo~) in ~/.emacs.d/.
 (custom-set-variables
  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/\\1" t)))
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
@@ -36,10 +62,8 @@
 ; Set the preferred length of a line to 80.
 (setq-default fill-column 80)
 
-; Highlight paranthesises
+; Highlight parentheses
 (show-paren-mode 1)
-(setq show-paren-style 'mixed)
-(setq show-paren-delay 0)
 
 ; Use auto insertion
 (auto-insert-mode)
@@ -81,8 +105,8 @@
 
 
 ;; Visualize indenting with tabs
-(setq whitespace-style '(tabs tab-mark))
 (global-whitespace-mode 1)
+(setq whitespace-style '(tab-mark))
 
 ;; Set frame name
 (setq frame-title-format '("" "%b - Emacs"))
@@ -201,7 +225,7 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (setq ac-delay 0)
-(setq ac-quick-help-delay 0.3)
+(setq ac-quick-help-delay 0.2)
 (ac-flyspell-workaround)
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 (setq ac-use-fuzzy t)
@@ -311,3 +335,9 @@
 
 ;; Org-mode
 (add-hook 'org-mode-hook 'flyspell-mode)
+
+;; pkgbuild-mode
+(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode))
+                              auto-mode-alist))
+
+;;; init.el ends here
