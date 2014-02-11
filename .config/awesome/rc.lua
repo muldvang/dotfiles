@@ -678,14 +678,7 @@ globalkeys = awful.util.table.join(
    spawn_with_shell_on_keypress({}, "#174",
                                 "ncmpcpp stop"),
 
-   -- Lock screen when pressing Fn + F2
-   awful.key({},
-             "#160",
-             function ()
-                awful.util.spawn("slimlock")
-             end ),
-
-      -- Volume down
+   -- Volume down
    awful.key({},
              "#122",
              function ()
