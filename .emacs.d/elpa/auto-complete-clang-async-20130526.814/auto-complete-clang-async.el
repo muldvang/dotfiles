@@ -8,7 +8,8 @@
 ;;          Taylan Ulrich Bayirli/Kammer <taylanbayirli@gmail.com>
 ;;          Many others
 ;; Keywords: completion, convenience
-;; Version: 0
+;; Version: 20130526.814
+;; X-Original-Version: 0
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
