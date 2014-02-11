@@ -230,27 +230,9 @@
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 (setq ac-use-fuzzy t)
 
-
-
-(require 'yasnippet) ;; not yasnippet-bundle
+;; Yasnippet (Useful with auto-complete)
+(require 'yasnippet)
 (yas-global-mode 1)
-
-(require 'auto-complete-clang-async)
-
-(defun ac-cc-mode-setup ()
-  (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
-  (setq ac-sources '(ac-source-clang-async))
-  (ac-clang-launch-completion-process)
-)
-
-(defun my-ac-config ()
-  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-  (global-auto-complete-mode t))
-
-(my-ac-config)
-
-
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
@@ -317,6 +299,17 @@
             (local-set-key  (kbd "M-o") 'ff-find-other-file)))
 (add-hook 'c-mode-common-hook (lambda () (c-toggle-hungry-state 1)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+(require 'auto-complete-clang-async)
+
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
+  (setq ac-sources '(ac-source-clang-async))
+  (ac-clang-launch-completion-process)
+)
+
+(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+
 
 ;; Haskell
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
