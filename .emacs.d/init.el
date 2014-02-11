@@ -295,6 +295,7 @@
 (add-hook 'c-mode-common-hook
           (lambda()
             (local-set-key  (kbd "M-o") 'ff-find-other-file)))
+(add-hook 'c-mode-common-hook (lambda () (c-toggle-hungry-state 1)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; Haskell
