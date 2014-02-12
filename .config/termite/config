@@ -12,10 +12,6 @@ font = DejaVuSansMono 10
 scrollback_lines = 100000
 search_wrap = true
 
-# 0.0: opaque, 1.0: transparent
-transparency = 0.0
-pseudo_transparency = false
-
 # "system", "on" or "off"
 cursor_blink = off
 
