@@ -1,4 +1,4 @@
 application/x-bittorrent xdg-open
 application/octet-stream xdg-open
-application/pdf xdg-open
 text/css xdg-open
+application/pdf xdg-open
