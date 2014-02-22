@@ -666,7 +666,7 @@ globalkeys = awful.util.table.join(
    spawn_on_keypress({ }, "#107", "gnome-screenshot --interactive"),
 
    -- Termite
-   spawn_on_keypress({ modkey }, "Return", "termite"),
+   spawn_on_keypress({ modkey }, "Return", "termite -e fish"),
 
    -- Control ncmpcpp
    spawn_with_shell_on_keypress({}, "#171",
