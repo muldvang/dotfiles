@@ -33,8 +33,10 @@ local light_white  = "#FFFFFF"
 
 theme = {}
 
-theme.font_tags     = "DejaVuSans 8"
-theme.font          = "DejaVuSans 8"
+-- theme.font_tags     = "DejaVuSans 8"
+-- theme.font          = "DejaVuSans 8"
+theme.font_tags     = "sans 8"
+theme.font          = "sans 8"
 
 theme.bg_normal     = background
 theme.bg_focus      = light_blue
@@ -91,7 +93,7 @@ theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
--- Define the icon theme for application icons. If not set then the icons 
+-- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.tasklist_disable_icon = true
 theme.icon_theme = nil
