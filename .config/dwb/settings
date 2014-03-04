@@ -1,5 +1,5 @@
 [default]
-javascript-can-access-clipboard=false
+javascript-can-access-clipboard=true
 complete-userscripts=false
 file-sync-interval=120
 download-gradient-end=#00aa00
@@ -91,7 +91,7 @@ passthrough-keys=webkit
 enable-html5-database=true
 hint-autofollow=true
 enable-dom-paste=false
-javascript-can-open-windows-automatically=false
+javascript-can-open-windows-automatically=true
 max-visible-completions=20
 hint-border=0px solid #000000
 widget-packing=twdS
