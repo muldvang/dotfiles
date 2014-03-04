@@ -934,7 +934,8 @@ local xbmc_rule = { rule = { class = "xbmc" },
 local firefox_plugins_rule = { rule = { instance = "plugin-container" },
                                properties = { floating = true } }
 
-local fbmessenger = { rule = { name = "fbmessenger" },
+local fbmessenger = { rule = { name = "fbmessenger" ,
+                               class = "fbmessenger" },
                       properties = { floating = true } }
 
 add_rule(all_clients_rule)
