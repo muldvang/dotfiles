@@ -8,7 +8,6 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-# font = DejaVuSansMono 10
 font = monospace 10
 scrollback_lines = 100000
 search_wrap = true
