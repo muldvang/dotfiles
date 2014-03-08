@@ -100,7 +100,6 @@
 (load-theme 'tangotango t)
 
 ;; Set the font
-;; (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 95)
 (set-face-attribute 'default nil :family "monospace" :height 100)
 (setq auto-window-vscroll nil)
 
