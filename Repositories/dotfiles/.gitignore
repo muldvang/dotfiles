@@ -136,3 +136,12 @@
 .config/gtk-3.0/bookmarks
 .config/guvcview/
 .config/xfe/
+.config/sublime-text-3/
+.config/pavucontrol.ini
+.config/libfm/
+.config/gxkb.cfg
+.config/googlecl/
+.config/fish/fish_history
+.config/fish/fishd.Balder
+.config/fish/generated_completions/
+.esd_auth
