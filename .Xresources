@@ -6,7 +6,7 @@
 URxvt*scrollBar: false
 
 ! Font
-URxvt*font: xft:DejavuSansMono:size=9
+URxvt*font: xft:monospace:size=10
 URxvt.letterSpace: -1
 
 ! Disable keycap picture insert mode
@@ -50,7 +50,7 @@ URxvt.iso14755_52: false
 ! Font
 !===============================================================================
 
-! Better looking font for applications that ignore fontconfig. 
+! Better looking font for applications that ignore fontconfig.
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
