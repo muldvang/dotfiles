@@ -541,12 +541,6 @@ menubar.utils.terminal = "urxvt"
 menubar.show_categories = false
 menubar.cache_entries = true
 
--- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts = {awful.layout.suit.max,
-                 awful.layout.suit.tile,
-                 awful.layout.suit.tile.bottom
-}
-
 -- Set the wallpaper
 local hostname = awful.util.pread("hostname")
 
@@ -562,11 +556,21 @@ else
    end
 end
 
--- Define a tag table which hold all screen tags.
-tags = {}
+-- Table of layouts to cover with awful.layout.inc, order matters.
+local layouts = {awful.layout.suit.max,
+                 awful.layout.suit.tile,
+                 awful.layout.suit.tile.bottom
+}
+
+-- Use three tags as standard.
 for s = 1, screen.count() do
-   tags[s] = awful.tag({ "1", "2", "3"}, s, layouts[1])
+   awful.tag.add("1", { layout = layouts[1], screen = s })
+   awful.tag.add("2", { layout = layouts[1], screen = s })
+   awful.tag.add("3", { layout = layouts[1], screen = s })
 end
+
+-- Start by having tag 1 at screen 1 active.
+awful.tag.viewtoggle(awful.tag.gettags(1)[1])
 
 
 function widget_button(widget, cmd, keep_open)
@@ -702,8 +706,8 @@ globalkeys = awful.util.table.join(
 
 
    -- Next/previous tag
-   awful.key({ modkey }, "u", awful.tag.viewprev),
-   awful.key({ modkey }, "i", awful.tag.viewnext),
+   awful.key({ modkey, "Mod1" }, "k", awful.tag.viewprev),
+   awful.key({ modkey, "Mod1" }, "j", awful.tag.viewnext),
 
    -- Move client to next/previous tag
    awful.key({ modkey }, "j",
@@ -810,59 +814,88 @@ globalkeys = awful.util.table.join(
 
    -- Add and remove tags
    awful.key({ modkey }, "+",
-             function()
-                awful.tag.add(#awful.tag.gettags(mouse.screen) + 1, {})
+             function ()
+                local props = {selected = true,
+                               layout = layouts[1] }
+                local name = #awful.tag.gettags(mouse.screen) + 1
+                awful.tag.add(name, props)
              end
    ),
 
    awful.key({ modkey }, "-",
              function()
+                awful.tag.delete()
+             end
+   ),
+
+   -- Move client to the left or the right and switch to that tag
+   awful.key({ modkey, "Mod1"   }, "h",
+             function (c)
+                local curidx = awful.tag.getidx()
                 local tags = awful.tag.gettags(mouse.screen)
-                awful.tag.delete(tags[#tags], tags[1])
+                if curidx == 1 then
+                   awful.client.movetotag(tags[#tags])
+                else
+                   awful.client.movetotag(tags[curidx - 1])
+                end
+                awful.tag.viewidx(-1)
+             end
+   ),
+   awful.key({ modkey, "Mod1"   }, "l",
+             function (c)
+                local curidx = awful.tag.getidx()
+                local tags = awful.tag.gettags(mouse.screen)
+                if curidx == #tags then
+                   awful.client.movetotag(tags[1])
+                else
+                   awful.client.movetotag(tags[curidx + 1])
+                end
+                awful.tag.viewidx(1)
              end
    )
 )
 
 
 -- Compute the maximum number of digit we need, limited to 9
-local keynumber = 0
-for s = 1, screen.count() do
-  keynumber = math.min(9, math.max(#tags[s], keynumber))
-end
+-- local keynumber = 9
+-- for s = 1, screen.count() do
+--    keynumber = math.min(9, math.max(#tags[s], keynumber))
+-- end
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, keynumber do
-  globalkeys = awful.util.table.join(
-     globalkeys,
-     awful.key({ modkey }, "#" .. i + 9,
-               function ()
-                  local screen = mouse.screen
-                  if tags[screen][i] then
-                     awful.tag.viewonly(tags[screen][i])
-                  end
-               end),
-     awful.key({ modkey, "Control" }, "#" .. i + 9,
-               function ()
-                  local screen = mouse.screen
-                  if tags[screen][i] then
-                     awful.tag.viewtoggle(tags[screen][i])
-                  end
-               end),
-     awful.key({ modkey, "Shift" }, "#" .. i + 9,
-               function ()
-                  if client.focus and tags[client.focus.screen][i] then
-                     awful.client.movetotag(tags[client.focus.screen][i])
-                  end
-               end),
-     awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-               function ()
-                  if client.focus and tags[client.focus.screen][i] then
-                     awful.client.toggletag(tags[client.focus.screen][i])
-                  end
-               end))
-end
+-- for i = 1, keynumber do
+--   globalkeys = awful.util.table.join(
+--      globalkeys,
+--      awful.key({ modkey }, "#" .. i + 9,
+--                function ()
+--                   local screen = mouse.screen
+--                   if tags[screen][i] then
+--                      awful.tag.viewonly(tags[screen][i])
+--                   end
+--                end),
+--      awful.key({ modkey, "Control" }, "#" .. i + 9,
+--                function ()
+--                   local screen = mouse.screen
+--                   if tags[screen][i] then
+--                      awful.tag.viewtoggle(tags[screen][i])
+--                   end
+--                end),
+--      awful.key({ modkey, "Shift" }, "#" .. i + 9,
+--                function ()
+--                   if client.focus and tags[client.focus.screen][i] then
+--                      awful.client.movetotag(tags[client.focus.screen][i])
+--                   end
+--                end),
+--      awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+--                function ()
+--                   if client.focus and tags[client.focus.screen][i] then
+--                      awful.client.toggletag(tags[client.focus.screen][i])
+--                   end
+--                end))
+-- end
+
 -- Set keys
 root.keys(globalkeys)
 
@@ -929,7 +962,7 @@ local all_clients_rule = { rule = { },
 local gimp_rule = { rule = { class = "Gimp-2.8" },
                     properties = { floating = true } }
 local xbmc_rule = { rule = { class = "xbmc" },
-                    properties = { tag = tags[math.min(screen.count(), 2)][1],
+                    properties = { tag = awful.tag.gettags(math.min(screen.count(), 2))[1],
                                    fullscreen = true } }
 local firefox_plugins_rule = { rule = { instance = "plugin-container" },
                                properties = { floating = true } }
