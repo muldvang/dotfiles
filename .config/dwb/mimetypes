@@ -1,5 +1,5 @@
 text/css xdg-open
 application/x-bittorrent xdg-open
 application/vnd.ms-powerpoint xdg-open
-application/octet-stream xdg-open
 application/pdf xdg-open
+application/octet-stream xdg-open
