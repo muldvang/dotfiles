@@ -60,17 +60,17 @@ function create_main_menu()
                     function ()
                        awful.util.spawn("slimlock")
                     end },
-                  { "Restart",
+                  { "Reboot",
                     function ()
                        awful.util.spawn("systemctl reboot")
                     end },
-                  { "Shutdown",
+                  { "Poweroff",
                     function ()
                        awful.util.spawn("systemctl poweroff")
                     end },
                   { "Restart XBMC",
                     function ()
-                       awful.util.spawn_with_shell("pkill --signal 9 xbmc && xbmc &")
+                       awful.util.spawn_with_shell("pkill --signal 9 xbmc; and xbmc &")
                     end }}})
 end
 
@@ -351,22 +351,22 @@ function gmail_widget()
                        old_state = new_state
 
                        -- menu:delete(1)
-                       -- if count > 0 then
-                       --    icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/indicator-messages-new.svg")
-                       --    menu:add({ args["{subject}"],
-                       --               function ()
-                       --                  awful.util.spawn("dwb gmail.com")
-                       --               end
-                       --    })
+                       if count > 0 then
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/indicator-messages-new.svg")
+                          -- menu:add({ args["{subject}"],
+                          --            function ()
+                          --               awful.util.spawn("dwb gmail.com")
+                          --            end
+                          -- })
 
-                       -- else
-                       --    icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/indicator-messages.svg")
+                       else
+                          icon:set_image("/usr/share/icons/ubuntu-mono-dark/status/16/indicator-messages.svg")
                        --    menu:add({ "Open gmail.com",
                        --               function ()
                        --                  awful.util.spawn("dwb gmail.com")
                        --               end
                        --    })
-                       -- end
+                       end
                     end,
                     120)
 
@@ -566,11 +566,8 @@ for s = 1, screen.count() do
    awful.tag.add("1", { layout = layouts[1], screen = s })
    awful.tag.add("2", { layout = layouts[1], screen = s })
    awful.tag.add("3", { layout = layouts[1], screen = s })
+   awful.tag.viewtoggle(awful.tag.gettags(s)[1])
 end
-
--- Start by having tag 1 at screen 1 active.
-awful.tag.viewtoggle(awful.tag.gettags(1)[1])
-
 
 function widget_button(widget, cmd, keep_open)
    local bg = wibox.widget.background()
@@ -660,7 +657,7 @@ globalkeys = awful.util.table.join(
    spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
 
    -- Start radio with DR P6 BEAT
-   spawn_with_shell_on_keypress({ }, "#156", "mpc clear && mpc load \"DR P6 BEAT\" && mpc play"),
+   spawn_with_shell_on_keypress({ }, "#156", "mpc clear; and mpc load \"DR P6 BEAT\"; and mpc play"),
 
    -- Lock screen
    spawn_on_keypress({ }, "#160", "slimlock"),
