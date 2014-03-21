@@ -79,7 +79,7 @@ end
 
 # Termites terminfo file misses some color escape sequences. Fix that
 # by using xterms terminfo file instead.
-set -x TERM xterm
+set -x TERM xterm-256color
 
 # 80 column width for man pages
 set -x MANWIDTH 80
