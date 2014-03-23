@@ -3,6 +3,10 @@ if [ `hostname` = "Balder" ]; then
     $HOME/.monicarc
 fi
 
+if [ `hostname` = "Tor" ]; then
+    xrandr --output DVI-I-1 --mode 1280x1024 --pos 0x0 --output DVI-I-2 --mode 1920x1080 --pos 1280x1024
+fi
+
 # Keyboard settings
 setxkbmap dk
 xset r rate 250
