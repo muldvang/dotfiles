@@ -145,3 +145,17 @@
 .config/fish/fishd.Balder
 .config/fish/generated_completions/
 .esd_auth
+.config/ImageMagick/
+.config/Popcorn-Time/
+.config/jumanji/
+.config/mopidy/
+.config/uzbl/
+.dropbox-master/
+.morituri/
+.mythtv/
+.steam/
+.steampath
+.steampid
+.surf/
+.xdvirc
+.xsel.log
