@@ -651,7 +651,7 @@ globalkeys = awful.util.table.join(
    awful.key({}, "#235", function() clone_screen_vga() end),
 
    -- Use modkey + F1-F2 to launch most used programs
-   spawn_on_keypress({ modkey }, "F1", "emacsclient -c -a=\"\" "),
+   spawn_on_keypress({ modkey }, "F1", "emacsclient -c"),
    spawn_on_keypress({ modkey }, "F2", "dwb"),
    spawn_on_keypress({ modkey }, "F3", "urxvt -e ranger"),
    spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
@@ -958,20 +958,16 @@ local all_clients_rule = { rule = { },
 local gimp_rule = { rule = { class = "Gimp-2.8" },
                     properties = { floating = true } }
 local xbmc_rule = { rule = { class = "xbmc" },
-                    properties = { tag = awful.tag.gettags(math.min(screen.count(), 2))[1],
-                                   fullscreen = true } }
+                    properties = {
+                       tag = awful.tag.gettags(math.min(screen.count(), 2))[1],
+                       fullscreen = true } }
 local firefox_plugins_rule = { rule = { instance = "plugin-container" },
                                properties = { floating = true } }
-
-local fbmessenger = { rule = { name = "fbmessenger" ,
-                               class = "fbmessenger" },
-                      properties = { floating = true } }
 
 add_rule(all_clients_rule)
 add_rule(gimp_rule)
 add_rule(xbmc_rule)
 add_rule(firefox_plugins_rule)
-add_rule{fbmessenger}
 
 --------------------------------------------------------------------------------
 -- SIGNALS
