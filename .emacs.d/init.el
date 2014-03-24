@@ -202,6 +202,14 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-clang-language-standard "c++11")
 
+(eval-after-load 'flycheck
+  '(progn
+     (require 'flycheck-google-cpplint)
+     ;; Add Google C++ Style checker.
+     ;; In default, syntax checked by Clang and Cppcheck.
+     (flycheck-add-next-checker 'c/c++-cppcheck
+                                '(warnings-only . c/c++-googlelint))))
+
 ; Add color for the mode-line
 (require 'flycheck-color-mode-line)
 (eval-after-load "flycheck"
