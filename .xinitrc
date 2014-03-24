@@ -24,9 +24,9 @@ emacs --daemon
 mpd
 
 # XBMC is only started on my desktop pc
-if [ `hostname` = "Tor" ]; then
-    xbmc &
-fi
+# if [ `hostname` = "Tor" ]; then
+#     xbmc &
+# fi
 
 # Block bluetooth and wireless wan on laptop
 if [ `hostname` = "Balder" ]; then
