@@ -70,6 +70,7 @@ alias gf='git fetch'
 alias gr='git rebase'
 alias gp='git push'
 alias gd='git diff'
+alias calc='calc -d'
 
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
