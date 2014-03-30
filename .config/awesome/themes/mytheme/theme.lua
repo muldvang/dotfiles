@@ -55,7 +55,7 @@ theme.border_focus  = light_blue
 theme.border_marked = light_red
 
 theme.taglist_bg_focus = light_green
-theme.tooltip_fg_color = light_blue
+-- theme.tooltip_fg_color = light_blue
 
 -- There are other variable sets
 -- overriding the default one when
