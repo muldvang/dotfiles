@@ -294,7 +294,7 @@ progressbar_look = "━╾─"
 #default_place_to_search_in = "database" (database/playlist)
 #
 user_interface = "alternative"
-media_library_left_column = "a"
+media_library_left_column = "A"
 default_find_mode = "wrapped"
 default_space_mode = "add"
 #
