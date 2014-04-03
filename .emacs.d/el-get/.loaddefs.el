@@ -402,7 +402,7 @@ See `auto-complete-mode' for more information on Auto-Complete mode.
 ;;;***
 
 ;;;### (autoloads nil "cmake-mode/cmake-mode" "cmake-mode/cmake-mode.el"
-;;;;;;  (21303 64292 475854 527000))
+;;;;;;  (21309 45608 215329 748000))
 ;;; Generated autoloads from cmake-mode/cmake-mode.el
 
 (autoload 'cmake-mode "cmake-mode/cmake-mode" "\
@@ -1082,7 +1082,7 @@ Major mode for GHC Core files.
 ;;;***
 
 ;;;### (autoloads nil "haskell-mode/haskell-align-imports" "haskell-mode/haskell-align-imports.el"
-;;;;;;  (21304 748 437611 316000))
+;;;;;;  (21309 45608 731982 179000))
 ;;; Generated autoloads from haskell-mode/haskell-align-imports.el
 
 (autoload 'haskell-align-imports "haskell-mode/haskell-align-imports" "\
@@ -1494,7 +1494,7 @@ Return to the non-import point we were at before going to the module list.
 ;;;***
 
 ;;;### (autoloads nil "haskell-mode/haskell-process" "haskell-mode/haskell-process.el"
-;;;;;;  (21304 748 444277 801000))
+;;;;;;  (21309 45608 731982 179000))
 ;;; Generated autoloads from haskell-mode/haskell-process.el
 
 (autoload 'haskell-process-generate-tags "haskell-mode/haskell-process" "\
@@ -2047,7 +2047,7 @@ version.
 ;;;***
 
 ;;;### (autoloads nil "pkgbuild-mode/pkgbuild-mode" "pkgbuild-mode/pkgbuild-mode.el"
-;;;;;;  (21303 64539 935617 639000))
+;;;;;;  (21309 45608 801980 249000))
 ;;; Generated autoloads from pkgbuild-mode/pkgbuild-mode.el
 
 (autoload 'pkgbuild-mode "pkgbuild-mode/pkgbuild-mode" "\
@@ -2056,6 +2056,8 @@ Major mode for editing PKGBUILD files. This is much like shell-script-mode mode.
 with no args, if that value is non-nil.
 
 \(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . pkgbuild-mode))
 
 ;;;***
 
@@ -2279,7 +2281,7 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "popup/popup.el" "powerline/powerline-separators.el" "python-environment/python-environment.el"
 ;;;;;;  "python-environment/test-python-environment.el" "s/s.el"
 ;;;;;;  "yasnippet/yasnippet-debug.el" "yasnippet/yasnippet-tests.el")
-;;;;;;  (21304 1606 81447 749000))
+;;;;;;  (21309 45637 827680 229000))
 
 ;;;***
 

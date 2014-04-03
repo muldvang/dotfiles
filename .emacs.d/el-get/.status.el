@@ -82,16 +82,6 @@
                         (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))))
  (hungry-delete status "installed" recipe
                 (:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
- (irony-mode status "installed" recipe
-             (:name irony-mode :description "Emacs package using Clang for C & C++ completion, on-the-fly syntax checking and more!" :depends
-                    (yasnippet auto-complete json)
-                    :type github :branch "develop" :pkgname "Sarcasm/irony-mode" :build
-                    (("mkdir -p build")
-                     ("cd build; cmake -DCMAKE_BUILD_TYPE=Release ..")
-                     ("make -j5 -C build install"))
-                    :compile
-                    ("elisp/" "elisp/irony/")
-                    :load-path "elisp"))
  (jedi status "installed" recipe
        (:name jedi :description "An awesome Python auto-completion for Emacs" :type github :pkgname "tkf/emacs-jedi" :submodule nil :depends
               (epc auto-complete python-environment)))
