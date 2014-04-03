@@ -33,11 +33,25 @@
 (load custom-file)
 
 ;; Set up the ELPA package manager
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
+;; (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
+;;                          ("melpa" . "http://melpa.milkbox.net/packages/")
+;;                          ("gnu" . "http://elpa.gnu.org/packages/")))
+;; (package-initialize)
+
+;; el-get
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
 
 ;; Switch yes-no to y-n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -97,7 +111,8 @@
 (setq inhibit-startup-message t)
 
 ;; Set color theme
-(load-theme 'tangotango t)
+;; (load-theme 'tangotango t)
+(color-theme-tangotango)
 
 ;; Set the font
 (set-face-attribute 'default nil :family "monospace" :height 100)
@@ -202,13 +217,13 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-clang-language-standard "c++11")
 
-(eval-after-load 'flycheck
-  '(progn
-     (require 'flycheck-google-cpplint)
-     ;; Add Google C++ Style checker.
-     ;; In default, syntax checked by Clang and Cppcheck.
-     (flycheck-add-next-checker 'c/c++-cppcheck
-                                '(warnings-only . c/c++-googlelint))))
+;; (eval-after-load 'flycheck
+;;   '(progn
+;;      (require 'flycheck-google-cpplint)
+;;      ;; Add Google C++ Style checker.
+;;      ;; In default, syntax checked by Clang and Cppcheck.
+;;      (flycheck-add-next-checker 'c/c++-cppcheck
+;;                                 '(warnings-only . c/c++-googlelint))))
 
 ; Add color for the mode-line
 (require 'flycheck-color-mode-line)
@@ -225,9 +240,9 @@
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
 ;; Adaptive wrap
-(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
-  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
-(global-adaptive-wrap-prefix-mode 1)
+;; (define-globalized-minor-mode global-adaptive-wrap-prefix-mode
+;;   adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
+;; (global-adaptive-wrap-prefix-mode 1)
 
 ;; Auto-complete
 (require 'auto-complete-config)
@@ -308,15 +323,15 @@
 (add-hook 'c-mode-common-hook (lambda () (c-toggle-hungry-state 1)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-(require 'auto-complete-clang-async)
+;; (require 'auto-complete-clang-async)
 
-(defun ac-cc-mode-setup ()
-  (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
-  (setq ac-sources '(ac-source-clang-async))
-  (ac-clang-launch-completion-process)
-)
+;; (defun ac-cc-mode-setup ()
+;;   (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
+;;   (setq ac-sources '(ac-source-clang-async))
+;;   (ac-clang-launch-completion-process)
+;; )
 
-(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
 
 
 ;; Haskell
