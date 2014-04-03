@@ -160,3 +160,7 @@
 .xdvirc
 .xsel.log
 .parallel
+.cddb
+.config/fish/fishd.Tor
+.config/morituri
+.config/sublime-text-2
