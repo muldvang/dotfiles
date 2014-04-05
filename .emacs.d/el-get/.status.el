@@ -62,12 +62,6 @@
 				  (flycheck)))
  (fuzzy status "installed" recipe
 	(:name fuzzy :website "https://github.com/auto-complete/fuzzy-el" :description "Fuzzy matching utilities for GNU Emacs" :type github :pkgname "auto-complete/fuzzy-el"))
- (gnuplot-mode status "installed" recipe
-	       (:name gnuplot-mode :description "Drive gnuplot from within emacs" :type github :pkgname "bruceravel/gnuplot-mode" :build
-		      `(("./configure")
-			("make" ,(concat "EMACS=" el-get-emacs)
-			 "gnuplot.elc" "gnuplot-gui.elc"))
-		      :info "gnuplot.info"))
  (haskell-mode status "installed" recipe
 	       (:name haskell-mode :description "A Haskell editing mode" :type github :pkgname "haskell/haskell-mode" :info "." :build
 		      `(("make" ,(format "EMACS=%s" el-get-emacs)
