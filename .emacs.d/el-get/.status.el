@@ -33,6 +33,8 @@
  (color-theme-tangotango status "installed" recipe
                          (:name color-theme-tangotango :description "Another color theme based on the Tango palette." :type github :pkgname "juba/color-theme-tangotango" :depends color-theme :prepare
                                 (autoload 'color-theme-tangotango "color-theme-tangotango" "color-theme: tangotango" t)))
+ (column-marker status "installed" recipe
+                (:name column-marker :description "Highlight certain character columns" :type emacswiki :features column-marker))
  (dash status "installed" recipe
        (:name dash :description "A modern list api for Emacs. No 'cl required." :type github :pkgname "magnars/dash.el"))
  (deferred status "installed" recipe
@@ -132,6 +134,10 @@
                                     '("PKGBUILD$" . pkgbuild-mode))))
  (popup status "installed" recipe
         (:name popup :website "https://github.com/auto-complete/popup-el" :description "Visual Popup Interface Library for Emacs" :type github :submodule nil :pkgname "auto-complete/popup-el"))
+ (popup-pos-tip status "installed" recipe
+                (:name popup-pos-tip :auto-generated t :type emacswiki :description "pos-tip.el wrapper library for programs using popup.el" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/popup-pos-tip.el"))
+ (pos-tip status "installed" recipe
+          (:name pos-tip :description "Show tooltip at point" :type emacswiki))
  (powerline status "installed" recipe
             (:name powerline :website "https://github.com/milkypostman/powerline" :depends
                    (cl-lib)
