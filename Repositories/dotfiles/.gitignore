@@ -50,9 +50,10 @@
 .emacs.d/auto-save-list
 .emacs.d/auto-saves/
 .emacs.d/backups
-.emacs.d/elpa/archives
 .emacs.d/url
 .emacs.d/ac-comphist.dat
+.emacs.d/el-get
+!.emacs.d/el-get/.status.el
 .gervill
 .gimp*
 .gksu.lock
