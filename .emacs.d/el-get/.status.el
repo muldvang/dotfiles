@@ -73,6 +73,18 @@
 			(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))))
  (hungry-delete status "installed" recipe
 		(:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
+ (irony-mode status "installed" recipe
+	     (:name irony-mode :description "Emacs package using Clang for C & C++ completion, on-the-fly syntax checking and more!" :depends
+		    (yasnippet auto-complete json)
+		    :type github :branch "develop" :pkgname "Sarcasm/irony-mode" :build
+		    (("mkdir -p build")
+		     ("(cd build && cmake -DCMAKE_BUILD_TYPE=Release ..)")
+		     ("make -j5 -C build install"))
+		    :compile
+		    ("elisp/" "elisp/irony/")
+		    :load-path "elisp"))
+ (json status "installed" recipe
+       (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el" :features json))
  (pkg-info status "installed" recipe
 	   (:name pkg-info :description "Provide information about Emacs packages." :type github :pkgname "lunaryorn/pkg-info.el" :depends
 		  (dash epl)))
