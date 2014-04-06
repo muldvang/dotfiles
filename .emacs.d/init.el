@@ -33,10 +33,10 @@
 (load custom-file)
 
 ;; Set up the ELPA package manager
-;; (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
-;;                          ("melpa" . "http://melpa.milkbox.net/packages/")
-;;                          ("gnu" . "http://elpa.gnu.org/packages/")))
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
 ;; (package-initialize)
 
 ;; el-get
@@ -171,7 +171,7 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; Imenu-anywhere
-(global-set-key (kbd "C-c g") 'imenu-anywhere)
+(global-set-key (kbd "C-c g") 'idomenu)
 
 ;; Go to line easier
 (global-set-key (kbd "M-g") 'goto-line)

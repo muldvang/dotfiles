@@ -38,6 +38,11 @@
  (diff-hl status "installed" recipe
           (:name diff-hl :type github :pkgname "dgutov/diff-hl" :description "Highlights uncommited changes in fringe" :prepare
                  (add-to-list 'custom-theme-load-path default-directory)))
+ (dtrt-indent status "installed" recipe
+              (:name dtrt-indent :description "A minor mode that guesses the indentation offset originally used for creating source code files and transparently adjusts the corresponding settings in Emacs, making it more convenient to edit foreign files." :type github :pkgname "rrthomas/dtrt-indent" :features
+                     (dtrt-indent)
+                     :post-init
+                     (dtrt-indent-mode 1)))
  (el-get status "installed" recipe
          (:name el-get :website "https://github.com/dimitri/el-get#readme" :description "Manage the external elisp bits and pieces you depend upon." :type github :branch "master" :pkgname "dimitri/el-get" :info "." :compile
                 ("el-get.*\\.el$" "methods/")
@@ -73,6 +78,8 @@
                         (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))))
  (hungry-delete status "installed" recipe
                 (:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
+ (idomenu status "installed" recipe
+          (:name idomenu :type emacswiki :description "imenu tag selection a la ido" :load-path "."))
  (irony-mode status "installed" recipe
              (:name irony-mode :description "Emacs package using Clang for C & C++ completion, on-the-fly syntax checking and more!" :depends
                     (yasnippet auto-complete json)
