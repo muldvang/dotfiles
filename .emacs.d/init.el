@@ -329,9 +329,6 @@
   (setq irony-libclang-additional-flags
         '("-isystem" "/usr/lib64/clang/3.2/include/")))
 
-;; Use Ninja (http://martine.github.io/ninja/) instead of classic Makefiles
-(setq irony-cdb-cmake-generator "Ninja")
-
 ;; FIXME: Not elegant, find a better way to enable default plugins.
 (autoload 'irony-enable "irony")
 (irony-enable 'ac)
