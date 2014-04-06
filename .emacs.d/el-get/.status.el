@@ -1,5 +1,7 @@
 ((ac-math status "installed" recipe
           (:name ac-math :type http :website "http://code.google.com/p/ac-math/" :description "This is an add-on which defines three ac-sources for the auto-complete package" :url "https://ac-math.googlecode.com/svn/trunk/ac-math.el"))
+ (adaptive-wrap status "installed" recipe
+                (:name adaptive-wrap :description "This package provides the `adaptive-wrap-prefix-mode' minor mode which sets\nthe wrap-prefix property on the fly so that single-long-line paragraphs get\nword-wrapped in a way similar to what you'd get with M-q using\nadaptive-fill-mode, but without actually changing the buffer's text." :website "http://elpa.gnu.org/packages/adaptive-wrap.html" :type elpa))
  (auctex status "installed" recipe
          (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type git :module "auctex" :url "git://git.savannah.gnu.org/auctex.git" :build
                 `(("./autogen.sh")
@@ -94,6 +96,33 @@
        (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el" :features json))
  (lua-mode status "installed" recipe
            (:name lua-mode :description "A major-mode for editing Lua scripts" :website "https://github.com/immerrr/lua-mode" :type git :url "https://github.com/immerrr/lua-mode"))
+ (package status "installed" recipe
+          (:name package :description "ELPA implementation (\"package.el\") from Emacs 24" :builtin "24" :type http :url "http://repo.or.cz/w/emacs.git/blob_plain/1a0a666f941c99882093d7bd08ced15033bc3f0c:/lisp/emacs-lisp/package.el" :shallow nil :features package :post-init
+                 (progn
+                   (setq package-user-dir
+                         (expand-file-name
+                          (convert-standard-filename
+                           (concat
+                            (file-name-as-directory default-directory)
+                            "elpa")))
+                         package-directory-list
+                         (list
+                          (file-name-as-directory package-user-dir)
+                          "/usr/share/emacs/site-lisp/elpa/"))
+                   (make-directory package-user-dir t)
+                   (unless
+                       (boundp 'package-subdirectory-regexp)
+                     (defconst package-subdirectory-regexp "^\\([^.].*\\)-\\([0-9]+\\(?:[.][0-9]+\\)*\\)$" "Regular expression matching the name of\n a package subdirectory. The first subexpression is the package\n name. The second subexpression is the version string."))
+                   (setq package-archives
+                         (bound-and-true-p package-archives))
+                   (mapc
+                    (lambda
+                      (pa)
+                      (add-to-list 'package-archives pa 'append))
+                    '(("ELPA" . "http://tromey.com/elpa/")
+                      ("gnu" . "http://elpa.gnu.org/packages/")
+                      ("marmalade" . "http://marmalade-repo.org/packages/")
+                      ("SC" . "http://joseito.republika.pl/sunrise-commander/"))))))
  (pkg-info status "installed" recipe
            (:name pkg-info :description "Provide information about Emacs packages." :type github :pkgname "lunaryorn/pkg-info.el" :depends
                   (dash epl)))
