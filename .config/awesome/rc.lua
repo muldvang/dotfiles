@@ -70,7 +70,7 @@ function create_main_menu()
                     end },
                   { "Restart XBMC",
                     function ()
-                       awful.util.spawn_with_shell("pkill --signal 9 xbmc; and xbmc &")
+                       awful.util.spawn_with_shell("pkill --signal 9 xbmc; xbmc &")
                     end }}})
 end
 
@@ -543,7 +543,7 @@ globalkeys = awful.util.table.join(
    spawn_on_keypress({ modkey }, "F4", "urxvt -e ncmpcpp"),
 
    -- Start radio with DR P6 BEAT
-   spawn_with_shell_on_keypress({ }, "#156", "mpc clear; and mpc load \"DR P6 BEAT\"; and mpc play"),
+   spawn_with_shell_on_keypress({ }, "#156", "mpc clear && mpc load \"DR P6 BEAT\" && mpc play"),
 
    -- Lock screen
    spawn_on_keypress({ }, "#160", "slimlock"),
