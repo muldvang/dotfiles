@@ -171,6 +171,7 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; Imenu-anywhere
+(require 'idomenu)
 (global-set-key (kbd "C-c g") 'idomenu)
 
 ;; Go to line easier
@@ -319,6 +320,7 @@
 
 ;; C / C++
 (add-hook 'c-mode-common-hook 'fci-mode)
+(add-hook 'c-mode-common-hook 'semantic-mode)
 (add-hook 'c-mode-common-hook (lambda () (setq c-basic-offset 4)))
 (add-hook 'c-mode-common-hook
           (lambda()
@@ -340,7 +342,7 @@
   ;; avoid enabling irony-mode in modes that inherits c-mode, e.g: php-mode
   (when (member major-mode irony-known-modes)
     ;; uncomment if other ac-sources are too annoying
-    (setq ac-sources nil)
+    ;; (setq ac-sources nil)
 
     ;; enable irony-mode
     (irony-mode 1)))
@@ -367,7 +369,6 @@
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 (add-hook 'emacs-lisp-mode-hook 'fci-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
 
 ;; Org-mode
 (add-hook 'org-mode-hook 'flyspell-mode)
