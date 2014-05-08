@@ -257,6 +257,12 @@
 (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 (setq ac-use-fuzzy t)
 
+;; org-mode auto completion
+(require 'org-ac)
+;; Make config suit for you. About the config item, eval the following sexp.
+;; (customize-group "org-ac")
+(org-ac/config-default)
+
 ;; Yasnippet (Useful with auto-complete)
 (require 'yasnippet)
 (yas-global-mode 1)
