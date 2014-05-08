@@ -87,6 +87,7 @@ end
 
 function battery_widget()
    local icon = wibox.widget.imagebox()
+   local tooltip = awful.tooltip({objects = {icon}})
    local old_state = -1
    vicious.register(icon,
                     vicious.widgets.bat,
@@ -116,6 +117,7 @@ function battery_widget()
                        --            function()
                        --            end
                        -- })
+                       tooltip:set_text(args[3] .. " remaining")
 
                        -- Notify if battery level is below 10 percent
                        if args[2] <= 10 and args[1] == "-" then
