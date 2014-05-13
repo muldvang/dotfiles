@@ -57,20 +57,62 @@ function fish_right_prompt -d "Write out the right prompt"
 end
 
 # Aliases
-alias l='ls'
-alias e='emacsclient -c -t'
-alias r='trash-put'
-alias mv='mv -i'
-alias cp='cp -i'
-alias diff='colordiff'
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gf='git fetch'
-alias gr='git rebase'
-alias gp='git push'
-alias gd='git diff'
-alias calc='calc -d'
+function l
+         ls $argv
+end
+
+function e
+         emacsclient -c -t $argv
+end
+
+function r
+         trash-put $argv
+end
+
+function mv
+         mv -i $argv
+end
+
+function cp
+         cp -i $argv
+end
+
+function diff
+         colordiff $argv
+end
+
+function gs
+         git status $argv
+end
+
+function ga
+         git add $argv
+end
+
+function gc
+         git commit $argv
+end
+
+function gf
+         git fetch $argv
+end
+
+function gr
+         git rebase $argv
+end
+
+function gp
+         git push $argv
+end
+
+function gd
+         git diff $argv
+end
+
+function calc
+         calc -d $argv
+end
+
 
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
