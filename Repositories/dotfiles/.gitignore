@@ -166,3 +166,5 @@
 .config/morituri
 .config/sublime-text-2
 .mpv/watch_later
+.term2048.scores
+.sqlite_history
