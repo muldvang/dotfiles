@@ -29,4 +29,4 @@ if [ `hostname` = "Balder" ]; then
 fi
 
 # Execute window manager
-exec dbus-launch awesome
+exec dbus-launch i3
