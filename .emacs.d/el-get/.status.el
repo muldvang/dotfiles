@@ -95,6 +95,26 @@
                         (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))))
  (hungry-delete status "installed" recipe
                 (:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
+ (icicles status "installed" recipe
+          (:name icicles :auto-generated t :type emacswiki :description "Minibuffer input completion and cycling." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles.el"))
+ (icicles-cmd1 status "installed" recipe
+               (:name icicles-cmd1 :auto-generated t :type emacswiki :description "Top-level commands for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-cmd1.el"))
+ (icicles-cmd2 status "installed" recipe
+               (:name icicles-cmd2 :auto-generated t :type emacswiki :description "Top-level commands for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-cmd2.el"))
+ (icicles-face status "installed" recipe
+               (:name icicles-face :auto-generated t :type emacswiki :description "Faces for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-face.el"))
+ (icicles-fn status "installed" recipe
+             (:name icicles-fn :auto-generated t :type emacswiki :description "Non-interactive functions for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-fn.el"))
+ (icicles-mac status "installed" recipe
+              (:name icicles-mac :auto-generated t :type emacswiki :description "Macros for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mac.el"))
+ (icicles-mcmd status "installed" recipe
+               (:name icicles-mcmd :auto-generated t :type emacswiki :description "Minibuffer commands for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mcmd.el"))
+ (icicles-mode status "installed" recipe
+               (:name icicles-mode :auto-generated t :type emacswiki :description "Icicle Mode definition for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mode.el"))
+ (icicles-opt status "installed" recipe
+              (:name icicles-opt :auto-generated t :type emacswiki :description "User options (customizable variables) for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-opt.el"))
+ (icicles-var status "installed" recipe
+              (:name icicles-var :auto-generated t :type emacswiki :description "Internal variables for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-var.el"))
  (idomenu status "installed" recipe
           (:name idomenu :type emacswiki :description "imenu tag selection a la ido" :load-path "."))
  (irony-mode status "installed" recipe

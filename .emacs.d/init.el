@@ -167,8 +167,12 @@
          (insert filename))))
 (global-set-key (kbd "C-c i") 'my-insert-file-name)
 
-;; Smex
-(global-set-key (kbd "M-x") 'smex)
+;; ;; Smex
+;; (global-set-key (kbd "M-x") 'smex)
+
+;; icicles
+(require 'icicles)
+(icy-mode 1)
 
 ;; Imenu-anywhere
 (require 'idomenu)
