@@ -372,4 +372,7 @@
                             (setq c-basic-offset 4
                                   tab-width 4)))
 
+;; Conf-mode for rc files.
+(add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
+
 ;;; init.el ends here
