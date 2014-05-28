@@ -69,13 +69,13 @@ function r
          trash-put $argv
 end
 
-function mv
-         mv -i $argv
-end
+# function mv
+#          mv -i $argv
+# end
 
-function cp
-         cp -i $argv
-end
+# function cp
+#          cp -i $argv
+# end
 
 function diff
          colordiff $argv
@@ -109,9 +109,9 @@ function gd
          git diff $argv
 end
 
-function calc
-         calc -d $argv
-end
+# function calc
+#          calc -d $argv
+# end
 
 
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
