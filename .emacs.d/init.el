@@ -385,6 +385,7 @@
 ;; Org-mode
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'org-toggle-pretty-entities)
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
 ;; pkgbuild-mode
 (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode))
