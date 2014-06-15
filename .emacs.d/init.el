@@ -293,6 +293,8 @@
 (setq-default TeX-master nil)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
 
 ; Easily insert math symbols using e.g. ` t to insert \tau.
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
