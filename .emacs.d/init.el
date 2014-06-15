@@ -181,9 +181,6 @@
 ;; Remove trailing white space before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Enhanced popup wrapper
-(require 'popup-pos-tip)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -193,7 +190,6 @@
 (global-visual-line-mode 1)
 
 ;; Icicles
-(require 'icicles)
 (icy-mode 1)
 (setq icicle-buffers-ido-like-flag t)
 (setq icicle-files-ido-like-flag t)
@@ -205,7 +201,6 @@
 (setq icicle-max-candidates 100)
 
 ;; Powerline
-(require 'powerline)
 (powerline-default-theme)
 
 ;; Flycheck mode
@@ -221,7 +216,6 @@
 ;;                                 '(warnings-only . c/c++-googlelint))))
 
 ; Add color for the mode-line
-(require 'flycheck-color-mode-line)
 (eval-after-load "flycheck"
   '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
@@ -249,17 +243,14 @@
 (setq ac-use-fuzzy t)
 
 ;; org-mode auto completion
-(require 'org-ac)
 ;; Make config suit for you. About the config item, eval the following sexp.
 ;; (customize-group "org-ac")
 (org-ac/config-default)
 
 ;; Yasnippet (Useful with auto-complete)
-(require 'yasnippet)
 (yas-global-mode 1)
 
 ;; Fill Column Indicator
-(require 'fill-column-indicator)
 (setq fci-rule-color "#393f3f")
 
 ;; Electric Pair Mode
@@ -293,7 +284,6 @@
 (setq TeX-PDF-mode t)
 
 ; Auto-complete
-(require 'ac-math)
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 
 (defun ac-LaTeX-mode-setup () ; add ac-sources to default ac-sources
@@ -307,7 +297,6 @@
 (add-hook 'lua-mode-hook 'fci-mode)
 
 ;; CMake
-(require 'cmake-mode)
 (setq auto-mode-alist
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
