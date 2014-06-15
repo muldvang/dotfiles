@@ -167,17 +167,6 @@
          (insert filename))))
 (global-set-key (kbd "C-c i") 'my-insert-file-name)
 
-;; ;; Smex
-;; (global-set-key (kbd "M-x") 'smex)
-
-;; icicles
-(require 'icicles)
-(icy-mode 1)
-
-;; Imenu-anywhere
-(require 'idomenu)
-(global-set-key (kbd "C-c g") 'idomenu)
-
 ;; Go to line easier
 (global-set-key (kbd "M-g") 'goto-line)
 
@@ -203,19 +192,17 @@
 ;; within words.
 (global-visual-line-mode 1)
 
-;; Ido
-(ido-mode 'both)
-(setq ido-ignore-buffers '("\\` " "^\*"))
-
-(defadvice ido-find-file (after find-file-sudo activate)
-  "Find file as root if necessary."
-  (unless (and buffer-file-name
-               (file-writable-p buffer-file-name))
-    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-
 ;; Icicles
-;; (require 'icicles)
-;; (icy-mode 1)
+(require 'icicles)
+(icy-mode 1)
+(setq icicle-buffers-ido-like-flag t)
+(setq icicle-files-ido-like-flag t)
+(setq icicle-ido-like-mode t)
+(setq icicle-show-Completions-initially-flag t)
+(setq icicle-incremental-completion-delay 0)
+(setq icicle-incremental-completion-threshold 0)
+(setq icicle-expand-input-to-common-match 1)
+(setq icicle-max-candidates 100)
 
 ;; Powerline
 (require 'powerline)

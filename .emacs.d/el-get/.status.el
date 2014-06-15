@@ -54,6 +54,8 @@
          (:name el-get :website "https://github.com/dimitri/el-get#readme" :description "Manage the external elisp bits and pieces you depend upon." :type github :branch "master" :pkgname "dimitri/el-get" :info "." :compile
                 ("el-get.*\\.el$" "methods/")
                 :load "el-get.el"))
+ (el-swank-fuzzy status "installed" recipe
+                 (:name el-swank-fuzzy :auto-generated t :type emacswiki :description "fuzzy symbol completion." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-swank-fuzzy.el"))
  (emacs-w3m status "installed" recipe
             (:name emacs-w3m :description "A simple Emacs interface to w3m" :type cvs :website "http://emacs-w3m.namazu.org/" :module "emacs-w3m" :url ":pserver:anonymous@cvs.namazu.org:/storage/cvsroot" :build
                    `("autoconf"
@@ -84,6 +86,8 @@
                                   (flycheck)))
  (fuzzy status "installed" recipe
         (:name fuzzy :website "https://github.com/auto-complete/fuzzy-el" :description "Fuzzy matching utilities for GNU Emacs" :type github :pkgname "auto-complete/fuzzy-el"))
+ (fuzzy-match status "installed" recipe
+              (:name fuzzy-match :auto-generated t :type emacswiki :description "fuzzy matching" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/fuzzy-match.el"))
  (haskell-mode status "installed" recipe
                (:name haskell-mode :description "A Haskell editing mode" :type github :pkgname "haskell/haskell-mode" :info "." :build
                       `(("make" ,(format "EMACS=%s" el-get-emacs)
@@ -115,8 +119,6 @@
               (:name icicles-opt :auto-generated t :type emacswiki :description "User options (customizable variables) for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-opt.el"))
  (icicles-var status "installed" recipe
               (:name icicles-var :auto-generated t :type emacswiki :description "Internal variables for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-var.el"))
- (idomenu status "installed" recipe
-          (:name idomenu :type emacswiki :description "imenu tag selection a la ido" :load-path "."))
  (irony-mode status "installed" recipe
              (:name irony-mode :description "Emacs package using Clang for C & C++ completion, on-the-fly syntax checking and more!" :depends
                     (yasnippet auto-complete json)
@@ -184,9 +186,8 @@
                      (:name rainbow-delimiters :website "https://github.com/jlr/rainbow-delimiters#readme" :description "Color nested parentheses, brackets, and braces according to their depth." :type github :pkgname "jlr/rainbow-delimiters"))
  (s status "installed" recipe
     (:name s :description "The long lost Emacs string manipulation library." :type github :pkgname "magnars/s.el" :features s))
- (smex status "installed" recipe
-       (:name smex :description "M-x interface with Ido-style fuzzy matching." :type github :pkgname "nonsequitur/smex" :features smex :post-init
-              (smex-initialize)))
+ (textlint status "installed" recipe
+           (:name textlint :type github :pkgname "DamienCassou/textlint" :website "http://scg.unibe.ch/research/textlint" :description "Allows the integration of TextLint within Emacs" :load "textlint.el"))
  (yasnippet status "installed" recipe
             (:name yasnippet :website "https://github.com/capitaomorte/yasnippet.git" :description "YASnippet is a template system for Emacs." :type github :pkgname "capitaomorte/yasnippet" :compile "yasnippet.el" :submodule nil :build
                    (("git" "submodule" "update" "--init" "--" "snippets"))))
