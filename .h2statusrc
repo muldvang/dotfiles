@@ -1,0 +1,4 @@
+function status {
+  entry mpd "$(cached_status mpd 3 'mpc current')"
+  # entry aria2 "$(OUTPUT=`diana list`; echo $OUTPUT | cut -f 3 -d " ")"
+}
