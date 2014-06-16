@@ -145,7 +145,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command python ~/.i3/pystatus.py
+        status_command hgstatus
         mode dock
         font pango:sans 9
 }
@@ -157,7 +157,7 @@ bindsym $mod+F3 exec termite -e ranger
 bindsym $mod+F4 exec termite -e ncmpcpp
 
 # dwb should always have a tabbed layout
-for_window [class="Dwb"] layout tabbed, focus left
+for_window [class="Dwb"] focus child, layout tabbed, focus left
 
 # Standard layout
 workspace_layout tabbed
@@ -166,9 +166,34 @@ workspace_layout tabbed
 assign [class="xbmc"] 2
 for_window [class="xbmc"] fullscreen
 
+# Gnome-screenshot should be floating
+for_window [class="Gnome-screenshot"] floating enable
+
 # Switch between workspaces and the active monitor
 bindsym $mod+Mod1+h workspace prev_on_output
 bindsym $mod+Mod1+l workspace next_on_output
 
 # Rename workspace
 bindsym $mod+t exec i3-input -f "pango:sans 10" -F 'rename workspace to "%s"' -P 'New tag name: '
+
+# Extra keyboard shortcuts for multimedia and stuff
+bindsym XF86Launch1 exec mpc clear && mpc load \"DR P6 BEAT\" && mpc play && hgstatus update
+bindsym XF86AudioNext exec ncmpcpp next && hgstatus update
+bindsym XF86AudioPlay exec ncmpcpp toggle && hgstatus update
+bindsym XF86AudioPrev exec ncmpcpp prev && hgstatus update
+bindsym XF86AudioStop exec ncmpcpp stop && hgstatus update
+bindsym XF86AudioLowerVolume exec amixer -q set PCM 1%- && hgstatus update
+bindsym XF86AudioRaiseVolume exec amixer -q set PCM 1%+ && hgstatus update
+bindsym Print exec gnome-screenshot --interactive
+
+set $mode_system (s) suspend, (r) reboot, (p) poweroff
+mode "$mode_system" {
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+q mode "$mode_system"
