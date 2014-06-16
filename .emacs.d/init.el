@@ -129,6 +129,9 @@
 ;; Use curly arrows in fringe for line wrapping
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
+;; Users ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;; Indent on enter, not on C-j
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-j") 'newline)
