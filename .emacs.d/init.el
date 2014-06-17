@@ -202,6 +202,7 @@
 (setq icicle-incremental-completion-threshold 0)
 (setq icicle-expand-input-to-common-match 1)
 (setq icicle-max-candidates 100)
+(setq icicle-default-cycling-mode 'apropos)
 
 ;; Powerline
 (powerline-default-theme)
@@ -209,14 +210,6 @@
 ;; Flycheck mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-clang-language-standard "c++11")
-
-;; (eval-after-load 'flycheck
-;;   '(progn
-;;      (require 'flycheck-google-cpplint)
-;;      ;; Add Google C++ Style checker.
-;;      ;; In default, syntax checked by Clang and Cppcheck.
-;;      (flycheck-add-next-checker 'c/c++-cppcheck
-;;                                 '(warnings-only . c/c++-googlelint))))
 
 ; Add color for the mode-line
 (eval-after-load "flycheck"
@@ -232,9 +225,9 @@
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
 ;; Adaptive wrap
-;(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
-;  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
-;(global-adaptive-wrap-prefix-mode 1)
+(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
+  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
+(global-adaptive-wrap-prefix-mode 1)
 
 ;; Auto-complete
 (require 'auto-complete-config)
