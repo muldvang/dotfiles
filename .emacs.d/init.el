@@ -193,6 +193,7 @@
 (global-visual-line-mode 1)
 
 ;; Icicles
+(require 'icicles)
 (icy-mode 1)
 (setq icicle-buffers-ido-like-flag t)
 (setq icicle-files-ido-like-flag t)
