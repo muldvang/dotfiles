@@ -170,8 +170,8 @@ for_window [class="xbmc"] fullscreen
 for_window [class="Gnome-screenshot"] floating enable
 
 # Switch between workspaces and the active monitor
-bindsym $mod+Mod1+h workspace prev_on_output
-bindsym $mod+Mod1+l workspace next_on_output
+bindsym $mod+ctrl+h workspace prev_on_output
+bindsym $mod+ctrl+l workspace next_on_output
 
 # Rename workspace
 bindsym $mod+t exec i3-input -f "pango:sans 10" -F 'rename workspace to "%s"' -P 'New tag name: '
