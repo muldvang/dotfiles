@@ -113,6 +113,9 @@ function calc
          command calc -d $argv
 end
 
+function sudo
+         command sudo -E $argv
+end
 
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
@@ -129,3 +132,6 @@ set -x MANWIDTH 80
 
 # Disable the greeting
 set fish_greeting ""
+
+# Environment variables
+set -x EDITOR 'emacsclient -t -a=""'
