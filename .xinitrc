@@ -28,5 +28,8 @@ if [ `hostname` = "Balder" ]; then
     rfkill block bluetooth && rfkill block wwan
 fi
 
+# Set the keyboard layout as defined in ~/.xmodmap
+xmodmap .xmodmap
+
 # Execute window manager
 exec dbus-launch i3
