@@ -226,9 +226,9 @@
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
 ;; Adaptive wrap
-(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
-  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
-(global-adaptive-wrap-prefix-mode 1)
+;(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
+;  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
+;(global-adaptive-wrap-prefix-mode 1)
 
 ;; Auto-complete
 (require 'auto-complete-config)
