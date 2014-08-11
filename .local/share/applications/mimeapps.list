@@ -1,0 +1,35 @@
+[Default Applications]
+image/jpeg=sxiv.desktop
+application/pdf=zathura.desktop
+x-scheme-handler/http=dwb.desktop
+image/png=sxiv.desktop
+text/plain=emacs-client.desktop
+video/quicktime=mpv.desktop
+text/html=dwb.desktop
+application/x-ms-dos-executable=wine.desktop
+x-scheme-handler/https=dwb.desktop
+x-scheme-handler/ftp=dwb.desktop
+x-scheme-handler/chrome=dwb.desktop
+application/x-extension-htm=dwb.desktop
+application/x-extension-html=dwb.desktop
+application/x-extension-shtml=dwb.desktop
+application/xhtml+xml=dwb.desktop
+application/x-extension-xhtml=dwb.desktop
+application/x-extension-xht=dwb.desktop
+
+[Added Associations]
+image/jpeg=geeqie.desktop;mirage.desktop;
+application/pdf=zathura.desktop;
+image/png=mirage.desktop;
+text/plain=emacs.desktop;emacs-client.desktop;
+video/quicktime=vlc.desktop;
+application/x-ms-dos-executable=wine.desktop;
+x-scheme-handler/https=dwb.desktop;
+x-scheme-handler/ftp=dwb.desktop;
+x-scheme-handler/chrome=dwb.desktop;
+application/x-extension-htm=dwb.desktop;
+application/x-extension-html=dwb.desktop;
+application/x-extension-shtml=dwb.desktop;
+application/xhtml+xml=dwb.desktop;
+application/x-extension-xhtml=dwb.desktop;
+application/x-extension-xht=dwb.desktop;
