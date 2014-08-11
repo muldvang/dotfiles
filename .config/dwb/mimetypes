@@ -4,3 +4,4 @@ application/pgp-signature emacs
 application/x-bittorrent xdg-open
 application/octet-stream xdg-open
 application/pdf xdg-open
+image/tiff xdg-open
