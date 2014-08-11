@@ -65,6 +65,8 @@
 .ido.last
 .java
 .lesshst
+.local/share/*
+!.local/share/applications/mimeapps.list
 .lyrics
 .macromedia
 .mozilla
