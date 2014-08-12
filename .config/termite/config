@@ -1,0 +1,66 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+visible_bell = true
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = monospace 10
+scrollback_lines = 100000
+search_wrap = true
+
+# "system", "on" or "off"
+cursor_blink = off
+
+# "block", "underline" or "ibeam"
+cursor_shape = block
+
+# $BROWSER is used by default
+browser = dwb
+
+# word characters used for word selection
+# (default if unset: all graphic non-punctuation/space characters)
+#word_chars = -A-Za-z0-9,./?%&#:_=+@~
+
+[colors]
+foreground = #dadada
+background = #20303b
+
+# Black
+color0 =  #20303b
+color8 =  #40505b
+# Red
+color1 =  #FF33C2
+color9 =  #FF59F1
+# Green
+color2 =  #5fd700
+color10 = #7ff720
+# Yellow
+color3 =  #d7d700
+color11 = #f7f720
+# Blue
+color4 =  #00afff
+color12 = #20cfff
+# Purple
+color5 =  #D933FF
+color13 = #f020ff
+# Cyan
+color6 =  #00ffc8
+color14 = #20ffe8
+# White
+color7 =  #dddddd
+color15 = #fdfdfd
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini

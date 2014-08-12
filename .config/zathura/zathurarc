@@ -1,0 +1,7 @@
+set window-title-basename true
+set window-title-page
+set guioptions ""
+set page-cache-size 100
+set font "sans 8"
+set first-page-column 2
+set scroll-step 60
