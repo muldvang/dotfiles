@@ -372,4 +372,20 @@
 ;; Conf-mode for rc files.
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 
+;; Spell-checking
+(require 'rw-language-and-country-codes)
+(require 'rw-ispell)
+(require 'rw-hunspell)
+(setq ispell-dictionary "da_DK_hunspell")
+;; The following is set via custom
+(custom-set-variables
+ '(rw-hunspell-default-dictionary "da_DK_hunspell")
+ '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
+ '(rw-hunspell-make-dictionary-menu t)
+ '(rw-hunspell-use-rw-ispell t)
+ )
+
+;; Langtool
+(setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
+
 ;;; init.el ends here
