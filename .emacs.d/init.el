@@ -352,7 +352,7 @@
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
-(add-hook 'emacs-lisp-mode-hook 'fci-mode)
+; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
 ;; Org-mode
