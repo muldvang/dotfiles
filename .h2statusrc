@@ -1,5 +1,6 @@
 function status {
   entry mpd "$(cached_status mpd 3 'mpc current')"
   entry gmail "Mail: $(cached_status gmail 60 '~/.i3/checkmail.sh')"
+  entry dropbox "Dropbox: $(cached_status dropbox 3 'python2 ~/.i3/dbcli.py')"
   # entry aria2 "$(OUTPUT=`diana list`; echo $OUTPUT | cut -f 3 -d " ")"
 }
