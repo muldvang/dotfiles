@@ -157,7 +157,7 @@ bindsym $mod+F3 exec termite -e ranger
 bindsym $mod+F4 exec termite -e ncmpcpp
 
 # dwb should always have a tabbed layout
-for_window [class="Dwb"] focus child, layout tabbed, focus left
+for_window [class="Dwb"] layout tabbed
 
 # Standard layout
 workspace_layout tabbed
