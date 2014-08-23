@@ -135,3 +135,8 @@ set fish_greeting ""
 
 # Environment variables
 set -x EDITOR 'emacsclient -t -a=""'
+
+# Use source-highlight to highlight text files when opened with less
+# Syntax highlighting in less though source-highlight
+set -x LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
+set -x LESS ' -R '
