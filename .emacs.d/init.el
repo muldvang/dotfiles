@@ -184,6 +184,9 @@
 ;; Remove trailing white space before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; C-x k should kill the current buffer instead of asking which buffer to kill.
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
