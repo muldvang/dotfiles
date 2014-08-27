@@ -147,7 +147,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command hgstatus
         mode dock
-        font pango:sans 9
+        font pango:sans, fontawesome 9
 }
 
 # Start often used programs
