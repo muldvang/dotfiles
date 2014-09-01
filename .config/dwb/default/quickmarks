@@ -1,9 +1,7 @@
 f https://www.facebook.com/ Facebook
-tpl https://services.brics.dk/java/courseadmin/TPL Teksnisk Projektledelse (TPL) 2014 - Teksnisk Projektledelse
 cal https://www.google.com/calendar/render?pli=1&t=AKUaPmbMvvwUDJ7prPT56hXhTss3Upea78Fko_ZiwTqiDuWPpmMRnUF8uLjP5n8FoKKMAJZ4FFvq Google Calendar
 stads http://stadssb.au.dk/sb_STAP/sb/index.jsp Aarhus Universitets Studieselvbetjening: Login
-lego https://services.brics.dk/java/courseadmin/LEGO Embedded Systems - Embodied Agents (LEGO) 2014 - Embedded Systems - Embodied Agents, Digital Control in a Physical World
-ae https://services.brics.dk/java/courseadmin/AE14/pages/Algorithm+Engineering+%282014%2C+Q3%29 Algorithm Engineering (AE14) 2014 - Algorithm Engineering (2014, Q3)
 tv http://tvtid.tv2.dk/tv-guiden# (null)
 dmi http://www.dmi.dk/vejr/til-lands/byvejr/by/vis/DK/8000/Aarhus/ Byvejr Aarhus, Danmark
-mu https://services.brics.dk/java/courseadmin/dMultData Multidimensional Databases (dMultData) 2014 - Multidimensional Databases
+ml https://services.brics.dk/java/courseadmin/ML14 Machine Learning (ML14) 2014 - Machine Learning
+cg https://services.brics.dk/java/courseadmin/cg14 Computational Geometry (cg14) 2014 - Computational Geometry (Fall 2014)
