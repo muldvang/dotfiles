@@ -1,0 +1,11 @@
+[Unit]
+Description=Aria2c download manager
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/aria2c
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
