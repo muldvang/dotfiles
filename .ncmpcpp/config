@@ -320,7 +320,7 @@ centered_cursor = yes
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
 ##
-#progressbar_look = =>
+progressbar_look = ━╾─
 #
 #progressbar_boldness = yes
 #
@@ -330,7 +330,7 @@ centered_cursor = yes
 #
 ## Available values: classic, alternative.
 ##
-#user_interface = classic
+user_interface = alternative
 #
 ## Available values: artist, album_artist, date, genre, composer, performer.
 ##
