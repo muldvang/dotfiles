@@ -25,42 +25,66 @@ browser = dwb
 # (default if unset: all graphic non-punctuation/space characters)
 #word_chars = -A-Za-z0-9,./?%&#:_=+@~
 
+#[colors]
+# foreground = #dadada
+# background = #20303b
+
+# # Black
+# color0 =  #20303b
+# color8 =  #40505b
+# # Red
+# color1 =  #FF33C2
+# color9 =  #FF59F1
+# # Green
+# color2 =  #5fd700
+# color10 = #7ff720
+# # Yellow
+# color3 =  #d7d700
+# color11 = #f7f720
+# # Blue
+# color4 =  #00afff
+# color12 = #20cfff
+# # Purple
+# color5 =  #D933FF
+# color13 = #f020ff
+# # Cyan
+# color6 =  #00ffc8
+# color14 = #20ffe8
+# # White
+# color7 =  #dddddd
+# color15 = #fdfdfd
+
 [colors]
-foreground = #dadada
-background = #20303b
+# Base16 Monokai 2
+# Scheme: Wimer Hazenberg (http://www.monokai.nl), Torben Muldvang Andersen
 
-# Black
-color0 =  #20303b
-color8 =  #40505b
-# Red
-color1 =  #FF33C2
-color9 =  #FF59F1
-# Green
-color2 =  #5fd700
-color10 = #7ff720
-# Yellow
-color3 =  #d7d700
-color11 = #f7f720
-# Blue
-color4 =  #00afff
-color12 = #20cfff
-# Purple
-color5 =  #D933FF
-color13 = #f020ff
-# Cyan
-color6 =  #00ffc8
-color14 = #20ffe8
-# White
-color7 =  #dddddd
-color15 = #fdfdfd
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background      = #293133
 
-[hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+# 16 color space
+color0  = #293133
+color1  = #f92672
+color2  = #a6e22e
+color3  = #f4bf75
+color4  = #66d9ef
+color5  = #ae81ff
+color6  = #a1efe4
+color7  = #f8f8f2
+color8  = #75715e
+color9  = #f92672
+color10 = #a6e22e
+color11 = #f4bf75
+color12 = #66d9ef
+color13 = #ae81ff
+color14 = #a1efe4
+color15 = #f9f8f5
 
-# vim: ft=dosini
+# 256 color space
+color16 = #fd971f
+color17 = #cc6633
+color18 = #383830
+color19 = #49483e
+color20 = #a59f85
+color21 = #f5f4f1
