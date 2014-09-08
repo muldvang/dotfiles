@@ -431,7 +431,7 @@ screen_switcher_mode = playlist, media_library
 ## "The" word while sorting items in browser, tags in
 ## media library, etc.
 ##
-#ignore_leading_the = no
+ignore_leading_the = yes
 #
 #block_search_constraints_change_if_items_found = yes
 #
@@ -483,13 +483,13 @@ mouse_list_scroll_whole_page = no
 #
 #state_flags_color = default
 #
-#main_window_color = yellow
+main_window_color = white
 #
 #color1 = white
 #
 #color2 = green
 #
-#main_window_highlight_color = yellow
+main_window_highlight_color = white
 #
 #progressbar_color = black
 #
@@ -499,7 +499,7 @@ mouse_list_scroll_whole_page = no
 #
 #alternative_ui_separator_color = black
 #
-#active_column_color = red
+active_column_color = blue
 #
 #visualizer_color = yellow
 #
