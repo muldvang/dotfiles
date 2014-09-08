@@ -156,7 +156,7 @@ end
 
 # Temporary fix for the "set_color: Expected an argument" bug.
 set fish_color_autosuggestion '666'  'green'
-set fish_color_command afffff
+set fish_color_command blue
 set fish_color_comment red
 set fish_color_cwd green
 set fish_color_cwd_root red
