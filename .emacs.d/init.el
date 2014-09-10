@@ -375,6 +375,14 @@
 ;; Conf-mode for rc files.
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 
+;; Matlab mode
+(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+(add-to-list
+ 'auto-mode-alist
+ '("\\.m$" . matlab-mode))
+(setq matlab-indent-function t)
+(setq matlab-shell-command "matlab")
+
 ;; Spell-checking
 (require 'rw-language-and-country-codes)
 (require 'rw-ispell)
