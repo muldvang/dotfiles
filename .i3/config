@@ -148,6 +148,10 @@ bar {
         status_command hgstatus
         mode dock
         font pango:sans, fontawesome 9
+        colors {
+                background #000000
+                statusline #f8f8f2
+        }
 }
 
 # Start often used programs
