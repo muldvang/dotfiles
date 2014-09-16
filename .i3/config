@@ -151,6 +151,12 @@ bar {
         colors {
                 background #000000
                 statusline #f8f8f2
+
+                # Workspaces       Border  Backgr. Text
+                focused_workspace  #293133 #293133 #66d9ef
+                active_workspace   #293133 #293133 #ffffff
+                inactive_workspace #293133 #000000 #ffffff
+                urgent_workspace   #293133 #000000 #f92672
         }
 }
 
@@ -201,3 +207,9 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+q mode "$mode_system"
+
+# class                 border  backgr. text    indicator
+client.focused          #293133 #293133 #66d9ef #66d9ef
+client.focused_inactive #293133 #293133 #ffffff #66d9ef
+client.unfocused        #000000 #000000 #FFFFFF #66d9ef
+client.urgent           #000000 #000000 #f92672 #66d9ef
