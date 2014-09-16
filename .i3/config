@@ -188,10 +188,10 @@ bindsym $mod+t exec i3-input -f "pango:sans 10" -F 'rename workspace to "%s"' -P
 
 # Extra keyboard shortcuts for multimedia and stuff
 bindsym XF86Launch1 exec mpc clear && mpc load \"DR P6 BEAT\" && mpc play && hgstatus update
-bindsym XF86AudioNext exec ncmpcpp next && hgstatus update
-bindsym XF86AudioPlay exec ncmpcpp toggle && hgstatus update
-bindsym XF86AudioPrev exec ncmpcpp prev && hgstatus update
-bindsym XF86AudioStop exec ncmpcpp stop && hgstatus update
+bindsym XF86AudioNext exec mpc next && hgstatus update
+bindsym XF86AudioPlay exec mpc toggle && hgstatus update
+bindsym XF86AudioPrev exec mpc prev && hgstatus update
+bindsym XF86AudioStop exec mpc stop && hgstatus update
 bindsym XF86AudioLowerVolume exec amixer -q set PCM 1%- && hgstatus update
 bindsym XF86AudioRaiseVolume exec amixer -q set PCM 1%+ && hgstatus update
 bindsym Print exec gnome-screenshot --interactive
