@@ -198,9 +198,9 @@
 		   (cl-lib)
 		   :description "Powerline for Emacs" :type github :pkgname "milkypostman/powerline" :load-path "." :features powerline))
  (rainbow-delimiters status "installed" recipe
-                     (:name rainbow-delimiters :website "https://github.com/jlr/rainbow-delimiters#readme" :description "Color nested parentheses, brackets, and braces according to their depth." :type github :pkgname "jlr/rainbow-delimiters"))
+		     (:name rainbow-delimiters :website "https://github.com/jlr/rainbow-delimiters#readme" :description "Color nested parentheses, brackets, and braces according to their depth." :type github :pkgname "jlr/rainbow-delimiters"))
  (rainbow-mode status "installed" recipe
-               (:name rainbow-mode :description "Colorize color names in buffers" :minimum-emacs-version 24 :type elpa))
+	       (:name rainbow-mode :description "Colorize color names in buffers" :minimum-emacs-version 24 :type elpa))
  (rw-hunspell status "installed" recipe
 	      (:name rw-hunspell :auto-generated t :type elpa :description "special functions for Hunspell in ispell.el" :repo nil))
  (rw-ispell status "installed" recipe
