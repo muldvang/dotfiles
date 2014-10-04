@@ -18,11 +18,6 @@ xset fp rehash
 # QGtkStyle requires this variable to be set
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
-# XBMC is only started on my desktop pc
-if [ `hostname` = "Tor" ]; then
-    xbmc &
-fi
-
 # Block bluetooth and wireless wan on laptop
 if [ `hostname` = "Balder" ]; then
     rfkill block bluetooth && rfkill block wwan
