@@ -195,6 +195,9 @@
   (call-interactively 'indent-region))
 (global-set-key "\C-y" 'yank-and-indent)
 
+;; Shortcut for imenu
+(global-set-key (kbd "C-c g") 'imenu)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
