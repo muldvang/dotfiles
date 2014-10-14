@@ -37,7 +37,9 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
-;; (package-initialize)
+(package-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/elpa")
 
 ;; el-get
 
@@ -63,7 +65,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Integrate system clipboard
-(setq x-select-enable-clipboard t)
+(setq gui-select-enable-clipboard t)
 
 ;; Put auto-save files (i.e. #foo#) and backup files (i.e. foo~) in ~/.emacs.d/.
 (custom-set-variables
@@ -239,27 +241,25 @@
 (global-set-key (kbd "C-M-n") 'outline-forward-same-level)
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
-;; Adaptive wrap
-;(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
-;  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
-;(global-adaptive-wrap-prefix-mode 1)
+;; ;; Adaptive wrap
+;; (define-globalized-minor-mode global-adaptive-wrap-prefix-mode
+;;  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
+;; (global-adaptive-wrap-prefix-mode 1)
 
 ;; Auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-delay 0)
-(setq ac-quick-help-delay 0.2)
-(ac-flyspell-workaround)
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-(setq ac-use-fuzzy t)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+;; (setq ac-delay 0)
+;; (setq ac-quick-help-delay 0.2)
+;; (ac-flyspell-workaround)
+;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+;; (setq ac-use-fuzzy t)
+
 
 ;; org-mode auto completion
 ;; Make config suit for you. About the config item, eval the following sexp.
 ;; (customize-group "org-ac")
 (org-ac/config-default)
-
-;; Yasnippet (Useful with auto-complete)
-(yas-global-mode 1)
 
 ;; Fill Column Indicator
 (setq fci-rule-color "#393f3f")
@@ -317,7 +317,10 @@
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 
+
 ;; C / C++
+(yas-global-mode)
+
 (add-hook 'c-mode-common-hook 'fci-mode)
 (add-hook 'c-mode-common-hook 'semantic-mode)
 (add-hook 'c-mode-common-hook (lambda () (setq c-basic-offset 4)))
@@ -326,38 +329,27 @@
             (local-set-key  (kbd "M-o") 'ff-find-other-file)))
 (add-hook 'c-mode-common-hook (lambda () (c-toggle-hungry-state 1)))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-hook 'c-mode-common-hook 'company-mode)
 
-;; The Clang installation missed the system include directory
-;; "/usr/lib/clang/3.2/include/"
-(when (file-exists-p "/usr/lib64/clang/3.2/include/")
-  (setq irony-libclang-additional-flags
-        '("-isystem" "/usr/lib64/clang/3.2/include/")))
+(add-hook 'c-mode-common-hook 'irony-mode)
 
-;; FIXME: Not elegant, find a better way to enable default plugins.
-(autoload 'irony-enable "irony")
-(irony-enable 'ac)
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
 
-(defun sarcasm-enable-irony-mode ()
-  ;; avoid enabling irony-mode in modes that inherits c-mode, e.g: php-mode
-  (when (member major-mode irony-known-modes)
-    ;; uncomment if other ac-sources are too annoying
-    ;; (setq ac-sources nil)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
 
-    ;; enable irony-mode
-    (irony-mode 1)))
+;; (optional) adds CC special commands to `company-begin-commands' in order to
+;; trigger completion at interesting places, such as after scope operator
+;;     std::|
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
-(add-hook 'c++-mode-hook 'sarcasm-enable-irony-mode)
-(add-hook 'c-mode-hook 'sarcasm-enable-irony-mode)
-
-;; (require 'auto-complete-clang-async)
-
-;; (defun ac-cc-mode-setup ()
-;;   (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
-;;   (setq ac-sources '(ac-source-clang-async))
-;;   (ac-clang-launch-completion-process)
-;; )
-
-;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
 
 ;; Haskell
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
@@ -367,7 +359,7 @@
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 ; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
 ;; Org-mode
 (add-hook 'org-mode-hook 'flyspell-mode)
@@ -411,5 +403,3 @@
 
 ;; Langtool
 (setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
-
-;;; init.el ends here

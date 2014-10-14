@@ -1,7 +1,7 @@
-((ac-math status "installed" recipe
+((ac-irony status "installed" recipe
+           (:name ac-irony :description "Auto-complete completion source for irony-mode." :type github :pkgname "Sarcasm/ac-irony"))
+ (ac-math status "installed" recipe
           (:name ac-math :type http :website "http://code.google.com/p/ac-math/" :description "This is an add-on which defines three ac-sources for the auto-complete package" :url "https://ac-math.googlecode.com/svn/trunk/ac-math.el"))
- (adaptive-wrap status "installed" recipe
-                (:name adaptive-wrap :description "This package provides the `adaptive-wrap-prefix-mode' minor mode which sets\nthe wrap-prefix property on the fly so that single-long-line paragraphs get\nword-wrapped in a way similar to what you'd get with M-q using\nadaptive-fill-mode, but without actually changing the buffer's text." :website "http://elpa.gnu.org/packages/adaptive-wrap.html" :type elpa))
  (ample-regexps status "installed" recipe
                 (:name ample-regexps :description "Compose and reuse Emacs regular expressions with ease" :type github :pkgname "immerrr/ample-regexps.el"))
  (auctex status "installed" recipe
@@ -26,11 +26,24 @@
                          (add-to-list 'ac-dictionary-directories
                                       (expand-file-name "dict" default-directory))
                          (ac-config-default))))
+ (auto-complete-c-headers status "installed" recipe
+                          (:name auto-complete-c-headers :website "https://github.com/mooz/auto-complete-c-headers" :description "An auto-complete source for C/C++ header files." :type github :pkgname "mooz/auto-complete-c-headers" :depends auto-complete :prepare
+                                 (progn
+                                   (defun ac--c-headers-init nil
+                                     (require 'auto-complete-c-headers)
+                                     (add-to-list 'ac-sources 'ac-source-c-headers))
+                                   (add-hook 'c-mode-hook 'ac--c-headers-init)
+                                   (add-hook 'c++-mode-hook 'ac--c-headers-init))))
+ (auto-complete-clang status "installed" recipe
+                      (:name auto-complete-clang :website "https://github.com/brianjcj/auto-complete-clang" :description "Auto-complete sources for Clang. Combine the power of AC, Clang and Yasnippet." :type github :pkgname "brianjcj/auto-complete-clang" :depends auto-complete))
  (auto-complete-pcmp status "installed" recipe
                      (:name auto-complete-pcmp :website "https://github.com/aki2o/auto-complete-pcmp" :description "Provide auto-complete sources using pcomplete results." :type github :pkgname "aki2o/auto-complete-pcmp" :depends
                             (auto-complete log4e yaxception)))
  (cl-lib status "installed" recipe
          (:name cl-lib :builtin "24.3" :type elpa :description "Properly prefixed CL functions and macros" :url "http://elpa.gnu.org/packages/cl-lib.html"))
+ (cmake-ide status "installed" recipe
+            (:name cmake-ide :description "Calls CMake to find out include paths and other compiler flags." :type github :pkgname "atilaneves/cmake-ide" :depends
+                   (auto-complete-clang flycheck)))
  (cmake-mode status "installed" recipe
              (:name cmake-mode :website "http://www.itk.org/Wiki/CMake/Editors/Emacs" :description "Provides syntax highlighting and indentation for CMakeLists.txt and *.cmake source files." :type http :url "http://cmake.org/gitweb?p=cmake.git;a=blob_plain;hb=master;f=Auxiliary/cmake-mode.el"))
  (color-theme status "installed" recipe
@@ -45,6 +58,12 @@
                                 (autoload 'color-theme-tangotango "color-theme-tangotango" "color-theme: tangotango" t)))
  (column-marker status "installed" recipe
                 (:name column-marker :description "Highlight certain character columns" :type emacswiki :features column-marker))
+ (company-irony status "installed" recipe
+                (:name company-irony :description "company-mode completion back-end for irony-mode" :type github :depends
+                       (company-mode irony-mode cl-lib)
+                       :pkgname "Sarcasm/company-irony"))
+ (company-mode status "installed" recipe
+               (:name company-mode :website "http://company-mode.github.io/" :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
  (dash status "installed" recipe
        (:name dash :description "A modern list api for Emacs. No 'cl required." :type github :pkgname "magnars/dash.el"))
  (deferred status "installed" recipe
@@ -61,8 +80,6 @@
          (:name el-get :website "https://github.com/dimitri/el-get#readme" :description "Manage the external elisp bits and pieces you depend upon." :type github :branch "master" :pkgname "dimitri/el-get" :info "." :compile
                 ("el-get.*\\.el$" "methods/")
                 :load "el-get.el"))
- (el-swank-fuzzy status "installed" recipe
-                 (:name el-swank-fuzzy :auto-generated t :type emacswiki :description "fuzzy symbol completion." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-swank-fuzzy.el"))
  (emacs-w3m status "installed" recipe
             (:name emacs-w3m :description "A simple Emacs interface to w3m" :type cvs :website "http://emacs-w3m.namazu.org/" :module "emacs-w3m" :url ":pserver:anonymous@cvs.namazu.org:/storage/cvsroot" :build
                    `("autoconf"
@@ -83,9 +100,6 @@
            :type github :pkgname "rejeep/f.el"))
  (fill-column-indicator status "installed" recipe
                         (:name fill-column-indicator :type github :website "https://github.com/alpaker/Fill-Column-Indicator#readme" :description "An Emacs minor mode that graphically indicates the fill column." :pkgname "alpaker/Fill-Column-Indicator"))
- (fish-mode status "installed" recipe
-            (:name fish-mode :auto-generated t :type elpa :description "Major mode for fish shell scripts" :repo nil :minimum-emacs-version
-                   (24)))
  (flycheck status "installed" recipe
            (:name flycheck :type github :pkgname "flycheck/flycheck" :description "On-the-fly syntax checking extension" :build
                   '(("makeinfo" "-o" "doc/flycheck.info" "doc/flycheck.texi"))
@@ -99,8 +113,6 @@
                                     '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))))
  (fuzzy status "installed" recipe
         (:name fuzzy :website "https://github.com/auto-complete/fuzzy-el" :description "Fuzzy matching utilities for GNU Emacs" :type github :pkgname "auto-complete/fuzzy-el"))
- (fuzzy-match status "installed" recipe
-              (:name fuzzy-match :auto-generated t :type emacswiki :description "fuzzy matching" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/fuzzy-match.el"))
  (haskell-mode status "installed" recipe
                (:name haskell-mode :description "A Haskell editing mode" :type github :pkgname "haskell/haskell-mode" :info "." :build
                       `(("make" ,(format "EMACS=%s" el-get-emacs)
@@ -112,36 +124,10 @@
                         (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))))
  (hungry-delete status "installed" recipe
                 (:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
- (icicles status "installed" recipe
-          (:name icicles :auto-generated t :type emacswiki :description "Minibuffer input completion and cycling." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles.el"))
- (icicles-cmd1 status "installed" recipe
-               (:name icicles-cmd1 :auto-generated t :type emacswiki :description "Top-level commands for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-cmd1.el"))
- (icicles-cmd2 status "installed" recipe
-               (:name icicles-cmd2 :auto-generated t :type emacswiki :description "Top-level commands for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-cmd2.el"))
- (icicles-face status "installed" recipe
-               (:name icicles-face :auto-generated t :type emacswiki :description "Faces for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-face.el"))
- (icicles-fn status "installed" recipe
-             (:name icicles-fn :auto-generated t :type emacswiki :description "Non-interactive functions for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-fn.el"))
- (icicles-mac status "installed" recipe
-              (:name icicles-mac :auto-generated t :type emacswiki :description "Macros for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mac.el"))
- (icicles-mcmd status "installed" recipe
-               (:name icicles-mcmd :auto-generated t :type emacswiki :description "Minibuffer commands for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mcmd.el"))
- (icicles-mode status "installed" recipe
-               (:name icicles-mode :auto-generated t :type emacswiki :description "Icicle Mode definition for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mode.el"))
- (icicles-opt status "installed" recipe
-              (:name icicles-opt :auto-generated t :type emacswiki :description "User options (customizable variables) for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-opt.el"))
- (icicles-var status "installed" recipe
-              (:name icicles-var :auto-generated t :type emacswiki :description "Internal variables for Icicles" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-var.el"))
  (irony-mode status "installed" recipe
-             (:name irony-mode :description "Emacs package using Clang for C & C++ completion, on-the-fly syntax checking and more!" :depends
-                    (yasnippet auto-complete json)
-                    :type github :branch "develop" :pkgname "Sarcasm/irony-mode" :build
-                    (("mkdir -p build")
-                     ("(cd build && cmake -DCMAKE_BUILD_TYPE=Release ..)")
-                     ("make -j5 -C build install"))
-                    :compile
-                    ("elisp/" "elisp/irony/")
-                    :load-path "elisp"))
+             (:name irony-mode :description "A C/C++ minor mode for Emacs powered by libclang" :type github :pkgname "Sarcasm/irony-mode" :depends
+                    (cl-lib)
+                    :compile "\\.el$"))
  (json status "installed" recipe
        (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el"))
  (langtool status "installed" recipe
@@ -149,7 +135,9 @@
  (log4e status "installed" recipe
         (:name log4e :website "https://github.com/aki2o/log4e" :description "provide logging framework for elisp." :type github :pkgname "aki2o/log4e"))
  (lua-mode status "installed" recipe
-           (:name lua-mode :description "A major-mode for editing Lua scripts" :website "https://github.com/immerrr/lua-mode" :type git :url "https://github.com/immerrr/lua-mode"))
+           (:name lua-mode :description "A major-mode for editing Lua scripts" :depends
+                  (ample-regexps)
+                  :type github :pkgname "immerrr/lua-mode"))
  (matlab-mode status "installed" recipe
               (:name matlab-mode :description "Major mode for MATLAB(R) dot-m files" :type cvs :module "matlab-emacs" :url ":pserver:anonymous@matlab-emacs.cvs.sourceforge.net:/cvsroot/matlab-emacs" :build
                      ("make")
@@ -202,14 +190,9 @@
                    :description "Powerline for Emacs" :type github :pkgname "milkypostman/powerline" :load-path "." :features powerline))
  (rainbow-delimiters status "installed" recipe
                      (:name rainbow-delimiters :website "https://github.com/jlr/rainbow-delimiters#readme" :description "Color nested parentheses, brackets, and braces according to their depth." :type github :pkgname "jlr/rainbow-delimiters"))
- (rainbow-mode status "installed" recipe
-               (:name rainbow-mode :description "Colorize color names in buffers" :minimum-emacs-version 24 :type elpa))
  (rw-hunspell status "installed" recipe
-              (:name rw-hunspell :auto-generated t :type elpa :description "special functions for Hunspell in ispell.el" :repo nil))
- (rw-ispell status "installed" recipe
-            (:name rw-ispell :auto-generated t :type elpa :description "additional functions for ispell.el" :repo nil))
- (rw-language-and-country-codes status "installed" recipe
-                                (:name rw-language-and-country-codes :auto-generated t :type elpa :description "Language & Country Codes" :repo nil))
+              (:name rw-hunspell :description "Special functions for Hunspell in ispell.el." :website "http://marmalade-repo.org/packages/rw-hunspell" :url "http://marmalade-repo.org/packages/rw-hunspell-0.2.el" :type http :prepare
+                     (autoload 'rw-hunspell-setup "rw-hunspell-0.2" nil t)))
  (s status "installed" recipe
     (:name s :description "The long lost Emacs string manipulation library." :type github :pkgname "magnars/s.el"))
  (textlint status "installed" recipe
