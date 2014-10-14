@@ -200,6 +200,36 @@
 ;; Shortcut for imenu
 (global-set-key (kbd "C-c g") 'imenu)
 
+;; Set the major mode of the scratch buffer to org-mode.
+(setq initial-major-mode 'org-mode)
+
+(ido-mode t)
+(defvar ido-enable-replace-completing-read t
+  "If t, use ido-completing-read instead of completing-read if possible.
+
+    Set it to nil using let in around-advice for functions where the
+    original completing-read is required.  For example, if a function
+    foo absolutely must use the original completing-read, define some
+    advice like this:
+
+    (defadvice foo (around original-completing-read-only activate)
+      (let (ido-enable-replace-completing-read) ad-do-it))")
+
+;; Replace completing-read wherever possible, unless directed otherwise
+(defadvice completing-read
+    (around use-ido-when-possible activate)
+  (if (or (not ido-enable-replace-completing-read) ; Manual override disable ido
+          (and (boundp 'ido-cur-list)
+               ido-cur-list)) ; Avoid infinite loop from ido calling this
+      ad-do-it
+    (let ((allcomp (all-completions "" collection predicate)))
+      (if allcomp
+          (setq ad-return-value
+                (ido-completing-read prompt
+                                     allcomp
+                                     nil require-match initial-input hist def))
+        ad-do-it))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -207,19 +237,6 @@
 ;; Global Visual Line mode. Split long lines between words instead of
 ;; within words.
 (global-visual-line-mode 1)
-
-;; Icicles
-(require 'icicles)
-(icy-mode 1)
-(setq icicle-buffers-ido-like-flag t)
-(setq icicle-files-ido-like-flag t)
-(setq icicle-ido-like-mode t)
-(setq icicle-show-Completions-initially-flag t)
-(setq icicle-incremental-completion-delay 0)
-(setq icicle-incremental-completion-threshold 0)
-(setq icicle-expand-input-to-common-match 1)
-(setq icicle-max-candidates 100)
-(setq icicle-default-cycling-mode 'apropos)
 
 ;; Powerline
 (powerline-default-theme)
@@ -253,7 +270,6 @@
 (electric-pair-mode 1)
 
 ;; Hungry delete
-(require 'hungry-delete)
 (global-hungry-delete-mode)
 
 ;; Expand-region
@@ -325,7 +341,6 @@
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
 ;; C++
-
 (add-hook 'c++-mode-hook 'fci-mode)
 (add-hook 'c++-mode-hook 'semantic-mode)
 (add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
