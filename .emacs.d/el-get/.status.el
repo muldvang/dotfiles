@@ -1,9 +1,8 @@
-((ac-irony status "installed" recipe
-           (:name ac-irony :description "Auto-complete completion source for irony-mode." :type github :pkgname "Sarcasm/ac-irony"))
- (ac-math status "installed" recipe
-          (:name ac-math :type http :website "http://code.google.com/p/ac-math/" :description "This is an add-on which defines three ac-sources for the auto-complete package" :url "https://ac-math.googlecode.com/svn/trunk/ac-math.el"))
- (ample-regexps status "installed" recipe
+((ample-regexps status "installed" recipe
                 (:name ample-regexps :description "Compose and reuse Emacs regular expressions with ease" :type github :pkgname "immerrr/ample-regexps.el"))
+ (anaconda-mode status "installed" recipe
+                (:name anaconda-mode :description "Code navigation, documentation lookup and completion for Python." :type github :pkgname "proofit404/anaconda-mode" :depends
+                       (dash f json-rpc)))
  (auctex status "installed" recipe
          (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type git :module "auctex" :url "git://git.savannah.gnu.org/auctex.git" :build
                 `(("./autogen.sh")
@@ -18,32 +17,8 @@
                 :load
                 ("tex-site.el" "preview/preview-latex.el")
                 :info "doc"))
- (auto-complete status "installed" recipe
-                (:name auto-complete :website "https://github.com/auto-complete/auto-complete" :description "The most intelligent auto-completion extension." :type github :pkgname "auto-complete/auto-complete" :depends
-                       (popup fuzzy)
-                       :features auto-complete-config :post-init
-                       (progn
-                         (add-to-list 'ac-dictionary-directories
-                                      (expand-file-name "dict" default-directory))
-                         (ac-config-default))))
- (auto-complete-c-headers status "installed" recipe
-                          (:name auto-complete-c-headers :website "https://github.com/mooz/auto-complete-c-headers" :description "An auto-complete source for C/C++ header files." :type github :pkgname "mooz/auto-complete-c-headers" :depends auto-complete :prepare
-                                 (progn
-                                   (defun ac--c-headers-init nil
-                                     (require 'auto-complete-c-headers)
-                                     (add-to-list 'ac-sources 'ac-source-c-headers))
-                                   (add-hook 'c-mode-hook 'ac--c-headers-init)
-                                   (add-hook 'c++-mode-hook 'ac--c-headers-init))))
- (auto-complete-clang status "installed" recipe
-                      (:name auto-complete-clang :website "https://github.com/brianjcj/auto-complete-clang" :description "Auto-complete sources for Clang. Combine the power of AC, Clang and Yasnippet." :type github :pkgname "brianjcj/auto-complete-clang" :depends auto-complete))
- (auto-complete-pcmp status "installed" recipe
-                     (:name auto-complete-pcmp :website "https://github.com/aki2o/auto-complete-pcmp" :description "Provide auto-complete sources using pcomplete results." :type github :pkgname "aki2o/auto-complete-pcmp" :depends
-                            (auto-complete log4e yaxception)))
  (cl-lib status "installed" recipe
          (:name cl-lib :builtin "24.3" :type elpa :description "Properly prefixed CL functions and macros" :url "http://elpa.gnu.org/packages/cl-lib.html"))
- (cmake-ide status "installed" recipe
-            (:name cmake-ide :description "Calls CMake to find out include paths and other compiler flags." :type github :pkgname "atilaneves/cmake-ide" :depends
-                   (auto-complete-clang flycheck)))
  (cmake-mode status "installed" recipe
              (:name cmake-mode :website "http://www.itk.org/Wiki/CMake/Editors/Emacs" :description "Provides syntax highlighting and indentation for CMakeLists.txt and *.cmake source files." :type http :url "http://cmake.org/gitweb?p=cmake.git;a=blob_plain;hb=master;f=Auxiliary/cmake-mode.el"))
  (color-theme status "installed" recipe
@@ -130,6 +105,8 @@
                     :compile "\\.el$"))
  (json status "installed" recipe
        (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el"))
+ (json-rpc status "installed" recipe
+           (:name json-rpc :description "JSON-RPC library." :type github :pkgname "skeeto/elisp-json-rpc"))
  (langtool status "installed" recipe
            (:name langtool :description "Emacs frontend for LanguageTool (http://www.languagetool.org/)." :type github :pkgname "mhayashi1120/Emacs-langtool"))
  (log4e status "installed" recipe
@@ -144,9 +121,6 @@
                      :load-path
                      (".")
                      :features matlab-load))
- (org-ac status "installed" recipe
-         (:name org-ac :website "https://github.com/aki2o/org-ac" :description "provide auto-complete sources for org-mode." :type github :pkgname "aki2o/org-ac" :depends
-                (auto-complete-pcmp log4e yaxception)))
  (package status "installed" recipe
           (:name package :description "ELPA implementation (\"package.el\") from Emacs 24" :builtin "24" :type http :url "http://repo.or.cz/w/emacs.git/blob_plain/1a0a666f941c99882093d7bd08ced15033bc3f0c:/lisp/emacs-lisp/package.el" :shallow nil :features package :post-init
                  (progn
