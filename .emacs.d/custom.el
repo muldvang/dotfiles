@@ -22,6 +22,7 @@
  '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
  '(help-at-pt-timer-delay 0)
  '(hippie-expand-ignore-buffers (quote (dired-mode)))
+ '(irony-cmake-executable "/usr/bin/cmake")
  '(powerline-default-separator nil)
  '(proof-layout-windows-on-visit-file t)
  '(proof-three-window-mode-policy (quote hybrid))
@@ -34,8 +35,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-preview ((t (:foreground "wheat"))) t)
- '(company-preview-common ((t (:foreground "dark gray"))) t)
+ '(company-preview ((t (:foreground "wheat"))))
+ '(company-preview-common ((t (:foreground "dark gray"))))
  '(flycheck-color-mode-line-error-face ((t (:inherit flycheck-fringe-error :background "#806065" :foreground "#efefef" :weight normal))))
  '(flycheck-color-mode-line-info-face ((t (:inherit flycheck-fringe-info :background "#008000" :foreground "#efefef" :weight normal))))
  '(flycheck-color-mode-line-warning-face ((t (:inherit flycheck-fringe-warning :background "#804600" :foreground "#efefef" :weight normal))))
