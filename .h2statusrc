@@ -3,4 +3,5 @@ function status {
   entry mpd " $(cached_status mpd 3 'mpc current')"
   entry gmail " $(cached_status gmail 60 '~/.i3/checkmail.sh')"
   entry dropbox " $(cached_status dropbox 3 'python2 ~/.i3/dbcli.py')"
+  entry vpn "$(cached_status vpn 3 '~/.i3/vpn.sh')"
 }
