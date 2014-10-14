@@ -246,21 +246,6 @@
 ;;  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
 ;; (global-adaptive-wrap-prefix-mode 1)
 
-;; Auto-complete
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;; (setq ac-delay 0)
-;; (setq ac-quick-help-delay 0.2)
-;; (ac-flyspell-workaround)
-;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-;; (setq ac-use-fuzzy t)
-
-
-;; org-mode auto completion
-;; Make config suit for you. About the config item, eval the following sexp.
-;; (customize-group "org-ac")
-(org-ac/config-default)
-
 ;; Fill Column Indicator
 (setq fci-rule-color "#393f3f")
 
@@ -294,16 +279,6 @@
 ; Compile to pdf
 (setq TeX-PDF-mode t)
 
-; Auto-complete
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
-
-(defun ac-LaTeX-mode-setup () ; add ac-sources to default ac-sources
-  (setq ac-sources (append '(ac-source-math-unicode
-                             ac-source-latex-commands)
-                           ac-sources)))
-(add-hook 'LaTeX-mode-hook 'ac-LaTeX-mode-setup)
-(setq ac-math-unicode-in-math-p t)
-
 ;; Lua
 (add-hook 'lua-mode-hook 'fci-mode)
 
@@ -315,23 +290,53 @@
 
 ;; Python
 (add-hook 'python-mode-hook 'fci-mode)
-(add-hook 'python-mode-hook 'jedi:ac-setup)
+(add-hook 'python-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
 
-
-;; C / C++
+;; C
 (yas-global-mode)
 
-(add-hook 'c-mode-common-hook 'fci-mode)
-(add-hook 'c-mode-common-hook 'semantic-mode)
-(add-hook 'c-mode-common-hook (lambda () (setq c-basic-offset 4)))
-(add-hook 'c-mode-common-hook
+(add-hook 'c-mode-hook 'fci-mode)
+(add-hook 'c-mode-hook 'semantic-mode)
+(add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
+(add-hook 'c-mode-hook
           (lambda()
             (local-set-key  (kbd "M-o") 'ff-find-other-file)))
-(add-hook 'c-mode-common-hook (lambda () (c-toggle-hungry-state 1)))
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-hook 'c-mode-common-hook 'company-mode)
+(add-hook 'c-mode-hook (lambda () (c-toggle-hungry-state 1)))
+(add-hook 'c-mode-hook 'company-mode)
 
-(add-hook 'c-mode-common-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+
+;; (optional) adds CC special commands to `company-begin-commands' in order to
+;; trigger completion at interesting places, such as after scope operator
+;;     std::|
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+
+;; C++
+
+(add-hook 'c++-mode-hook 'fci-mode)
+(add-hook 'c++-mode-hook 'semantic-mode)
+(add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
+(add-hook 'c++-mode-hook
+          (lambda()
+            (local-set-key  (kbd "M-o") 'ff-find-other-file)))
+(add-hook 'c++-mode-hook (lambda () (c-toggle-hungry-state 1)))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-hook 'c++-mode-hook 'company-mode)
+
+(add-hook 'c++-mode-hook 'irony-mode)
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
@@ -354,10 +359,9 @@
 ;; Haskell
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'fci-mode)
-(add-hook 'haskell-mode-hook 'auto-complete-mode)
 
 ;; Elisp
-(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+(add-hook 'emacs-lisp-mode-hook 'company-mode)
 ; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
@@ -385,7 +389,7 @@
  '("\\.m$" . matlab-mode))
 (setq matlab-indent-function t)
 (setq matlab-shell-command "matlab")
-(add-hook 'matlab-mode-hook 'auto-complete-mode)
+(add-hook 'matlab-mode-hook 'company-mode)
 (add-hook 'matlab-mode-hook 'fci-mode)
 
 ;; ;; Spell-checking
