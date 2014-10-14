@@ -195,6 +195,7 @@ bindsym XF86AudioStop exec mpc stop && hgstatus update
 bindsym XF86AudioLowerVolume exec amixer -q set PCM 1%- && hgstatus update
 bindsym XF86AudioRaiseVolume exec amixer -q set PCM 1%+ && hgstatus update
 bindsym Print exec gnome-screenshot --interactive
+bindsym XF86ScreenSaver exec slimlock
 
 set $mode_system (s) suspend, (r) reboot, (p) poweroff
 mode "$mode_system" {
