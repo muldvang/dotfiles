@@ -205,7 +205,6 @@
 
 ;; Ido
 (ido-mode t)
-(require 'ido-ubiquitous)
 (ido-ubiquitous-mode 1)
 
 ;; Smex
