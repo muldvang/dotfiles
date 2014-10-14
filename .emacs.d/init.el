@@ -294,7 +294,6 @@
 (yas-global-mode)
 
 (add-hook 'c-mode-hook 'fci-mode)
-(add-hook 'c-mode-hook 'semantic-mode)
 (add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
 (add-hook 'c-mode-hook
           (lambda()
@@ -323,7 +322,6 @@
 
 ;; C++
 (add-hook 'c++-mode-hook 'fci-mode)
-(add-hook 'c++-mode-hook 'semantic-mode)
 (add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
 (add-hook 'c++-mode-hook
           (lambda()
