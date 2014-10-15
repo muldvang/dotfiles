@@ -385,6 +385,12 @@
 (add-hook 'matlab-mode-hook 'company-mode)
 (add-hook 'matlab-mode-hook 'fci-mode)
 
+(defun my-matlab-hook ()
+  (matlab-toggle-show-mlint-warnings)
+  (matlab-cedet-setup)
+)
+(add-hook 'matlab-mode-hook 'my-matlab-hook)
+
 ;; ;; Spell-checking
 ;; (require 'rw-language-and-country-codes)
 ;; (require 'rw-ispell)
