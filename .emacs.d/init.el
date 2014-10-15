@@ -391,6 +391,27 @@
 )
 (add-hook 'matlab-mode-hook 'my-matlab-hook)
 
+;; Define company-completion for matlab-mode
+(require 'cl-lib)
+(require 'company)
+(defun company-sample-backend (command &optional arg &rest ignored)
+  (interactive (list 'interactive))
+
+  (cl-case command
+    (interactive (company-begin-backend 'company-sample-backend))
+    (prefix (and (eq major-mode 'matlab-mode)
+                 (company-grab-symbol)))
+    (candidates
+     (cl-remove-if-not
+      (lambda (c) (string-prefix-p arg c))
+      (append (matlab-solo-completions arg)
+              (matlab-find-recent-variable arg)
+              (matlab-boolean-completions arg)
+              (matlab-value-completions arg)
+              (matlab-property-completions arg)
+              (matlab-find-user-functions arg))))))
+(add-to-list 'company-backends 'company-sample-backend)
+
 ;; ;; Spell-checking
 ;; (require 'rw-language-and-country-codes)
 ;; (require 'rw-ispell)
