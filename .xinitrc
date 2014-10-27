@@ -29,5 +29,7 @@ xmodmap .xmodmap
 # Set the background image
 feh --bg-fill Pictures/wallpapers/IMG_2339.JPG
 
+xset -dpms
+
 # Execute window manager
 exec dbus-launch i3
