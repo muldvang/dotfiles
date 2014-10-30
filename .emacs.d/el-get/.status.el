@@ -1,8 +1,10 @@
 ((ample-regexps status "installed" recipe
                 (:name ample-regexps :description "Compose and reuse Emacs regular expressions with ease" :type github :pkgname "immerrr/ample-regexps.el"))
  (anaconda-mode status "installed" recipe
-                (:name anaconda-mode :description "Code navigation, documentation lookup and completion for Python." :type github :pkgname "proofit404/anaconda-mode" :depends
-                       (dash f json-rpc)))
+                (:name anaconda-mode :auto-generated t :type elpa :description "Code navigation, documentation lookup and completion for Python" :repo nil :depends
+                       (json-rpc cl-lib dash f)
+                       :minimum-emacs-version
+                       (24)))
  (auctex status "installed" recipe
          (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type git :module "auctex" :url "git://git.savannah.gnu.org/auctex.git" :build
                 `(("./autogen.sh")
@@ -38,7 +40,7 @@
                        (company-mode irony-mode cl-lib)
                        :pkgname "Sarcasm/company-irony"))
  (company-mode status "installed" recipe
-               (:name company-mode :website "http://company-mode.github.io/" :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
+               (:name company-mode :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
  (dash status "installed" recipe
        (:name dash :description "A modern list api for Emacs. No 'cl required." :type github :pkgname "magnars/dash.el"))
  (deferred status "installed" recipe
@@ -99,6 +101,8 @@
                         (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))))
  (hungry-delete status "installed" recipe
                 (:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
+ (ido-ubiquitous status "installed" recipe
+                 (:name ido-ubiquitous :description "Use ido (nearly) everywhere" :type elpa))
  (irony-mode status "installed" recipe
              (:name irony-mode :description "A C/C++ minor mode for Emacs powered by libclang" :type github :pkgname "Sarcasm/irony-mode" :depends
                     (cl-lib)
@@ -106,7 +110,10 @@
  (json status "installed" recipe
        (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el"))
  (json-rpc status "installed" recipe
-           (:name json-rpc :description "JSON-RPC library." :type github :pkgname "skeeto/elisp-json-rpc"))
+           (:name json-rpc :auto-generated t :type elpa :description "JSON-RPC library" :repo nil :depends
+                  (cl-lib)
+                  :minimum-emacs-version
+                  (24 1)))
  (langtool status "installed" recipe
            (:name langtool :description "Emacs frontend for LanguageTool (http://www.languagetool.org/)." :type github :pkgname "mhayashi1120/Emacs-langtool"))
  (log4e status "installed" recipe
