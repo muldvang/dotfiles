@@ -388,7 +388,7 @@
 (defun my-matlab-hook ()
   (matlab-toggle-show-mlint-warnings)
   (matlab-cedet-setup)
-)
+  (local-set-key (kbd "M-;") 'comment-dwim))
 (add-hook 'matlab-mode-hook 'my-matlab-hook)
 
 ;; Define company-completion for matlab-mode
