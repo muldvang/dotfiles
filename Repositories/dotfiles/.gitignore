@@ -203,3 +203,8 @@
 .config/dwb/default/session
 .config/dwb/settings*
 .config/dwb/userscripts/
+.config/fish/fish_history*
+.config/dwb/keys*
+.xournal
+.config/VirtualBox/
+.config/dwb/default/commands.history.*
