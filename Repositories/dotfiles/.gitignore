@@ -208,3 +208,12 @@
 .xournal
 .config/VirtualBox/
 .config/dwb/default/commands.history.*
+.config/vimb/closed
+.config/vimb/command
+.config/vimb/cookies
+.config/vimb/history
+.config/vimb/hsts
+.config/vimb/queue
+.config/vimb/search
+.emacs.d/.mc-lists.el
+.moriturirc
