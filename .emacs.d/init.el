@@ -186,6 +186,9 @@
 ;; Remove trailing white space before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Automatically insert newline at end of file at save.
+(setq require-final-newline t)
+
 ;; C-x k should kill the current buffer instead of asking which buffer to kill.
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
