@@ -1,8 +1,19 @@
+# Settings
 set home-page=about:blank
 set download-path=/home/muldvang/Downloads/
+set statusbar=false
+set minimumfontsize=8pt
+
+# Search engines
 shortcut-add g=https://google.com/search?q=$0
 shortcut-add i=https://google.com/search?q=$0&tbm=isch
 shortcut-add ord=http://www.ordbogen.com/opslag.php?word=$0&dict=auto
 shortcut-add aur=https://aur.archlinux.org/packages/?O=0&K=$0
 shortcut-add y=https://www.youtube.com/results?search_query=$0
 shortcut-add cpp=http://en.cppreference.com/mwiki/index.php?title=Special:Search&search=$0
+shortcut-default g
+
+# Quickmarks
+nmap bf :open https://facebook.com<CR>
+nmap bcg :open https://services.brics.dk/java/courseadmin/cg14<CR>
+nmap bml :open https://services.brics.dk/java/courseadmin/ML14<CR>
