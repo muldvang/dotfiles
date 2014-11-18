@@ -17,3 +17,4 @@ shortcut-default g
 nmap bf :open https://facebook.com<CR>
 nmap bcg :open https://services.brics.dk/java/courseadmin/cg14<CR>
 nmap bml :open https://services.brics.dk/java/courseadmin/ML14<CR>
+nmap bcal :open https://calendar.google.com<CR>
