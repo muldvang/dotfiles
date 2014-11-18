@@ -26,10 +26,12 @@ fi
 # Set the keyboard layout as defined in ~/.xmodmap
 xmodmap .xmodmap
 
+xset -dpms
+
+slock
+
 # Set the background image
 feh --bg-fill Pictures/wallpapers/IMG_2339.JPG
-
-xset -dpms
 
 # Execute window manager
 exec dbus-launch i3
