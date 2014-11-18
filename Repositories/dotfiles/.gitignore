@@ -217,3 +217,7 @@
 .config/vimb/search
 .emacs.d/.mc-lists.el
 .moriturirc
+.emacs.d/srecode-map.el
+.config/guvcview2/
+.config/fish/fish_read_history
+.gitignore-boilerplates/
