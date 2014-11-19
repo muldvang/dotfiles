@@ -1,8 +1,16 @@
 # Settings
 set home-page=about:blank
 set download-path=/home/muldvang/Downloads/
+set minimumfontsize=9pt
+
+# GUI
 set statusbar=false
-set minimumfontsize=8pt
+set completion-font=sans normal 10
+set input-font-error=sans bold 10
+set input-font-normal=sans normal 10
+set status-font=sans bold 10
+set status-ssl-font=sans bold 10
+set status-sslinvalid-font=sans bold 10
 
 # Search engines
 shortcut-add g=https://google.com/search?q=$0
@@ -12,6 +20,9 @@ shortcut-add aur=https://aur.archlinux.org/packages/?O=0&K=$0
 shortcut-add y=https://www.youtube.com/results?search_query=$0
 shortcut-add cpp=http://en.cppreference.com/mwiki/index.php?title=Special:Search&search=$0
 shortcut-default g
+
+# Custom keyboard mappings
+nmap i gi
 
 # Quickmarks
 nmap bf :open https://facebook.com<CR>
