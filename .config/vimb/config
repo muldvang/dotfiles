@@ -23,6 +23,9 @@ shortcut-default g
 
 # Custom keyboard mappings
 nmap i gi
+nmap + zI
+nmap - zO
+nmap 0 zz
 
 # Quickmarks
 nmap bf :open https://facebook.com<CR>
