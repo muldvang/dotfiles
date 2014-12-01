@@ -38,7 +38,7 @@
 		       (company-mode irony-mode cl-lib)
 		       :pkgname "Sarcasm/company-irony"))
  (company-mode status "installed" recipe
-	       (:name company-mode :website "http://company-mode.github.io/" :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
+	       (:name company-mode :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
  (dash status "installed" recipe
        (:name dash :description "A modern list api for Emacs. No 'cl required." :type github :pkgname "magnars/dash.el"))
  (deferred status "installed" recipe
@@ -143,7 +143,7 @@
 		      (pa)
 		      (add-to-list 'package-archives pa 'append))
 		    '(("ELPA" . "http://tromey.com/elpa/")
-		      ("melpa" . "http://melpa.org/packages/")
+		      ("melpa" . "http://melpa.milkbox.net/packages/")
 		      ("gnu" . "http://elpa.gnu.org/packages/")
 		      ("marmalade" . "http://marmalade-repo.org/packages/")
 		      ("SC" . "http://joseito.republika.pl/sunrise-commander/"))))))
