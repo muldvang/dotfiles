@@ -426,7 +426,7 @@
 (setq ispell-program-name "/usr/bin/hunspell")
 ;; The following is set via custom
 (custom-set-variables
- '(rw-hunspell-default-dictionary "da_DK_hunspell")
+ '(rw-hunspell-default-dictionary "en_US_hunspell")
  '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
  '(rw-hunspell-make-dictionary-menu t)
  '(rw-hunspell-use-rw-ispell t)
