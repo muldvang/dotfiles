@@ -18,9 +18,6 @@ cursor_blink = off
 # "block", "underline" or "ibeam"
 cursor_shape = block
 
-# $BROWSER is used by default
-browser = dwb
-
 # word characters used for word selection
 # (default if unset: all graphic non-punctuation/space characters)
 #word_chars = -A-Za-z0-9,./?%&#:_=+@~
