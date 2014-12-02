@@ -2,6 +2,12 @@
 set home-page=about:blank
 set download-path=/home/muldvang/Downloads/
 set minimumfontsize=9pt
+set accelerated-compositing=false
+set dns-prefetching=true
+set webgl=false
+set webinspector=true
+set download-command=/bin/sh -c "diana add --load-cookies $VIMB_COOKIES %s"
+set download-use-external=false
 
 # GUI
 set statusbar=false
@@ -32,3 +38,5 @@ nmap bf :open https://facebook.com<CR>
 nmap bcg :open https://services.brics.dk/java/courseadmin/cg14<CR>
 nmap bml :open https://services.brics.dk/java/courseadmin/ML14<CR>
 nmap bcal :open https://calendar.google.com<CR>
+
+# Webkit settings
