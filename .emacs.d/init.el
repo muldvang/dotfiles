@@ -290,7 +290,10 @@
 ;; Python
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'company-mode)
-(add-hook 'python-mode-hook 'anaconda-mode)
+(eval-after-load 'company
+  (progn
+    '(add-to-list 'company-backends 'company-anaconda)
+    ))
 
 ;; C
 (yas-global-mode)
