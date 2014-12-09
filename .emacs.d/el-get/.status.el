@@ -17,6 +17,14 @@
                 :load
                 ("tex-site.el" "preview/preview-latex.el")
                 :info "doc"))
+ (auto-complete status "installed" recipe
+                (:name auto-complete :website "https://github.com/auto-complete/auto-complete" :description "The most intelligent auto-completion extension." :type github :pkgname "auto-complete/auto-complete" :depends
+                       (popup fuzzy)
+                       :features auto-complete-config :post-init
+                       (progn
+                         (add-to-list 'ac-dictionary-directories
+                                      (expand-file-name "dict" default-directory))
+                         (ac-config-default))))
  (cl-lib status "installed" recipe
          (:name cl-lib :builtin "24.3" :type elpa :description "Properly prefixed CL functions and macros" :url "http://elpa.gnu.org/packages/cl-lib.html"))
  (cmake-mode status "installed" recipe
@@ -45,6 +53,8 @@
                        :pkgname "Sarcasm/company-irony"))
  (company-mode status "installed" recipe
                (:name company-mode :website "http://company-mode.github.io/" :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
+ (ctable status "installed" recipe
+         (:name ctable :description "Table Component for elisp" :type github :pkgname "kiwanami/emacs-ctable"))
  (dash status "installed" recipe
        (:name dash :description "A modern list api for Emacs. No 'cl required." :type github :pkgname "magnars/dash.el"))
  (deferred status "installed" recipe
@@ -71,6 +81,9 @@
                     ("sh" "./configure")
                     "make")
                    :info "doc"))
+ (epc status "installed" recipe
+      (:name epc :description "An RPC stack for Emacs Lisp" :type github :pkgname "kiwanami/emacs-epc" :depends
+             (deferred ctable)))
  (epl status "installed" recipe
       (:name epl :description "EPL provides a convenient high-level API for various package.el versions, and aims to overcome its most striking idiocies." :type github :pkgname "cask/epl"))
  (expand-region status "installed" recipe
@@ -111,6 +124,9 @@
              (:name irony-mode :description "A C/C++ minor mode for Emacs powered by libclang" :type github :pkgname "Sarcasm/irony-mode" :depends
                     (cl-lib)
                     :compile "\\.el$"))
+ (jedi status "installed" recipe
+       (:name jedi :description "An awesome Python auto-completion for Emacs" :type github :pkgname "tkf/emacs-jedi" :submodule nil :depends
+              (epc auto-complete python-environment)))
  (json status "installed" recipe
        (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el"))
  (json-rpc status "installed" recipe
@@ -172,6 +188,9 @@
             (:name powerline :website "https://github.com/milkypostman/powerline" :depends
                    (cl-lib)
                    :description "Powerline for Emacs" :type github :pkgname "milkypostman/powerline" :load-path "." :features powerline))
+ (python-environment status "installed" recipe
+                     (:name python-environment :description "Python virtualenv API for Emacs Lisp" :type github :pkgname "tkf/emacs-python-environment" :depends
+                            (deferred)))
  (rainbow-delimiters status "installed" recipe
                      (:name rainbow-delimiters :website "https://github.com/jlr/rainbow-delimiters#readme" :description "Color nested parentheses, brackets, and braces according to their depth." :type github :pkgname "jlr/rainbow-delimiters"))
  (rw-hunspell status "installed" recipe
