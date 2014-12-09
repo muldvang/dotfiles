@@ -425,7 +425,7 @@
 (require 'rw-language-and-country-codes)
 (require 'rw-ispell)
 (require 'rw-hunspell)
-(setq ispell-dictionary "da_DK_hunspell")
+(setq ispell-dictionary "en_US_hunspell")
 (setq ispell-program-name "/usr/bin/hunspell")
 ;; The following is set via custom
 (custom-set-variables
