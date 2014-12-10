@@ -94,6 +94,9 @@
            :type github :pkgname "rejeep/f.el"))
  (fill-column-indicator status "installed" recipe
                         (:name fill-column-indicator :type github :website "https://github.com/alpaker/Fill-Column-Indicator#readme" :description "An Emacs minor mode that graphically indicates the fill column." :pkgname "alpaker/Fill-Column-Indicator"))
+ (fish-mode status "installed" recipe
+            (:name fish-mode :auto-generated t :type elpa :description "Major mode for fish shell scripts" :repo nil :minimum-emacs-version
+                   (24)))
  (flycheck status "installed" recipe
            (:name flycheck :type github :pkgname "flycheck/flycheck" :description "On-the-fly syntax checking extension" :build
                   '(("makeinfo" "-o" "doc/flycheck.info" "doc/flycheck.texi"))
