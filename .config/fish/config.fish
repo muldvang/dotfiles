@@ -43,6 +43,7 @@ function fish_prompt --description 'Write out the prompt'
   end
 
   echo -n '> '
+  echo -n -e \\7
 end
 
 # Left prompt customization
@@ -114,7 +115,7 @@ function calc
 end
 
 function sudo
-         command sudo -E $argv
+        command sudo -E  -p (echo -n "[sudo] password for %u: "; echo -n -e \\7) $argv
 end
 
 function rsync
