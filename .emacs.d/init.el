@@ -192,13 +192,12 @@
 ;; C-x k should kill the current buffer instead of asking which buffer to kill.
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
-;; Indent yanked stuff
+;; Function to indent yanked stuff
 (defun yank-and-indent ()
   "Yank and then indent the newly formed region according to mode."
   (interactive)
   (yank)
   (call-interactively 'indent-region))
-(global-set-key "\C-y" 'yank-and-indent)
 
 ;; Shortcut for imenu
 (global-set-key (kbd "C-c g") 'imenu)
@@ -280,6 +279,7 @@
 
 ;; Lua
 (add-hook 'lua-mode-hook 'fci-mode)
+(add-hook 'lua-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 
 ;; CMake
 (setq auto-mode-alist
@@ -307,6 +307,7 @@
 (add-hook 'c-mode-hook 'company-mode)
 
 (add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
@@ -336,6 +337,7 @@
 (add-hook 'c++-mode-hook 'company-mode)
 
 (add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c++-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
@@ -361,6 +363,7 @@
 
 ;; Elisp
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
+(add-hook 'emacs-lisp-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 ; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
@@ -377,6 +380,7 @@
 (add-hook 'java-mode-hook (lambda ()
                             (setq c-basic-offset 4
                                   tab-width 4)))
+(add-hook 'java-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 
 ;; Conf-mode for rc files.
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
@@ -417,6 +421,8 @@
               (matlab-property-completions arg)
               (matlab-find-user-functions arg))))))
 (add-to-list 'company-backends 'company-sample-backend)
+
+(add-hook 'matlab-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 
 ;; Langtool
 (setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
