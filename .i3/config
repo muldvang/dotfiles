@@ -145,7 +145,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command hgstatus
+        status_command i3blocks
         mode dock
         font pango:sans, fontawesome 9
         colors {
@@ -170,8 +170,8 @@ bindsym $mod+F4 exec termite -e ncmpcpp
 workspace_layout tabbed
 
 # Put xbmc to workspace 2 and make it fullscreen
-assign [class="xbmc"] 2
-for_window [class="xbmc"] fullscreen
+assign [class="Kodi"] 2
+for_window [class="Kodi"] fullscreen
 
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
@@ -181,16 +181,16 @@ bindsym $mod+ctrl+l workspace next_on_output
 bindsym $mod+t exec i3-input -f "pango:sans 10" -F 'rename workspace to "%s"' -P 'New tag name: '
 
 # Extra keyboard shortcuts for multimedia and stuff
-bindsym XF86Launch1 exec mpc clear && mpc load \"DR P6 BEAT\" && mpc play && hgstatus update
-bindsym XF86AudioNext exec mpc next && hgstatus update
-bindsym XF86AudioPlay exec mpc toggle && hgstatus update
-bindsym XF86AudioPrev exec mpc prev && hgstatus update
-bindsym XF86AudioStop exec mpc stop && hgstatus update
-bindsym XF86AudioLowerVolume exec amixer -q set PCM 1%- && hgstatus update
-bindsym XF86AudioRaiseVolume exec amixer -q set PCM 1%+ && hgstatus update
-bindsym Print exec escrotum -s
-bindsym Shift+Print exec escrotum -s -C
-bindsym XF86ScreenSaver exec slock
+bindsym XF86Launch1 exec --no-startup-id mpc clear && mpc load \"DR P6 BEAT\" && mpc play && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioNext exec --no-startup-id mpc next && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioPrev exec --no-startup-id mpc prev && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioStop exec --no-startup-id mpc stop && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set PCM 1%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set PCM 1%+ && pkill -RTMIN+1 i3blocks
+bindsym Print exec --no-startup-id escrotum -s
+bindsym Shift+Print exec --no-startup-id escrotum -s -C
+bindsym XF86ScreenSaver exec --no-startup-id slock
 
 set $mode_system (s) suspend, (r) reboot, (p) poweroff
 mode "$mode_system" {
