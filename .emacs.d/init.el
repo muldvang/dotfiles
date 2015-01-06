@@ -37,8 +37,6 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
-
 (add-to-list 'load-path "~/.emacs.d/elpa")
 
 ;; el-get
@@ -54,6 +52,8 @@
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
+
+(package-initialize)
 
 ;; Switch yes-no to y-n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -317,6 +317,7 @@
   (define-key irony-mode-map [remap complete-symbol]
     'irony-completion-at-point-async))
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))

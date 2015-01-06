@@ -41,6 +41,11 @@
 				(autoload 'color-theme-tangotango "color-theme-tangotango" "color-theme: tangotango" t)))
  (column-marker status "installed" recipe
 		(:name column-marker :description "Highlight certain character columns" :type emacswiki :features column-marker))
+ (company status "installed" recipe
+	  (:name company :auto-generated t :type elpa :description "Modular text completion framework" :repo nil :depends
+		 (cl-lib)
+		 :minimum-emacs-version
+		 (24 1)))
  (company-anaconda status "installed" recipe
 		   (:name company-anaconda :description "Anaconda backend for company-mode." :type github :pkgname "proofit404/company-anaconda" :depends
 			  (anaconda-mode company-mode)
@@ -70,7 +75,25 @@
  (el-get status "installed" recipe
 	 (:name el-get :website "https://github.com/dimitri/el-get#readme" :description "Manage the external elisp bits and pieces you depend upon." :type github :branch "master" :pkgname "dimitri/el-get" :info "." :compile
 		("el-get.*\\.el$" "methods/")
-		:load "el-get.el"))
+		:load "el-get.el" :post-init
+		(when
+		    (memq 'el-get
+			  (bound-and-true-p package-activated-list))
+		  (message "Deleting melpa bootstrap el-get")
+		  (unless package--initialized
+		    (package-initialize t))
+		  (when
+		      (package-installed-p 'el-get)
+		    (let
+			((feats
+			  (delete-dups
+			   (el-get-package-features
+			    (el-get-elpa-package-directory 'el-get)))))
+		      (el-get-elpa-delete-package 'el-get)
+		      (dolist
+			  (feat feats)
+			(unload-feature feat t))))
+		  (require 'el-get))))
  (emacs-w3m status "installed" recipe
 	    (:name emacs-w3m :description "A simple Emacs interface to w3m" :type cvs :website "http://emacs-w3m.namazu.org/" :module "emacs-w3m" :url ":pserver:anonymous@cvs.namazu.org:/storage/cvsroot" :build
 		   `("autoconf"
