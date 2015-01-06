@@ -13,9 +13,9 @@
 		   ,(concat "--with-emacs=" el-get-emacs))
 		  "make")
 		:load-path
-		("." "preview")
+		(".")
 		:load
-		("tex-site.el" "preview/preview-latex.el")
+		("tex-site.el" "preview-latex.el")
 		:info "doc"))
  (auto-complete status "installed" recipe
 		(:name auto-complete :website "https://github.com/auto-complete/auto-complete" :description "The most intelligent auto-completion extension." :type github :pkgname "auto-complete/auto-complete" :depends
@@ -159,6 +159,8 @@
 	   (:name json-rpc :description "JSON-RPC library." :type github :pkgname "skeeto/elisp-json-rpc"))
  (langtool status "installed" recipe
 	   (:name langtool :description "Emacs frontend for LanguageTool (http://www.languagetool.org/)." :type github :pkgname "mhayashi1120/Emacs-langtool"))
+ (let-alist status "installed" recipe
+	    (:name let-alist :description "Easily let-bind values of an assoc-list by their names." :builtin "25.1" :type http :url "http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/let-alist.el"))
  (log4e status "installed" recipe
 	(:name log4e :website "https://github.com/aki2o/log4e" :description "provide logging framework for elisp." :type github :pkgname "aki2o/log4e"))
  (lua-mode status "installed" recipe
