@@ -1,6 +1,6 @@
 # Environment variables.
 export BROWSER=vimb
-export EDITOR='emacsclient -t -a=""'
+export EDITOR='emacsclient'
 
 
 # Start X.
