@@ -4,4 +4,11 @@ export EDITOR='emacsclient -t -a=""'
 
 
 # Start X.
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+if [ `hostname` = "Balder" ]; then
+    [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+fi
+
+if [ `hostname` = "Odin" ]; then
+    /usr/bin/fish
+    exit
+fi
