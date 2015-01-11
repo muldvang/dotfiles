@@ -126,6 +126,10 @@ function doc2pdf
          command libreoffice --headless --convert-to pdf $argv
 end
 
+function ponysay
+        command ponysay -b round $argv
+end
+
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
 function alert --description 'Make the terminal urgent'
