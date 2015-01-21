@@ -221,3 +221,8 @@
 .config/guvcview2/
 .config/fish/fish_read_history
 .gitignore-boilerplates/
+.kodi
+.session
+.bashburnrc
+.bashburn_history
+.config/beets
