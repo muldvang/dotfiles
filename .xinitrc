@@ -33,5 +33,8 @@ slock
 # Set the background image
 feh --bg-fill Pictures/wallpapers/IMG_2339.JPG
 
+# Read .Xresources
+xrdb ~/.Xresources &
+
 # Execute window manager
 exec dbus-launch i3
