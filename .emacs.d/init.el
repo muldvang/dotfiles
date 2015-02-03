@@ -55,6 +55,9 @@
 
 (package-initialize)
 
+;; Load manually installed packages.
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
 ;; Switch yes-no to y-n
 (fset 'yes-or-no-p 'y-or-n-p)
 
