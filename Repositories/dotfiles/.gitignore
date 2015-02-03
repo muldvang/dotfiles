@@ -272,3 +272,7 @@
 .viminfo
 .xscreensaver
 .xsession-errors
+.config/transmission-daemon/dht.dat
+.config/transmission-daemon/resume/
+.config/transmission-daemon/stats.json
+.config/transmission-daemon/torrents/
