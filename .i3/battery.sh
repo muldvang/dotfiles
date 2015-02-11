@@ -2,7 +2,7 @@
 
 ACPI=$(acpi -b)
 
-full=$(echo $ACPI | grep -P "Unknown|Full|99%")
+full=$(echo $ACPI | grep -P "Unknown|Full|zero|99%")
 
 if test "$full" != ""
 then
