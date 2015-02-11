@@ -4,19 +4,19 @@
 		(:name anaconda-mode :description "Code navigation, documentation lookup and completion for Python." :type github :pkgname "proofit404/anaconda-mode" :depends
 		       (dash f json-rpc)))
  (auctex status "installed" recipe
-	 (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type git :module "auctex" :url "git://git.savannah.gnu.org/auctex.git" :build
-		`(("./autogen.sh")
-		  ("./configure" "--without-texmf-dir" "--with-packagelispdir=$(pwd)" "--with-packagedatadir=$(pwd)" ,(cond
-														       ((eq system-type 'darwin)
-															"--with-lispdir=`pwd`")
-														       (t ""))
-		   ,(concat "--with-emacs=" el-get-emacs))
-		  "make")
-		:load-path
-		(".")
-		:load
-		("tex-site.el" "preview-latex.el")
-		:info "doc"))
+         (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type git :module "auctex" :url "git://git.savannah.gnu.org/auctex.git" :build
+                `(("./autogen.sh")
+                  ("./configure" "--without-texmf-dir" "--with-packagelispdir=$(pwd)" "--with-packagedatadir=$(pwd)" ,(cond
+                                                                                                                       ((eq system-type 'darwin)
+                                                                                                                        "--with-lispdir=`pwd`")
+                                                                                                                       (t ""))
+                   ,(concat "--with-emacs=" el-get-emacs))
+                  "make")
+                :load-path
+                (".")
+                :load
+                ("tex-site.el" "preview-latex.el")
+                :info "doc"))
  (auto-complete status "installed" recipe
 		(:name auto-complete :website "https://github.com/auto-complete/auto-complete" :description "The most intelligent auto-completion extension." :type github :pkgname "auto-complete/auto-complete" :depends
 		       (popup fuzzy)
@@ -73,27 +73,27 @@
 		     :post-init
 		     (dtrt-indent-mode 1)))
  (el-get status "installed" recipe
-	 (:name el-get :website "https://github.com/dimitri/el-get#readme" :description "Manage the external elisp bits and pieces you depend upon." :type github :branch "master" :pkgname "dimitri/el-get" :info "." :compile
-		("el-get.*\\.el$" "methods/")
-		:load "el-get.el" :post-init
-		(when
-		    (memq 'el-get
-			  (bound-and-true-p package-activated-list))
-		  (message "Deleting melpa bootstrap el-get")
-		  (unless package--initialized
-		    (package-initialize t))
-		  (when
-		      (package-installed-p 'el-get)
-		    (let
-			((feats
-			  (delete-dups
-			   (el-get-package-features
-			    (el-get-elpa-package-directory 'el-get)))))
-		      (el-get-elpa-delete-package 'el-get)
-		      (dolist
-			  (feat feats)
-			(unload-feature feat t))))
-		  (require 'el-get))))
+         (:name el-get :website "https://github.com/dimitri/el-get#readme" :description "Manage the external elisp bits and pieces you depend upon." :type github :branch "master" :pkgname "dimitri/el-get" :info "." :compile
+                ("el-get.*\\.el$" "methods/")
+                :load "el-get.el" :post-init
+                (when
+                    (memq 'el-get
+                          (bound-and-true-p package-activated-list))
+                  (message "Deleting melpa bootstrap el-get")
+                  (unless package--initialized
+                    (package-initialize t))
+                  (when
+                      (package-installed-p 'el-get)
+                    (let
+                        ((feats
+                          (delete-dups
+                           (el-get-package-features
+                            (el-get-elpa-package-directory 'el-get)))))
+                      (el-get-elpa-delete-package 'el-get)
+                      (dolist
+                          (feat feats)
+                        (unload-feature feat t))))
+                  (require 'el-get))))
  (emacs-w3m status "installed" recipe
 	    (:name emacs-w3m :description "A simple Emacs interface to w3m" :type cvs :website "http://emacs-w3m.namazu.org/" :module "emacs-w3m" :url ":pserver:anonymous@cvs.namazu.org:/storage/cvsroot" :build
 		   `("autoconf"
@@ -145,7 +145,7 @@
  (hungry-delete status "installed" recipe
 		(:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
  (ido-ubiquitous status "installed" recipe
-		 (:name ido-ubiquitous :description "Use ido (nearly) everywhere" :type elpa))
+                 (:name ido-ubiquitous :description "Use ido (nearly) everywhere" :website "https://github.com/DarwinAwardWinner/ido-ubiquitous" :type github :pkgname "DarwinAwardWinner/ido-ubiquitous"))
  (irony-mode status "installed" recipe
 	     (:name irony-mode :description "A C/C++ minor mode for Emacs powered by libclang" :type github :pkgname "Sarcasm/irony-mode" :depends
 		    (cl-lib)
@@ -160,19 +160,13 @@
  (langtool status "installed" recipe
 	   (:name langtool :description "Emacs frontend for LanguageTool (http://www.languagetool.org/)." :type github :pkgname "mhayashi1120/Emacs-langtool"))
  (let-alist status "installed" recipe
-	    (:name let-alist :auto-generated t :type elpa :description "Easily let-bind values of an assoc-list by their names" :repo nil))
+            (:name let-alist :description "Easily let-bind values of an assoc-list by their names." :builtin "25.1" :type http :url "http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/let-alist.el"))
  (log4e status "installed" recipe
 	(:name log4e :website "https://github.com/aki2o/log4e" :description "provide logging framework for elisp." :type github :pkgname "aki2o/log4e"))
  (lua-mode status "installed" recipe
-	   (:name lua-mode :description "A major-mode for editing Lua scripts" :depends
-		  (ample-regexps)
-		  :type github :pkgname "immerrr/lua-mode"))
- (matlab-mode status "installed" recipe
-	      (:name matlab-mode :description "Major mode for MATLAB(R) dot-m files" :type cvs :module "matlab-emacs" :url ":pserver:anonymous@matlab-emacs.cvs.sourceforge.net:/cvsroot/matlab-emacs" :build
-		     ("make")
-		     :load-path
-		     (".")
-		     :features matlab-load))
+           (:name lua-mode :description "A major-mode for editing Lua scripts" :depends
+                  (ample-regexps)
+                  :type github :pkgname "immerrr/lua-mode"))
  (package status "installed" recipe
 	  (:name package :description "ELPA implementation (\"package.el\") from Emacs 24" :builtin "24" :type http :url "http://repo.or.cz/w/emacs.git/blob_plain/1a0a666f941c99882093d7bd08ced15033bc3f0c:/lisp/emacs-lisp/package.el" :shallow nil :features package :post-init
 		 (progn
