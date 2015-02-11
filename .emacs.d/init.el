@@ -229,6 +229,8 @@
 ;; Flycheck mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-clang-language-standard "c++11")
+(setq flycheck-gcc-language-standard "c++11")
+(setq flycheck-disabled-checkers (quote (c/c++-clang)))
 
 ; Add color for the mode-line
 (eval-after-load "flycheck"
