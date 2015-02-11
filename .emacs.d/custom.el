@@ -16,6 +16,7 @@
  '(custom-safe-themes
    (quote
     ("52fc1d30fbcad59953b30805902d1a964c050cacd87a8ad143db2bafa3eb9da2" "eacf8de261107931c9aac0191e28731287fe8b45024064644eef4ca8b481632c" "f32dd8e7b3a508874eded03d5be43d2bdfffe81c199eea72de06ce3e653db720" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
+ '(flycheck-disabled-checkers (quote (c/c++-clang)))
  '(flymake-gui-warnings-enabled nil)
  '(flymake-no-changes-timeout 2)
  '(global-git-gutter-mode t)
