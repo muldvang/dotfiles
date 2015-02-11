@@ -282,6 +282,11 @@
 ; Compile to pdf
 (setq TeX-PDF-mode t)
 
+; Electric-pair-mode should also close dollar signs.
+(add-hook 'LaTeX-mode-hook
+          '(lambda ()
+             (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)))
+
 ;; Lua
 (add-hook 'lua-mode-hook 'fci-mode)
 (add-hook 'lua-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
