@@ -378,45 +378,6 @@
 ;; Conf-mode for rc files.
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 
-;; Matlab mode
-(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
-(add-to-list
- 'auto-mode-alist
- '("\\.m$" . matlab-mode))
-(setq matlab-indent-function t)
-(setq matlab-shell-command "matlab")
-(add-hook 'matlab-mode-hook 'company-mode)
-(add-hook 'matlab-mode-hook 'fci-mode)
-
-(defun my-matlab-hook ()
-  (matlab-toggle-show-mlint-warnings)
-  (matlab-cedet-setup)
-  (local-set-key (kbd "M-;") 'comment-dwim))
-(add-hook 'matlab-mode-hook 'my-matlab-hook)
-
-;; Define company-completion for matlab-mode
-(require 'cl-lib)
-(require 'company)
-(defun company-sample-backend (command &optional arg &rest ignored)
-  (interactive (list 'interactive))
-
-  (cl-case command
-    (interactive (company-begin-backend 'company-sample-backend))
-    (prefix (and (eq major-mode 'matlab-mode)
-                 (company-grab-symbol)))
-    (candidates
-     (cl-remove-if-not
-      (lambda (c) (string-prefix-p arg c))
-      (append (matlab-solo-completions arg)
-              (matlab-find-recent-variable arg)
-              (matlab-boolean-completions arg)
-              (matlab-value-completions arg)
-              (matlab-property-completions arg)
-              (matlab-find-user-functions arg))))))
-(add-to-list 'company-backends 'company-sample-backend)
-
-(add-hook 'matlab-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
-
 ;; Langtool
 (setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
 
