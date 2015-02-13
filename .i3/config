@@ -162,7 +162,7 @@ bar {
 
 # Start often used programs
 bindsym $mod+F1 exec emacsclient -c
-bindsym $mod+F2 exec vimb
+bindsym $mod+F2 exec qutebrowser
 bindsym $mod+F3 exec termite -e ranger
 bindsym $mod+F4 exec termite -e ncmpcpp
 
@@ -190,12 +190,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set PCM 1%- && pkill
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set PCM 1%+ && pkill -RTMIN+1 i3blocks
 bindsym Print exec --no-startup-id escrotum -s
 bindsym Shift+Print exec --no-startup-id escrotum -s -C
-bindsym XF86ScreenSaver exec --no-startup-id slock
+bindsym XF86ScreenSaver exec --no-startup-id i3lock -i ~/Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png
 bindsym $mod+Shift+s exec --no-startup-id ~/.i3/switch_screen.fish
 
 set $mode_system (l) lock, (s) suspend, (h) hybrid-sleep, (r) reboot, (p) poweroff
 mode "$mode_system" {
-    bindsym l exec --no-startup-id slock, mode "default"
+    bindsym l exec --no-startup-id i3lock -i /home/muldvang/Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id systemctl hybrid-sleep, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
