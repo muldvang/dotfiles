@@ -28,10 +28,10 @@ xmodmap .xmodmap
 
 xset -dpms
 
-slock
+i3lock -i ~/Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png
 
 # Set the background image
-feh --bg-fill Pictures/wallpapers/IMG_2339.JPG
+feh --bg-fill Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png
 
 # Read .Xresources
 xrdb ~/.Xresources &
