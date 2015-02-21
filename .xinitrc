@@ -31,7 +31,7 @@ xset -dpms
 i3lock -i ~/Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png
 
 # Set the background image
-feh --bg-fill Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png
+wallpaperd
 
 # Read .Xresources
 xrdb ~/.Xresources &
