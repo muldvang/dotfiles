@@ -1,6 +1,7 @@
 # Environment variables.
 export BROWSER=vimb
 export EDITOR='emacsclient'
+export QT_STYLE_OVERRIDE=gtk
 
 
 # Start X.
