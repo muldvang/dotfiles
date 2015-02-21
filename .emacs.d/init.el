@@ -284,8 +284,8 @@
 
 ; Electric-pair-mode should also close dollar signs.
 (add-hook 'LaTeX-mode-hook
-          '(lambda ()
-             (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)))
+          (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
+                          (cons "$" "$"))))
 
 ;; Lua
 (add-hook 'lua-mode-hook 'fci-mode)
