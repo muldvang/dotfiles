@@ -2,7 +2,13 @@
 
 ACPI=$(acpi -b)
 
-full=$(echo $ACPI | grep -P "Unknown|Full|zero|99%")
+no_support=$(echo $ACPI | grep "No support")
+if test "no_support" != ""
+then
+    exit
+fi
+
+full=$(echo $ACPI | grep -P "Unknown|Full|99%")
 
 if test "$full" != ""
 then
