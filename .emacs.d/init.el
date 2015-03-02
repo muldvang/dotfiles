@@ -303,6 +303,10 @@
           (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
                           (cons "$" "$"))))
 
+; Highlight fixme
+(setq font-latex-match-warning-keywords
+      '(("fixme" "{") ("fxnote" "{") ("fxwarning" "{") ("fxerror" "{") ("fxfatal" "{") ))
+
 ;; Lua
 (add-hook 'lua-mode-hook 'fci-mode)
 (add-hook 'lua-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
