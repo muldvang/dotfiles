@@ -262,6 +262,22 @@
 ;; Expand-region
 (global-set-key (kbd "C-c SPC") 'er/expand-region)
 
+;; Spell-checking
+(require 'rw-language-and-country-codes)
+(require 'rw-ispell)
+(require 'rw-hunspell)
+(setq ispell-dictionary "en_US_hunspell")
+(setq ispell-program-name "/usr/bin/hunspell")
+;; The following is set via custom
+(custom-set-variables
+ '(rw-hunspell-default-dictionary "en_US_hunspell")
+ '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
+ '(rw-hunspell-make-dictionary-menu t)
+ '(rw-hunspell-use-rw-ispell t)
+ )
+(defadvice ispell-send-string (before kill-quotes activate)
+  (setq string (replace-regexp-in-string "''" "  " string)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -380,17 +396,3 @@
 
 ;; Langtool
 (setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
-
-;; Spell-checking
-(require 'rw-language-and-country-codes)
-(require 'rw-ispell)
-(require 'rw-hunspell)
-(setq ispell-dictionary "en_US_hunspell")
-(setq ispell-program-name "/usr/bin/hunspell")
-;; The following is set via custom
-(custom-set-variables
- '(rw-hunspell-default-dictionary "en_US_hunspell")
- '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
- '(rw-hunspell-make-dictionary-menu t)
- '(rw-hunspell-use-rw-ispell t)
- )

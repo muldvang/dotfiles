@@ -26,12 +26,8 @@
  '(irony-cmake-executable "/usr/bin/cmake")
  '(powerline-default-separator nil)
  '(proof-layout-windows-on-visit-file t)
- '(proof-three-window-mode-policy (quote hybrid))
- '(rw-hunspell-default-dictionary "da_DK_hunspell")
- '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
- '(rw-hunspell-make-dictionary-menu t)
- '(rw-hunspell-use-rw-ispell t))
-(custom-set-faces
+ '(proof-three-window-mode-policy (quote hybrid)))
+ (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
