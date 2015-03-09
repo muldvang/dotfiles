@@ -3,7 +3,7 @@
 ACPI=$(acpi -b)
 
 no_support=$(echo $ACPI | grep "No support")
-if test "no_support" != ""
+if test "$no_support" != ""
 then
     exit
 fi
@@ -17,6 +17,12 @@ else
     state=$(echo $ACPI | cut -d " " -f 3 | cut -d "," -f 1)
     hours=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 1)
     minutes=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 2)
+
+    if test "$hours" == "charging"
+    then
+        echo $state
+        exit
+    fi
 
     echo $hours:$minutes $state
     echo $hours:$minutes
