@@ -1,5 +1,10 @@
-#!/usr/bin/fish
+#!/usr/bin/bash
 
-if test (math (transmission-remote -l | wc -l) - 2) -gt -2
-        echo (math (transmission-remote -l | wc -l) - 2)
-end
+count=$(echo $(transmission-remote -l | wc -l) - 2 | bc)
+if test $count -gt 0
+then
+    stats=$(transmission-remote -l | tail -n 1 | column -t)
+    down=$(echo $stats | cut -d " " -f 5)
+    up=$(echo $stats | cut -d " " -f 4)
+    echo "$count ‒ $down / $up"
+fi
