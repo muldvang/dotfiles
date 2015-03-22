@@ -3,7 +3,7 @@ export BROWSER=qutebrowser
 export EDITOR='emacsclient'
 export QT_STYLE_OVERRIDE=gtk
 export PATH=~/.local/bin:~/.local/usr/local/bin:~/.composer/vendor/bin:$PATH
-
+export SAL_USE_VCLPLUGIN=gtk3
 
 # Start X.
 if [ `hostname` = "Balder" ]; then
