@@ -146,6 +146,8 @@
                 (:name hungry-delete :description "Enables hungry deletion in all modes." :type github :pkgname "nflath/hungry-delete"))
  (ido-ubiquitous status "installed" recipe
                  (:name ido-ubiquitous :description "Use ido (nearly) everywhere" :website "https://github.com/DarwinAwardWinner/ido-ubiquitous" :type github :pkgname "DarwinAwardWinner/ido-ubiquitous"))
+ (ido-vertical-mode status "installed" recipe
+                    (:name ido-vertical-mode :type github :pkgname "rson/ido-vertical-mode.el" :description "makes ido-mode display vertically"))
  (irony-mode status "installed" recipe
              (:name irony-mode :description "A C/C++ minor mode for Emacs powered by libclang" :type github :pkgname "Sarcasm/irony-mode" :depends
                     (cl-lib)
