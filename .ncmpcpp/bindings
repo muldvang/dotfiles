@@ -175,15 +175,27 @@ def_key "k"
 #def_key "page_up"
 #  page_up
 #
+def_key "K"
+ page_up
+
 #def_key "page_down"
 #  page_down
 #
+def_key "J"
+ page_down
+
 #def_key "home"
 #  move_home
 #
+def_key "g"
+ move_home
+
 #def_key "end"
 #  move_end
 #
+def_key "G"
+ move_end
+
 #def_key "space"
 #  press_space
 #
@@ -193,6 +205,9 @@ def_key "k"
 #def_key "delete"
 #  delete_playlist_items
 #
+def_key "d"
+ delete_playlist_items
+
 #def_key "delete"
 #  delete_stored_playlist
 #
