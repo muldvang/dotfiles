@@ -278,3 +278,4 @@
 .config/transmission-daemon/torrents/
 .config/enchant
 .config/QtProject.conf
+.fbcmd
