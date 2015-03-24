@@ -1,5 +1,12 @@
-/*
-!/.*
+/Repositories
+/Desktop
+/Downloads
+/Dropbox
+/fh
+/Odin
+/Tor
+/Pictures/*
+!/Pictures/wallpapers
 
 .bash_history
 .cmus
