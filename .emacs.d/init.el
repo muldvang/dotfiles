@@ -396,10 +396,11 @@
                                   tab-width 4)))
 (add-hook 'java-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
 
-;; Conf-mode for rc and systemd files.
+;; Conf-mode for rc, systemd, and .gitignore files.
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 (add-to-list 'auto-mode-alist '("\\.*service$" . conf-unix-mode))
 (add-to-list 'auto-mode-alist '("\\.*socket$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '(".gitignore$" . conf-space-mode))
 
 ;; Langtool
 (setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
