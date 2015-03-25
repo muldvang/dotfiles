@@ -17,14 +17,6 @@
                 :load
                 ("tex-site.el" "preview-latex.el")
                 :info "doc"))
- (auto-complete status "installed" recipe
-                (:name auto-complete :website "https://github.com/auto-complete/auto-complete" :description "The most intelligent auto-completion extension." :type github :pkgname "auto-complete/auto-complete" :depends
-                       (popup fuzzy)
-                       :features auto-complete-config :post-init
-                       (progn
-                         (add-to-list 'ac-dictionary-directories
-                                      (expand-file-name "dict" default-directory))
-                         (ac-config-default))))
  (cl-lib status "installed" recipe
          (:name cl-lib :builtin "24.3" :type elpa :description "Properly prefixed CL functions and macros" :url "http://elpa.gnu.org/packages/cl-lib.html"))
  (cmake-mode status "installed" recipe
@@ -160,9 +152,6 @@
              (:name irony-mode :description "A C/C++ minor mode for Emacs powered by libclang" :type github :pkgname "Sarcasm/irony-mode" :depends
                     (cl-lib)
                     :compile "\\.el$"))
- (jedi status "installed" recipe
-       (:name jedi :description "An awesome Python auto-completion for Emacs" :type github :pkgname "tkf/emacs-jedi" :submodule nil :depends
-              (epc auto-complete python-environment)))
  (json status "installed" recipe
        (:name json :description "JavaScript Object Notation parser / generator" :type http :builtin "23" :url "http://edward.oconnor.cx/elisp/json.el"))
  (json-rpc status "installed" recipe

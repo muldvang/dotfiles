@@ -325,14 +325,13 @@
 ;; Python
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
 (eval-after-load 'company
   (progn
     '(add-to-list 'company-backends 'company-anaconda)
     ))
 
 ;; C
-(yas-global-mode)
-
 (add-hook 'c-mode-hook 'fci-mode)
 (add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
 (add-hook 'c-mode-hook
@@ -356,6 +355,8 @@
 
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c++-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
+
+(add-hook 'c++-mode-hook 'yas-minor-mode)
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
