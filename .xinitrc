@@ -28,7 +28,7 @@ xmodmap .xmodmap
 
 xset -dpms
 
-i3lock -i ~/Pictures/wallpapers/wallpaper_van-gogh_animaatjes-9.png
+i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)
 
 # Set the background image
 wallpaperd
