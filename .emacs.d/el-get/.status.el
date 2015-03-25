@@ -52,12 +52,20 @@
                           :post-init
                           (eval-after-load 'company
                             '(add-to-list 'company-backends 'company-anaconda))))
+ (company-cmake status "installed" recipe
+                (:name company-cmake :auto-generated t :type elpa :description "company-mode completion back-end for CMake" :repo nil :depends
+                       (company)))
  (company-irony status "installed" recipe
                 (:name company-irony :description "company-mode completion back-end for irony-mode" :type github :depends
                        (company-mode irony-mode cl-lib)
                        :pkgname "Sarcasm/company-irony"))
  (company-mode status "installed" recipe
                (:name company-mode :website "http://company-mode.github.io/" :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
+ (company-quickhelp status "installed" recipe
+                    (:name company-quickhelp :auto-generated t :type elpa :description "Popup documentation for completion candidates" :repo nil :depends
+                           (company pos-tip)
+                           :minimum-emacs-version
+                           (24 4)))
  (ctable status "installed" recipe
          (:name ctable :description "Table Component for elisp" :type github :pkgname "kiwanami/emacs-ctable"))
  (dash status "installed" recipe
@@ -199,13 +207,11 @@
            (:name pkg-info :description "Provide information about Emacs packages." :type github :pkgname "lunaryorn/pkg-info.el" :depends
                   (dash epl)))
  (pkgbuild-mode status "installed" recipe
-                (:name pkgbuild-mode :description "Major mode for editing PKGBUILD files" :type github :pkgname "juergenhoetzel/pkgbuild-mode" :features pkgbuild-mode :post-init
+                (:name pkgbuild-mode :description "Major mode for editing PKGBUILD files" :type github :pkgname "juergenhoetzel/pkgbuild-mode" :features pkgbuild-mode :prepare
                        (add-to-list 'auto-mode-alist
                                     '("PKGBUILD$" . pkgbuild-mode))))
  (popup status "installed" recipe
         (:name popup :website "https://github.com/auto-complete/popup-el" :description "Visual Popup Interface Library for Emacs" :type github :submodule nil :pkgname "auto-complete/popup-el"))
- (popup-pos-tip status "installed" recipe
-                (:name popup-pos-tip :auto-generated t :type emacswiki :description "pos-tip.el wrapper library for programs using popup.el" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/popup-pos-tip.el"))
  (pos-tip status "installed" recipe
           (:name pos-tip :description "Show tooltip at point" :type emacswiki))
  (powerline status "installed" recipe

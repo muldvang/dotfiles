@@ -279,6 +279,9 @@
 (defadvice ispell-send-string (before kill-quotes activate)
   (setq string (replace-regexp-in-string "''" "  " string)))
 
+;; Company
+(company-quickhelp-mode 1)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -317,6 +320,7 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
+(add-hook 'cmake-mode-hook 'company-mode)
 
 ;; Python
 (add-hook 'python-mode-hook 'fci-mode)
