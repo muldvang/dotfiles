@@ -1,13 +1,13 @@
 #!/usr/bin/sh
 
-ACPI=$(acpi -b)
 
-no_support=$(echo $ACPI | grep "No support")
+no_support=$(acpi -b 2>&1 | grep "No support")
 if test "$no_support" != ""
 then
     exit
 fi
 
+ACPI=$(acpi -b)
 full=$(echo $ACPI | grep -P "Unknown|Full|99%")
 
 if test "$full" != ""
