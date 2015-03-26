@@ -15,10 +15,10 @@ if [ `hostname` = "Odin" ]; then
     exit
 fi
 
-# If CS department computers.
-HOSTNAME_START_LETTER=$(hostname | head -c 1)
-if test $HOSTNAME_START_LETTER == "a" -o $HOSTNAME_START_LETTER == "l"
+# # If CS department computers.
+HOSTNAME_START_LETTER=$(hostname | sed "s/(none)/a016xx/" | head -c 1)
+if test "$HOSTNAME_START_LETTER" = "a" -o "$HOSTNAME_START_LETTER" = "l"
 then
     export LD_LIBRARY_PATH=/users/muldvang/.local/lib:/usr/local/lib:/usr/lib:/lib
-    fish; exit
+    # fish; exit
 fi
