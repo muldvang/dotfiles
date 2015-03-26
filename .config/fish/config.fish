@@ -130,11 +130,11 @@ function ponysay
         command ponysay -b round $argv
 end
 
-function ffmpeg-low $argv
+function ffmpeg-low
         ffmpeg -i $argv -vcodec libx264 -crf 23 -acodec libfdk_aac -vbr 2 -cutoff 18k -scodec copy $argv.compressed.mkv
 end
 
-function ffmpeg-high $argv
+function ffmpeg-high
         ffmpeg -i $argv -vcodec libx264 -crf 18 -acodec libfdk_aac -vbr 4 -cutoff 20k -scodec copy $argv.compressed.mkv
 end
 
