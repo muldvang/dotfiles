@@ -2,6 +2,9 @@
 ! urxvt
 !===============================================================================
 
+! Urgent on bell
+URxvt.urgentOnBell: true
+
 ! Disable scroll bar
 URxvt*scrollBar: false
 
