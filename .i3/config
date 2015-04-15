@@ -171,14 +171,14 @@ workspace_layout tabbed
 
 # Put xbmc to workspace 2 and make it fullscreen
 assign [class="Kodi"] 2
-for_window [class="Kodi"] fullscreen
+for_window [class="Kodi"] floating enable, border none
 
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
 bindsym $mod+ctrl+l workspace next_on_output
 
 # Rename workspace
-bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(echo | dmenu -p 'New workspace name:' -nb '#171b1c' -nf '#FFFFFF' -sb '#5E801A' -sf '#FFFFFF' -i -fn 'sans-9' -h 20 -b)'\"'
+bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#171b1c' -nf '#FFFFFF' -sb '#5E801A' -sf '#FFFFFF' -i -fn 'sans-9' -h 20 -b)'\"'
 
 # Extra keyboard shortcuts for multimedia and stuff
 bindsym XF86Launch1 exec --no-startup-id mpc clear && mpc load \"DR P6 BEAT\" && mpc play && pkill -RTMIN+2 i3blocks
@@ -193,7 +193,7 @@ bindsym Shift+Print exec --no-startup-id escrotum -s -C
 bindsym XF86ScreenSaver exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
 bindsym $mod+Shift+s exec --no-startup-id ~/.i3/switch_screen.fish
 
-set $mode_system (l) lock, (s) suspend, (h) hybrid-sleep, (r) reboot, (p) poweroff
+set $mode_system [l]ock, [s]uspend, [h]ybrid-sleep, [r]eboot, [p]oweroff
 mode "$mode_system" {
     bindsym l exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)', mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
