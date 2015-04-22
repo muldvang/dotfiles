@@ -56,8 +56,8 @@ class Dropbox(object):
 if __name__ == "__main__":
     DB = Dropbox()
     if DB.connect() == False:
-        print "Error."
-
-    STATUS = DB.get_status()
-    print STATUS.capitalize()
-    DB.disconnect()
+        print "Error"
+    else:
+        STATUS = DB.get_status()
+        print STATUS.capitalize()
+        DB.disconnect()
