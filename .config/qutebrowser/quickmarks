@@ -1,4 +1,5 @@
 f https://m.facebook.com/
 c https://www.google.com/calendar/render?pli=1#h
-fm https://www.messenger.com/t/
+fm https://www.messenger.com/
 m https://mail.google.com/mail/u/0/#inbox
+mopidy http://localhost:6680/moped/
