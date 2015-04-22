@@ -15,7 +15,7 @@
  '(company-idle-delay t)
  '(custom-safe-themes
    (quote
-    ("52fc1d30fbcad59953b30805902d1a964c050cacd87a8ad143db2bafa3eb9da2" "eacf8de261107931c9aac0191e28731287fe8b45024064644eef4ca8b481632c" "f32dd8e7b3a508874eded03d5be43d2bdfffe81c199eea72de06ce3e653db720" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
+    ("0eebf69ceadbbcdd747713f2f3f839fe0d4a45bd0d4d9f46145e40878fc9b098" "52fc1d30fbcad59953b30805902d1a964c050cacd87a8ad143db2bafa3eb9da2" "eacf8de261107931c9aac0191e28731287fe8b45024064644eef4ca8b481632c" "f32dd8e7b3a508874eded03d5be43d2bdfffe81c199eea72de06ce3e653db720" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
  '(flycheck-disabled-checkers (quote (c/c++-clang)))
  '(flymake-gui-warnings-enabled nil)
  '(flymake-no-changes-timeout 2)
@@ -26,8 +26,13 @@
  '(irony-cmake-executable "/usr/bin/cmake")
  '(powerline-default-separator nil)
  '(proof-layout-windows-on-visit-file t)
- '(proof-three-window-mode-policy (quote hybrid)))
- (custom-set-faces
+ '(proof-three-window-mode-policy (quote hybrid))
+ '(rw-hunspell-default-dictionary "en_US_hunspell")
+ '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
+ '(rw-hunspell-make-dictionary-menu t)
+ '(rw-hunspell-use-rw-ispell t))
+
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
