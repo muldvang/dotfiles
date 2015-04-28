@@ -31,7 +31,7 @@ bindsym $mod+Return exec termite -e fish
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -nb '#171b1c' -nf '#FFFFFF' -sb '#5E801A' -sf '#FFFFFF' -i -fn 'sans-9' -h 20 -b" --term=termite
+bindsym $mod+p exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -nb '#171b1c' -nf '#FFFFFF' -sb '#5E801A' -sf '#FFFFFF' -i -fn 'sans-9' -h 18 -b" --term=termite
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -139,8 +139,13 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
+
+# Alternative resize method that does not use a mode.
+bindsym $mod+Mod1+h resize shrink width 3 px or 3 ppt
+bindsym $mod+Mod1+j resize grow height 3 px or 3 ppt
+bindsym $mod+Mod1+k resize shrink height 3 px or 3 ppt
+bindsym $mod+Mod1+l resize grow width 3 px or 3 ppt
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -178,7 +183,7 @@ bindsym $mod+ctrl+h workspace prev_on_output
 bindsym $mod+ctrl+l workspace next_on_output
 
 # Rename workspace
-bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#171b1c' -nf '#FFFFFF' -sb '#5E801A' -sf '#FFFFFF' -i -fn 'sans-9' -h 20 -b)'\"'
+bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#171b1c' -nf '#FFFFFF' -sb '#5E801A' -sf '#FFFFFF' -i -fn 'sans-9' -h 18 -b)'\"'
 
 # Extra keyboard shortcuts for multimedia and stuff
 bindsym XF86Launch1 exec --no-startup-id mpc clear && mpc load \"DR P6 BEAT\" && mpc play && pkill -RTMIN+2 i3blocks
@@ -192,20 +197,7 @@ bindsym Print exec --no-startup-id escrotum -s
 bindsym Shift+Print exec --no-startup-id escrotum -s -C
 bindsym XF86ScreenSaver exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
 bindsym $mod+Shift+s exec --no-startup-id ~/.i3/switch_screen.fish
-
-set $mode_system [l]ock, [s]uspend, [h]ybrid-sleep, [r]eboot, [p]oweroff
-mode "$mode_system" {
-    bindsym l exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)', mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id systemctl hybrid-sleep, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+q mode "$mode_system"
+bindsym $mod+Shift+q exec --no-startup-id ~/.i3/power_management.sh
 
 # class                 border  backgr. text    indicator
 client.focused          #5E801A #5E801A #ffffff #66d9ef # Green
