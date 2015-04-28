@@ -44,9 +44,10 @@ function fish_prompt --description 'Write out the prompt'
 
   echo -n '> '
   echo -n -e \\7
+  set_color normal
 end
 
-# Left prompt customization
+# Left right customization
 function fish_right_prompt -d "Write out the right prompt"
   set_color red
   echo $USER
@@ -59,6 +60,15 @@ function fish_right_prompt -d "Write out the right prompt"
           echo ' in tmux'
   end
   set_color normal
+end
+
+# Set the window title.
+function fish_title
+  if test "$_" = "fish"
+    pwd | sed -e "s,^$HOME,~," -e "s%^.*/\(.*/.*/.*\)%\1%"
+  else
+    echo $_
+  end
 end
 
 # Aliases
@@ -86,33 +96,33 @@ function diff
          colordiff $argv
 end
 
-function gs
-         git status $argv
-end
+# function gs
+#          git status $argv
+# end
 
-function ga
-         git add $argv
-end
+# function ga
+#          git add $argv
+# end
 
-function gc
-         git commit $argv
-end
+# function gc
+#          git commit $argv
+# end
 
-function gf
-         git fetch $argv
-end
+# function gf
+#          git fetch $argv
+# end
 
-function gr
-         git rebase $argv
-end
+# function gr
+#          git rebase $argv
+# end
 
-function gp
-         git push $argv
-end
+# function gp
+#          git push $argv
+# end
 
-function gd
-         git diff $argv
-end
+# function gd
+#          git diff $argv
+# end
 
 function calc
          command calc -d $argv
@@ -142,6 +152,9 @@ function ffmpeg-high
         ffmpeg -i $argv -vcodec libx264 -crf 18 -acodec libfdk_aac -vbr 4 -cutoff 20k -scodec copy $argv.compressed.mkv
 end
 
+function m
+        make -j (grep -c processor /proc/cpuinfo) $argv
+end
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
 function alert --description 'Make the terminal urgent'
