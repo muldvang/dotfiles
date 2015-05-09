@@ -17,20 +17,12 @@
                 :load
                 ("tex-site.el" "preview-latex.el")
                 :info "doc"))
+ (benchmark-init status "installed" recipe
+                 (:name benchmark-init :description "Benchmark your Emacs initialization." :type github :pkgname "dholm/benchmark-init-el"))
  (cl-lib status "installed" recipe
          (:name cl-lib :builtin "24.3" :type elpa :description "Properly prefixed CL functions and macros" :url "http://elpa.gnu.org/packages/cl-lib.html"))
  (cmake-mode status "installed" recipe
              (:name cmake-mode :website "http://www.itk.org/Wiki/CMake/Editors/Emacs" :description "Provides syntax highlighting and indentation for CMakeLists.txt and *.cmake source files." :type http :url "http://cmake.org/gitweb?p=cmake.git;a=blob_plain;hb=master;f=Auxiliary/cmake-mode.el"))
- (color-theme status "installed" recipe
-              (:name color-theme :description "An Emacs-Lisp package with more than 50 color themes for your use. For questions about color-theme" :website "http://www.nongnu.org/color-theme/" :type http-tar :options
-                     ("xzf")
-                     :url "http://download.savannah.gnu.org/releases/color-theme/color-theme-6.6.0.tar.gz" :load "color-theme.el" :features "color-theme" :post-init
-                     (progn
-                       (color-theme-initialize)
-                       (setq color-theme-is-global t))))
- (color-theme-tangotango status "installed" recipe
-                         (:name color-theme-tangotango :description "Another color theme based on the Tango palette." :type github :pkgname "juba/color-theme-tangotango" :depends color-theme :prepare
-                                (autoload 'color-theme-tangotango "color-theme-tangotango" "color-theme: tangotango" t)))
  (column-marker status "installed" recipe
                 (:name column-marker :description "Highlight certain character columns" :type emacswiki :features column-marker))
  (company status "installed" recipe
@@ -220,6 +212,8 @@
  (smex status "installed" recipe
        (:name smex :description "M-x interface with Ido-style fuzzy matching." :type github :pkgname "nonsequitur/smex" :features smex :post-init
               (smex-initialize)))
+ (tangotango-theme status "installed" recipe
+                   (:name tangotango-theme :auto-generated t :type elpa :description "Tango Palette color theme for Emacs 24." :repo nil))
  (textlint status "installed" recipe
            (:name textlint :type github :pkgname "DamienCassou/textlint" :website "http://scg.unibe.ch/research/textlint" :description "Allows the integration of TextLint within Emacs" :load "textlint.el"))
  (yasnippet status "installed" recipe

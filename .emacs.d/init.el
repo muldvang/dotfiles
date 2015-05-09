@@ -26,6 +26,15 @@
 ;; Standard settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Benchmark startup time.
+
+(let ((benchmark-init.el "~/.emacs.d/el-get/benchmark-init/benchmark-init.el"))
+  (when (file-exists-p benchmark-init.el)
+    (load benchmark-init.el)))
+(benchmark-init/activate)
+
+;; Email address.
+
 (setq user-mail-address "muldvang@gmail.com")
 
 ;; Write custom settings to custon.el
@@ -52,6 +61,8 @@
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
+
+;; package.el
 
 (package-initialize)
 
@@ -116,8 +127,8 @@
 (setq inhibit-startup-message t)
 
 ;; Set color theme
-;; (load-theme 'tangotango t)
-(color-theme-tangotango)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/tangotango-theme")
+(load-theme 'tangotango t)
 
 ;; Set the font
 (set-face-attribute 'default nil :family "monospace" :height 100)
@@ -206,18 +217,19 @@
 (global-set-key (kbd "C-c g") 'imenu)
 
 ;; Set the major mode of the scratch buffer to org-mode.
-(setq initial-major-mode 'org-mode)
+;; (setq initial-major-mode 'org-mode)
+(setq initial-major-mode 'fundamental-mode)
 
 ;; Ido
 (ido-mode t)
-(ido-ubiquitous-mode 1)
-(ido-vertical-mode 1)
+(ido-ubiquitous-mode t)
+(ido-vertical-mode t)
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
 
 ;; Auto-revert-mode
-(auto-revert-mode t)
+;; (global-auto-revert-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
@@ -283,87 +295,13 @@
   (setq string (replace-regexp-in-string "''" "  " string)))
 
 ;; Company
-(company-quickhelp-mode 1)
+(eval-after-load 'company
+  '(company-quickhelp-mode 1))
 
 ;; dtrt-indent
 (setq dtrt-indent-min-quality 100.0)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Major mode settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; LaTeX
-(setq-default TeX-master nil)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-
-; Easily insert math symbols using e.g. ` t to insert \tau.
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-
-; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
-(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
-
-; Compile to pdf
-(setq TeX-PDF-mode t)
-
-; Electric-pair-mode should also close dollar signs.
-(add-hook 'LaTeX-mode-hook
-          (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
-                          (cons "$" "$"))))
-
-; Highlight fixme
-(setq font-latex-match-warning-keywords
-      '(("fixme" "{") ("fxnote" "{") ("fxwarning" "{") ("fxerror" "{") ("fxfatal" "{") ))
-
-;; Lua
-(add-hook 'lua-mode-hook 'fci-mode)
-(add-hook 'lua-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
-
-;; CMake
-(setq auto-mode-alist
-      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
-                ("\\.cmake\\'" . cmake-mode))
-              auto-mode-alist))
-(add-hook 'cmake-mode-hook 'company-mode)
-
-;; Python
-(add-hook 'python-mode-hook 'fci-mode)
-(add-hook 'python-mode-hook 'company-mode)
-(add-hook 'python-mode-hook 'anaconda-mode)
-(eval-after-load 'company
-  (progn
-    '(add-to-list 'company-backends 'company-anaconda)
-    ))
-
-;; C
-(add-hook 'c-mode-hook 'fci-mode)
-(add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
-(add-hook 'c-mode-hook
-          (lambda()
-            (local-set-key  (kbd "M-o") 'ff-find-other-file)))
-(add-hook 'c-mode-hook (lambda () (c-toggle-hungry-state 1)))
-(add-hook 'c-mode-hook 'company-mode)
-
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
-
-;; C++
-(add-hook 'c++-mode-hook 'fci-mode)
-(add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
-(add-hook 'c++-mode-hook
-          (lambda()
-            (local-set-key  (kbd "M-o") 'ff-find-other-file)))
-(add-hook 'c++-mode-hook (lambda () (c-toggle-hungry-state 1)))
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-hook 'c++-mode-hook 'company-mode)
-
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c++-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
-
-(add-hook 'c++-mode-hook 'yas-minor-mode)
-
+;; Irony
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
 (defun my-irony-mode-hook ()
@@ -381,31 +319,122 @@
 ;;     std::|
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Major mode settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; LaTeX
+(defun my-LaTeX-mode-hook ()
+  (setq font-latex-match-warning-keywords
+        '(("fixme" "{") ("fxnote" "{") ("fxwarning" "{") ("fxerror" "{") ("fxfatal" "{") ))
+  (setq-default TeX-master nil)
+  (setq TeX-PDF-mode t)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (turn-on-reftex)
+  (LaTeX-math-mode) ; Easily insert math symbols using e.g. ` t to insert \tau.
+  (auto-fill-mode) ; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
+  (set (make-variable-buffer-local 'TeX-electric-math) ; Electric-pair-mode should also close dollar signs.
+       (cons "$" "$"))
+  )
+
+(add-hook 'LaTeX-mode-hook 'my-LaTeX-mode-hook)
+
+;; Lua
+(defun my-lua-mode-hook ()
+  (fci-mode)
+  (local-set-key "\C-y" 'yank-and-indent)
+  )
+(add-hook 'lua-mode-hook 'my-lua-mode-hook)
+
+;; CMake
+(defun my-cmake-mode-hook ()
+  (setq auto-mode-alist
+        (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+                  ("\\.cmake\\'" . cmake-mode))
+                auto-mode-alist))
+  (company-mode)
+  )
+(add-hook 'cmake-mode-hook 'my-cmake-mode-hook)
+
+;; Python
+(defun my-python-mode-hook ()
+  (fci-mode)
+  (company-mode)
+  (anaconda-mode)
+  (eval-after-load 'company
+    (progn
+      '(add-to-list 'company-backends 'company-anaconda)
+      ))
+  )
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+
+;; C
+(defun my-c-mode-hook ()
+  (fci-mode)
+  (setq c-basic-offset 4)
+  (local-set-key  (kbd "M-o") 'ff-find-other-file)
+  (c-toggle-hungry-state 1)
+  (company-mode)
+
+  (irony-mode)
+  (local-set-key "\C-y" 'yank-and-indent)
+  )
+(add-hook 'c-mode-hook 'my-c-mode-hook)
+
+;; C++
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(defun my-c++-mode-hook ()
+  (fci-mode)
+  (setq c-basic-offset 4)
+  (local-set-key  (kbd "M-o") 'ff-find-other-file)
+  (c-toggle-hungry-state 1)
+  (company-mode)
+  (irony-mode)
+  (local-set-key "\C-y" 'yank-and-indent)
+  (yas-minor-mode)
+  )
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; Haskell
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'fci-mode)
+(defun my-haskell-mode-hook ()
+  (haskell-indentation-mode)
+  (fci-mode)
+  )
+
+(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
 
 ;; Elisp
-(add-hook 'emacs-lisp-mode-hook 'company-mode)
-(add-hook 'emacs-lisp-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
-; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
-;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(defun my-elisp-mode-hook ()
+  (company-mode)
+  (local-set-key "\C-y" 'yank-and-indent)
+  ;; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
+  (rainbow-delimiters-mode)
+  )
+(add-hook 'emacs-lisp-mode-hook 'my-elisp-mode-hook)
 
 ;; Org-mode
-(add-hook 'org-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'org-toggle-pretty-entities)
-(add-hook 'org-mode-hook 'auto-fill-mode)
+(defun my-org-mode-hook ()
+  (flyspell-mode)
+  (org-toggle-pretty-entities)
+  (auto-fill-mode)
+  )
+
+(add-hook 'org-mode-hook 'my-org-mode-hook)
 
 ;; pkgbuild-mode
-(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode))
-                              auto-mode-alist))
+(add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
 
 ;; Java
-(add-hook 'java-mode-hook (lambda ()
-                            (setq c-basic-offset 4
-                                  tab-width 4)))
-(add-hook 'java-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
+(defun my-java-mode-hook ()
+  (setq c-basic-offset 4
+        tab-width 4)
+  (local-set-key "\C-y" 'yank-and-indent)
+  )
+
+(add-hook 'java-mode-hook 'my-java-mode-hook)
 
 ;; Conf-mode for rc, systemd, and .gitignore files.
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
