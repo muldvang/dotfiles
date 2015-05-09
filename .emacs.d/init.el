@@ -78,9 +78,6 @@
 ;; Indent using tabs
 (setq-default indent-tabs-mode nil)
 
-;; Integrate system clipboard
-(setq gui-select-enable-clipboard t)
-
 ;; Put auto-save files (i.e. #foo#) and backup files (i.e. foo~) in ~/.emacs.d/.
 (custom-set-variables
  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/\\1" t)))
@@ -137,7 +134,9 @@
 
 ;; Visualize indenting with tabs
 (global-whitespace-mode 1)
-(setq whitespace-style '(tab-mark))
+(add-hook 'global-whitespace-mode-hook
+          (setq whitespace-style '(tab-mark))
+          )
 
 ;; Set frame name
 (setq frame-title-format '("" "%b - Emacs"))
@@ -212,6 +211,10 @@
   (interactive)
   (yank)
   (call-interactively 'indent-region))
+
+(defun yank-and-indent-mode ()
+  (local-set-key "\C-y" 'yank-and-indent)
+  )
 
 ;; Shortcut for imenu
 (global-set-key (kbd "C-c g") 'imenu)
@@ -344,7 +347,7 @@
 ;; Lua
 (defun my-lua-mode-hook ()
   (fci-mode)
-  (local-set-key "\C-y" 'yank-and-indent)
+  (yank-and-indent-mode)
   )
 (add-hook 'lua-mode-hook 'my-lua-mode-hook)
 
@@ -379,7 +382,7 @@
   (company-mode)
 
   (irony-mode)
-  (local-set-key "\C-y" 'yank-and-indent)
+  (yank-and-indent-mode)
   )
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 
@@ -392,7 +395,7 @@
   (c-toggle-hungry-state 1)
   (company-mode)
   (irony-mode)
-  (local-set-key "\C-y" 'yank-and-indent)
+  (yank-and-indent-mode)
   (yas-minor-mode)
   )
 
@@ -409,7 +412,7 @@
 ;; Elisp
 (defun my-elisp-mode-hook ()
   (company-mode)
-  (local-set-key "\C-y" 'yank-and-indent)
+  (yank-and-indent-mode)
   ;; (add-hook 'emacs-lisp-mode-hook 'fci-mode) ;; Makes emacs daemon crash
   (rainbow-delimiters-mode)
   )
@@ -431,7 +434,7 @@
 (defun my-java-mode-hook ()
   (setq c-basic-offset 4
         tab-width 4)
-  (local-set-key "\C-y" 'yank-and-indent)
+  ('yank-and-indent-mode)
   )
 
 (add-hook 'java-mode-hook 'my-java-mode-hook)
