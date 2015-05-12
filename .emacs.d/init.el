@@ -220,8 +220,8 @@
 (global-set-key (kbd "C-c g") 'imenu)
 
 ;; Set the major mode of the scratch buffer to org-mode.
-;; (setq initial-major-mode 'org-mode)
-(setq initial-major-mode 'fundamental-mode)
+(setq initial-major-mode 'org-mode)
+;; (setq initial-major-mode 'fundamental-mode)
 
 ;; Ido
 (ido-mode t)
