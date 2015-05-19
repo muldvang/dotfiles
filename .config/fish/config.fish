@@ -43,7 +43,6 @@ function fish_prompt --description 'Write out the prompt'
   end
 
   echo -n '> '
-  echo -n -e \\7
   set_color normal
 end
 
@@ -159,6 +158,10 @@ end
 # will display it in a different color if it unfocused.
 function alert --description 'Make the terminal urgent'
   echo \a
+end
+
+function -e fish_prompt my_signal_handler
+        echo -n \a
 end
 
 # Termites terminfo file misses some color escape sequences. Fix that
