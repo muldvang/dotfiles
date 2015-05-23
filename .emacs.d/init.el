@@ -171,9 +171,6 @@
 (define-key global-map (kbd "C-c r") 'replace-string)
 (define-key global-map (kbd "C-c e") 'replace-regexp)
 
-;; Find file at point
-(global-set-key (kbd "C-x f") 'find-file-at-point)
-
 ;; Insert file name. Usefull for e.g. write LaTeX documents.
 (defun my-insert-file-name (filename &optional args)
   (interactive "*fInsert file name: \nP")
@@ -227,6 +224,11 @@
 (ido-mode t)
 (ido-ubiquitous-mode t)
 (ido-vertical-mode t)
+(setq org-completion-use-ido t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-file-extensions-order '(".cpp" ".hpp" ".h" ; C++ projects
+                                  ".tex" ".txt" ".log" ; LaTeX projects
+                                  ))
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
