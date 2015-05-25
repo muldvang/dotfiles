@@ -34,7 +34,6 @@
 (benchmark-init/activate)
 
 ;; Email address.
-
 (setq user-mail-address "muldvang@gmail.com")
 
 ;; Write custom settings to custon.el
@@ -234,7 +233,14 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; Auto-revert-mode
+<<<<<<< HEAD
 ;; (global-auto-revert-mode 1)
+=======
+(global-auto-revert-mode t)
+
+;; Sentences end with a single space and not double spaces
+(setq sentence-end-double-space nil)
+>>>>>>> Emacs settings.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
@@ -306,7 +312,94 @@
 ;; dtrt-indent
 (setq dtrt-indent-min-quality 100.0)
 
+<<<<<<< HEAD
 ;; Irony
+=======
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Major mode settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; LaTeX
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+
+; Easily insert math symbols using e.g. ` t to insert \tau.
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+; auto-fill-mode is nice in LaTeX since tables and math then may extend 80
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+
+; Compile to pdf
+(setq TeX-PDF-mode t)
+
+; Makes minted work
+(add-hook 'TeX-mode-hook
+          (lambda ()
+            (setq TeX-command-extra-options "-shell-escape")
+            )
+          )
+
+; Electric-pair-mode should also close dollar signs.
+(add-hook 'LaTeX-mode-hook
+          (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
+                          (cons "$" "$"))))
+
+; Highlight fixme
+(setq font-latex-match-warning-keywords
+      '(("fixme" "{") ("fxnote" "{") ("fxwarning" "{") ("fxerror" "{") ("fxfatal" "{") ))
+
+;; Lua
+(add-hook 'lua-mode-hook 'fci-mode)
+(add-hook 'lua-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
+
+;; CMake
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+                ("\\.cmake\\'" . cmake-mode))
+              auto-mode-alist))
+(add-hook 'cmake-mode-hook 'company-mode)
+
+;; Python
+(add-hook 'python-mode-hook 'fci-mode)
+(add-hook 'python-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
+(eval-after-load 'company
+  (progn
+    '(add-to-list 'company-backends 'company-anaconda)
+    ))
+
+;; C
+(add-hook 'c-mode-hook 'fci-mode)
+(add-hook 'c-mode-hook (lambda () (setq c-basic-offset 4)))
+(add-hook 'c-mode-hook
+          (lambda()
+            (local-set-key  (kbd "M-o") 'ff-find-other-file)))
+(add-hook 'c-mode-hook (lambda () (c-toggle-hungry-state 1)))
+(add-hook 'c-mode-hook 'company-mode)
+
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
+
+;; C++
+(add-hook 'c++-mode-hook 'fci-mode)
+(add-hook 'c++-mode-hook (lambda () (setq c-basic-offset 4)))
+(add-hook 'c++-mode-hook
+          (lambda()
+            (local-set-key  (kbd "M-o") 'ff-find-other-file)))
+(add-hook 'c++-mode-hook (lambda () (c-toggle-hungry-state 1)))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-hook 'c++-mode-hook 'company-mode)
+
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c++-mode-hook (lambda () (local-set-key "\C-y" 'yank-and-indent)))
+
+(add-hook 'c++-mode-hook 'yas-minor-mode)
+
+(add-hook 'c++-mode-hook 'adaptive-wrap-prefix-mode)
+>>>>>>> Emacs settings.
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
 (defun my-irony-mode-hook ()

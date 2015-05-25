@@ -22,7 +22,8 @@
  '(rw-hunspell-default-dictionary "en_US_hunspell")
  '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
  '(rw-hunspell-make-dictionary-menu t)
- '(rw-hunspell-use-rw-ispell t))
+ '(rw-hunspell-use-rw-ispell t)
+ '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

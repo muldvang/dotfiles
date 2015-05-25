@@ -201,6 +201,9 @@
                             (deferred)))
  (rainbow-delimiters status "installed" recipe
                      (:name rainbow-delimiters :website "https://github.com/jlr/rainbow-delimiters#readme" :description "Color nested parentheses, brackets, and braces according to their depth." :type github :pkgname "jlr/rainbow-delimiters"))
+ (rainbow-mode status "installed" recipe
+               (:name rainbow-mode :description "Colorize color names in buffers" :type elpa :prepare
+                      (autoload 'rainbow-turn-on "rainbow-mode")))
  (rw-hunspell status "installed" recipe
               (:name rw-hunspell :description "Special functions for Hunspell in ispell.el." :website "http://marmalade-repo.org/packages/rw-hunspell" :url "http://marmalade-repo.org/packages/rw-hunspell-0.2.el" :type http :prepare
                      (autoload 'rw-hunspell-setup "rw-hunspell-0.2" nil t)))
