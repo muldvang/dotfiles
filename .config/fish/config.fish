@@ -154,12 +154,14 @@ end
 function m
         make -j (grep -c processor /proc/cpuinfo) $argv
 end
+
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
 function alert --description 'Make the terminal urgent'
   echo \a
 end
 
+# Ring the bell when command has finished.
 function -e fish_prompt my_signal_handler
         echo -n \a
 end
@@ -175,13 +177,30 @@ set -x MANWIDTH 80
 set fish_greeting ""
 
 # Syntax highlighting in less though source-highlight
-set -x LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
-set -x LESS ' -R '
+# set -x LESSOPEN "| /usr/bin/src-hilite-lesspipe.sh %s"
+# set -x LESS ' -R '
+
+# Syntax highlighting in less though pygments
+function less
+        set file_extension (echo $argv | rev | cut -d "." -f 1 | rev)
+        if cat /usr/lib/python3.*/site-packages/pygments/lexers/*.py | tr -d "\n" | grep -o -P "filenames = \[('(\*)*(\.)*[A-Za-z+_]*'(,( )*)*)+" | cut -d "[" -f 2 | grep -o -P "[A-Za-z+_]+" | grep -x $file_extension > /dev/null
+                pygmentize $argv | command less -R ^ /dev/null
+        else
+                command less $argv
+        end
+end
 
 # Colors in man pages
 function man
     env LESS_TERMCAP_md=(set_color --bold blue) \
     man $argv
+end
+
+# Select a single column in space separeted files with headings
+function select_column
+        set heading (echo $argv | cut -d " " -f 1)
+        set file (echo $argv | cut -d " " -f 2)
+        cut -d " " -f (head -n 1 $file | sed 's/\ /\n/g' | ag --numbers $heading | head -n 1 | cut -d : -f 1) $file | column -t
 end
 
 # # Temporary fix for the "set_color: Expected an argument" bug.
