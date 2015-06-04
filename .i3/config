@@ -204,3 +204,6 @@ client.focused          #5E801A #5E801A #F8F8F2 #66d9ef # Green
 client.focused_inactive #367480 #367480 #F8F8F2 #66d9ef # Blue
 client.unfocused        #171b1c #171b1c #F8F8F2 #66d9ef # Black
 client.urgent           #80133A #80133A #F8F8F2 #66d9ef # Red
+
+# Hide borders at the edges of the screen
+hide_edge_borders both
