@@ -238,6 +238,12 @@
 ;; Sentences end with a single space and not double spaces
 (setq sentence-end-double-space nil)
 
+;; Conf-mode for rc, systemd, and .gitignore files.
+(add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '("\\.*service$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '("\\.*socket$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '(".gitignore$" . conf-space-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minor mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -325,6 +331,9 @@
 ;; trigger completion at interesting places, such as after scope operator
 ;;     std::|
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+
+;; Langtool
+(setq langtool-language-tool-jar "~/.emacs.d/LanguageTool-2.9/languagetool-commandline.jar")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
@@ -442,12 +451,3 @@
   )
 
 (add-hook 'java-mode-hook 'my-java-mode-hook)
-
-;; Conf-mode for rc, systemd, and .gitignore files.
-(add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
-(add-to-list 'auto-mode-alist '("\\.*service$" . conf-unix-mode))
-(add-to-list 'auto-mode-alist '("\\.*socket$" . conf-unix-mode))
-(add-to-list 'auto-mode-alist '(".gitignore$" . conf-space-mode))
-
-;; Langtool
-(setq langtool-language-tool-jar "/usr/share/java/languagetool/languagetool-commandline.jar")
