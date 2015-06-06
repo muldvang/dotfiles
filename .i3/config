@@ -61,6 +61,25 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# Move window
+mode "move" {
+        bindsym h move left
+        bindsym j move down
+        bindsym k move up
+        bindsym l move right
+
+        # same bindings, but for the arrow keys
+        bindsym Left move left
+        bindsym Down move down
+        bindsym Up move up
+        bindsym Right move right
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+m mode "move"
+
 # split in horizontal orientation
 bindsym $mod+b split h
 
@@ -181,6 +200,9 @@ for_window [class="Kodi"] floating enable, border none
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
 bindsym $mod+ctrl+l workspace next_on_output
+
+bindsym $mod+u workspace prev_on_output
+bindsym $mod+i workspace next_on_output
 
 # Rename workspace
 bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#171b1c' -nf '#F8F8F2' -sb '#5E801A' -sf '#F8F8F2' -i -fn 'sans-9' -h 18 -b)'\"'
