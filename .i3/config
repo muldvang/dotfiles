@@ -195,7 +195,8 @@ workspace_layout tabbed
 
 # Put xbmc to workspace 2 and make it fullscreen
 assign [class="Kodi"] 2
-for_window [class="Kodi"] floating enable, border none
+for_window [class="Kodi"] fullscreen
+# for_window [class="Kodi"] floating enable, border none
 
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
