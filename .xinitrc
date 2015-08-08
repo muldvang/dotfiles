@@ -4,7 +4,7 @@ if [ `hostname` = "Balder" ]; then
 fi
 
 if [ `hostname` = "Tor" ]; then
-    xrandr --output DVI-I-1 --mode 1280x1024 --pos 0x0 --output DVI-I-2 --mode 1920x1080 --pos 1280x1024
+    xrandr --output DVI-I-1 --mode 1280x1024 --pos 0x0 --output DVI-I-2 --mode 1920x1080 --pos 1280x0
 fi
 
 if [ `hostname` = "Freja" ]; then
