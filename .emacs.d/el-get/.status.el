@@ -6,12 +6,12 @@
  (auctex status "installed" recipe
          (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type git :module "auctex" :url "git://git.savannah.gnu.org/auctex.git" :build
                 `(("./autogen.sh")
-                  ("./configure" "--without-texmf-dir" "--with-packagelispdir=$(pwd)" "--with-packagedatadir=$(pwd)" ,(cond
-                                                                                                                       ((eq system-type 'darwin)
-                                                                                                                        "--with-lispdir=`pwd`")
-                                                                                                                       (t ""))
-                   ,(concat "--with-emacs=" el-get-emacs))
-                  "make")
+                  ("./configure" "--without-texmf-dir" "--with-packagelispdir=$(pwd)" "--with-packagedatadir=$(pwd)" ,(concat "--with-emacs=" el-get-emacs))
+                  ("make"))
+                :build/darwin
+                `(("./autogen.sh")
+                  ("./configure" "--without-texmf-dir" "--with-packagelispdir=$(pwd)" "--with-packagedatadir=$(pwd)" "--with-lispdir=$(pwd)" ,(concat "--with-emacs=" el-get-emacs))
+                  ("make"))
                 :load-path
                 (".")
                 :load
@@ -113,7 +113,7 @@
            (:name flycheck :type github :pkgname "flycheck/flycheck" :description "On-the-fly syntax checking extension" :build
                   '(("makeinfo" "-o" "doc/flycheck.info" "doc/flycheck.texi"))
                   :info "./doc" :depends
-                  (s dash cl-lib f pkg-info)))
+                  (dash pkg-info let-alist cl-lib)))
  (flycheck-color-mode-line status "installed" recipe
                            (:name flycheck-color-mode-line :type github :description "Colors the mode-line according to the Flycheck state of the current buffer." :pkgname "flycheck/flycheck-color-mode-line" :depends
                                   (flycheck)
@@ -150,7 +150,7 @@
  (langtool status "installed" recipe
            (:name langtool :description "Emacs frontend for LanguageTool (http://www.languagetool.org/)." :type github :pkgname "mhayashi1120/Emacs-langtool"))
  (let-alist status "installed" recipe
-            (:name let-alist :description "Easily let-bind values of an assoc-list by their names." :builtin "25.1" :type http :url "http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/let-alist.el"))
+            (:name let-alist :description "Easily let-bind values of an assoc-list by their names." :builtin "25.0.50" :type http :url "http://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/packages/let-alist/let-alist.el"))
  (log4e status "installed" recipe
         (:name log4e :website "https://github.com/aki2o/log4e" :description "provide logging framework for elisp." :type github :pkgname "aki2o/log4e"))
  (lua-mode status "installed" recipe
@@ -158,7 +158,7 @@
                   (ample-regexps)
                   :type github :pkgname "immerrr/lua-mode"))
  (package status "installed" recipe
-          (:name package :description "ELPA implementation (\"package.el\") from Emacs 24" :builtin "24" :type http :url "http://repo.or.cz/w/emacs.git/blob_plain/1a0a666f941c99882093d7bd08ced15033bc3f0c:/lisp/emacs-lisp/package.el" :shallow nil :features package :post-init
+          (:name package :description "ELPA implementation (\"package.el\") from Emacs 24" :builtin "24" :type http :url "http://repo.or.cz/w/emacs.git/blob_plain/ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09:/lisp/emacs-lisp/package.el" :shallow nil :features package :post-init
                  (progn
                    (let
                        ((old-package-user-dir
@@ -209,6 +209,10 @@
  (rw-hunspell status "installed" recipe
               (:name rw-hunspell :description "Special functions for Hunspell in ispell.el." :website "http://marmalade-repo.org/packages/rw-hunspell" :url "http://marmalade-repo.org/packages/rw-hunspell-0.2.el" :type http :prepare
                      (autoload 'rw-hunspell-setup "rw-hunspell-0.2" nil t)))
+ (rw-ispell status "installed" recipe
+            (:name rw-ispell :auto-generated t :type elpa :description "additional functions for ispell.el" :repo nil))
+ (rw-language-and-country-codes status "installed" recipe
+                                (:name rw-language-and-country-codes :auto-generated t :type elpa :description "Language & Country Codes" :repo nil))
  (s status "installed" recipe
     (:name s :description "The long lost Emacs string manipulation library." :type github :pkgname "magnars/s.el"))
  (smex status "installed" recipe
