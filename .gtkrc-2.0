@@ -1,0 +1,8 @@
+gtk-icon-theme-name = "Adwaita"
+gtk-theme-name = "Adwaita"
+gtk-font-name = "sans 10"
+style "my-style"
+{
+        GtkTreeView::vertical-separator= 0
+}
+class "GtkWidget" style "my-style"
