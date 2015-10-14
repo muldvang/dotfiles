@@ -16,8 +16,7 @@ fi
 xset r rate 250
 
 # QGtkStyle requires this variable to be set
-# export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GTK2_RC_FILES=/usr/share/gtk-2.0/gtkrc
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Block bluetooth and wireless wan on laptop
 if [ `hostname` = "Balder" ]; then
@@ -36,4 +35,7 @@ xrdb ~/.Xresources &
 
 # Execute window manager
 exec dbus-launch i3
+<<<<<<< HEAD
 # exec dbus-launch startxfce4
+=======
+>>>>>>> refs/remotes/origin/master
