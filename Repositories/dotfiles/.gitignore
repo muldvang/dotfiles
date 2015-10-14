@@ -288,3 +288,5 @@
 .config/enchant
 .config/QtProject.conf
 .fbcmd
+.config/vlc
+.config/qutebrowser/qsettings/QtProject.conf
