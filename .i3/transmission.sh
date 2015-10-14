@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+count=$(echo $(transmission-remote -l | wc -l) - 2 | bc)
+if test $count -gt 0
+then
+    stats=$(transmission-remote -l | tail -n 1 | column -t)
+    down=$(echo $stats | cut -d " " -f 5)
+    up=$(echo $stats | cut -d " " -f 4)
+    echo "$count ‒ $down / $up"
+fi

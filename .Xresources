@@ -1,0 +1,62 @@
+!===============================================================================
+! urxvt
+!===============================================================================
+
+! Urgent on bell
+URxvt.urgentOnBell: true
+
+! Disable scroll bar
+URxvt*scrollBar: false
+
+! Font
+URxvt*font: xft:monospace:size=10
+
+! Disable keycap picture insert mode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!===============================================================================
+! Colors
+!===============================================================================
+
+URxvt*foreground      : #f8f8f2
+URxvt*foreground_bold : #f8f8f2
+URxvt*background      : #293133
+
+URxvt*color0  : #293133
+URxvt*color1  : #f92672
+URxvt*color2  : #a6e22e
+URxvt*color3  : #f4bf75
+URxvt*color4  : #66d9ef
+URxvt*color5  : #ae81ff
+URxvt*color6  : #a1efe4
+URxvt*color7  : #f8f8f2
+URxvt*color8  : #75715e
+URxvt*color9  : #f92672
+URxvt*color10 : #a6e22e
+URxvt*color11 : #f4bf75
+URxvt*color12 : #66d9ef
+URxvt*color13 : #ae81ff
+URxvt*color14 : #a1efe4
+URxvt*color15 : #f9f8f5
+
+
+!===============================================================================
+! Font
+!===============================================================================
+
+! Better looking font for applications that ignore fontconfig.
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+
+!===============================================================================
+! Cursor
+!===============================================================================
+
+! Set the cursor size.
+Xcursor.size:  8
