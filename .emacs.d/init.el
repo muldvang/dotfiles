@@ -47,7 +47,10 @@
 (el-get-bundle 'fish-mode)
 (el-get-bundle 'flycheck)
 (el-get-bundle 'flycheck-color-mode-line)
+(el-get-bundle 'flx)
+(el-get-bundle 'flx-ido)
 (el-get-bundle 'hungry-delete)
+(el-get-bundle 'god-mode)
 (el-get-bundle 'ido-ubiquitous)
 (el-get-bundle 'ido-vertical-mode)
 (el-get-bundle 'irony-mode)
@@ -325,6 +328,20 @@
 
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
+
+;; god-mode
+(global-set-key (kbd "<escape>") 'god-mode-all)
+(setq-default god-exempt-major-modes nil)
+(setq-default god-exempt-predicates nil)
+(defun my-update-cursor ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'box
+                      'bar)))
+(add-hook 'god-mode-enabled-hook 'my-update-cursor)
+(add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+;; flx-ido
+(flx-ido-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
