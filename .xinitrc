@@ -25,6 +25,8 @@ fi
 
 xset -dpms
 
+# Screen lock
+xss-lock -- i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*) &
 i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)
 
 # Set the background image
@@ -33,9 +35,8 @@ wallpaperd
 # Read .Xresources
 xrdb ~/.Xresources &
 
+# Disable screensaver
+xset s off
+
 # Execute window manager
 exec dbus-launch i3
-<<<<<<< HEAD
-# exec dbus-launch startxfce4
-=======
->>>>>>> refs/remotes/origin/master
