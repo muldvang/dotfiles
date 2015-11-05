@@ -274,7 +274,7 @@
 ##   not available.
 ##
 #
-#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+song_columns_list_format =  (20)[]{a} (5f)[green]{dE} (6f)[green]{nE} (50)[black]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
 #
 ##### various settings #####
 #
@@ -320,7 +320,7 @@ centered_cursor = yes
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
 ##
-progressbar_look = ━╾─
+progressbar_look = ━━─
 #
 #progressbar_boldness = yes
 #
@@ -483,13 +483,13 @@ mouse_list_scroll_whole_page = no
 #
 #state_flags_color = default
 #
-main_window_color = white
+main_window_color = black
 #
 #color1 = white
 #
 #color2 = green
 #
-main_window_highlight_color = white
+main_window_highlight_color = black
 #
 #progressbar_color = black
 #

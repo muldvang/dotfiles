@@ -9,62 +9,62 @@ set selection-clipboard clipboard
 
 
 # Defines the background color that is used for command line completion entries
-set completion-bg "#293133"
+set completion-bg "#EDEDED"
 
 # Defines the foreground color that is used for command line completion entries
-set completion-fg "#f8f8f2"
+set completion-fg "#2E3436"
 
 # Defines the background color that is used for command line completion group
 # elements
-set completion-group-bg "#293133"
+set completion-group-bg "#EDEDED"
 
 # Defines the foreground color that is used for command line completion group
 # elements
-set completion-group-fg "#f8f8f2"
+set completion-group-fg "#2E3436"
 
 # Defines the background color that is used for the current command line
 # completion element
-set completion-highlight-bg "#5e801a"
+set completion-highlight-bg "#ADADAD"
 
 # Defines the foreground color that is used for the current command line
 # completion element
-set completion-highlight-fg "#f8f8f2"
+set completion-highlight-fg "#2E3436"
 
 # Defines the default foreground color
-set default-fg "#f8f8f2"
+set default-fg "#2E3436"
 
 # Defines the default background color
-set default-bg "#293133"
+set default-bg "#EDEDED"
 
 # Defines the background color for the inputbar
-set inputbar-bg "#293133"
+set inputbar-bg "#EDEDED"
 
 # Defines the foreground color for the inputbar
-set inputbar-fg "#a6e22e"
+set inputbar-fg "#2E3436"
 
 # Defines the background color for a notification
-set notification-bg "#293133"
+set notification-bg "#EDEDED"
 
 # Defines the foreground color for a notification
-set notification-fg "#f8f8f2"
+set notification-fg "#2E3436"
 
 # Defines the background color for an error notification
-set notification-error-bg "#80133a"
+set notification-error-bg "#A52A2A"
 
 # Defines the foreground color for an error notification
-set notification-error-fg "#f8f8f2"
+set notification-error-fg "#EDEDED"
 
 # Defines the background color for a warning notification
-set notification-warning-bg "#f4bf75"
+set notification-warning-bg "#A020F0"
 
 # Defines the foreground color for a warning notification
-set notification-warning-fg "#f8f8f2"
+set notification-warning-fg "#EDEDED"
 
 # Defines the background color of the statusbar
-set statusbar-bg "#293133"
+set statusbar-bg "#EDEDED"
 
 # Defines the foreground color of the statusbar
-set statusbar-fg "#f8f8f2"
+set statusbar-fg "#2E3436"
 
 # Defines the color that is used for highlighting parts of the document (e.g.:
 # show search results)
@@ -75,16 +75,16 @@ set highlight-color "#a1efe4"
 set highlight-active-color "#66d9ef"
 
 # Defines the foreground color of the index mode.
-set index-fg "#f8f8f2"
+set index-fg "#2E3436"
 
 # Define the background color of the index mode.
-set index-bg "#293133"
+set index-bg "#EDEDED"
 
 # Defines the foreground color of the selected element in index mode.
-set index-active-fg "#f8f8f2"
+set index-active-fg "#2E3436"
 
 # Define the background color of the selected element in index mode.
-set index-active-bg "#5e801a"
+set index-active-bg "#ADADAD"
 
 set recolor-keephue true
 set recolor-darkcolor "#000000"

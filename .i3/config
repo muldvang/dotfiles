@@ -31,7 +31,7 @@ bindsym $mod+Return exec termite -e fish
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -nb '#171b1c' -nf '#F8F8F2' -sb '#5D8C00' -sf '#F8F8F2' -i -fn 'sans-9' -h 18 -b" --term=termite
+bindsym $mod+p exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn 'sans-9' -h 18 -b" --term=termite
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -168,19 +168,20 @@ bindsym $mod+Mod1+l resize grow width 3 px or 3 ppt
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
 bar {
         status_command i3blocks
         mode dock
         font pango:sans, fontawesome 9
         colors {
-                background #171b1c
-                statusline #f8f8f2
+                background #ededed
+                statusline #313739
 
                 # Workspaces       Border  Backgr. Text
-                focused_workspace  #5d8c00 #5d8c00 #F8F8F2 # Green
-                active_workspace   #007f99 #007f99 #F8F8F2 # Blue
-                inactive_workspace #171b1c #171b1c #F8F8F2 # Black
-                urgent_workspace   #b30040 #b30040 #F8F8F2 # Red
+                focused_workspace  #4a90d9 #4a90d9 #313739 # Green
+                active_workspace   #007f99 #007f99 #313739 # Blue
+                inactive_workspace #f8f8f2 #f8f8f2 #313739 # Black
+                urgent_workspace   #b30040 #b30040 #313739 # Red
         }
 }
 
@@ -189,6 +190,7 @@ bindsym $mod+F1 exec emacsclient -c
 bindsym $mod+F2 exec qutebrowser
 bindsym $mod+F3 exec termite -e 'bash -c "ranger 2> /dev/null"'
 bindsym $mod+F4 exec termite -e ncmpcpp
+bindsym $mod+F12 exec /home/muldvang/viaplay.sh
 
 # Standard layout
 workspace_layout tabbed
@@ -202,6 +204,9 @@ for_window [class="Eclipse"] border pixel 2
 
 for_window [class="VirtualBox"] border pixel 1
 
+for_window [title="Microsoft Silverlight"] fullscreen
+assign [title="Microsoft Silverlight"] 3
+
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
 bindsym $mod+ctrl+l workspace next_on_output
@@ -210,7 +215,7 @@ bindsym $mod+u workspace prev_on_output
 bindsym $mod+i workspace next_on_output
 
 # Rename workspace
-bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#171b1c' -nf '#F8F8F2' -sb '#5D8C00' -sf '#F8F8F2' -i -fn 'sans-9' -h 18 -b)'\"'
+bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn 'sans-9' -h 18 -b)'\"'
 
 # Extra keyboard shortcuts for multimedia and stuff
 bindsym XF86Launch1 exec --no-startup-id mpc clear && mpc load \"DR P6 BEAT\" && mpc play && pkill -RTMIN+2 i3blocks
@@ -229,10 +234,10 @@ bindsym $mod+Shift+a exec --no-startup-id ~/.i3/switch_audio_output.fish && pkil
 bindsym $mod+Shift+q exec --no-startup-id ~/.i3/power_management.sh
 
 # class                 border  backgr. text    indicator
-client.focused          #5d8c00 #5d8c00 #F8F8F2 #66d9ef # Green
-client.focused_inactive #007f99 #007f99 #F8F8F2 #66d9ef # Blue
-client.unfocused        #171b1c #171b1c #F8F8F2 #66d9ef # Black
-client.urgent           #b30040 #b30040 #F8F8F2 #66d9ef # Red
+client.focused          #4A90D9 #4A90D9 #313739 #66d9ef # Green
+client.focused_inactive #adadad #adadad #313739 #66d9ef # Blue
+client.unfocused        #313739 #313739 #ededed #66d9ef # Black
+client.urgent           #b30040 #b30040 #313739 #66d9ef # Red
 
 # Hide borders at the edges of the screen
-hide_edge_borders both
+# hide_edge_borders both

@@ -51,25 +51,49 @@ cursor_shape = block
 # color7 =  #dddddd
 # color15 = #fdfdfd
 
+
+#[colors]
+#foreground      = #f8f8f2
+#foreground_bold = #f8f8f2
+#background      = #293133
+
+## 16 color space
+#color0  = #293133
+#color1  = #ff337c
+#color2  = #aaff00
+#color3  = #ffd633
+#color4  = #4de2ff
+#color5  = #ae81ff
+#color6  = #4dffe6
+#color7  = #f8f8f2
+#color8  = #75715e
+#color9  = #ff337c
+#color10 = #aaff00
+#color11 = #ffd633
+#color12 = #4de2ff
+#color13 = #ae81ff
+#color14 = #4dffe6
+#color15 = #f9f8f5
+
 [colors]
-foreground      = #f8f8f2
-foreground_bold = #f8f8f2
-background      = #293133
+foreground      = #2E3436
+foreground_bold = #2E3436
+background      = #EDEDED
 
 # 16 color space
-color0  = #293133
-color1  = #ff337c
-color2  = #aaff00
-color3  = #ffd633
-color4  = #4de2ff
-color5  = #ae81ff
-color6  = #4dffe6
-color7  = #f8f8f2
-color8  = #75715e
-color9  = #ff337c
-color10 = #aaff00
-color11 = #ffd633
-color12 = #4de2ff
-color13 = #ae81ff
-color14 = #4dffe6
-color15 = #f9f8f5
+color0  = #2E3436
+color1  = #A52A2A
+color2  = #2F8B58
+color3  = #4E9A06
+color4  = #204A87
+color5  = #A020F0
+color6  = #0084C8
+color7  = #ADADAD
+color8  = #2E3436
+color9  = #A52A2A
+color10 = #2F8B58
+color11 = #4E9A06
+color12 = #204A87
+color13 = #A020F0
+color14 = #0084C8
+color15 = #EDEDED

@@ -113,7 +113,8 @@
 
 ;; Highlight current line
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "#393f3f")
+;; (set-face-background 'hl-line "#393f3f")
+(set-face-background 'hl-line "#EEE")
 
 ;; Use visible bell
 (setq visible-bell t)
@@ -135,8 +136,9 @@
 (setq inhibit-startup-message t)
 
 ;; Set color theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/tangotango-theme")
-(load-theme 'tangotango t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/tangotango-theme")
+;; (load-theme 'tangotango t)
+(load-theme 'adwaita t)
 
 ;; Set the font
 (set-face-attribute 'default nil :family "monospace" :height 100)
@@ -268,6 +270,11 @@
 ;; Powerline
 (powerline-default-theme)
 (setq-default powerline-default-separator nil)
+(custom-set-faces
+ '(powerline-active1 ((t (:inherit mode-line :background "dark gray"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "light gray"))))
+ '(powerline-inactive1 ((t (:background "dark gray"))))
+ '(powerline-inactive2 ((t (:background "light gray")))))
 
 ;; Flycheck mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -344,6 +351,7 @@
                       'bar)))
 (add-hook 'god-mode-enabled-hook 'my-update-cursor)
 (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+(god-mode)
 
 ;; flx-ido
 (flx-ido-mode 1)
@@ -373,7 +381,7 @@
        (cons "$" "$"))
   )
 
-(add-hook 'LaTeX-mode-hook 'my-LaTeX-mode-hook)
+;; (add-hook 'LaTeX-mode-hook 'my-LaTeX-mode-hook)
 
 ;; CMake
 (defun my-cmake-mode-hook ()
@@ -437,7 +445,7 @@
 (defun my-org-mode-hook ()
   (flyspell-mode)
   (org-toggle-pretty-entities)
-  (auto-fill-mode)
+  (buffer-face-mode)
   )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
