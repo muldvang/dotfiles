@@ -8,3 +8,6 @@ mastercontrol http://gtnmc10web01/global/login/index.cfm?mcuid=&mcsid=&initialRe
 m https://mail.google.com/mail/u/0/#inbox
 mopidy http://localhost:6680/moped/
 eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
+byvejr http://www.dmi.dk/vejr/til-lands/byvejr/by/vis/DK/8000/Aarhus/
+mesos http://10.1.203.110:5050/#/
+marathon http://localhost:8080/ui/#/apps
