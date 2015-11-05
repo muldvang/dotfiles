@@ -9,6 +9,9 @@
 !/Pictures/wallpapers
 /Music
 /Videos
+/Documents
+/VirtualBox VMs
+/workspace
 
 .bash_history
 .cmus
