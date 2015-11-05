@@ -61,5 +61,6 @@ if __name__ == "__main__":
         print "#f92672"
     else:
         STATUS = DB.get_status()
-        print STATUS.capitalize()
+        if not STATUS == 'up to date':
+            print STATUS.capitalize()
         DB.disconnect()

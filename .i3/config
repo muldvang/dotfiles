@@ -199,7 +199,8 @@ for_window [class="Kodi"] fullscreen
 # for_window [class="Kodi"] floating enable, border none
 
 for_window [class="Eclipse"] border pixel 2
-# assign [class="Eclipse"] 2. Code
+
+for_window [class="VirtualBox"] border pixel 1
 
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
