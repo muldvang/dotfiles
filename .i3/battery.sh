@@ -12,7 +12,7 @@ full=$(echo $ACPI | grep -P "Unknown|Full|99%")
 
 if test "$full" != ""
 then
-   echo "Full"
+   exit
 else
     state=$(echo $ACPI | cut -d " " -f 3 | cut -d "," -f 1)
     hours=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 1)
