@@ -1,0 +1,11 @@
+[Unit]
+Description=wallpaperd
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/wallpaperd
+Restart=always
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target

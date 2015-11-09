@@ -15,7 +15,7 @@ fi
 ~/.i3/switch_keyboard_layout.fish
 xset r rate 250
 
-# QGtkStyle requires this variable to be set
+# GTK2 theme
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Block bluetooth and wireless wan on laptop
@@ -23,14 +23,12 @@ if [ `hostname` = "Balder" ]; then
     rfkill block bluetooth && rfkill block wwan
 fi
 
+# Disable dpms
 xset -dpms
 
 # Screen lock
 xss-lock -- i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*) &
 i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)
-
-# Set the background image
-wallpaperd
 
 # Read .Xresources
 xrdb ~/.Xresources &
