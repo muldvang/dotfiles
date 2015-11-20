@@ -180,7 +180,7 @@ bar {
                 # Workspaces       Border  Backgr. Text
                 focused_workspace  #4a90d9 #4a90d9 #313739 # Green
                 active_workspace   #007f99 #007f99 #313739 # Blue
-                inactive_workspace #f8f8f2 #f8f8f2 #313739 # Black
+                inactive_workspace #ededed #ededed #313739 # Black
                 urgent_workspace   #b30040 #b30040 #313739 # Red
         }
 }
@@ -202,10 +202,12 @@ for_window [class="Kodi"] fullscreen
 
 for_window [class="Eclipse"] border pixel 2
 
-for_window [class="VirtualBox"] border pixel 1
+for_window [class="VirtualBox"] border pixel 0
 
 for_window [title="Microsoft Silverlight"] fullscreen
 assign [title="Microsoft Silverlight"] 3
+
+assign [class="Skype"] 3. Com
 
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
