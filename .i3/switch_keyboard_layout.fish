@@ -1,5 +1,6 @@
 #!/bin/fish
 
+xset r rate 250
 set ALT_GR (xmodmap -pke | grep 108 | rev | cut -d " " -f 1 | rev)
 if test "$ALT_GR" = "Control_R"
         echo "Switching to standard layout."
