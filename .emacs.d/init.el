@@ -31,7 +31,6 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-(el-get-bundle 'adaptive-wrap)
 (el-get-bundle 'auctex)
 (el-get-bundle 'benchmark-init)
 (el-get-bundle 'cmake-mode)
@@ -44,6 +43,7 @@
 (el-get-bundle 'dtrt-indent)
 (el-get-bundle 'expand-region)
 (el-get-bundle 'fill-column-indicator)
+(el-get-bundle 'filladapt)
 (el-get-bundle 'fish-mode)
 (el-get-bundle 'flycheck)
 (el-get-bundle 'flycheck-color-mode-line)
@@ -54,6 +54,7 @@
 (el-get-bundle 'ido-ubiquitous)
 (el-get-bundle 'ido-vertical-mode)
 (el-get-bundle 'irony-mode)
+(el-get-bundle 'markdown-mode)
 (el-get-bundle 'pkgbuild-mode)
 (el-get-bundle 'pos-tip
   :type "github"
@@ -298,9 +299,9 @@
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
 ;; Adaptive wrap
-(define-globalized-minor-mode global-adaptive-wrap-prefix-mode
-  adaptive-wrap-prefix-mode adaptive-wrap-prefix-mode)
-(global-adaptive-wrap-prefix-mode 1)
+(define-globalized-minor-mode global-filladapt-mode
+  filladapt-mode filladapt-mode)
+(global-filladapt-mode t)
 
 ;; Fill Column Indicator
 (setq-default fci-rule-color "#393f3f")
@@ -446,6 +447,7 @@
   (flyspell-mode)
   (org-toggle-pretty-entities)
   (buffer-face-mode)
+  (org-indent-mode)
   )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
