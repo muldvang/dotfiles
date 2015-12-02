@@ -1,0 +1,10 @@
+[Unit]
+Description=i3lock: An improved screenlocker based upon XCB and PAM
+
+[Service]
+Type=forking
+ExecStart=/bin/bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target

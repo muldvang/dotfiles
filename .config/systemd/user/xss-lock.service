@@ -1,0 +1,10 @@
+[Unit]
+Description=xss-lock
+
+[Service]
+ExecStart=/bin/bash -c "xss-lock -- i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)"
+Restart=always
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target
