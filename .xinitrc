@@ -26,10 +26,6 @@ fi
 # Disable dpms
 xset -dpms
 
-# Screen lock
-xss-lock -- i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*) &
-i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)
-
 # Read .Xresources
 xrdb ~/.Xresources &
 
