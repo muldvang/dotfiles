@@ -316,8 +316,17 @@
 (global-set-key (kbd "C-c SPC") 'er/expand-region)
 
 ;; Spell-checking
+(require 'ispell)
 (setq-default ispell-dictionary "en_US")
 (setq-default ispell-program-name "/usr/bin/hunspell")
+;; (add-to-list 'ispell-local-dictionary-alist '("dansk"
+;;                                               "[[:alpha:].]"
+;;                                               "[^[:alpha:]]"
+;;                                               "[.]"
+;;                                               t
+;;                                               ("-d" "da_DK")
+;;                                               nil
+;;                                               utf-8))
 
 ;; Company
 (eval-after-load 'company
@@ -446,6 +455,7 @@
 (defun my-org-mode-hook ()
   (flyspell-mode)
   (org-toggle-pretty-entities)
+  (org-indent-mode)
   (buffer-face-mode)
   (org-indent-mode)
   )
