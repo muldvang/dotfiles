@@ -366,6 +366,11 @@
 ;; flx-ido
 (flx-ido-mode 1)
 
+;; Open links in qutebrowser
+(setq-default gnus-button-url 'browse-url-generic
+      browse-url-generic-program "qutebrowser"
+      browse-url-browser-function gnus-button-url)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major mode settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
