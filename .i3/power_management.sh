@@ -5,7 +5,7 @@ Suspend
 Hybrid sleep
 Reboot
 Poweroff"
-action=$(echo "$actions" | dmenu -p 'Choose action:' -nb '#171b1c' -nf '#FFFFFF' -sb '#5D8C00' -sf '#FFFFFF' -i -fn 'sans-9' -h 18 -b)
+action=$(echo "$actions" | dmenu -p 'Choose action:' -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn 'sans-9' -h 18 -b)
 case $action in
     "Lock")
         systemctl --user start i3lock.service;;
