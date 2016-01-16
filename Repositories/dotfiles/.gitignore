@@ -293,3 +293,9 @@
 .fbcmd
 .config/vlc
 .config/qutebrowser/qsettings/QtProject.conf
+.emacs.d/el-get
+.config/rtv
+.config/systemd/user/default.target.wants/
+.config/freshwrapper-data
+.emacs.d/anaconda-mode
+.emacs.d/ido.last
