@@ -63,6 +63,7 @@
 ;; (el-get-bundle 'pythonic)
 (el-get-bundle 'rainbow-delimiters)
 (el-get-bundle 'rainbow-mode)
+
 (el-get-bundle 'smex)
 (el-get-bundle 'tangotango-theme)
 (el-get-bundle 'yasnippet)
@@ -362,6 +363,7 @@
 (add-hook 'god-mode-enabled-hook 'my-update-cursor)
 (add-hook 'god-mode-disabled-hook 'my-update-cursor)
 (god-mode)
+(define-key god-local-mode-map (kbd ".") 'repeat)
 
 ;; flx-ido
 (flx-ido-mode 1)
@@ -463,6 +465,7 @@
   (org-indent-mode)
   (buffer-face-mode)
   (org-indent-mode)
+  (setq org-src-fontify-natively t)
   )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
