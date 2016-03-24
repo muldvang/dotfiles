@@ -11,6 +11,6 @@ then
     then
         echo "Error"
         echo "Error"
-        echo "#f92672"
+        echo "#A52A2A"
     fi
 fi

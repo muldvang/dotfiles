@@ -28,6 +28,6 @@ else
     echo $hours:$minutes
     if test $state == "Discharging" -a $hours -eq 0 -a $minutes -lt 10
     then
-        echo "#f92672"
+        echo "#A52A2A"
     fi
 fi

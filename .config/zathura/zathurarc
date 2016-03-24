@@ -24,7 +24,7 @@ set completion-group-fg "#2E3436"
 
 # Defines the background color that is used for the current command line
 # completion element
-set completion-highlight-bg "#ADADAD"
+set completion-highlight-bg "#a5a5a1"
 
 # Defines the foreground color that is used for the current command line
 # completion element
@@ -49,13 +49,13 @@ set notification-bg "#EDEDED"
 set notification-fg "#2E3436"
 
 # Defines the background color for an error notification
-set notification-error-bg "#A52A2A"
+set notification-error-bg "#cc0000"
 
 # Defines the foreground color for an error notification
 set notification-error-fg "#EDEDED"
 
 # Defines the background color for a warning notification
-set notification-warning-bg "#A020F0"
+set notification-warning-bg "#f57900"
 
 # Defines the foreground color for a warning notification
 set notification-warning-fg "#EDEDED"
@@ -84,7 +84,7 @@ set index-bg "#EDEDED"
 set index-active-fg "#2E3436"
 
 # Define the background color of the selected element in index mode.
-set index-active-bg "#ADADAD"
+set index-active-bg "#a5a5a1"
 
 set recolor-keephue true
 set recolor-darkcolor "#000000"

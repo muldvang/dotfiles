@@ -58,7 +58,7 @@ if __name__ == "__main__":
     if DB.connect() == False:
         print "Error"
         print "Error"
-        print "#f92672"
+        print "#A52A2A"
     else:
         STATUS = DB.get_status()
         if not STATUS == 'up to date':

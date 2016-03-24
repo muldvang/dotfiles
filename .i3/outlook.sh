@@ -8,7 +8,7 @@ then
    then
        echo "Error"
        echo "Error"
-       echo "#f92672"
+       echo "#A52A2A"
    fi
 
    if test "$first" = "\"Torben"
@@ -24,7 +24,7 @@ then
    then
        echo "Mail and cal"
        echo "Mail and cal"
-       echo "#f92672"
+       echo "#A52A2A"
    elif test $mail -gt 0
    then
        echo "Mail"
@@ -32,6 +32,6 @@ then
    then
        echo "Cal"
        echo "Cal"
-       echo "#f92672"
+       echo "#A52A2A"
    fi
 fi

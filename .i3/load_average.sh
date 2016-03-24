@@ -8,5 +8,5 @@ echo $load
 echo $load
 if test $load_int -ge $cpu_cores
 then
-    echo "#f92672"
+    echo "#A52A2A"
 fi
