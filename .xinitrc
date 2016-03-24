@@ -18,6 +18,9 @@ xset r rate 250
 # GTK2 theme
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
+# LibreOffice should use gtk3
+SAL_USE_VCLPLUGIN=gtk3
+
 # Block bluetooth and wireless wan on laptop
 if [ `hostname` = "Balder" ]; then
     rfkill block bluetooth && rfkill block wwan
