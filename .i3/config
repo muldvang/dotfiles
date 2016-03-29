@@ -179,7 +179,7 @@ bar {
 
                 # Workspaces       Border  Backgr. Text
                 focused_workspace  #4a90d9 #4a90d9 #313739 # Green
-                active_workspace   #007f99 #007f99 #313739 # Blue
+                active_workspace   #adadad #adadad #313739 # Gray
                 inactive_workspace #ededed #ededed #313739 # Black
                 urgent_workspace   #b30040 #b30040 #313739 # Red
         }
@@ -198,7 +198,6 @@ workspace_layout tabbed
 # Put xbmc to workspace 2 and make it fullscreen
 assign [class="Kodi"] 2
 for_window [class="Kodi"] fullscreen
-# for_window [class="Kodi"] floating enable, border none
 
 for_window [class="Eclipse"] border pixel 2
 
@@ -212,9 +211,13 @@ assign [class="Skype"] 3. Com
 # Switch between workspaces and the active monitor
 bindsym $mod+ctrl+h workspace prev_on_output
 bindsym $mod+ctrl+l workspace next_on_output
+bindsym $mod+ctrl+Left workspace prev_on_output
+bindsym $mod+ctrl+Right workspace next_on_output
 
 bindsym $mod+u workspace prev_on_output
 bindsym $mod+i workspace next_on_output
+bindsym $mod+comma workspace prev_on_output
+bindsym $mod+period workspace next_on_output
 
 # Rename workspace
 bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn 'sans-9' -h 18 -b)'\"'
