@@ -61,6 +61,10 @@ function fish_right_prompt -d "Write out the right prompt"
           set_color purple
           echo ' in tmux'
   end
+  if test $ABDUCO
+          set_color purple
+          echo ' in abduco'
+  end
   set_color normal
 end
 
@@ -212,6 +216,11 @@ function select_column
         set heading (echo $argv | cut -d " " -f 1)
         set file (echo $argv | cut -d " " -f 2)
         cut -d " " -f (head -n 1 $file | sed 's/\ /\n/g' | ag --numbers $heading | head -n 1 | cut -d : -f 1) $file | column -t
+end
+
+function abduco
+        set -x ABDUCO 1
+        command abduco $argv
 end
 
 # # Temporary fix for the "set_color: Expected an argument" bug.
