@@ -246,6 +246,3 @@ client.focused          #4A90D9 #4A90D9 #2e3436 #73d216
 client.focused_inactive #a5a5a1 #a5a5a1 #2e3436 #73d216
 client.unfocused        #2e3436 #2e3436 #ededed #73d216
 client.urgent           #cc0000 #cc0000 #2e3436 #73d216
-
-# Hide borders at the edges of the screen
-# hide_edge_borders both
