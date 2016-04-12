@@ -2,7 +2,7 @@
 Description=xss-lock
 
 [Service]
-ExecStart=/bin/bash -c "xss-lock -- i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)"
+ExecStart=/bin/bash -c "xss-lock -- systemctl --user start i3lock"
 Restart=always
 Environment=DISPLAY=:0
 
