@@ -199,9 +199,8 @@ workspace_layout tabbed
 assign [class="Kodi"] 2
 for_window [class="Kodi"] fullscreen
 
-for_window [class="Eclipse"] border pixel 2
-
-for_window [class="VirtualBox"] border pixel 0
+# for_window [class="VirtualBox"] border pixel 0
+for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
 
 for_window [title="Microsoft Silverlight"] fullscreen
 assign [title="Microsoft Silverlight"] 3
