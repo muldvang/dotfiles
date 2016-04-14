@@ -43,7 +43,7 @@
 (el-get-bundle 'dtrt-indent)
 (el-get-bundle 'expand-region)
 (el-get-bundle 'fill-column-indicator)
-(el-get-bundle 'filladapt)
+;; (el-get-bundle 'filladapt)
 (el-get-bundle 'fish-mode)
 (el-get-bundle 'flycheck)
 (el-get-bundle 'flycheck-color-mode-line)
@@ -300,9 +300,9 @@
 (global-set-key (kbd "C-M-p") 'outline-backward-same-level)
 
 ;; Adaptive wrap
-(define-globalized-minor-mode global-filladapt-mode
-  filladapt-mode filladapt-mode)
-(global-filladapt-mode t)
+;; (define-globalized-minor-mode global-filladapt-mode
+;;  filladapt-mode filladapt-mode)
+;; (global-filladapt-mode t)
 
 ;; Fill Column Indicator
 (setq-default fci-rule-color "#393f3f")
@@ -465,7 +465,8 @@
   (org-indent-mode)
   (buffer-face-mode)
   (org-indent-mode)
-  (setq org-src-fontify-natively t)
+  (setq-default org-src-fontify-natively t)
+  (setq-default org-hide-emphasis-markers t)
   )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
