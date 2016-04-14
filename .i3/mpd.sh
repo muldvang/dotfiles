@@ -1,10 +1,10 @@
 #!/bin/bash
 
 status=$(mpc | grep -o -P '\[[a-z]*\]' | grep -o -P '[a-z]*')
-if test $status = playing
+if test "$status" = playing
 then
     mpc current
-elif test $status = stopped
+elif test "$status" = stopped
 then
     exit
 else

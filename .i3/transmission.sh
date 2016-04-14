@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-count=$(echo $(transmission-remote -l | wc -l) - 2 | bc)
+count=$(echo $(transmission-remote -l || exit | wc -l) - 2 | bc)
 if test $count -gt 0
 then
     stats=$(transmission-remote -l | tail -n 1 | column -t)

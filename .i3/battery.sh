@@ -2,7 +2,6 @@
 
 
 ACPI=$(acpi -b 2>&1)
-no_support=$(echo $ACPI | grep "No support")
 if test "$no_support" != ""
 then
     exit
