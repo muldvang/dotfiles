@@ -166,8 +166,8 @@ function ffmpeg-high
         ffmpeg -i $argv -vcodec libx264 -crf 18 -acodec libfdk_aac -vbr 4 -cutoff 20k -scodec copy $argv.compressed.mkv
 end
 
-function m
-        make -j (grep -c processor /proc/cpuinfo) $argv
+function sxiv
+        command sxiv -b $argv
 end
 
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
