@@ -460,7 +460,6 @@
 
 ;; Org-mode
 (defun my-org-mode-hook ()
-  (flyspell-mode)
   (org-toggle-pretty-entities)
   (org-indent-mode)
   (buffer-face-mode)
