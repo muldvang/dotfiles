@@ -1,4 +1,4 @@
-;;; init.el --- Initialization file for Emacs        -*- lexical-binding: t; -*-
+;; init.el --- Initialization file for Emacs        -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014
 
@@ -18,9 +18,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Commentary:
+;; Commentary:
 
-;;; Code:
+;; Code:
 
 ;; el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -39,6 +39,7 @@
 (el-get-bundle 'company-irony)
 (el-get-bundle 'company-mode)
 (el-get-bundle 'company-quickhelp)
+(el-get-bundle 'cucumber)
 (el-get-bundle 'diff-hl)
 (el-get-bundle 'dtrt-indent)
 (el-get-bundle 'expand-region)
