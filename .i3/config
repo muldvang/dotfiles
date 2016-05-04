@@ -232,7 +232,7 @@ bindsym XF86AudioPrev exec --no-startup-id mpc prev && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioStop exec --no-startup-id mpc stop && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.i3/change_volume.sh down && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.i3/change_volume.sh up && pkill -RTMIN+1 i3blocks
-bindsym Print exec --no-startup-id gnome-screenshot -a
+bindsym Print --release exec --no-startup-id gnome-screenshot -a
 bindsym Shift+Print exec --no-startup-id escrotum -s -C
 bindsym XF86ScreenSaver exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
 bindsym $mod+Shift+s exec --no-startup-id ~/.i3/switch_screen.fish

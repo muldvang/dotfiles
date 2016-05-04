@@ -13,6 +13,5 @@
 4. Web
 5. Code
 6. Misc
-7. Ant
-8. Eclipse
-9. Jenkins
+7. Eclipse
+8. Jenkins
