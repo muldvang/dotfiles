@@ -12,4 +12,4 @@ byvejr http://www.dmi.dk/vejr/til-lands/byvejr/by/vis/DK/8000/Aarhus/
 mesos http://10.1.203.110:5050/#/
 marathon http://localhost:8080/ui/#/apps
 jenkins https://intranet.clcbio.com/jenkins-ivd/
-jira https://intranet.clcbio.com/jira/secure/Dashboard.jspa
+jira https://intranet.clcbio.com/jira/secure/RapidBoard.jspa?rapidView=130&useStoredSettings=true
