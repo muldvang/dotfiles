@@ -1,0 +1,10 @@
+[Unit]
+Description=compton
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/compton
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target
