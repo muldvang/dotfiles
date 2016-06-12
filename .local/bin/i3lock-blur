@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SCREENSHOT=/tmp/i3lock-blur-screenshot.png
+BLURRED=/tmp/i3lock-blur-screenshot-blurred.png
+
+scrot $SCREENSHOT
+convert $SCREENSHOT -filter Gaussian -resize 50% -define filter:sigma=2 -resize 200% $BLURRED
+
+i3lock -i $BLURRED
+
+rm $SCREENSHOT $BLURRED
