@@ -32,6 +32,8 @@ xset -dpms
 # Read .Xresources
 xrdb ~/.Xresources &
 
+# xrandr --dpi 120
+
 # Disable screensaver
 xset s off
 
