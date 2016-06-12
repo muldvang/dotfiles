@@ -8,13 +8,15 @@
 (use-package adaptive-wrap
   :ensure t
   :defer t
-  :init (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode))
+  :init
+  (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
+  (add-hook 'LaTeX-mode-hook 'adaptive-wrap-prefix-mode))
 
 (use-package auctex
   :ensure t
   :defer t
   :mode ("\\.tex\\'" . latex-mode)
-  :init
+  :config
   (setq-default TeX-electric-math (cons "$" "$")
                 TeX-master nil
                 TeX-parse-self t
