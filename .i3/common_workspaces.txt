@@ -8,7 +8,7 @@
 8
 9
 1. Slack
-2. VM
+2. Windows
 3. Com
 4. Web
 5. Code
