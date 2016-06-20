@@ -5,6 +5,9 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+exec --no-startup-id systemctl --user start wallpaperd
+exec --no-startup-id bash -c 'sleep 0.5 && systemctl --user start i3lock'
+
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!

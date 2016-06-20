@@ -3,7 +3,7 @@ Description=i3lock: An improved screenlocker based upon XCB and PAM
 
 [Service]
 Type=forking
-ExecStart=/bin/bash -c 'scrot /tmp/screenshot.png && convert /tmp/screenshot.png -filter Gaussian -resize 50% -define filter:sigma=2 -resize 200% /tmp/lock-screen-background.png && i3lock -i /tmp/lock-screen-background.png && rm /tmp/screenshot.png /tmp/lock-screen-background.png'
+ExecStart=/home/muldvang/.local/bin/i3lock-blur
 Environment=DISPLAY=:0
 
 [Install]

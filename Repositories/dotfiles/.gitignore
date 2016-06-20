@@ -268,7 +268,6 @@
 .config/user-dirs.locale
 .dads1-2010-q3/
 .inputrc
-.local/bin/
 .local/etc/
 .local/include/
 .local/lib/
@@ -299,3 +298,6 @@
 .config/freshwrapper-data
 .emacs.d/anaconda-mode
 .emacs.d/ido.last
+.plotly
+.ipython
+.ipynb_checkpoints

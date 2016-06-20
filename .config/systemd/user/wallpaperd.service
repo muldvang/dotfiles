@@ -8,4 +8,4 @@ Restart=always
 Environment=DISPLAY=:0
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical.target
