@@ -11,5 +11,6 @@ eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
 byvejr http://www.dmi.dk/vejr/til-lands/byvejr/by/vis/DK/8000/Aarhus/
 mesos http://10.1.203.110:5050/#/
 marathon http://localhost:8080/ui/#/apps
-jenkins https://intranet.clcbio.com/jenkins-ivd/
+jenkins http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20modules%20pipeline/
 jira https://intranet.clcbio.com/jira/secure/RapidBoard.jspa?rapidView=130&useStoredSettings=true
+confluence seqflow-ivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+2015
