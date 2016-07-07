@@ -14,3 +14,4 @@ marathon http://localhost:8080/ui/#/apps
 jenkins http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20modules%20pipeline/
 jira https://intranet.clcbio.com/jira/secure/RapidBoard.jspa?rapidView=130&useStoredSettings=true
 confluence seqflow-ivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+2015
+fisheye https://intranet.clcbio.com/fisheye/changelog/seqflowivdrepo
