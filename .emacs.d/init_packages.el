@@ -103,6 +103,11 @@
   :config
   (global-set-key (kbd "C-c SPC") 'er/expand-region))
 
+(use-package feature-mode
+  :defer t
+  :ensure t
+  )
+
 (use-package fish-mode
   :defer t
   :ensure t)
