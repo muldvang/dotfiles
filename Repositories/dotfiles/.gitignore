@@ -12,6 +12,8 @@
 /Documents
 /VirtualBox VMs
 /workspace
+/Dev
+/VirtualBoxShared
 
 .bash_history
 .cmus
@@ -84,6 +86,8 @@
 .lesshst
 .local/share/*
 !.local/share/applications/mimeapps.list
+.local/bin/*
+!.local/bin/i3lock-blur
 .lyrics
 .macromedia
 .mozilla
@@ -312,3 +316,5 @@
 .x-formation
 CLC_Data
 .local/opt
+.pdfbox.cache
+.config/qutebrowser/qsettings
