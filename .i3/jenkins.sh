@@ -6,7 +6,7 @@ then
     then
         echo Aborted
         echo Aborted
-        echo "#f92672"
+        echo "#A52A2A"
     elif test "$color" != "blue" -a "$color" != "blue_anime"
     then
         echo "Plugin"
@@ -18,7 +18,7 @@ then
         then
             echo Aborted
             echo Aborted
-            echo "#f92672"
+            echo "#A52A2A"
         elif test "$color" != "blue" -a "$color" != "blue_anime"
         then
             echo "Platform"
