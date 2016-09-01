@@ -49,7 +49,7 @@ function fish_prompt --description 'Write out the prompt'
   set_color normal
 end
 
-# Left right customization
+# Right customization
 function fish_right_prompt -d "Write out the right prompt"
   set_color red
   echo $USER
@@ -76,6 +76,13 @@ function fish_title
     echo $_
   end
 end
+
+# Vi mode
+# function fish_mode_prompt; end
+# fish_vi_cursor
+# set fish_cursor_default block
+# set fish_cursor_insert line
+# set fish_cursor_visual block
 
 # Aliases
 function l
@@ -222,24 +229,3 @@ function abduco
         set -x ABDUCO 1
         command abduco $argv
 end
-
-# # Temporary fix for the "set_color: Expected an argument" bug.
-# set fish_color_autosuggestion '666'  'green'
-# set fish_color_command blue
-# set fish_color_comment red
-# set fish_color_cwd green
-# set fish_color_cwd_root red
-# set fish_color_error 'red'  '--bold'
-# set fish_color_escape cyan
-# set fish_color_history_current cyan
-# set fish_color_host '-o'  'cyan'
-# set fish_color_match cyan
-# set fish_color_normal normal
-# set fish_color_operator cyan
-# set fish_color_param '00afff'  'cyan'
-# set fish_color_quote brown
-# set fish_color_redirection normal
-# set fish_color_search_match --background=purple
-# set fish_color_status red
-# set fish_color_user '-o'  'green'
-# set fish_color_valid_path --underline
