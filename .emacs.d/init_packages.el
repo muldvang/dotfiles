@@ -97,6 +97,14 @@
   :config (setq-default dtrt-indent-min-quality 100.0)
   )
 
+(use-package evil-numbers
+  :defer t
+  :ensure t
+  :bind
+  ("C-c +" . evil-numbers/inc-at-pt)
+  ("C-c -" . evil-numbers/dec-at-pt)
+)
+
 (use-package expand-region
   :defer t
   :ensure t

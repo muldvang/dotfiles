@@ -14,3 +14,4 @@
 
 
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+(put 'narrow-to-region 'disabled nil)
