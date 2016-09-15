@@ -3,7 +3,7 @@ Description=i3lock: An improved screenlocker based upon XCB and PAM
 
 [Service]
 Type=forking
-ExecStart=/home/muldvang/.local/bin/i3lock-blur
+ExecStart=/usr/bin/i3lock-blur
 Environment=DISPLAY=:0
 
 [Install]
