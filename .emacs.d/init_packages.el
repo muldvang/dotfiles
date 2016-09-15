@@ -31,11 +31,6 @@
                                                     ("fxfatal" "{")))
   )
 
-(use-package auto-indent-mode
-  :ensure t
-  :defer t
-  :init (auto-indent-global-mode))
-
 (use-package benchmark-init
   :ensure t
   :config
