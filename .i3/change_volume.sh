@@ -5,9 +5,11 @@ then
     if test "$1" = down
     then
         amixer -q -D pulse sset Master 1%-
+        amixer -q sset Master 1%-
     elif test "$1" = up
     then
         amixer -q -D pulse sset Master 1%+
+        amixer -q sset Master 1%+
     fi
 else
     if test "$1" = down

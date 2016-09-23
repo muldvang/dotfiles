@@ -1,0 +1,15 @@
+{
+    "Lock": "systemctl --user start i3lock.service",
+    "Suspend": "systemctl suspend",
+    "Reboot": "systemctl reboot",
+    "Poweroff": "systemctl poweroff",
+    "Keyboard": {
+        "Standard": "/home/muldvang/.i3/keyboard_standard.sh",
+        "Enhanced": "/home/muldvang/.i3/keyboard_enhanced.sh"
+    },
+    "Monitors": {
+        "Clone": "ls",
+        "Work setup": "ls",
+        "Laptop only": "ls"
+    }
+}

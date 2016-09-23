@@ -8,7 +8,7 @@ then
 elif test "$status" = Unwatched
 then
     echo $status
-    echo "#f92672"
+    echo $status
     echo "#f92672"
 else
     echo $status

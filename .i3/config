@@ -52,18 +52,6 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
 # Move window
 mode "move" {
         bindsym h move left
@@ -163,12 +151,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Alternative resize method that does not use a mode.
-bindsym $mod+Mod1+h resize shrink width 3 px or 3 ppt
-bindsym $mod+Mod1+j resize grow height 3 px or 3 ppt
-bindsym $mod+Mod1+k resize shrink height 3 px or 3 ppt
-bindsym $mod+Mod1+l resize grow width 3 px or 3 ppt
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
@@ -179,6 +161,8 @@ bar {
         colors {
                 background #ededed
                 statusline #2e3436
+
+                binding_mode  #73d216 #73d216 #2e3436
 
                 # Workspaces       Border  Backgr. Text
                 focused_workspace  #4a90d9 #4a90d9 #2e3436
@@ -191,7 +175,7 @@ bar {
 # Start often used programs
 bindsym $mod+F1 exec emacsclient -c
 bindsym $mod+F2 exec qutebrowser
-bindsym $mod+F3 exec termite -e 'bash -c "ranger 2> /dev/null"'
+bindsym $mod+F3 exec termite -e ranger
 bindsym $mod+F4 exec termite -e ncmpcpp
 bindsym $mod+F12 exec /home/muldvang/viaplay.sh
 
@@ -211,15 +195,10 @@ assign [title="Microsoft Silverlight"] 3
 assign [class="Skype"] 3. Com
 
 # Switch between workspaces and the active monitor
-bindsym $mod+ctrl+h workspace prev_on_output
-bindsym $mod+ctrl+l workspace next_on_output
-bindsym $mod+ctrl+Left workspace prev_on_output
-bindsym $mod+ctrl+Right workspace next_on_output
-
 bindsym $mod+u workspace prev_on_output
 bindsym $mod+i workspace next_on_output
 bindsym $mod+comma workspace prev_on_output
-bindsym $mod+period workspace next_on_output
+bindsym $mod+period workspace prev_on_output
 
 # Rename workspace
 bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'New workspace name:' -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn 'sans-9' -h 18 -b)'\"'
@@ -228,7 +207,6 @@ bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/c
 bindsym $mod+n exec --no-startup-id ~/.i3/rename_window.sh
 
 # Extra keyboard shortcuts for multimedia and stuff
-bindsym XF86Launch1 exec --no-startup-id mpc clear && mpc load \"DR P6 BEAT\" && mpc play && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioNext exec --no-startup-id mpc next && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioPrev exec --no-startup-id mpc prev && pkill -RTMIN+2 i3blocks
@@ -239,12 +217,11 @@ bindsym Print --release exec --no-startup-id gnome-screenshot -a
 bindsym Shift+Print exec --no-startup-id escrotum -s -C
 bindsym XF86ScreenSaver exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
 bindsym $mod+Shift+s exec --no-startup-id ~/.i3/switch_screen.fish
-bindsym $mod+Shift+d exec --no-startup-id ~/.i3/switch_keyboard_layout.fish && pkill -RTMIN+1 i3blocks
 bindsym $mod+Shift+a exec --no-startup-id ~/.i3/switch_audio_output.fish && pkill -RTMIN+1 i3blocks
-bindsym $mod+Shift+q exec --no-startup-id ~/.i3/power_management.sh
+bindsym $mod+Escape exec --no-startup-id ~/.i3/dmenu_nested.py -j ~/.i3/system_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn sans-9 -h 18 -b" && pkill -RTMIN+1 i3blocks
 
-# class                 border  backgr. text    indicator
-client.focused          #4A90D9 #4A90D9 #2e3436 #73d216
-client.focused_inactive #a5a5a1 #a5a5a1 #2e3436 #73d216
-client.unfocused        #2e3436 #2e3436 #ededed #73d216
-client.urgent           #cc0000 #cc0000 #2e3436 #73d216
+# class                 border  backgr. text    indicator child_border
+client.focused          #4A90D9 #4A90D9 #2e3436 #73d216   #4A90D9
+client.focused_inactive #a5a5a1 #a5a5a1 #2e3436 #73d216   #a5a5a1
+client.unfocused        #2e3436 #2e3436 #ededed #73d216   #2e3436
+client.urgent           #cc0000 #cc0000 #2e3436 #73d216   #cc0000

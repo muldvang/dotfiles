@@ -1,9 +1,10 @@
 #!/bin/bash
 
-status=$(mpc | grep -o -P '\[[a-z]*\]' | grep -o -P '[a-z]*')
+status=$(mpc --host $1 | grep -o -P '\[[a-z]*\]' | grep -o -P '[a-z]*')
 if test "$status" = playing
 then
-    mpc current
+    mpc --host $1 current
+    echo "Playing"
 elif test "$status" = stopped
 then
     exit

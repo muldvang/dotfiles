@@ -1,16 +1,10 @@
 f https://m.facebook.com/
 c https://www.google.com/calendar/render?pli=1#h
 fm https://www.messenger.com/
-ant http://ant.apache.org/manual/index.html
-ivy http://ant.apache.org/ivy/history/latest-milestone/index.html
 ivy_repo http://ivy.clcbio.com/ivy/
 mastercontrol http://gtnmc10web01/global/login/index.cfm?mcuid=&mcsid=&initialRequest=http%3A%2F%2Fgtnmc10web01%2Fglobal%2Fmain%2Findex.cfm%3F
 m https://mail.google.com/mail/u/0/#inbox
-mopidy http://localhost:6680/moped/
 eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
-byvejr http://www.dmi.dk/vejr/til-lands/byvejr/by/vis/DK/8000/Aarhus/
-mesos http://10.1.203.110:5050/#/
-marathon http://localhost:8080/ui/#/apps
 jenkins http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20modules%20pipeline/
 jira https://intranet.clcbio.com/jira/secure/RapidBoard.jspa?rapidView=130&useStoredSettings=true
 confluence seqflow-ivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+2015
