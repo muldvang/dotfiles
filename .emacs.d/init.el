@@ -1,3 +1,8 @@
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
 (load "~/.emacs.d/init_interface.el")
 (load "~/.emacs.d/init_behaviour.el")
 (load "~/.emacs.d/init_key_bindings.el")
