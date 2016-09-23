@@ -11,6 +11,7 @@ export EDITOR='emacsclient'
 export QT_STYLE_OVERRIDE=gtk
 export PATH=~/.local/bin:~/.local/usr/local/bin:~/.composer/vendor/bin:$PATH
 # export SAL_USE_VCLPLUGIN=gtk3   # Make libreoffice use gtk3. Does not work as of May, 2016.
+export _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp/
 
 # Start X.
 if [ `hostname` = "Balder" ]; then
