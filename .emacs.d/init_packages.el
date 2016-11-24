@@ -173,6 +173,11 @@
   (global-hl-line-mode t)
   )
 
+(use-package htmlize
+  :defer t
+  :ensure t
+  )
+
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
   )
@@ -226,6 +231,7 @@
   (setq org-completion-use-ido t)
   (setq-default org-src-fontify-natively t)
   (setq-default org-hide-emphasis-markers t)
+  (setq-default org-html-validation-link nil)
   (defun my-org-mode-hook ()
     (org-toggle-pretty-entities)
     (buffer-face-mode)
@@ -234,6 +240,10 @@
     )
   (add-hook 'org-mode-hook 'my-org-mode-hook)
   )
+
+(use-package ox-twbs
+  :defer t
+  :ensure t)
 
 (use-package pkgbuild-mode
   :defer t
