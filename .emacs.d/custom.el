@@ -15,7 +15,7 @@
  '(org-export-with-toc nil)
  '(package-selected-packages
    (quote
-    (htmlize ox-twbs evil-numbers kotlin-mode use-package smex smartparens scala-mode rainbow-mode rainbow-delimiters powerline pkgbuild-mode markdown-mode ido-vertical-mode ido-ubiquitous hungry-delete god-mode flycheck-color-mode-line flx-ido fish-mode fill-column-indicator feature-mode expand-region dtrt-indent diff-hl company-quickhelp company-math company-irony company-emacs-eclim company-anaconda cmake-mode benchmark-init auto-indent-mode auctex adaptive-wrap)))
+    (use-package htmlize ox-twbs evil-numbers kotlin-mode smex smartparens scala-mode rainbow-mode rainbow-delimiters powerline pkgbuild-mode markdown-mode ido-vertical-mode ido-ubiquitous hungry-delete god-mode flycheck-color-mode-line flx-ido fish-mode fill-column-indicator feature-mode expand-region dtrt-indent diff-hl company-quickhelp company-math company-irony company-emacs-eclim company-anaconda cmake-mode benchmark-init auto-indent-mode auctex adaptive-wrap)))
  '(powerline-default-separator nil)
  '(rw-hunspell-default-dictionary "en_US_hunspell")
  '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
@@ -30,5 +30,4 @@
  ;; If there is more than one, they won't work right.
  '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
  '(ido-only-match ((t (:foreground "#8ae234"))))
- '(ido-subdir ((t (:foreground "#729fcf"))))
-)
+ '(ido-subdir ((t (:foreground "#729fcf")))))
