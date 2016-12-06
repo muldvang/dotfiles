@@ -12,7 +12,7 @@
 
 ;; Buffer stuff
 (load-theme 'adwaita t)
-(set-face-attribute 'default nil :family "monospace" :height 100)
+(set-face-attribute 'default nil :family "monospace" :height 95)
 (blink-cursor-mode 0)
 (setq visible-bell t)
 (show-paren-mode t)

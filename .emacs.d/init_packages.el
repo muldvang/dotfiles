@@ -134,11 +134,12 @@
   (eval-after-load "flycheck"
     '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
   :config
-  (custom-set-faces
-   '(flycheck-color-mode-line-error-face ((t (:background "#cc0000"))))
-   '(flycheck-color-mode-line-info-face ((t (:background "#73d216"))))
-   '(flycheck-color-mode-line-warning-face ((t (:background "#f57900"))))
-   )
+   (set-face-background 'flycheck-color-mode-line-error-face "#cc0000")
+   (set-face-background 'flycheck-color-mode-line-info-face "#73d216")
+   (set-face-background 'flycheck-color-mode-line-warning-face "#f57900")
+   (set-face-foreground 'flycheck-color-mode-line-error-face "#2E3436")
+   (set-face-foreground 'flycheck-color-mode-line-info-face "#2E3436")
+   (set-face-foreground 'flycheck-color-mode-line-warning-face "#2E3436")
   )
 
 (use-package god-mode
@@ -169,6 +170,7 @@
 (use-package hl-line
   :config
   (set-face-background 'hl-line "#EEE")
+  (set-face-foreground 'highlight nil)
   :init
   (global-hl-line-mode t)
   )
@@ -239,6 +241,22 @@
     ;; (smart-quotes-mode)
     )
   (add-hook 'org-mode-hook 'my-org-mode-hook)
+
+  (set-face-attribute 'org-level-1 nil :family "sans")
+  (set-face-attribute 'org-level-2 nil :family "sans")
+  (set-face-attribute 'org-level-3 nil :family "sans")
+  (set-face-attribute 'org-level-4 nil :family "sans")
+  (set-face-attribute 'org-level-5 nil :family "sans")
+  (set-face-attribute 'org-level-6 nil :family "sans")
+  (set-face-attribute 'org-level-7 nil :family "sans")
+  (set-face-attribute 'org-level-8 nil :family "sans")
+  (set-face-attribute 'org-default nil :family "sans")
+  (set-face-attribute 'org-block nil :family "monospace")
+  (set-face-attribute 'org-block-background nil :family "monospace")
+  (set-face-attribute 'org-code nil :family "monospace")
+  (set-face-attribute 'org-meta-line nil :foreground "light gray")
+  (set-face-attribute 'org-table nil :foreground "#2E3436" :family "monospace")
+  (set-face-attribute 'org-verbatim nil :family "monospace")
   )
 
 (use-package ox-twbs
