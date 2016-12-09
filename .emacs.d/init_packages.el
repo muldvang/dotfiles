@@ -243,12 +243,12 @@
   (setq-default org-html-validation-link nil)
   (defun my-org-mode-hook ()
     (org-toggle-pretty-entities)
+    (setq buffer-face-mode-face '(:family "sans" :height 115))
     (buffer-face-mode)
     (org-indent-mode)
     ;; (smart-quotes-mode)
     )
   (add-hook 'org-mode-hook 'my-org-mode-hook)
-
   (set-face-attribute 'org-level-1 nil :family "sans")
   (set-face-attribute 'org-level-2 nil :family "sans")
   (set-face-attribute 'org-level-3 nil :family "sans")
