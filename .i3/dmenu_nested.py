@@ -16,10 +16,10 @@ Values can be:
 
 
 import json
+import os
 from collections import OrderedDict
 from subprocess import Popen, call, PIPE
 from argparse import ArgumentParser, FileType
-
 
 def show_menu(args, menus):
     """Recursive function to walk menus dict and call dmenu cmd/exec result."""
@@ -32,10 +32,11 @@ def show_menu(args, menus):
             show_menu(args, menus[choice])
         elif menus[choice]:
             # Specific command defined
-            call(menus[choice].split())
+            command = [os.path.expanduser(x) for x in menus[choice].split()]
+            call(command)
         else:
             # Call the command title
-            call([choice])
+            call([os.path.expanduser(choice)])
 
 
 def parse_args():

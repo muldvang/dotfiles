@@ -13,5 +13,4 @@
 4. Web
 5. Code
 6. Misc
-7. Eclipse
-8. Web tools
+7. Web tools

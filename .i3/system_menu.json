@@ -4,12 +4,12 @@
     "Reboot": "systemctl reboot",
     "Poweroff": "systemctl poweroff",
     "Keyboard": {
-        "Standard": "/home/muldvang/.i3/keyboard_standard.sh",
-        "Enhanced": "/home/muldvang/.i3/keyboard_enhanced.sh"
+        "Standard": "~/.i3/keyboard_standard.sh",
+        "Enhanced": "~/.i3/keyboard_enhanced.sh"
     },
     "Monitors": {
         "Clone": "ls",
-        "Work setup": "ls",
+        "Work setup": "xrandr --output DP1-1 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-1",
         "Laptop only": "ls"
     }
 }
