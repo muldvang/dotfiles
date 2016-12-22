@@ -18,10 +18,6 @@ if [ `hostname` = "Balder" ]; then
     [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 fi
 
-if [ `hostname` = "laptop-110" ]; then
-    [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
-fi
-
 if [ `hostname` = "Odin" ]; then
     /usr/bin/fish
     exit
