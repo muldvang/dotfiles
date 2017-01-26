@@ -19,7 +19,7 @@ then
             echo Aborted
             echo Aborted
             echo "#A52A2A"
-        elif test "$color" != "blue" -a "$color" != "blue_anime"
+        elif test "$color" != "blue" -a "$color" != "blue_anime" -a "$color" != "disabled"
         then
             echo "Platform"
             echo "Platform"

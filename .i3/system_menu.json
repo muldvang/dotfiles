@@ -10,6 +10,6 @@
     "Monitors": {
         "Clone": "ls",
         "Work setup": "xrandr --output DP1-1 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-1",
-        "Laptop only": "ls"
+        "Laptop only": "xrandr --output DP1-1 --off --output eDP1 --mode 1600x900"
     }
 }
