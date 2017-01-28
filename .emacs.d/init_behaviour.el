@@ -11,7 +11,7 @@
 ;; Startup
 (setq initial-scratch-message ""
       inhibit-startup-message t
-      ;; initial-major-mode 'org-mode
+      initial-major-mode 'fundamental-mode
       )
 
 ;; On save hooks
