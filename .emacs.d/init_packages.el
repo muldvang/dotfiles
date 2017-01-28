@@ -14,64 +14,38 @@
   (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
   (add-hook 'LaTeX-mode-hook 'adaptive-wrap-prefix-mode))
 
-(use-package auctex
-  :ensure t
-  :defer t
-  :mode ("\\.tex\\'" . latex-mode)
-  :config
-  (setq-default TeX-electric-math (cons "$" "$")
-                TeX-master nil
-                TeX-parse-self t
-                TeX-command-extra-options "-shell-escape"
-                TeX-view-program-selection '((output-dvi "xdg-open")
-                                             (output-pdf "xdg-open")
-                                             (output-html "xdg-open"))
-                font-latex-match-warning-keywords '(("fixme" "{")
-                                                    ("fxnote" "{")
-                                                    ("fxwarning" "{")
-                                                    ("fxerror" "{")
-                                                    ("fxfatal" "{")))
-  )
-
-(use-package benchmark-init
-  :ensure t
-  :config
-  (benchmark-init/activate)
-  )
-
-(use-package company-anaconda
-  :defer t
-  :ensure t
-  :init
-  (eval-after-load 'company
-    (progn
-      '(add-to-list 'company-backends 'company-anaconda)
-      ))
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  )
-
 (use-package company
   :defer t
   :ensure t
   :init
   (add-hook 'prog-mode-hook 'company-mode)
   :config
-  (setq company-idle-delay 0))
+  (setq company-idle-delay 0)
+  (use-package company-quickhelp
+    :defer t
+    :ensure t
+    :init
+    (company-quickhelp-mode t)
+    )
 
-(use-package company-irony
-  :defer t
-  :ensure t
-  :init
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony))
+  (use-package company-anaconda
+    :defer t
+    :ensure t
+    :init
+    (eval-after-load 'company
+        '(add-to-list 'company-backends 'company-anaconda))
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    )
+
+  (use-package company-irony
+    :defer t
+    :ensure t
+    :init
+    (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-irony))
+    )
   )
 
-(use-package company-quickhelp
-  :defer t
-  :ensure t
-  :init
-  (company-quickhelp-mode t)
-  )
 
 (use-package conf
   :defer t
@@ -85,13 +59,14 @@
 (use-package diff-hl
   :defer t
   :ensure t
-  :init (global-diff-hl-mode t))
+  ;; TODO: Start up when visiting a file that is under version control instead of using the global mode.
+  :init (global-diff-hl-mode t)
+)
 
 (use-package dtrt-indent
   :defer t
   :ensure t
   :init (add-hook 'prog-mode-hook 'dtrt-indent-mode)
-  :config (setq-default dtrt-indent-min-quality 100.0)
   )
 
 (use-package evil-numbers
@@ -105,8 +80,8 @@
 (use-package expand-region
   :defer t
   :ensure t
-  :config
-  (global-set-key (kbd "C-c SPC") 'er/expand-region))
+  :bind
+  ("C-c SPC" . er/expand-region))
 
 (use-package feature-mode
   :defer t
@@ -117,13 +92,6 @@
   :defer t
   :ensure t)
 
-(use-package flx-ido
-  :defer t
-  :ensure t
-  :init
-  (flx-ido-mode t)
-  )
-
 (use-package flycheck
   :defer t
   :ensure t
@@ -132,21 +100,21 @@
   (add-hook 'LaTeX-mode-hook #'flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-  )
 
-(use-package flycheck-color-mode-line
-  :defer t
-  :ensure t
-  :init
-  (eval-after-load "flycheck"
-    '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
-  :config
-   (set-face-background 'flycheck-color-mode-line-error-face "#cc0000")
-   (set-face-background 'flycheck-color-mode-line-info-face "#73d216")
-   (set-face-background 'flycheck-color-mode-line-warning-face "#f57900")
-   (set-face-foreground 'flycheck-color-mode-line-error-face "#2E3436")
-   (set-face-foreground 'flycheck-color-mode-line-info-face "#2E3436")
-   (set-face-foreground 'flycheck-color-mode-line-warning-face "#2E3436")
+  (use-package flycheck-color-mode-line
+    :defer t
+    :ensure t
+    :init
+    (eval-after-load "flycheck"
+      '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+    :config
+    (set-face-background 'flycheck-color-mode-line-error-face "#cc0000")
+    (set-face-background 'flycheck-color-mode-line-info-face "#73d216")
+    (set-face-background 'flycheck-color-mode-line-warning-face "#f57900")
+    (set-face-foreground 'flycheck-color-mode-line-error-face "#2E3436")
+    (set-face-foreground 'flycheck-color-mode-line-info-face "#2E3436")
+    (set-face-foreground 'flycheck-color-mode-line-warning-face "#2E3436")
+    )
   )
 
 (use-package god-mode
@@ -194,7 +162,8 @@
 (use-package ido
   :defer t
   :init
-  (ido-mode)
+  (ido-mode 1)
+  (ido-everywhere 1)
   :config
   (setq ido-use-filename-at-point 'guess)
   (setq ido-file-extensions-order '(".cpp" ".hpp" ".h" ; C++ projects
@@ -209,18 +178,31 @@
   (custom-set-faces
    '(ido-only-match ((t (:inherit font-lock-constant-face))))
    '(ido-subdir ((t (:inherit font-lock-builtin-face)))))
-  )
 
-(use-package ido-ubiquitous
-  :defer t
-  :ensure t
-  :init (ido-ubiquitous-mode)
-  )
+  (use-package flx-ido
+    :defer t
+    :ensure t
+    :init
+    (flx-ido-mode t)
+    )
 
-(use-package ido-vertical-mode
-  :defer t
-  :ensure t
-  :init (ido-vertical-mode)
+  (use-package ido-ubiquitous
+    :defer t
+    :ensure t
+    :init (ido-ubiquitous-mode)
+    )
+
+  (use-package ido-vertical-mode
+    :defer t
+    :ensure t
+    :init (ido-vertical-mode)
+    )
+
+  (use-package smex
+    :defer t
+    :ensure t
+    :bind ("M-x" . smex)
+    )
   )
 
 (use-package ispell
@@ -277,17 +259,6 @@
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
   )
 
-(use-package powerline
-  :ensure t
-  :config
-  (powerline-default-theme)
-  (setq-default powerline-default-separator nil)
-  (custom-set-faces
-   '(powerline-active1 ((t (:inherit mode-line :background "dark gray"))))
-   '(powerline-active2 ((t (:inherit mode-line :background "light gray"))))
-   '(powerline-inactive1 ((t (:background "dark gray"))))
-   '(powerline-inactive2 ((t (:background "light gray"))))))
-
 (use-package rainbow-delimiters
   :defer t
   :ensure t
@@ -302,22 +273,43 @@
   (add-hook 'text-mode-hook 'rainbow-mode)
   (add-hook 'prog-mode-hook 'rainbow-mode))
 
-(use-package reftex
-  :defer t
-  :init
-  (progn
-    (setq reftex-plug-into-AUCTeX t)
-    )
-  (add-hook 'LaTeX-mode-hook 'reftex-mode)
-  )
-
 ;; (use-package smart-quotes
 ;; )
 
-(use-package smex
+(use-package tex
+  :ensure auctex
   :defer t
+  :mode ("\\.tex\\'" . latex-mode)
+  :config
+  (setq-default TeX-electric-math (cons "$" "$")
+                TeX-master nil
+                TeX-parse-self t
+                TeX-command-extra-options "-shell-escape"
+                TeX-view-program-selection '((output-dvi "xdg-open")
+                                             (output-pdf "xdg-open")
+                                             (output-html "xdg-open"))
+                font-latex-match-warning-keywords '(("fixme" "{")
+                                                    ("fxnote" "{")
+                                                    ("fxwarning" "{")
+                                                    ("fxerror" "{")
+                                                    ("fxfatal" "{")))
+
+  (use-package reftex
+    :defer t
+    :init
+    (add-hook 'LaTeX-mode-hook 'reftex-mode)
+    :config
+    (setq-default reftex-plug-into-AUCTeX t)
+    )
+  )
+
+(use-package which-key
   :ensure t
-  :bind ("M-x" . smex)
+  :diminish 'which-key-mode
+  :init
+  (which-key-mode)
+  :config
+  (which-key-enable-god-mode-support)
   )
 
 (use-package whitespace
