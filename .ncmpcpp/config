@@ -274,7 +274,7 @@
 ##   not available.
 ##
 #
-song_columns_list_format =  (20)[]{a} (5f)[green]{dE} (6f)[green]{nE} (40)[black]{t|f:Title} (30)[cyan]{b} (4)[yellow]{y} (7f)[magenta]{lr}
+song_columns_list_format =  (20)[]{a} (5f)[green]{dE} (6f)[green]{nE} (40)[black]{t|f:Title} (30)[cyan]{b} (5f)[yellow]{y} (7f)[magenta]{lr}
 #
 ##### various settings #####
 #
