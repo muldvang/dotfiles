@@ -11,4 +11,5 @@ then
 else
     status=$(echo ${status:0:1} | tr  '[a-z]' '[A-Z]')${status:1}
     echo $status
+    echo $status
 fi
