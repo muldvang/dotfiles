@@ -1,3 +1,14 @@
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/*; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+for sd_cmd in systemctl systemd-analyze systemd-run; do
+    alias $sd_cmd='DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus" '$sd_cmd
+done
+
 # Calibrate monitor colors on laptop
 if [ `hostname` = "Balder" ]; then
     $HOME/.monicarc
