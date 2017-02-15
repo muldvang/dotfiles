@@ -56,7 +56,7 @@ function fish_right_prompt -d "Write out the right prompt"
   set_color normal
   echo '@'
   set_color blue
-  hostname
+  prompt_hostname
   if test $TMUX
           set_color purple
           echo ' in tmux'
@@ -184,7 +184,7 @@ function alert --description 'Make the terminal urgent'
 end
 
 # Ring the bell when command has finished.
-function -e fish_prompt my_signal_handler
+function my_signal_handler -e fish_prompt
         echo -n \a
 end
 
