@@ -12,6 +12,11 @@ then
     echo $status
     echo $status
     echo "#f92672"
+elif echo "$status" | grep -E "Please update within the next [0-9][0-9]? days" > /dev/null
+then
+    echo "$status" | grep -E -o "Please update within the next [0-9][0-9]? days"
+    echo "Update"
 else
+    echo $status
     echo $status
 fi

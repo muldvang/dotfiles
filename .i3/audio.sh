@@ -7,6 +7,7 @@ then
     VOLUME=$(echo "$PAC" | grep -P [0-9]+% -o | head -n 1)
     SINK=$(echo "$PAC" | tail -n 1 | cut -d '"' -f 2 )
     echo $SINK": "$VOLUME
+    echo $VOLUME
 else
     VOLUME=$(amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1)
     echo $VOLUME
