@@ -216,8 +216,6 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.i3/change_volume.sh up && p
 bindsym Print --release exec --no-startup-id gnome-screenshot -a
 bindsym Shift+Print exec --no-startup-id escrotum -s -C
 bindsym XF86ScreenSaver exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
-bindsym $mod+Shift+s exec --no-startup-id ~/.i3/switch_screen.fish
-bindsym $mod+Shift+a exec --no-startup-id ~/.i3/switch_audio_output.fish && pkill -RTMIN+1 i3blocks
 bindsym $mod+Escape exec --no-startup-id ~/.i3/dmenu_nested.py -j ~/.i3/system_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn sans-9 -h 18 -b" && pkill -RTMIN+1 i3blocks
 
 # class                 border  backgr. text    indicator child_border

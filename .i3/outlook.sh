@@ -22,16 +22,16 @@ then
 
    if test $mail -gt 0 -a $cal -gt 0
    then
-       echo "Mail and cal"
-       echo "Mail and cal"
+       echo "Mail and appointment"
+       echo "Mail and appointment"
        echo "#A52A2A"
    elif test $mail -gt 0
    then
        echo "Mail"
    elif test $cal -gt 0
    then
-       echo "Cal"
-       echo "Cal"
+       echo "Appointment"
+       echo "Appointment"
        echo "#A52A2A"
    fi
 fi
