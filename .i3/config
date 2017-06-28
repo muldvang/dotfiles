@@ -194,11 +194,16 @@ assign [title="Microsoft Silverlight"] 3
 
 assign [class="Skype"] 3. Com
 
+assign [class="VirtualBox"] 2. Windows
+
 # Switch between workspaces and the active monitor
 bindsym $mod+u workspace prev_on_output
 bindsym $mod+i workspace next_on_output
 bindsym $mod+comma workspace prev_on_output
 bindsym $mod+period workspace next_on_output
+
+# Move workspace to other monitor
+bindsym $mod+o move workspace to output right
 
 # Rename workspace
 bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/common_workspaces.txt | dmenu -p 'Workspace name' -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn 'sans-9' -h 18 -b)'\"'
