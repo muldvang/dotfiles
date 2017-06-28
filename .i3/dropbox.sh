@@ -2,7 +2,7 @@
 
 
 # status=$(dropbox-cli status)
-status=$(echo -e 'get_dropbox_status\ndone' | socat - /home/muldvang/.dropbox/command_socket | grep status | cut -f 2)
+status=$(echo -e 'get_dropbox_status\ndone' | socat - ~/.dropbox/command_socket | grep status | cut -f 2)
 
 if test "$status" = "Up to date"
 then
