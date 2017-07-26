@@ -2,7 +2,8 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (set-scroll-bar-mode nil)
-(setq frame-title-format '("" "%b - Emacs"))
+(setq frame-title-format "%b - Emacs")
+(setq icon-title-format "%b - Emacs")
 
 ;; Frame stuff
 (line-number-mode t)
