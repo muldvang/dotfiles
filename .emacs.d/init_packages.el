@@ -247,7 +247,7 @@
   (set-face-attribute 'org-block nil :family "monospace")
   (set-face-attribute 'org-block-background nil :family "monospace")
   (set-face-attribute 'org-code nil :family "monospace")
-  (set-face-attribute 'org-meta-line nil :foreground "light gray")
+  (set-face-attribute 'org-meta-line nil :foreground "#AAA")
   (set-face-attribute 'org-table nil :foreground "#2E3436" :family "monospace")
   (set-face-attribute 'org-verbatim nil :family "monospace")
   )
