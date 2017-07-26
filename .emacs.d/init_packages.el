@@ -212,6 +212,10 @@
   (setq ispell-program-name "/usr/bin/hunspell")
   )
 
+(use-package json-mode
+  :defer t
+  :ensure t)
+
 (use-package markdown-mode
   :defer t
   :ensure t)
