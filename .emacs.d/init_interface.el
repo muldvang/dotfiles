@@ -14,16 +14,16 @@
 (setq-default mode-line-format
               '(
                 (:propertize " %* ")
-                (:propertize " %z ")
+                ;; (:propertize " %z ")
                 (:propertize " %b " face (:weight bold))
                 (:propertize " " face (:background "grey"))
                 (:propertize mode-name face (:background "grey"))
                 (:propertize minor-mode-alist face (:background "grey"))
                 (:propertize " " face (:background "grey"))
 
-                (:propertize " " display '(space :align-to (- right 18)))
+                (:propertize " " display '(space :align-to (- right 11)))
                 (:propertize " %l:%c ")
-                (:propertize " %p ")
+                ;; (:propertize " %p ")
                ))
 
 ;; Buffer stuff
