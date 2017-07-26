@@ -307,6 +307,14 @@
     )
   )
 
+(use-package web-mode
+  :ensure t
+  :defer t
+  :mode (("\\.html\\'" . web-mode))
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  )
+
 (use-package which-key
   :ensure t
   :diminish 'which-key-mode
