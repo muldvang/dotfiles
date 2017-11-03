@@ -7,26 +7,47 @@ then
     exit
 fi
 
-full=$(echo $ACPI | grep -P "Unknown|Full|99%")
+full=$(echo $ACPI | grep -P "Unknown|Full|99%|zero")
 
 if test "$full" != ""
 then
    exit
-else
-    state=$(echo $ACPI | cut -d " " -f 3 | cut -d "," -f 1)
-    hours=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 1)
-    minutes=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 2)
+fi
 
-    if test "$hours" == "charging"
-    then
-        echo $state
-        exit
-    fi
+pct=$(cat /sys/class/power_supply/BAT0/capacity)
+state=$(cat /sys/class/power_supply/BAT0/status)
 
-    echo $hours:$minutes $state
-    echo $hours:$minutes
-    if test $state == "Discharging" -a $hours -eq 0 -a $minutes -lt 10
+if test $pct -lt 10
+then
+    if test "$state" == "Discharging"
     then
+        hours=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 1)
+        minutes=$(echo $ACPI | cut -d " " -f 5 | cut -d ":" -f 2)
+        echo  $hours:$minutes
+        echo 
         echo "#A52A2A"
+    else
+        echo 
+        echo 
     fi
+elif test $pct -lt 30
+then
+    echo 
+    echo 
+elif test $pct -lt 60
+then
+    echo 
+    echo 
+elif test $pct -lt 90
+then
+    echo 
+    echo 
+else
+    echo 
+    echo 
+fi
+
+if test $state == "Charging"
+then
+    echo "#4E9A06"
 fi

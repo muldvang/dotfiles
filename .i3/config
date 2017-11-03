@@ -175,7 +175,7 @@ bar {
 # Start often used programs
 bindsym $mod+F1 exec emacsclient -c
 bindsym $mod+F2 exec qutebrowser
-bindsym $mod+F3 exec termite -e ranger
+bindsym $mod+F3 exec termite -e ranger --icon system-file-manager
 bindsym $mod+F4 exec termite -e ncmpcpp
 bindsym $mod+F12 exec /home/muldvang/viaplay.sh
 

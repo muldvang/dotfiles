@@ -7,16 +7,15 @@ status=$(echo -e 'get_dropbox_status\ndone' | socat - ~/.dropbox/command_socket 
 if test "$status" = "Up to date"
 then
     exit
-elif test "$status" = Unwatched
+elif test "$status" = Unwatched -o "$status" = Connecting...
 then
-    echo $status
-    echo $status
-    echo "#f92672"
+    echo 
+    echo 
+    echo "#cc0000"
 elif echo "$status" | grep -E "Please update within the next [0-9][0-9]? days" > /dev/null
 then
-    echo "$status" | grep -E -o "Please update within the next [0-9][0-9]? days"
-    echo "Update"
+    echo  "$status" | grep -E -o "Please update within the next [0-9][0-9]? days"
+    echo  "Update"
 else
-    echo $status
-    echo $status
+    echo  "$status"
 fi
