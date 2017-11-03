@@ -179,26 +179,13 @@ bindsym $mod+F3 exec termite -e ranger --icon system-file-manager
 bindsym $mod+F4 exec termite -e ncmpcpp
 bindsym $mod+F12 exec /home/muldvang/viaplay.sh
 
-# Standard layout
-workspace_layout tabbed
-
-# Put xbmc to workspace 2 and make it fullscreen
-assign [class="Kodi"] 2
-for_window [class="Kodi"] fullscreen
-
-# for_window [class="VirtualBox"] border pixel 0
 for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
-
-for_window [title="Microsoft Silverlight"] fullscreen
-assign [title="Microsoft Silverlight"] 3
 
 assign [class="Skype"] 3. Com
 
 assign [class="VirtualBox"] 2. Windows
 
-# Switch between workspaces and the active monitor
-bindsym $mod+u workspace prev_on_output
-bindsym $mod+i workspace next_on_output
+# Switch between workspaces on the active monitor
 bindsym $mod+comma workspace prev_on_output
 bindsym $mod+period workspace next_on_output
 
