@@ -60,3 +60,4 @@ c.tabs.show = 'never'
 c.tabs.tabs_are_windows = True
 
 c.url.start_pages = 'about:blank'
+c.url.searchengines = {"DEFAULT" : "https://encrypted.google.com/search?q={}"}
