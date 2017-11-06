@@ -6,5 +6,5 @@ then
 else
     echo 
     echo 
-    echo "#cc0000"
+    echo "#A52A2A"
 fi
