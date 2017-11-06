@@ -1,10 +1,10 @@
 {
-    "Outlook": "~/switch-to-or-open.sh 'Outlook Web App - Mozilla Firefox' '2 ' 'firefox https://qiamail01.qiagen.com/owa/'",
-    "Skype": "~/switch-to-or-open.sh 'Skype for Linux Beta' '3 ' 'skypeforlinux'",
-    "Seqflow-IVD": "~/switch-to-or-open.sh 'Fake middleware - qutebrowser|Seqflow-IVD - qutebrowser' '' 'qutebrowser ~/Dropbox/Public/seqflow-ivd/index.html'",
-    "ncmpcpp": "~/switch-to-or-open.sh 'ncmpcpp' '' 'termite -e ncmpcpp'",
-    "Jenkins": "~/switch-to-or-open.sh '\\[Jenkins\\]' '6 ' '/usr/bin/qutebrowser http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20pipeline/'",
-    "JIRA": "~/switch-to-or-open.sh \"QIAGEN Bioinformatics JIRA\" \"\" \"/usr/bin/qutebrowser https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=130&view=planning.nodetail&quickFilter=393\"",
-    "Eclipse": "~/switch-to-or-open.sh \"\\- Eclipse\" \"5 \" \"/home/tandersen/.local/opt/eclipse-neon/eclipse\"",
-    "Windows 7": "~/switch-to-or-open.sh \"Windows 7 \\[Running\\] - Oracle VM VirtualBox\" \"1 \" \"VBoxManage startvm 'Windows 7'\""
+    "Outlook": "~/.i3/switch-to-or-open.sh 'Outlook Web App - Mozilla Firefox' '2 ' 'firefox https://qiamail01.qiagen.com/owa/'",
+    "Skype": "~/.i3/switch-to-or-open.sh 'Skype for Linux Beta' '3 ' 'skypeforlinux'",
+    "Seqflow-IVD": "~/.i3/switch-to-or-open.sh 'Fake middleware - qutebrowser|Seqflow-IVD - qutebrowser' '' 'qutebrowser ~/Dropbox/Public/seqflow-ivd/index.html'",
+    "ncmpcpp": "~/.i3/switch-to-or-open.sh 'ncmpcpp' '' 'termite -e ncmpcpp'",
+    "Jenkins": "~/.i3/switch-to-or-open.sh '\\[Jenkins\\]' '6 ' '/usr/bin/qutebrowser http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20pipeline/'",
+    "JIRA": "~/.i3/switch-to-or-open.sh \"QIAGEN Bioinformatics JIRA\" \"\" \"/usr/bin/qutebrowser https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=130&view=planning.nodetail&quickFilter=393\"",
+    "Eclipse": "~/.i3/switch-to-or-open.sh \"\\- Eclipse\" \"5 \" \"/home/tandersen/.local/opt/eclipse-neon/eclipse\"",
+    "Windows 7": "~/.i3/switch-to-or-open.sh \"Windows 7 \\[Running\\] - Oracle VM VirtualBox\" \"1 \" \"VBoxManage startvm 'Windows 7'\""
 }
