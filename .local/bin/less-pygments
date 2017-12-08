@@ -1,0 +1,12 @@
+#!/usr/bin/fish
+
+function less
+    set file_extension (echo $argv | rev | cut -d "." -f 1 | rev)
+    if cat /usr/lib/python3.*/site-packages/pygments/lexers/*.py | tr -d "\n" | grep -o -P "filenames = \[('(\*)*(\.)*[A-Za-z+_]*'(,( )*)*)+" | cut -d "[" -f 2 | grep -o -P "[A-Za-z+_]+" | grep -x $file_extension > /dev/null
+        pygmentize $argv | command less -R ^ /dev/null
+    else
+        command less -R $argv
+    end
+end
+
+less $argv

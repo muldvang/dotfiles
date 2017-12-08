@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import shlex
+
 """dmenu wrapper script that calls sub-menus based on JSON structure.
 
 Dictionary keys are command names.
@@ -21,18 +23,21 @@ from collections import OrderedDict
 from subprocess import Popen, call, PIPE
 from argparse import ArgumentParser, FileType
 
+
 def show_menu(args, menus):
     """Recursive function to walk menus dict and call dmenu cmd/exec result."""
     proc = Popen(args.menucmd.split(), stdin=PIPE, stdout=PIPE)
     choice, _ = proc.communicate('\n'.join(menus).encode('utf-8'))
     choice = choice.strip().decode('utf-8')
+    print(menus[choice])
     if choice:
         if isinstance(menus[choice], OrderedDict):
             # Sub-menu selected. Loop again
             show_menu(args, menus[choice])
         elif menus[choice]:
             # Specific command defined
-            command = [os.path.expanduser(x) for x in menus[choice].split()]
+            command = [os.path.expanduser(x)
+                       for x in shlex.split(menus[choice])]
             call(command)
         else:
             # Call the command title

@@ -14,9 +14,9 @@ then
 else
     if test "$1" = down
     then
-        amixer -q set PCM 2%-
+        env ALSA_CARD=PCH amixer -q set PCM 2%-
     elif test "$1" = up
     then
-        amixer -q set PCM 2%+
+        env ALSA_CARD=PCH amixer -q set PCM 2%+
     fi
 fi

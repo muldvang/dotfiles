@@ -88,6 +88,7 @@
 !.local/share/applications/mimeapps.list
 .local/bin/*
 !.local/bin/i3lock-blur
+!.local/bin/less-pygments
 .lyrics
 .macromedia
 .mozilla

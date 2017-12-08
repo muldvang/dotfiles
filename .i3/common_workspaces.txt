@@ -7,10 +7,12 @@
 7
 8
 9
-1. Slack
-2. Windows
-3. Com
-4. Web
-5. Code
-6. Misc
-7. Web tools
+0 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+9 

@@ -7,6 +7,6 @@ m https://mail.google.com/mail/u/0/#inbox
 eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
 jenkins http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20modules%20pipeline/
 jira https://intranet.clcbio.com/jira/secure/RapidBoard.jspa?rapidView=130&useStoredSettings=true
-confluence seqflow-ivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+2015
 fisheye https://intranet.clcbio.com/fisheye/changelog/seqflowivdrepo
 jenkins http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20pipeline/
+confluence seqflowivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+Current

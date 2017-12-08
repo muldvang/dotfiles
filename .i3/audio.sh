@@ -13,7 +13,7 @@
 #     echo $VOLUME
 # fi
 
-VOLUME=$(amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
+VOLUME=$(env ALSA_CARD=PCH amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
 
 SVOL=$(($VOLUME / 5))
 

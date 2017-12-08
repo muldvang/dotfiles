@@ -236,7 +236,7 @@
 #
 ## Note: colors are not supported for below variable.
 ##
-#song_window_title_format = {%a - }{%t}|{%f}
+song_window_title_format = {%a - }{%t}|{%f} - ncmpcpp
 #
 ##### columns settings #####
 ##
