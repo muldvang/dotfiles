@@ -1,0 +1,47 @@
+* {
+    background-color: #EDEDED;
+    text-color: #2e3436;
+    font: "sans 9";
+}
+
+configuration {
+    display-drun: "Launch";
+}
+
+#window {
+    anchor: south;
+    location: south;
+    width: 100%;
+    padding: 0px;
+    children: [ horibox ];
+}
+
+#horibox {
+    orientation: horizontal;
+    children: [ prompt, entry, listview ];
+}
+
+#listview {
+    layout: horizontal;
+    spacing: 5px;
+    lines: 100;
+    cycle: false;
+}
+
+#entry {
+    expand: false;
+    width: 10em;
+    padding: 2px 2;
+}
+
+#element {
+    padding: 2px 8px;
+    highlight: bold;
+}
+#element selected {
+    background-color: #4a90d9;
+}
+#prompt {
+    background-color: #4a90d9;
+    padding: 2px 8px;
+}
