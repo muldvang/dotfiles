@@ -117,6 +117,12 @@
     )
   )
 
+(use-package flyspell
+  :config
+  (eval-after-load "flyspell" '(progn
+                                 (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
+                                 (define-key flyspell-mouse-map [mouse-3] 'undefined))))
+
 (use-package god-mode
   :ensure t
   :bind ("<escape>" . god-mode-all)
@@ -186,7 +192,7 @@
     (flx-ido-mode t)
     )
 
-  (use-package ido-ubiquitous
+  (use-package ido-completing-read+
     :defer t
     :ensure t
     :init (ido-ubiquitous-mode)
@@ -276,6 +282,42 @@
   :init
   (add-hook 'text-mode-hook 'rainbow-mode)
   (add-hook 'prog-mode-hook 'rainbow-mode))
+
+(use-package rst
+  :init
+  (add-hook 'rst-mode-hook #'flycheck-mode)
+  (add-hook 'rst-mode-hook 'adaptive-wrap-prefix-mode)
+  (add-hook 'rst-mode-hook 'flyspell-mode)
+  (add-hook 'rst-mode-hook 'table-recognize)
+
+  (defun torben-preview ()
+    (interactive)
+    (compile "rst2html.py test.rst /tmp/rst-preview.html")
+    (sleep-for 1)
+    (other-window 1)
+    (eww-open-file "/tmp/rst-preview.html")
+    (other-window 1)
+      )
+
+  (add-hook 'rst-mode-hook (lambda ()
+                             ;; Setup toolbar
+                             (tool-bar-mode)
+                             (tool-bar-add-item "spell" 'rst-insert-list 'rst-insert-list :help "Start a new list or add element to current list")
+                             (tool-bar-add-item "right-arrow" 'table-widen-cell 'table-widen-cell :help "Widen")
+                             (tool-bar-add-item "left-arrow" 'table-narrow-cell 'table-narrow-cell :help "Narrow")
+                             (tool-bar-add-item "up-arrow" 'table-shorten-cell 'table-shorten-cell :help "Shorten")
+                             (tool-bar-add-item "spell" 'torben-preview 'torben-preview :help "Preview")))
+  (add-hook 'rst-mode-hook (lambda ()
+                             ;; Add Imenu to the menu bar in any mode that supports it.
+                             (menu-bar-mode)
+                             (defun try-to-add-imenu ()
+                               (condition-case nil
+                                   (imenu-add-to-menubar "Outline")
+                                 (error nil)))
+                             (add-hook 'font-lock-mode-hook #'try-to-add-imenu)))
+  :config
+  )
+
 
 ;; (use-package smart-quotes
 ;; )
