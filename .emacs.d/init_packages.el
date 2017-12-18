@@ -375,3 +375,7 @@
   :config
   (setq whitespace-style '(tab-mark))
   )
+
+(use-package jira-markup-mode
+  :ensure t
+  )
