@@ -13,7 +13,12 @@
 #     echo $VOLUME
 # fi
 
-VOLUME=$(env ALSA_CARD=PCH amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
+if $(hostname) == 'laptop-110':
+then
+    VOLUME=$(env ALSA_CARD=PCH amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
+else
+    VOLUME=$(env amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
+fi
 
 SVOL=$(($VOLUME / 5))
 
