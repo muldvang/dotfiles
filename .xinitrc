@@ -48,5 +48,8 @@ xrdb ~/.Xresources &
 # Disable screensaver
 xset s off
 
+# Disable at-spi-* process
+export NO_AT_BRIDGE=1
+
 # Execute window manager
 exec dbus-launch i3
