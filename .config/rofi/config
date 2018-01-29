@@ -39,7 +39,7 @@ rofi.modi: drun
 ! "Theme to use to look for icons" Set from: Default
 ! rofi.drun-icon-theme:
 ! "Disable history in run/ssh" Set from: Default
-! rofi.disable-history:                false
+rofi.disable-history:                true
 ! "Use sorting" Set from: Default
 rofi.sort: true
 ! "Use levenshtein sorting also for fuzzy matching" Set from: Default
@@ -61,9 +61,9 @@ rofi.sort: true
 ! "Set the modi to combine in combi mode" Set from: Default
 ! rofi.combi-modi:                     window,run
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
-! rofi.matching:                       normal
+rofi.matching:                       fuzzy
 ! "Tokenize input string" Set from: Default
-! rofi.tokenize:                       true
+rofi.tokenize:                       false
 ! "Monitor id to show on" Set from: Default
 ! rofi.m:                              -5
 ! "Margin between rows *DEPRECATED*" Set from: Default
