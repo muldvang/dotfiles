@@ -21,6 +21,8 @@
   (add-hook 'prog-mode-hook 'company-mode)
   :config
   (setq company-idle-delay 0)
+  (set-face-attribute 'company-tooltip nil :background "#EDEDED")
+  (set-face-attribute 'company-tooltip-selection nil :background "#a5a5a1")
   (use-package company-quickhelp
     :defer t
     :ensure t
@@ -150,7 +152,7 @@
 
 (use-package hl-line
   :config
-  (set-face-background 'hl-line "#EEE")
+  (set-face-background 'hl-line "#EDEDED")
   (set-face-foreground 'highlight nil)
   :init
   (global-hl-line-mode t)

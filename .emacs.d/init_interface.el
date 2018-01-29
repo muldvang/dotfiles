@@ -24,10 +24,14 @@
                 (:propertize " " display '(space :align-to (- right 11)))
                 (:propertize " %l:%c ")
                 ;; (:propertize " %p ")
-               ))
+                ))
+
+(set-face-attribute 'mode-line nil :background "#EDEDED")
 
 ;; Buffer stuff
 (load-theme 'adwaita t)
+(set-face-attribute 'default nil :background "white")
+
 (set-face-attribute 'default nil :family "monospace" :height 95)
 (blink-cursor-mode 0)
 (setq visible-bell t)
