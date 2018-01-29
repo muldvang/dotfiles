@@ -1,4 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
+if $(hostname) == 'laptop-110':
+then
+   ALSA_CARD=PCH
+fi
 
 if pgrep pulseaudio > /dev/null
 then
@@ -14,9 +19,9 @@ then
 else
     if test "$1" = down
     then
-        env ALSA_CARD=PCH amixer -q set PCM 2%-
+        amixer -q set PCM 2%-
     elif test "$1" = up
     then
-        env ALSA_CARD=PCH amixer -q set PCM 2%+
+        amixer -q set PCM 2%+
     fi
 fi
