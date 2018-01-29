@@ -80,7 +80,7 @@ icon_name = utilities-terminal
 [colors]
 foreground      = #2E3436
 foreground_bold = #2E3436
-background      = #EDEDED
+background      = #FFFFFF
 
 # 16 color space
 color0  = #2E3436
@@ -98,4 +98,4 @@ color11 = #CE5C00
 color12 = #204A87
 color13 = #A020F0
 color14 = #0084C8
-color15 = #EDEDED
+color15 = #FFFFFF
