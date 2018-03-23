@@ -23,6 +23,7 @@
   (setq company-idle-delay 0)
   (set-face-attribute 'company-tooltip nil :background "#EDEDED")
   (set-face-attribute 'company-tooltip-selection nil :background "#a5a5a1")
+  (setq company-dabbrev-downcase nil)
   (use-package company-quickhelp
     :defer t
     :ensure t
@@ -141,6 +142,13 @@
   (define-key god-local-mode-map (kbd ".") 'repeat)
   (define-key god-local-mode-map (kbd "i") 'god-local-mode)
   )
+
+(use-package groovy-mode
+  :ensure t
+  :config
+  (add-hook 'groovy-mode-hook
+            (lambda ()
+              (c-set-offset 'label 4))))
 
 (use-package hungry-delete
   :diminish 'hungry-delete-mode
