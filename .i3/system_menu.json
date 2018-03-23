@@ -8,9 +8,9 @@
         "Enhanced": "~/.i3/keyboard_enhanced.sh"
     },
     "Monitors": {
-        "Clone": "ls",
+        "Clone": "mons -d",
         "Work setup": "xrandr --output DP1-1 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-1",
-        "Laptop only": "xrandr --output DP1-1 --off --output HDMI1 --off --output eDP1 --mode 1600x900"
+        "Laptop only": "mons -o"
     },
     "Audio": {
         "Next sink": "~/.i3/switch_audio_output.fish"
