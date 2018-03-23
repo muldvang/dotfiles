@@ -183,7 +183,9 @@ bindsym $mod+F4 exec termite -e ncmpcpp
 bindsym $mod+y exec --no-startup-id ~/.i3/dmenu_nested.py -j ~/.i3/programs_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn sans-9 -h 18 -b" && pkill -RTMIN+1 i3blocks
 
 for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
-for_window [class="Eclipse"] border pixel 2
+for_window [title="Open Type"] floating disable
+for_window [title="Show View"] floating disable
+for_window [title="Preferences"] floating disable
 
 # Switch between workspaces on the active monitor
 bindsym $mod+comma workspace prev_on_output
