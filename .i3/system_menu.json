@@ -9,7 +9,7 @@
     },
     "Monitors": {
         "Clone": "mons -d",
-        "Work setup": "xrandr --output DP1-1 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-1",
+        "Work setup": "xrandr --output DP1-2 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-2",
         "Laptop only": "mons -o"
     },
     "Audio": {

@@ -184,6 +184,7 @@ bindsym $mod+y exec --no-startup-id ~/.i3/dmenu_nested.py -j ~/.i3/programs_menu
 
 for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
 for_window [title="Open Type"] floating disable
+for_window [title="Open Resource"] floating disable
 for_window [title="Show View"] floating disable
 for_window [title="Preferences"] floating disable
 

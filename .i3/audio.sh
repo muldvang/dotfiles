@@ -13,9 +13,9 @@
 #     echo $VOLUME
 # fi
 
-if $(hostname) == 'laptop-110':
+if test $(hostname) = 'laptop-110.informatics.qiagen.ads'
 then
-    VOLUME=$(env ALSA_CARD=PCH amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
+    VOLUME=$(env ALSA_CARD=PCH amixer get Master | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
 else
     VOLUME=$(env amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
 fi
@@ -31,10 +31,10 @@ do
     echo -n █
 done
 
-if test $VOLUME == 100
+if test $VOLUME = 100
 then
     echo -n █
-elif test $VOLUME == 0
+elif test $VOLUME = 0
 then
     echo -n ' '
 else
