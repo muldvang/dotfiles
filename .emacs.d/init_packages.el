@@ -14,6 +14,12 @@
   (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
   (add-hook 'LaTeX-mode-hook 'adaptive-wrap-prefix-mode))
 
+(use-package aggressive-indent
+  :ensure t
+  :init
+  (global-aggressive-indent-mode 1)
+  )
+
 (use-package company
   :defer t
   :ensure t
@@ -47,8 +53,20 @@
     (eval-after-load 'company
       '(add-to-list 'company-backends 'company-irony))
     )
-  )
 
+  (use-package company-tern
+    :defer t
+    :ensure t
+    :init
+    (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-tern))
+    )
+
+  (use-package jquery-doc
+    :defer t
+    :ensure t
+    )
+)
 
 (use-package conf
   :defer t
@@ -358,6 +376,9 @@
     (setq-default reftex-plug-into-AUCTeX t)
     )
   )
+
+(use-package try
+  :ensure t)
 
 (use-package web-mode
   :ensure t
