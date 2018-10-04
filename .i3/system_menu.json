@@ -3,16 +3,13 @@
     "Suspend": "systemctl suspend",
     "Reboot": "systemctl reboot",
     "Poweroff": "systemctl poweroff",
-    "Keyboard": {
-        "Standard": "~/.i3/keyboard_standard.sh",
-        "Enhanced": "~/.i3/keyboard_enhanced.sh"
-    },
-    "Monitors": {
-        "Clone": "mons -d",
-        "Work setup": "xrandr --output DP1-2 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-2",
-        "Laptop only": "mons -o"
-    },
+    "Standard keyboard layout": "~/.i3/keyboard_standard.sh",
+    "Enhanced keyboard layout": "~/.i3/keyboard_enhanced.sh",
+    "Clone monitors": "mons -d",
+    "Work monitor setup": "xrandr --output DP1-2 --mode 1920x1080 --output eDP1 --mode 1368x768 --left-of DP1-2",
+    "Laptop monitor only": "mons -o",
     "Audio": {
         "Next sink": "~/.i3/switch_audio_output.fish"
-    }
+    },
+    "Pause/play music": "mpc toggle"
 }
