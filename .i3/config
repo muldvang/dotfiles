@@ -6,6 +6,7 @@
 #
 
 exec --no-startup-id systemctl --user start wallpaperd
+exec --no-startup-id systemctl --user start polybar
 exec --no-startup-id bash -c 'sleep 0.5 && systemctl --user start i3lock'
 
 # i3 config file (v4)
@@ -67,10 +68,10 @@ mode "move" {
         bindsym Right move right
 
         # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+        bindsym Return exec ~/.i3/mode-leave.sh
+        bindsym Escape exec ~/.i3/mode-leave.sh
 }
-bindsym $mod+m mode "move"
+bindsym $mod+m exec ~/.i3/mode.sh move
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -147,31 +148,10 @@ mode "resize" {
         bindsym Right resize grow width 3 px or 3 ppt
 
         # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+        bindsym Return exec ~/.i3/mode-leave.sh
+        bindsym Escape exec ~/.i3/mode-leave.sh
 }
-bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
-bar {
-        status_command i3blocks
-        mode dock
-        font pango:sans, fontawesome 9
-        colors {
-                background #ededed
-                statusline #2e3436
-
-                binding_mode  #73d216 #73d216 #2e3436
-
-                # Workspaces       Border  Backgr. Text
-                focused_workspace  #4a90d9 #4a90d9 #2e3436
-                active_workspace   #a5a5a1 #a5a5a1 #2e3436
-                inactive_workspace #ededed #ededed #2e3436
-                urgent_workspace   #cc0000 #cc0000 #2e3436
-        }
-}
+bindsym $mod+r exec ~/.i3/mode.sh resize
 
 # Launch commonly used programs
 bindsym $mod+F1 exec emacsclient -c
