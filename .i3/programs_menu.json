@@ -4,7 +4,7 @@
   "Seqflow-IVD": "~/.i3/switch-to-or-open.sh 'Fake middleware - qutebrowser|Seqflow-IVD - qutebrowser' '' 'qutebrowser ~/Dropbox/Public/seqflow-ivd/index.html'",
   "ncmpcpp": "~/.i3/switch-to-or-open.sh 'ncmpcpp' '' 'termite -e ncmpcpp'",
   "Jenkins": "~/.i3/switch-to-or-open.sh '\\[Jenkins\\]' '6 ' '/usr/bin/qutebrowser http://jenkins-ivd:8080/jenkins-ivd/view/HIV%20pipeline/'",
-  "JIRA": "~/.i3/switch-to-or-open.sh \"QIAGEN Bioinformatics JIRA\" \"\" \"/usr/bin/qutebrowser https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=130&view=planning.nodetail&quickFilter=393\"",
+  "JIRA": "~/.i3/switch-to-or-open.sh \"QIAGEN Bioinformatics JIRA\" \"\" \"/usr/bin/qutebrowser https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?projectKey=SIPCA&rapidView=197&view=planning\"",
   "Eclipse": "~/.i3/switch-to-or-open.sh \"\\- Eclipse\" \"5 \" \"/home/tandersen/.local/opt/eclipse-photon/eclipse\"",
   "Windows 7": "~/.i3/switch-to-or-open.sh \"Windows 7 \\[Running\\] - Oracle VM VirtualBox\" \"1 \" \"VBoxManage startvm 'Windows 7'\""
 }

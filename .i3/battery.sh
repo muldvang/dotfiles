@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-ACPI=$(acpi -b 2>&1)
+ACPI=$(acpi -b 2>&1 | tail -n 1)
 if test "$no_support" != ""
 then
     exit
