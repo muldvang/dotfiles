@@ -1,3 +1,6 @@
-p, td, li, dd {
+p, td, dd {
+    max-width: 75ch
+}
+p ~ ul {
     max-width: 75ch
 }
