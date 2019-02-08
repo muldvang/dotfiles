@@ -144,6 +144,12 @@
                                  (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
                                  (define-key flyspell-mouse-map [mouse-3] 'undefined))))
 
+(use-package frames-only-mode
+  :ensure t
+  :defer t
+  :init
+  (frames-only-mode 1))
+
 (use-package god-mode
   :ensure t
   :bind ("<escape>" . god-mode-all)
