@@ -189,6 +189,10 @@
   :ensure t
   )
 
+(use-package ialign
+  :defer t
+  :ensure t)
+
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer)
   )
