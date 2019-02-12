@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
+echo 
+echo 
 if ip addr | grep -P ".*inet.* w" &> /dev/null
 then
-    exit
+    echo "#4E9A06"
 else
-    echo 
-    echo 
     echo "#A52A2A"
 fi
