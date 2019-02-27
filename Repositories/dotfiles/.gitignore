@@ -320,3 +320,5 @@ CLC_Data
 .pdfbox.cache
 .config/qutebrowser/qsettings
 .calc_history*
+.config/systemd/user/graphical.target.wants/
+.config/systemd/user/multi-user.target.wants/
