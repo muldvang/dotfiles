@@ -37,16 +37,10 @@ if [ `hostname` = "Balder" ]; then
     rfkill block bluetooth && rfkill block wwan
 fi
 
-# Disable dpms
-xset -dpms
-
 # Read .Xresources
 xrdb ~/.Xresources &
 
 # xrandr --dpi 120
-
-# Disable screensaver
-xset s off
 
 # Disable at-spi-* process
 export NO_AT_BRIDGE=1
