@@ -1,0 +1,12 @@
+[Unit]
+Description=qutebrowser
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/qutebrowser --nowindow --backend webengine
+Restart=always
+Environment=DISPLAY=:0
+
+
+[Install]
+WantedBy=default.target
