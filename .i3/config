@@ -4,6 +4,7 @@
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard(1).
 #
+bindsym $mod+g exec termite
 
 exec --no-startup-id systemctl --user start wallpaperd
 exec --no-startup-id systemctl --user start polybar
@@ -28,19 +29,8 @@ font pango:sans 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec termite -e fish
-
 # kill focused window
 bindsym $mod+q kill
-
-# start dmenu (a program launcher)
-bindsym $mod+p exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn 'sans-9' -h 18 -b" --term=termite
-bindsym $mod+Shift+p exec --no-startup-id rofi -show drun
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -153,15 +143,6 @@ mode "resize" {
 }
 bindsym $mod+r exec ~/.i3/mode.sh resize
 
-# Launch commonly used programs
-bindsym $mod+F1 exec emacsclient -c
-bindsym $mod+F2 exec qutebrowser
-bindsym $mod+F3 exec termite -e ranger --icon system-file-manager
-bindsym $mod+F4 exec termite -e ncmpcpp
-
-# Launch or switch to applications
-bindsym $mod+y exec --no-startup-id ~/.i3/dmenu_nested.py -j ~/.i3/programs_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn sans-9 -h 18 -b" && pkill -RTMIN+1 i3blocks
-
 for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
 for_window [title="Open Type"] floating disable
 for_window [title="Open Resource"] floating disable
@@ -180,18 +161,6 @@ bindsym $mod+t exec --no-startup-id i3-msg rename workspace to '\"'$(cat ~/.i3/c
 
 # Rename window
 bindsym $mod+n exec --no-startup-id ~/.i3/rename_window.sh
-
-# Extra keyboard shortcuts for multimedia and stuff
-bindsym XF86AudioNext exec --no-startup-id mpc next && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioPrev exec --no-startup-id mpc prev && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioStop exec --no-startup-id mpc stop && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.i3/change_volume.sh down && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.i3/change_volume.sh up && pkill -RTMIN+1 i3blocks
-bindsym Print --release exec --no-startup-id gnome-screenshot -a
-bindsym Shift+Print exec --no-startup-id escrotum -s -C
-bindsym XF86ScreenSaver exec --no-startup-id bash -c 'i3lock -i $(shuf -n 1 -e ~/Pictures/wallpapers/Van_Gogh/*)'
-bindsym $mod+Escape exec --no-startup-id ~/.i3/dmenu_nested.py -j ~/.i3/system_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn sans-9 -h 18 -b" && pkill -RTMIN+1 i3blocks
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4A90D9 #4A90D9 #2e3436 #73d216   #4A90D9
