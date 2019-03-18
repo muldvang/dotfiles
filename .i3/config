@@ -143,6 +143,23 @@ mode "resize" {
 }
 bindsym $mod+r exec ~/.i3/mode.sh resize
 
+bar {
+        status_command i3blocks
+        mode dock
+        font pango:sans, fontawesome 9
+        colors {
+                background #ededed
+                statusline #2e3436
+
+                binding_mode  #73d216 #73d216 #2e3436
+
+                # Workspaces       Border  Backgr. Text
+                focused_workspace  #4a90d9 #4a90d9 #2e3436
+                active_workspace   #a5a5a1 #a5a5a1 #2e3436
+                inactive_workspace #ededed #ededed #2e3436
+                urgent_workspace   #cc0000 #cc0000 #2e3436
+}
+
 for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
 for_window [title="Open Type"] floating disable
 for_window [title="Open Resource"] floating disable
