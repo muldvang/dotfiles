@@ -1,6 +1,6 @@
 [user]
-	email = Torben.Andersen@qiagen.com
-	name = Torben Muldvang Andersen - QIAGEN
+	email = muldvang@gmail.com
+	name = Torben Muldvang Andersen
 [push]
 	default = simple
 [color]
@@ -9,15 +9,6 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [filter "lfs"]
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+	smudge = git-lfs smudge --skip -- %f
+	process = git-lfs filter-process --skip
 	required = true
-	useJGitBuiltin = true
-[merge "keepTheir"]
-	name = always keep their during merge
-	driver = cp -f %B %A
-[rerere]
-	enabled = true
-[merge "keepOur"]
-	name = always keep ours during merge
-	driver = cp -f %A %B
