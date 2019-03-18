@@ -90,7 +90,7 @@ function l
 end
 
 function e
-         emacsclient -c -t $argv
+         emacsclient -c $argv
 end
 
 function r
