@@ -52,7 +52,7 @@ XF86AudioRaiseVolume
 
 
 # Screenshot
-Print
+@Print
 	gnome-screenshot -a
 
 # Misc
