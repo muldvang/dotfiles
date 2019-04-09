@@ -158,6 +158,7 @@ bar {
                 active_workspace   #a5a5a1 #a5a5a1 #2e3436
                 inactive_workspace #ededed #ededed #2e3436
                 urgent_workspace   #cc0000 #cc0000 #2e3436
+        }
 }
 
 for_window [title=".* - Oracle VM VirtualBox"] border pixel 0
