@@ -264,6 +264,12 @@
   :defer t
   :ensure t)
 
+(use-package magit
+  :defer t
+  :ensure t
+  :config
+  (setq magit-diff-refine-hunk 'all))
+
 (use-package org
   :defer t
   :config
