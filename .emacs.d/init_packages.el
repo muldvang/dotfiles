@@ -79,7 +79,14 @@
 
 (use-package csv-mode
   :defer t
-  :ensure t)
+  :ensure t
+  :bind
+  ("TAB" . csv-forward-field)
+  ("<backtab>" . csv-backward-field)
+  :config
+  (setq-default csv-invisibility-default nil)
+  (setq-default csv-align-style 'auto)
+  )
 
 (use-package diff-hl
   :defer t
