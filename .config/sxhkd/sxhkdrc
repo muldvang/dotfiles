@@ -16,6 +16,10 @@ super+Escape
 super+y
 	~/.i3/dmenu_nested.py -j ~/.i3/programs_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn sans-9 -h 18 -b" && pkill -RTMIN+1 i3blocks
 
+super+shift+v
+	clipmenu -i -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn sans-9 -h 18 -b&& xdotool key --clearmodifiers shift+Insert
+
+
 
 # Launch commonly used programs
 super+F1
