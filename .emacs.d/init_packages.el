@@ -77,12 +77,16 @@
          )
   )
 
+(use-package csv-mode
+  :defer t
+  :ensure t)
+
 (use-package diff-hl
   :defer t
   :ensure t
   ;; TODO: Start up when visiting a file that is under version control instead of using the global mode.
   :init (global-diff-hl-mode t)
-)
+  )
 
 (use-package dtrt-indent
   :defer t
