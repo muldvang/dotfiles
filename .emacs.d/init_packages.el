@@ -42,7 +42,7 @@
     :ensure t
     :init
     (eval-after-load 'company
-        '(add-to-list 'company-backends 'company-anaconda))
+      '(add-to-list 'company-backends 'company-anaconda))
     (add-hook 'python-mode-hook 'anaconda-mode)
     )
 
@@ -66,7 +66,7 @@
     :defer t
     :ensure t
     )
-)
+  )
 
 (use-package conf
   :defer t
@@ -80,12 +80,41 @@
 (use-package csv-mode
   :defer t
   :ensure t
-  :bind
-  ("TAB" . csv-forward-field)
-  ("<backtab>" . csv-backward-field)
+  ;; :bind
+  ;; ("TAB" . csv-forward-field)
+  ;; ("<backtab>" . csv-backward-field)
   :config
   (setq-default csv-invisibility-default nil)
-  (setq-default csv-align-style 'auto)
+  (setq-default csv-align-style 'auto))
+
+(use-package counsel
+  :ensure t
+  :bind (
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x C-b" . counsel-ibuffer)
+
+         :map ivy-minibuffer-map
+         ;; Exchange the default bindings for C-j and C-m
+         ("C-m" . ivy-alt-done)             ;RET, default C-j
+         ("C-j" . ivy-done)                 ;Default C-m
+         )
+  :config
+  (use-package smex
+    :ensure t)
+  (use-package flx
+    :ensure t)
+  (use-package ivy-prescient
+    :ensure t
+    :init
+    (ivy-prescient-mode))
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  ;; intentional space before end of string
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-fuzzy)))
   )
 
 (use-package diff-hl
@@ -210,15 +239,11 @@
   :defer t
   :ensure t)
 
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer)
-  )
-
 (use-package ido
   :defer t
   :init
-  (ido-mode 1)
-  (ido-everywhere 1)
+  ;; (ido-mode 1)
+  ;; (ido-everywhere 1)
   :config
   (setq ido-use-filename-at-point 'guess)
   (setq ido-file-extensions-order '(".cpp" ".hpp" ".h" ; C++ projects
@@ -253,11 +278,6 @@
     :init (ido-vertical-mode)
     )
 
-  (use-package smex
-    :defer t
-    :ensure t
-    :bind ("M-x" . smex)
-    )
   )
 
 (use-package ispell
@@ -279,7 +299,11 @@
   :defer t
   :ensure t
   :config
-  (setq magit-diff-refine-hunk 'all))
+  (setq magit-diff-refine-hunk 'all)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-unpushed-to-upstream
+                          'magit-insert-unpushed-to-upstream-or-recent
+                          'replace))
 
 (use-package org
   :defer t
