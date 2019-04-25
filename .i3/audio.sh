@@ -1,24 +1,9 @@
 #!/bin/bash
 
-# pidof pulseaudio > /dev/null
-# if test $? -eq 0
-# then
-#     PAC=$(pacmd list-sinks | grep -P "\*" --after-context 36)
-#     VOLUME=$(echo "$PAC" | grep -P [0-9]+% -o | head -n 1)
-#     SINK=$(echo "$PAC" | tail -n 1 | cut -d '"' -f 2 )
-#     echo $SINK": "$VOLUME
-#     echo $VOLUME
-# else
-#     VOLUME=$(amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1)
-#     echo $VOLUME
-# fi
-
-if test $(hostname) = 'laptop-110.informatics.qiagen.ads'
-then
-    VOLUME=$(env ALSA_CARD=PCH amixer get Master | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
-else
-    VOLUME=$(env amixer get PCM | grep -E -o '[0-9][0-9]?[0-9]?%' | head -1 | grep -E -o '[0-9]+')
-fi
+PAC=$(pacmd list-sinks | grep -P "\*" --after-context 36)
+VOLUME=$(echo "$PAC" | grep -P [0-9]+% -o | head -n 1 | tr -d '%')
+SINK=$(pacmd list-sinks | grep -P "\*" --after-context 1000| grep 'device.description' | head -n1 | cut -d '"' -f 2 )
+echo -n "$SINK: "
 
 SVOL=$(($VOLUME / 5))
 
