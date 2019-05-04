@@ -47,10 +47,7 @@
 .config/mirage
 .config/mono.addins
 .config/ranger/__pycache__
-.config/ranger/bookmarks
-.config/ranger/commands.py
 .config/ranger/history
-.config/ranger/scope.sh
 .config/ranger/tagged
 .config/spotify
 .config/xfce4

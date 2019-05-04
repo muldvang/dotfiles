@@ -183,7 +183,7 @@ function cd --argument-names 'path'
             case "*.zip"
                 set mountpoint /tmp/mountpoints/"$path"!
                 mkdir -p "$mountpoint"
-                fuse-zip "$path" "$mountpoint"
+                fuse-zip "$path" "$mountpoint" ^ /dev/null; or true
                 builtin cd "$mountpoint"
             case "*"
                 builtin cd "$path"
