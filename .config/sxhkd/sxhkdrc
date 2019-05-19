@@ -49,10 +49,10 @@ XF86AudioStop
 	mpc stop && pkill -RTMIN+2 i3blocks
 
 XF86AudioLowerVolume
-	~/.i3/change_volume.sh down && pkill -RTMIN+1 i3blocks
+	~/.i3/change_volume.sh down
 
 XF86AudioRaiseVolume
-	~/.i3/change_volume.sh up && pkill -RTMIN+1 i3blocks
+	~/.i3/change_volume.sh up
 
 
 # Screenshot
