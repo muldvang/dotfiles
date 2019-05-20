@@ -5,7 +5,7 @@ ivy_repo http://ivy.clcbio.com/ivy/
 mastercontrol http://gtnmc10web01/global/login/index.cfm?mcuid=&mcsid=&initialRequest=http%3A%2F%2Fgtnmc10web01%2Fglobal%2Fmain%2Findex.cfm%3F
 m https://mail.google.com/mail/u/0/#inbox
 eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
-jenkins http://aarjenkivd:8080/aarjenkivd/
+jenkins http://aarjenkivd:8080/aarjenkivd/blue/pipelines
 jira https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=204&selectedIssue=SIPCA-100&quickFilter=537&quickFilter=503
 fisheye https://intranet.clcbio.com/fisheye/changelog/seqflowivdrepo
 confluence seqflowivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+Current
