@@ -31,4 +31,8 @@
  ;; If there is more than one, they won't work right.
  '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
  '(ido-only-match ((t (:foreground "#8ae234"))))
- '(ido-subdir ((t (:foreground "#729fcf")))))
+ '(ido-subdir ((t (:foreground "#729fcf"))))
+ '(ivy-current-match ((t (:background "#1a4b77" :foreground "white"))))
+ '(ivy-minibuffer-match-face-2 ((t (:inherit font-lock-keyword-face))))
+ '(ivy-minibuffer-match-face-3 ((t (:inherit font-lock-keyword-face))))
+ '(ivy-minibuffer-match-face-4 ((t (:inherit font-lock-keyword-face)))))
