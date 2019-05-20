@@ -3,7 +3,6 @@ Description=i3lock: An improved screenlocker based upon XCB and PAM
 
 [Path]
 PathModified=/sys/class/backlight/intel_backlight/actual_brightness
-Restart=Always
 
 [Install]
 WantedBy=multi-user.target
