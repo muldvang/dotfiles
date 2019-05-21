@@ -24,7 +24,7 @@ set $mod Mod4
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # Sans font
-font pango:sans 9
+font pango:input sans compressed 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -146,7 +146,7 @@ bindsym $mod+r exec ~/.i3/mode.sh resize
 bar {
         status_command i3blocks
         mode dock
-        font pango:sans, fontawesome 9
+        font pango:input sans compressed, symbols nerd font 9
         colors {
                 background #ededed
                 statusline #2e3436

@@ -205,27 +205,27 @@ c.fonts.monospace = 'monospace'
 
 # Font used in the completion widget.
 # Type: Font
-c.fonts.completion.entry = '9pt sans'
+c.fonts.completion.entry = '9pt input sans compressed'
 
 # Font used in the completion categories.
 # Type: Font
-c.fonts.completion.category = 'bold 9pt sans'
+c.fonts.completion.category = 'bold 9pt input sans compressed'
 
 # Font used for the downloadbar.
 # Type: Font
-c.fonts.downloads = '9pt sans'
+c.fonts.downloads = '9pt input sans compressed'
 
 # Font used for error messages.
 # Type: Font
-c.fonts.messages.error = '9pt sans'
+c.fonts.messages.error = '9pt input sans compressed'
 
 # Font used for info messages.
 # Type: Font
-c.fonts.messages.info = '9pt sans'
+c.fonts.messages.info = '9pt input sans compressed'
 
 # Font used for warning messages.
 # Type: Font
-c.fonts.messages.warning = '9pt sans'
+c.fonts.messages.warning = '9pt input sans compressed'
 
 # Font used for prompts.
 # Type: Font
@@ -233,4 +233,7 @@ c.fonts.prompts = '9pt sans'
 
 # Font used in the statusbar.
 # Type: Font
-c.fonts.statusbar = '9pt sans'
+c.fonts.statusbar = '9pt input sans compressed'
+
+c.fonts.hints = 'bold 10pt input mono'
+c.fonts.keyhint = 'bold 10pt input mono'
