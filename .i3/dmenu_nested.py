@@ -26,7 +26,8 @@ from argparse import ArgumentParser, FileType
 
 def show_menu(args, menus):
     """Recursive function to walk menus dict and call dmenu cmd/exec result."""
-    proc = Popen(args.menucmd.split(), stdin=PIPE, stdout=PIPE)
+    print("Using command:", args.menucmd)
+    proc = Popen(shlex.split(args.menucmd), stdin=PIPE, stdout=PIPE)
     choice, _ = proc.communicate('\n'.join(menus).encode('utf-8'))
     choice = choice.strip().decode('utf-8')
     print(menus[choice])
