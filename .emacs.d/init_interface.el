@@ -32,9 +32,9 @@
 (load-theme 'adwaita t)
 (set-face-attribute 'default nil :background "white")
 
-;; (set-face-attribute 'default nil :family "input mono" :height 95)
-(add-to-list 'default-frame-alist
-             '(font . "Input Mono Light 10"))
+(set-face-attribute 'default nil :family "input mono light" :height 95)
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Input Mono Light 9.5"))
 (blink-cursor-mode 0)
 (setq visible-bell t)
 (show-paren-mode t)
