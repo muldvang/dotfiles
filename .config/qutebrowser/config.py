@@ -237,3 +237,13 @@ c.fonts.statusbar = '9pt input sans compressed'
 
 c.fonts.hints = 'bold 10pt input mono'
 c.fonts.keyhint = 'bold 10pt input mono'
+
+c.colors.downloads.bar.bg = '#ededed'
+c.colors.downloads.error.bg = '#cc0000'
+c.colors.downloads.error.fg = 'white'
+c.colors.downloads.start.bg = '#f57900'
+c.colors.downloads.start.fg = '#2E3436'
+c.colors.downloads.stop.bg = '#73d216'
+c.colors.downloads.stop.fg = '#2E3436'
+c.colors.downloads.system.bg = 'rgb'
+c.colors.downloads.system.fg = 'rgb'
