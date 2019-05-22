@@ -247,3 +247,9 @@ c.colors.downloads.stop.bg = '#73d216'
 c.colors.downloads.stop.fg = '#2E3436'
 c.colors.downloads.system.bg = 'rgb'
 c.colors.downloads.system.fg = 'rgb'
+
+c.spellcheck.languages = ['da-DK', 'en-US']
+
+c.statusbar.widgets = ["keypress", "progress", "url", "scroll"]
+
+c.url.auto_search = 'dns'
