@@ -116,8 +116,8 @@
   (setq ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
           (swiper-isearch . ivy--regex-plus)
-          (swiper-ag . ivy--regex-plus)
-          (swiper-rg . ivy--regex-plus)
+          (counsel-ag . ivy--regex-plus)
+          (counsel-rg . ivy--regex-plus)
           (t . ivy--regex-fuzzy)))
   )
 
@@ -446,6 +446,10 @@
   :config
   (setq web-mode-markup-indent-offset 2)
   )
+
+(use-package wgrep
+  :ensure t
+  :defer t)
 
 (use-package which-key
   :ensure t
