@@ -35,4 +35,5 @@
  '(ivy-current-match ((t (:background "#1a4b77" :foreground "white"))))
  '(ivy-minibuffer-match-face-2 ((t (:inherit font-lock-keyword-face))))
  '(ivy-minibuffer-match-face-3 ((t (:inherit font-lock-keyword-face))))
- '(ivy-minibuffer-match-face-4 ((t (:inherit font-lock-keyword-face)))))
+ '(ivy-minibuffer-match-face-4 ((t (:inherit font-lock-keyword-face))))
+ '(swiper-line-face ((t nil))))

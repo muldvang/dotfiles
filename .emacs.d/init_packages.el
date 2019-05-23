@@ -114,7 +114,11 @@
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy)))
+        '((swiper . ivy--regex-plus)
+          (swiper-isearch . ivy--regex-plus)
+          (swiper-ag . ivy--regex-plus)
+          (swiper-rg . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
   )
 
 (use-package diff-hl
@@ -375,7 +379,7 @@
     (other-window 1)
     (eww-open-file "/tmp/rst-preview.html")
     (other-window 1)
-      )
+    )
 
   (add-hook 'rst-mode-hook (lambda ()
                              ;; Setup toolbar
@@ -396,6 +400,11 @@
   :config
   )
 
+
+(use-package swiper
+  :bind
+  ("C-s" . swiper-isearch)
+  )
 
 ;; (use-package smart-quotes
 ;; )
