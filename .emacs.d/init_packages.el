@@ -224,14 +224,6 @@
             (lambda ()
               (c-set-offset 'label 4))))
 
-(use-package hungry-delete
-  :diminish 'hungry-delete-mode
-  :defer t
-  :ensure t
-  :init
-  (global-hungry-delete-mode)
-  )
-
 (use-package hl-line
   :config
   (set-face-background 'hl-line "#EDEDED")
@@ -420,6 +412,16 @@
     :config
     (setq-default reftex-plug-into-AUCTeX t)
     )
+  )
+
+(use-package smart-hungry-delete
+  :ensure t
+  :bind (
+         ("<backspace>" . smart-hungry-delete-backward-char)
+         ("C-d" . smart-hungry-delete-forward-char))
+  :defer nil
+  :config
+  (smart-hungry-delete-add-default-hooks)
   )
 
 (use-package try
