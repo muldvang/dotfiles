@@ -266,6 +266,12 @@
                           'magit-insert-unpushed-to-upstream-or-recent
                           'replace))
 
+(use-package mode-icons
+  :ensure t
+  :defer t
+  :init
+  (mode-icons-mode))
+
 (use-package org
   :defer t
   :init

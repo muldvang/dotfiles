@@ -18,7 +18,7 @@
                 (:propertize " %b " face (:weight bold))
                 (:propertize " " face (:background "grey"))
                 (:propertize mode-name face (:background "grey"))
-                (:propertize minor-mode-alist face (:background "grey"))
+                ;; (:propertize minor-mode-alist face (:background "grey"))
                 (:propertize " " face (:background "grey"))
 
                 (:propertize " " display '(space :align-to (- right 11)))
