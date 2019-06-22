@@ -17,6 +17,11 @@
 ;; On save hooks
 (setq require-final-newline t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(defun indent-buffer ()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+(add-hook 'before-save-hook 'indent-buffer)
 
 ;; Kill whole line
 (setq kill-whole-line t)
