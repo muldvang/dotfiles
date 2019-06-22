@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
 function print_block {
-    echo 'print block'
     ACPI=$(acpi -b 2>&1 | tail -n 1)
-    if test "$no_support" != ""
-    then
-        return
-    fi
 
     full=$(echo $ACPI | grep -P "Full|99%|zero")
 
