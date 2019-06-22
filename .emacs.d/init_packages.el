@@ -311,33 +311,54 @@
 
 (use-package org
   :defer t
+  :init
   :config
-  (setq org-completion-use-ido t)
-  (setq-default org-src-fontify-natively t)
-  (setq-default org-hide-emphasis-markers t)
-  (setq-default org-html-validation-link nil)
-  (defun my-org-mode-hook ()
-    (org-toggle-pretty-entities)
+  (defun my-org-mode-font-hook ()
+    (set-face-attribute 'org-level-1 nil :family "sans")
+    (set-face-attribute 'org-level-2 nil :family "sans")
+    (set-face-attribute 'org-level-3 nil :family "sans")
+    (set-face-attribute 'org-level-4 nil :family "sans")
+    (set-face-attribute 'org-level-5 nil :family "sans")
+    (set-face-attribute 'org-level-6 nil :family "sans")
+    (set-face-attribute 'org-level-7 nil :family "sans")
+    (set-face-attribute 'org-level-8 nil :family "sans")
+    (set-face-attribute 'org-default nil :family "sans")
+    (set-face-attribute 'org-block nil :family "monospace")
+    (set-face-attribute 'org-code nil :family "monospace")
+    (set-face-attribute 'org-meta-line nil :foreground "#EEE")
+    (set-face-attribute 'org-table nil :foreground "#2E3436" :family "monospace")
+    (set-face-attribute 'org-verbatim nil :family "monospace")
     (setq buffer-face-mode-face '(:family "sans" :height 115))
     (buffer-face-mode)
-    (org-indent-mode)
-    ;; (smart-quotes-mode)
+
+    (setq-default prettify-symbols-alist
+                  '(
+                    ("#+BEGIN_SRC" . "λ")
+                    ("#+END_SRC" . "λ")
+
+                    ("[ ]" . "☐")
+                    ("[X]" . "☑")
+                    ("[-]" . "☒")
+
+                    ("TODO" . "☛") ;; ☐
+                    ("DONE". "✔")
+                    ("IN-PROGRESS" . "↻") ;; ⚙
+                    ("CANCELED" . "✘")
+                    ("WAITING" . "⚑")
+                    ))
+    (setq-default prettify-symbols-unprettify-at-point t)
+    (setq-default prettify-symbols-unprettify-at-point 'right-edge)
+    (prettify-symbols-mode)
     )
-  (add-hook 'org-mode-hook 'my-org-mode-hook)
-  (set-face-attribute 'org-level-1 nil :family "sans")
-  (set-face-attribute 'org-level-2 nil :family "sans")
-  (set-face-attribute 'org-level-3 nil :family "sans")
-  (set-face-attribute 'org-level-4 nil :family "sans")
-  (set-face-attribute 'org-level-5 nil :family "sans")
-  (set-face-attribute 'org-level-6 nil :family "sans")
-  (set-face-attribute 'org-level-7 nil :family "sans")
-  (set-face-attribute 'org-level-8 nil :family "sans")
-  (set-face-attribute 'org-default nil :family "sans")
-  (set-face-attribute 'org-block nil :family "monospace")
-  (set-face-attribute 'org-code nil :family "monospace")
-  (set-face-attribute 'org-meta-line nil :foreground "#EEE")
-  (set-face-attribute 'org-table nil :foreground "#2E3436" :family "monospace")
-  (set-face-attribute 'org-verbatim nil :family "monospace")
+  (add-hook 'org-mode-hook 'my-org-mode-font-hook)
+
+  (setq-default org-hide-emphasis-markers t)
+  (setq-default org-html-validation-link nil)
+  (setq-default org-startup-with-inline-images t)
+  (setq org-ellipsis "  ")
+
+  (add-hook 'org-mode-hook 'org-toggle-pretty-entities)
+  (add-hook 'org-mode-hook 'org-indent-mode)
   )
 
 (use-package ox-twbs
