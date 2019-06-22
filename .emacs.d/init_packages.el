@@ -243,47 +243,6 @@
   :defer t
   :ensure t)
 
-(use-package ido
-  :defer t
-  :init
-  ;; (ido-mode 1)
-  ;; (ido-everywhere 1)
-  :config
-  (setq ido-use-filename-at-point 'guess)
-  (setq ido-file-extensions-order '(".cpp" ".hpp" ".h" ; C++ projects
-                                    ".tex" ".txt" ".log" ".aux" ".pdf"; LaTeX projects
-                                    ))
-  (defadvice ido-find-file (after find-file-sudo activate)
-    "Find file as root if necessary."
-    (unless (and buffer-file-name
-                 (file-writable-p buffer-file-name))
-      (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-
-  (custom-set-faces
-   '(ido-only-match ((t (:inherit font-lock-constant-face))))
-   '(ido-subdir ((t (:inherit font-lock-builtin-face)))))
-
-  (use-package flx-ido
-    :defer t
-    :ensure t
-    :init
-    (flx-ido-mode t)
-    )
-
-  (use-package ido-completing-read+
-    :defer t
-    :ensure t
-    :init (ido-ubiquitous-mode)
-    )
-
-  (use-package ido-vertical-mode
-    :defer t
-    :ensure t
-    :init (ido-vertical-mode)
-    )
-
-  )
-
 (use-package ispell
   :defer t
   :config
