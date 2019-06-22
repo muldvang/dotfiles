@@ -20,6 +20,12 @@
   (global-aggressive-indent-mode 1)
   )
 
+(use-package avy
+  :ensure t
+  :bind
+  ("C-:" . 'avy-goto-char)
+  )
+
 (use-package company
   :defer t
   :ensure t
