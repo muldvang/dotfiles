@@ -5,19 +5,19 @@ super+Return
 
 # Application launcher
 super+p
-	j4-dmenu-desktop --dmenu="dmenu -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn \"input sans compressed-9\" -h 18 -b" --term=termite
+	j4-dmenu-desktop --dmenu="dmenu -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn \"input sans compressed-9\" -h 22 -b" --term=termite
 
 super+shift+p
 	rofi -show drun
 
 super+Escape
-	~/.i3/dmenu_nested.py -j ~/.i3/system_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn \"input sans compressed-9\" -h 18 -b" && pkill -RTMIN+1 i3blocks
+	~/.i3/dmenu_nested.py -j ~/.i3/system_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn \"input sans compressed-9\" -h 22 -b" && pkill -RTMIN+1 i3blocks
 
 super+y
-	~/.i3/dmenu_nested.py -j ~/.i3/programs_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn \"input sans compressed-9\" -h 18 -b" && pkill -RTMIN+1 i3blocks
+	~/.i3/dmenu_nested.py -j ~/.i3/programs_menu.json -m "dmenu -nb #ededed -nf #313739 -sb #4A90D9 -sf #313739 -i -fn \"input sans compressed-9\" -h 22 -b" && pkill -RTMIN+1 i3blocks
 
 super+shift+v
-	clipmenu -i -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn 'input sans compressed-9' -h 18 -b && xdotool key --clearmodifiers shift+Insert
+	clipmenu -i -nb '#ededed' -nf '#313739' -sb '#4A90D9' -sf '#313739' -i -fn 'input sans compressed-9' -h 22 -b && xdotool key --clearmodifiers shift+Insert
 
 
 
