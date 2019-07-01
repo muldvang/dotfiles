@@ -125,6 +125,7 @@
           (counsel-ag . ivy--regex-plus)
           (counsel-rg . ivy--regex-plus)
           (t . ivy--regex-fuzzy)))
+  (setq counsel-find-file-at-point t)
   )
 
 (use-package diff-hl
@@ -146,7 +147,7 @@
   :bind
   ("C-c +" . evil-numbers/inc-at-pt)
   ("C-c -" . evil-numbers/dec-at-pt)
-)
+  )
 
 (use-package expand-region
   :defer t
