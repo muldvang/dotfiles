@@ -6,7 +6,7 @@
     "Standard keyboard layout": "~/.i3/keyboard_standard.sh",
     "Enhanced keyboard layout": "~/.i3/keyboard_enhanced.sh",
     "Clone monitors": "mons -d",
-    "Work monitor setup": "xrandr --output DP1-2 --mode 1920x1080 --output eDP1 --mode 1600x900 --left-of DP1-2",
+    "Work monitor setup": "xrandr --output DP1-2 --mode 1920x1200 --output eDP1 --mode 1600x900 --left-of DP1-2 --output DP1-1 --mode 1920x1080 --right-of DP1-2",
     "Laptop monitor only": "mons -o",
     "Audio": {
         "Next sink": "~/.i3/switch_audio_output.fish"
