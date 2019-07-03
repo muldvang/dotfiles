@@ -208,7 +208,10 @@
   (setq-default god-exempt-major-modes nil)
   (setq-default god-exempt-predicates nil)
   (defun my-update-cursor ()
-    (setq cursor-type (if (or god-local-mode buffer-read-only)
+    ;; (set-cursor-color (if (or god-local-mode buffer-read-only)
+    ;;                       "#ffffff"
+    ;;                     "#ffffff")) 
+    (setq cursor-type (if (or god-local-mode)
                           'box
                         'bar)))
   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
