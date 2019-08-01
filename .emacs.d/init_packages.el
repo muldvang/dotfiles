@@ -20,6 +20,17 @@
   (global-aggressive-indent-mode 1)
   )
 
+(use-package all-the-icons-ivy
+  :ensure t
+  :config
+
+  (use-package all-the-icons
+    :ensure t
+    :defer t)
+
+  (all-the-icons-ivy-setup)
+  )
+
 (use-package avy
   :ensure t
   :bind
@@ -115,7 +126,6 @@
     :init
     (ivy-prescient-mode))
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
   ;; intentional space before end of string
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-initial-inputs-alist nil)
@@ -195,11 +205,11 @@
                                  (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
                                  (define-key flyspell-mouse-map [mouse-3] 'undefined))))
 
-(use-package frames-only-mode
-  :ensure t
-  :defer t
-  :init
-  (frames-only-mode 1))
+;; (use-package frames-only-mode
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (frames-only-mode 1))
 
 (use-package god-mode
   :ensure t
@@ -209,14 +219,15 @@
   (setq-default god-exempt-major-modes nil)
   (setq-default god-exempt-predicates nil)
   (defun my-update-cursor ()
-    ;; (set-cursor-color (if (or god-local-mode buffer-read-only)
-    ;;                       "#ffffff"
-    ;;                     "#ffffff")) 
+    (set-cursor-color (if (or god-local-mode)
+                          "#cc0000"
+                        "#00bbff"))
     (setq cursor-type (if (or god-local-mode)
                           'box
                         'bar)))
   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+  (add-hook 'buffer-list-update-hook 'my-update-cursor)
   (define-key god-local-mode-map (kbd ".") 'repeat)
   (define-key god-local-mode-map (kbd "i") 'god-local-mode)
   )
