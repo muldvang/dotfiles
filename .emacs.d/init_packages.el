@@ -475,8 +475,15 @@
   :init
   (global-whitespace-mode t)
   :config
-  (setq whitespace-style '(tab-mark))
+  (setq whitespace-style '(tab-mark
+                           trailing newline))
   )
+
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :defer t
+  :init
+  (global-whitespace-cleanup-mode))
 
 (use-package jira-markup-mode
   :ensure t

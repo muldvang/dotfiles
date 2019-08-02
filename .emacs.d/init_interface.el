@@ -11,15 +11,26 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq-default indicate-empty-lines t)
 
+
 (setq-default mode-line-format
               '(
                 (:propertize " %* ")
+                (:eval
+                 (when (eql buffer-read-only t)
+                   (propertize (all-the-icons-faicon "lock")
+                               'face `(:family ,(all-the-icons-faicon-family)
+                                               :height 1.2))))
                 ;; (:propertize " %z ")
                 (:propertize " %b " face (:weight bold))
-                (:propertize " " face (:background "grey"))
-                (:propertize mode-name face (:background "grey"))
+                ;; (:propertize " " face (:background "grey"))
+                (:eval (propertize (all-the-icons-icon-for-buffer) 'help-echo (format "Major-mode: ` %s'" major-mode)
+                                   'display '(raise 0.0)
+                                   'face `(;; :background "grey"
+                                           :height 1.2 :family ,(all-the-icons-icon-family-for-buffer))))
+                ;; (:propertize " " face (:background "grey"))
+                ;; (:propertize mode-name face (:background "grey"))
                 ;; (:propertize minor-mode-alist face (:background "grey"))
-                (:propertize " " face (:background "grey"))
+                ;; (:propertize " " face (:background "grey"))
 
                 (:propertize " " display '(space :align-to (- right 11)))
                 (:propertize " %l:%c ")
