@@ -25,3 +25,5 @@
   (yank)
   (call-interactively 'indent-region))
 (global-set-key "\C-y" 'yank-and-indent)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
