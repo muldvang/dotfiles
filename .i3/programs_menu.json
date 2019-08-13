@@ -4,7 +4,8 @@
   "Seqflow-IVD": "~/.i3/switch-to-or-open.sh 'Fake middleware - qutebrowser|Seqflow-IVD - qutebrowser' '' 'qutebrowser ~/Dropbox/Public/seqflow-ivd/index.html'",
   "ncmpcpp": "~/.i3/switch-to-or-open.sh 'ncmpcpp' '' 'termite -e ncmpcpp'",
   "Jenkins": "~/.i3/switch-to-or-open.sh 'enkins' '6 ' '/usr/bin/qutebrowser \":quickmark-load -t jenkins\"'",
-  "JIRA": "~/.i3/switch-to-or-open.sh \"QIAGEN Bioinformatics JIRA\" \"\" \"/usr/bin/qutebrowser https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?projectKey=SIPCA&rapidView=197&view=planning\"",
+  "JIRA": "~/.i3/switch-to-or-open.sh 'QIAGEN Bioinformatics JIRA' '8 ' '/usr/bin/qutebrowser \":quickmark-load -t jira\"'",
   "Eclipse": "~/.i3/switch-to-or-open.sh \"\\- Eclipse\" \"5 \" \"/home/tandersen/.local/opt/eclipse-photon/eclipse\"",
-  "Windows 7": "~/.i3/switch-to-or-open.sh \"Windows 7 \\[Running\\] - Oracle VM VirtualBox\" \"1 \" \"VBoxManage startvm 'Windows 7'\""
+  "Windows 7": "~/.i3/switch-to-or-open.sh \"Windows 7 \\[Running\\] - Oracle VM VirtualBox\" \"1 \" \"VBoxManage startvm 'Windows 7'\"",
+  "Git": "~/.i3/switch-to-or-open.sh \"magit: plugin\" \"\" \"emacs\""
 }
