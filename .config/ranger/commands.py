@@ -735,7 +735,7 @@ class mount_zip(Command):
     def execute(self):
         for file in self.fm.thistab.get_selection():
             try:
-                mount_point = '/tmp/ranger-mounts/' + file.path
+                mount_point = os.environ['XDG_RUNTIME_DIR'] + '/ranger-mounts/' + file.path
                 if not os.path.isdir(mount_point):
                     os.system('mkdir -p ' + mount_point)
                     os.system('fuse-zip ' + file.path + ' ' + mount_point)
