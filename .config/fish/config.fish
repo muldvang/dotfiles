@@ -177,22 +177,6 @@ function sxiv
         command sxiv -b $argv
 end
 
-function cd --argument-names 'path'
-    if test -n "$path"
-        switch $path
-            case "*.zip"
-                set mountpoint /tmp/mountpoints/"$path"!
-                mkdir -p "$mountpoint"
-                fuse-zip "$path" "$mountpoint" ^ /dev/null; or true
-                builtin cd "$mountpoint"
-            case "*"
-                builtin cd "$path"
-        end
-    else
-        builtin cd
-    end
-end
-
 # Ring the bell when alert is called. This makes urxvt urgent, and awesome wm
 # will display it in a different color if it unfocused.
 function alert --description 'Make the terminal urgent'
