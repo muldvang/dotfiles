@@ -165,6 +165,9 @@ for_window [title="Open Type"] floating disable
 for_window [title="Open Resource"] floating disable
 for_window [title="Show View"] floating disable
 for_window [title="Preferences"] floating disable
+assign [title="Open Type"] workspace number 5
+assign [title="Open Resource"] workspace number 5
+assign [title="Show View"] workspace number 5
 
 # Switch between workspaces on the active monitor
 bindsym $mod+comma workspace prev_on_output

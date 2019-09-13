@@ -6,10 +6,10 @@ mastercontrol http://gtnmc10web01/global/login/index.cfm?mcuid=&mcsid=&initialRe
 m https://mail.google.com/mail/u/0/#inbox
 eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
 jenkins http://aarjenkivd:8080/aarjenkivd/blue/pipelines
-jira https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=204&selectedIssue=SIPCA-100&quickFilter=537&quickFilter=503
 fisheye https://intranet.clcbio.com/fisheye/changelog/seqflowivdrepo
 confluence seqflowivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+Current
 crucible https://fisheye.informatics.qiagen.com/cru/
 dod https://confluence.informatics.qiagen.com/display/DEV/DOD
 frokost https://confluence.informatics.qiagen.com/pages/viewpage.action?pageId=97977048
 sharepoint http://projects/jlmpn/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fjlmpn%2FShared%20Documents%2F50%20WS%20NGS%20IVD%2F30_Project_SeqFlow_IVD_14-1029-2&View=%7BA33FF620-22F2-4C33-9BDD-261F93806BC4%7D
+jira https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=221&quickFilter=583&quickFilter=587
