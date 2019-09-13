@@ -22,18 +22,16 @@
  '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
  '(rw-hunspell-make-dictionary-menu t)
  '(rw-hunspell-use-rw-ispell t)
- '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape")))))
+ '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape"))))
+ '(swiper-include-line-number-in-search t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ido-indicator ((t (:background "red" :foreground "yellow1" :width condensed))))
- '(ido-only-match ((t (:foreground "#8ae234"))))
- '(ido-subdir ((t (:foreground "#729fcf"))))
  '(ivy-current-match ((t (:background "#1a4b77" :foreground "white"))))
  '(ivy-minibuffer-match-face-2 ((t (:inherit font-lock-keyword-face))))
  '(ivy-minibuffer-match-face-3 ((t (:inherit font-lock-keyword-face))))
  '(ivy-minibuffer-match-face-4 ((t (:inherit font-lock-keyword-face))))
- '(swiper-line-face ((t nil))))
+ '(swiper-line-face ((t (:background "#EDEDED")))))
