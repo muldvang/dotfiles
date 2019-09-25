@@ -6,4 +6,3 @@
 (global-set-key (kbd "M-n") 'scroll-up-line)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-(global-set-key (kbd "C-c g") 'imenu)

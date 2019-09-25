@@ -110,6 +110,7 @@
          ("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-x C-b" . counsel-ibuffer)
+         ("C-c g" . 'counsel-imenu)
 
          :map ivy-minibuffer-map
          ;; Exchange the default bindings for C-j and C-m
@@ -222,9 +223,10 @@
     (set-cursor-color (if (or god-local-mode)
                           "#cc0000"
                         "#00bbff"))
-    (setq cursor-type (if (or god-local-mode)
+    (setq cursor-type (if (or god-local-mode buffer-read-only)
                           'box
-                        'bar)))
+                        'bar))
+    )
   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
   (add-hook 'buffer-list-update-hook 'my-update-cursor)
