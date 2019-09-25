@@ -12,4 +12,8 @@ crucible https://fisheye.informatics.qiagen.com/cru/
 dod https://confluence.informatics.qiagen.com/display/DEV/DOD
 frokost https://confluence.informatics.qiagen.com/pages/viewpage.action?pageId=97977048
 sharepoint http://projects/jlmpn/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fjlmpn%2FShared%20Documents%2F50%20WS%20NGS%20IVD%2F30_Project_SeqFlow_IVD_14-1029-2&View=%7BA33FF620-22F2-4C33-9BDD-261F93806BC4%7D
-jira https://jira.informatics.qiagen.com/secure/RapidBoard.jspa?rapidView=221&quickFilter=583&quickFilter=587
+gitlab plugin branches http://aargit01.informatics.qiagen.ads/seqflow-ivd/plugin/branches
+plat01 http://aarivdplat01.informatics.qiagen.ads:9089/tenant
+jira https://jira.informatics.qiagen.com/secure/Dashboard.jspa#Filter-Results/15105
+dev15 http://aarivddev15.informatics.qiagen.ads:9089/baseline/login?origin=
+polarion https://polarion-alm.qiagen.com/polarion/#/project/cancer2_plugin/home
