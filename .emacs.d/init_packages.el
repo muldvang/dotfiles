@@ -326,6 +326,7 @@
                     ("CANCELED" . "✘")
                     ("WAITING" . "⚑")
                     ("BLOCKED" . "⚠")
+                    ("REVIEW" . "💬")
                     ))
     (setq-default prettify-symbols-unprettify-at-point t)
     (setq-default prettify-symbols-unprettify-at-point 'right-edge)
