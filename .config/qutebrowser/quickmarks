@@ -17,3 +17,4 @@ plat01 http://aarivdplat01.informatics.qiagen.ads:9089/tenant
 jira https://jira.informatics.qiagen.com/secure/Dashboard.jspa#Filter-Results/15105
 dev15 http://aarivddev15.informatics.qiagen.ads:9089/baseline/login?origin=
 polarion https://polarion-alm.qiagen.com/polarion/#/project/cancer2_plugin/home
+platform https://localhost:7443/tenant/monitor
