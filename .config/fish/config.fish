@@ -239,3 +239,8 @@ function ranger-cd
         cd $rangerpwd
     end
 end
+
+
+function csvcat
+    cat $argv | column -t -s,
+end
