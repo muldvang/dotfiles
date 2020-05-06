@@ -1,15 +1,25 @@
 {
-    "Lock": "systemctl --user start i3lock.service",
-    "Suspend": "systemctl suspend",
-    "Reboot": "systemctl reboot",
-    "Poweroff": "systemctl poweroff",
-    "Standard keyboard layout": "~/.i3/keyboard_standard.sh",
-    "Enhanced keyboard layout": "~/.i3/keyboard_enhanced.sh",
-    "Clone monitors": "mons -d",
-    "Work monitor setup": "bash -c 'xrandr --output DP1-2 --mode 1920x1200 --pos 1920x0 --output eDP1 --mode 1600x900 --pos 3840x300 && xrandr --output DP1-2 --mode 1920x1200 --pos 1920x0 --output eDP1 --mode 1600x900 --pos 3840x300 --output DP1-1 --mode 1920x1080 --pos 0x120'",
-    "Laptop monitor only": "mons -o",
-    "Audio": {
-        "Next sink": "~/.i3/switch_audio_output.fish"
-    },
-    "Pause/play music": "mpc toggle"
+    "⏻ Lock": "systemctl --user start i3lock.service",
+    "⏻ Suspend": "systemctl suspend",
+    "⏻ Reboot": "systemctl reboot",
+    "⏻ Poweroff": "systemctl poweroff",
+    " Standard layout": "~/.i3/keyboard_standard.sh",
+    " Enhanced layout": "~/.i3/keyboard_enhanced.sh",
+    " Clone": "mons -d",
+    " Work setup": "bash -c 'xrandr --output DP1-2 --mode 1920x1200 --pos 1920x0 --output eDP1 --mode 1600x900 --pos 3840x300 && xrandr --output DP1-2 --mode 1920x1200 --pos 1920x0 --output eDP1 --mode 1600x900 --pos 3840x300 --output DP1-1 --mode 1920x1080 --pos 0x120'",
+    " Laptop only": "mons -o",
+    " Black screen": "black_screen",
+    "🔉 Next sink": "~/.i3/switch_audio_output.fish",
+    "🔉 Volume level 0%": "amixer -D pulse sset Master 0%",
+    "🔉 Volume level 10%": "amixer -D pulse sset Master 10%",
+    "🔉 Volume level 20%": "amixer -D pulse sset Master 20%",
+    "🔉 Volume level 30%": "amixer -D pulse sset Master 30%",
+    "🔉 Volume level 40%": "amixer -D pulse sset Master 40%",
+    "🔉 Volume level 50%": "amixer -D pulse sset Master 50%",
+    "🔉 Volume level 60%": "amixer -D pulse sset Master 60%",
+    "🔉 Volume level 70%": "amixer -D pulse sset Master 70%",
+    "🔉 Volume level 80%": "amixer -D pulse sset Master 80%",
+    "🔉 Volume level 90%": "amixer -D pulse sset Master 90%",
+    "🔉 Volume level 100%": "amixer -D pulse sset Master 100%",
+    "🎝 Toggle pause/play": "mpc toggle"
 }
