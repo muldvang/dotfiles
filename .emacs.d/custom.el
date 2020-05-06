@@ -16,7 +16,7 @@
  '(org-export-with-toc nil)
  '(package-selected-packages
    (quote
-    (wgrep magit company-box jira-markup-mode groovy-mode aggressive-indent aggressive-indent-mode aggresive-indent-mode aggresive-indent json-mode web-mode which-key smart-mode-line-powerline-theme smart-mode-line telephone-line auto-compile use-package htmlize ox-twbs evil-numbers kotlin-mode smex smartparens scala-mode rainbow-mode rainbow-delimiters powerline pkgbuild-mode markdown-mode ido-vertical-mode ido-ubiquitous hungry-delete god-mode flycheck-color-mode-line flx-ido fish-mode fill-column-indicator feature-mode expand-region dtrt-indent diff-hl company-quickhelp company-math company-irony company-emacs-eclim company-anaconda cmake-mode benchmark-init auto-indent-mode auctex adaptive-wrap)))
+    (dna-mode dna jquery-doc company-tern wgrep magit company-box jira-markup-mode groovy-mode aggressive-indent aggressive-indent-mode aggresive-indent-mode aggresive-indent json-mode web-mode which-key smart-mode-line-powerline-theme smart-mode-line telephone-line auto-compile use-package htmlize ox-twbs evil-numbers kotlin-mode smex smartparens scala-mode rainbow-mode rainbow-delimiters powerline pkgbuild-mode markdown-mode ido-vertical-mode ido-ubiquitous hungry-delete god-mode flycheck-color-mode-line flx-ido fish-mode fill-column-indicator feature-mode expand-region dtrt-indent diff-hl company-quickhelp company-math company-irony company-emacs-eclim company-anaconda cmake-mode benchmark-init auto-indent-mode auctex adaptive-wrap)))
  '(powerline-default-separator nil)
  '(rw-hunspell-default-dictionary "en_US_hunspell")
  '(rw-hunspell-dicpath-list (quote ("/usr/share/hunspell")))
