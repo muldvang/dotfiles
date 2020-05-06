@@ -178,6 +178,8 @@ for_window [title="Preferences"] floating disable
 assign [title="Open Type"] workspace number 4
 assign [title="Open Resource"] workspace number 4
 assign [title="Show View"] workspace number 4
+for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="^zoom$"] floating enable # Zoom notification
 
 # Switch between workspaces on the active monitor
 bindsym $mod+comma workspace prev_on_output
