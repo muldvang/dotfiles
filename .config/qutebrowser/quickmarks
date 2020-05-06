@@ -18,3 +18,5 @@ jira https://jira.informatics.qiagen.com/secure/Dashboard.jspa#Filter-Results/15
 dev15 http://aarivddev15.informatics.qiagen.ads:9089/baseline/login?origin=
 polarion https://polarion-alm.qiagen.com/polarion/#/project/cancer2_plugin/home
 platform https://localhost:7443/tenant/monitor
+outlook https://outlook.office.com/mail/inbox
+jenkins-outside https://intranet.clcbio.com/aarjenkivd/blue/pipelines/
