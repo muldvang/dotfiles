@@ -153,7 +153,7 @@ mode "resize" {
 bindsym $mod+r exec ~/.i3/mode.sh resize
 
 bar {
-        status_command i3blocks
+        status_command filch
         mode dock
         font pango:input sans compressed, symbols nerd font 9
         colors {
