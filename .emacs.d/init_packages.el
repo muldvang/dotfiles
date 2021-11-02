@@ -14,12 +14,6 @@
   (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
   (add-hook 'LaTeX-mode-hook 'adaptive-wrap-prefix-mode))
 
-(use-package aggressive-indent
-  :ensure t
-  :init
-  (global-aggressive-indent-mode 1)
-  )
-
 (use-package all-the-icons-ivy
   :ensure t
   :config
