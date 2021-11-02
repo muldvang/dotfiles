@@ -1,29 +1,57 @@
-;(package-initialize)
+;;; init.el -*- lexical-binding: t; -*-
+;;
+;; Author:  Henrik Lissner <henrik@lissner.net>
+;; URL:     https://github.com/hlissner/doom-emacs
+;;
+;;   =================     ===============     ===============   ========  ========
+;;   \\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //
+;;   ||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||
+;;   || . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||
+;;   ||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||
+;;   || . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||
+;;   ||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||
+;;   || . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||
+;;   ||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||
+;;   ||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||
+;;   ||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||
+;;   ||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||
+;;   ||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||
+;;   ||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||
+;;   ||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||
+;;   ||.=='    _-'                                                     `' |  /==.||
+;;   =='    _-'                                                            \/   `==
+;;   \   _-'                                                                `-_   /
+;;    `''                                                                      ``'
+;;
+;; These demons are not part of GNU Emacs.
+;;
+;;; License: MIT
 
-(load "~/.emacs.d/init_interface.el")
-(load "~/.emacs.d/init_behaviour.el")
-(load "~/.emacs.d/init_key_bindings.el")
-(load "~/.emacs.d/init_packages.el")
+;; In the strange case that early-init.el wasn't loaded (e.g. you're using
+;; Chemacs 1? Or you're loading this file directly?), we do it explicitly:
+(unless (boundp 'doom-version)
+  (load (concat (file-name-directory load-file-name) "early-init")
+        nil t))
 
-;; Open links in qutebrowser
-(setq gnus-button-url 'browse-url-generic
-      browse-url-generic-program "qutebrowser"
-      browse-url-browser-function gnus-button-url)
+;; Ensure Doom's core libraries are properly initialized, autoloads file is
+;; loaded, and hooks set up for an interactive session.
+(doom-initialize)
 
-
-(global-visual-line-mode)
-(diminish 'visual-line-mode)
-
-
-(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
-(put 'narrow-to-region 'disabled nil)
-
-
-(defun yank-and-indent ()
-  "Yank and then indent the newly formed region according to mode."
-  (interactive)
-  (yank)
-  (call-interactively 'indent-region))
-(global-set-key "\C-y" 'yank-and-indent)
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
+;; Now we load all enabled modules in the order dictated by your `doom!' block
+;; in $DOOMDIR/init.el. `doom-initialize-modules' loads them (and hooks) in the
+;; given order:
+;;
+;;   $DOOMDIR/init.el
+;;   {$DOOMDIR,~/.emacs.d}/modules/*/*/init.el
+;;   `doom-before-init-modules-hook'
+;;   {$DOOMDIR,~/.emacs.d}/modules/*/*/config.el
+;;   `doom-init-modules-hook'
+;;   $DOOMDIR/config.el
+;;   `doom-after-init-modules-hook'
+;;   `after-init-hook'
+;;   `emacs-startup-hook'
+;;   `doom-init-ui-hook'
+;;   `window-setup-hook'
+;;
+;; And then we're good to go!
+(doom-initialize-modules)
