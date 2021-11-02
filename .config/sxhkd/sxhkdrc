@@ -1,11 +1,11 @@
 # Launch terminal
 super+Return
-	termite -e fish
+	alacritty -e fish
 
 
 # Application launcher
 super+p
-	j4-dmenu-desktop --dmenu="dmenu -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn \"input sans compressed-9\" -h 22 -b" --term=termite
+	j4-dmenu-desktop --dmenu="dmenu -nb '#ededed' -nf '#2e3436' -sb '#4A90D9' -sf '#2e3436' -i -fn \"input sans compressed-9\" -h 22 -b" --term=alacritty
 
 super+shift+p
 	rofi -show drun
@@ -29,10 +29,10 @@ super+F2
 	qutebrowser
 
 super+F3
-	termite -e ranger --icon system-file-manager
+	alacritty -e ranger
 
 super+F4
-	termite -e ncmpcpp
+	alacritty -e ncmpcpp
 
 
 # Multimedia
