@@ -14,6 +14,7 @@ export PAGER=~/.local/bin/less-pygments
 # export SAL_USE_VCLPLUGIN=gtk3   # Make libreoffice use gtk3. Does not work as of May, 2016.
 export _JAVA_OPTIONS='-Djava.io.tmpdir=/var/tmp/ -Dawt.useSystemAAFontSettings=on'
 export NO_AT_BRIDGE=1 # Delay ATK bridge initialization (some GNOME program)
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 # Start X.
 if [ `hostname` = "Balder" ]; then
@@ -32,3 +33,4 @@ then
     export LD_LIBRARY_PATH=/users/muldvang/.local/lib:/usr/local/lib:/usr/lib:/lib
     # fish; exit
 fi
+
