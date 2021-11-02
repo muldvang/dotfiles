@@ -137,6 +137,18 @@
           (counsel-rg . ivy--regex-plus)
           (t . ivy--regex-fuzzy)))
   (setq counsel-find-file-at-point t)
+
+  (use-package ivy-xref
+    :ensure t
+    :init
+    ;; xref initialization is different in Emacs 27 - there are two different
+    ;; variables which can be set rather than just one
+    (when (>= emacs-major-version 27)
+      (setq xref-show-definitions-function #'ivy-xref-show-defs))
+    ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
+    ;; commands other than xref-find-definitions (e.g. project-find-regexp)
+    ;; as well
+    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
   )
 
 (use-package diff-hl
@@ -151,6 +163,32 @@
   :ensure t
   :init (add-hook 'prog-mode-hook 'dtrt-indent-mode)
   )
+
+(use-package ess
+  :defer t
+  :ensure t)
+
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package evil-numbers
   :defer t
@@ -212,27 +250,27 @@
 ;;   :init
 ;;   (frames-only-mode 1))
 
-(use-package god-mode
-  :ensure t
-  :bind ("<escape>" . god-mode-all)
-  :init (god-mode-all)
-  :config
-  (setq-default god-exempt-major-modes nil)
-  (setq-default god-exempt-predicates nil)
-  (defun my-update-cursor ()
-    (set-cursor-color (if (or god-local-mode)
-                          "#cc0000"
-                        "#00bbff"))
-    (setq cursor-type (if (or god-local-mode buffer-read-only)
-                          'box
-                        'bar))
-    )
-  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'my-update-cursor)
-  (add-hook 'buffer-list-update-hook 'my-update-cursor)
-  (define-key god-local-mode-map (kbd ".") 'repeat)
-  (define-key god-local-mode-map (kbd "i") 'god-local-mode)
-  )
+;; (use-package god-mode
+;;   :ensure t
+;;   :bind ("<escape>" . god-mode-all)
+;;   :init (god-mode-all)
+;;   :config
+;;   (setq-default god-exempt-major-modes nil)
+;;   (setq-default god-exempt-predicates nil)
+;;   (defun my-update-cursor ()
+;;     (set-cursor-color (if (or god-local-mode)
+;;                           "#cc0000"
+;;                         "#00bbff"))
+;;     (setq cursor-type (if (or god-local-mode buffer-read-only)
+;;                           'box
+;;                         'bar))
+;;     )
+;;   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+;;   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+;;   (add-hook 'buffer-list-update-hook 'my-update-cursor)
+;;   (define-key god-local-mode-map (kbd ".") 'repeat)
+;;   (define-key god-local-mode-map (kbd "i") 'god-local-mode)
+;;   )
 
 (use-package groovy-mode
   :ensure t
@@ -265,9 +303,42 @@
   (setq ispell-program-name "/usr/bin/hunspell")
   )
 
+(use-package ivy-rich
+  :ensure t
+  :after (ivy)
+  :init
+  (setq ivy-rich-path-style 'abbrev
+        ivy-virtual-abbreviate 'full)
+  :config (ivy-rich-mode 1))
+
 (use-package json-mode
   :defer t
   :ensure t)
+
+(use-package lsp-mode
+  :ensure t
+  :defer t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (python-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui
+  :ensure t
+  :defer t
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil)
+  )
+
+(use-package lsp-ivy
+  :ensure t
+  :defer t
+  :commands lsp-ivy-workspace-symbol)
 
 (use-package markdown-mode
   :defer t
@@ -281,7 +352,8 @@
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-unpushed-to-upstream
                           'magit-insert-unpushed-to-upstream-or-recent
-                          'replace))
+                          'replace)
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
 ;; (use-package mode-icons
 ;;   :ensure t
@@ -322,17 +394,24 @@
 
                     ("NEXT" . "▶")
                     ("TODO" . "▷") ;; ☐
-                    ("DONE". "✔")
+                    ("DONE". "✓")
                     ("IN-PROGRESS" . "↻") ;; ⚙
-                    ("IMPLEMENTED". "✔")
-                    ("CANCELED" . "✘")
+                    ("IMPLEMENTED". "✓")
+                    ("CANCELED" . "✗")
                     ("WAITING" . "⚑")
                     ("BLOCKED" . "⚠")
+                    ("READY-FOR-REVIEW" . "↪")
                     ("REVIEW" . "🗩")
+                    ("DEMO" . "🗠")
                     ))
     (setq-default prettify-symbols-unprettify-at-point t)
     (setq-default prettify-symbols-unprettify-at-point 'right-edge)
     (prettify-symbols-mode)
+    (defun update-org-latex-fragments ()
+      (org-toggle-latex-fragment '(64))
+      (plist-put org-format-latex-options :scale text-scale-mode-amount)
+      (org-toggle-latex-fragment '(16)))
+    (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
     )
   (add-hook 'org-mode-hook 'my-org-mode-font-hook)
 
@@ -343,6 +422,7 @@
 
   (add-hook 'org-mode-hook 'org-toggle-pretty-entities)
   (add-hook 'org-mode-hook 'org-indent-mode)
+  (setq-default org-image-actual-width nil)
   )
 
 (use-package ox-twbs
@@ -489,6 +569,10 @@
   :defer t
   :init
   (global-whitespace-cleanup-mode))
+
+(use-package yaml-mode
+  :ensure t
+  :defer t)
 
 (use-package jira-markup-mode
   :ensure t
