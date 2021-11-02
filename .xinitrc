@@ -40,10 +40,26 @@ fi
 # Read .Xresources
 xrdb ~/.Xresources &
 
-# xrandr --dpi 120
+# HiDPI stuff
+if $(xrandr | grep 3840 > /dev/null)
+then
+    xrandr --dpi 192
+    sed -i 's/Xft.dpi: 96/Xft.dpi: 192/' .Xresources
+    sed -i 's/Xcursor.size: 8/Xcursor.size: 16/' .Xresources
+    export QT_AUTO_SCREEN_SCALE_FACTOR=1
+else
+    sed -i 's/Xft.dpi: 192/Xft.dpi: 96/' .Xresources
+    sed -i 's/Xcursor.size: 16/Xcursor.size: 8/' .Xresources
+fi
 
 # Disable at-spi-* process
 export NO_AT_BRIDGE=1
+
+systemctl --user start qutebrowser &
+systemctl --user start redshift &
+systemctl --user start sxhkd &
+systemctl --user start wallpaperd &
+systemctl --user start clipmenud &
 
 # Execute window manager
 exec dbus-launch i3
