@@ -4,7 +4,7 @@
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard(1).
 #
-bindsym $mod+g exec termite
+bindsym $mod+g exec alacritty
 
 exec --no-startup-id systemctl --user start wallpaperd
 exec --no-startup-id bash -c 'sleep 0.5 && systemctl --user start i3lock'
@@ -152,6 +152,26 @@ mode "resize" {
 }
 bindsym $mod+r exec ~/.i3/mode.sh resize
 
+mode "macro" {
+        # change focus
+        bindsym $mod+h focus left
+        bindsym $mod+j focus down
+        bindsym $mod+k focus up
+        bindsym $mod+l focus right
+        
+        # alternatively, you can use the cursor keys:
+        bindsym $mod+Left focus left
+        bindsym $mod+Down focus down
+        bindsym $mod+Up focus up
+        bindsym $mod+Right focus right
+
+        bindsym Shift+Return exec bash -c '~/.i3/macro-play.sh'
+
+        # back to normal: Enter or Escape
+        bindsym Escape exec bash -c '~/.i3/mode-leave.sh'
+}
+bindsym $mod+x exec bash -c '~/.i3/macro-start.sh && ~/.i3/mode.sh macro'
+
 bar {
         status_command filch
         mode dock
@@ -175,11 +195,17 @@ for_window [title="Open Type"] floating disable
 for_window [title="Open Resource"] floating disable
 for_window [title="Show View"] floating disable
 for_window [title="Preferences"] floating disable
+for_window [title="Find/Replace"] floating disable
 assign [title="Open Type"] workspace number 4
 assign [title="Open Resource"] workspace number 4
 assign [title="Show View"] workspace number 4
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="^zoom$"] floating enable # Zoom notification
+assign [class="^zoom$"] workspace number 1
+assign [class="^microsoft teams - preview$"] workspace number 1
+for_window [class="^microsoft teams - preview$"] border normal
+for_window [class="^Pqiv$"] floating enable sticky enable
+for_window [class="^pqiv$"] floating enable sticky enable
 
 # Switch between workspaces on the active monitor
 bindsym $mod+comma workspace prev_on_output
