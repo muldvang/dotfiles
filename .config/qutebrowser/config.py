@@ -4,7 +4,7 @@
 #   qute://help/settings.html
 
 # Uncomment this to still load settings configured via autoconfig.yml
-# config.load_autoconfig()
+config.load_autoconfig()
 
 # Enable JavaScript.
 # Type: Bool
@@ -197,11 +197,6 @@ c.colors.statusbar.url.success.https.fg = '#4e9a06'
 # Foreground color of the URL in the statusbar when there's a warning.
 # Type: QssColor
 c.colors.statusbar.url.warn.fg = '#ce5c00'
-
-# Default monospace fonts. Whenever "monospace" is used in a font
-# setting, it's replaced with the fonts listed here.
-# Type: Font
-c.fonts.monospace = 'monospace'
 
 # Font used in the completion widget.
 # Type: Font

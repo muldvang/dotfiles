@@ -2,16 +2,12 @@ f https://m.facebook.com/
 c https://www.google.com/calendar/render?pli=1#h
 fm https://www.messenger.com/
 ivy_repo http://ivy.clcbio.com/ivy/
-mastercontrol http://gtnmc10web01/global/login/index.cfm?mcuid=&mcsid=&initialRequest=http%3A%2F%2Fgtnmc10web01%2Fglobal%2Fmain%2Findex.cfm%3F
+mastercontrol https://mastercontrol.qiagen.com/mc/login/index.cfm?initialRequest=%2Fmc%2Findex.cfm&action=displayLoginPage&message=connections.notloggedin
 m https://mail.google.com/mail/u/0/#inbox
-eclipse_bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=431160
-jenkins http://aarjenkivd:8080/aarjenkivd/blue/pipelines
 fisheye https://intranet.clcbio.com/fisheye/changelog/seqflowivdrepo
 confluence seqflowivd https://confluence.informatics.qiagen.com/display/DEV/Seqflow+IVD+Current
 crucible https://fisheye.informatics.qiagen.com/cru/
-dod https://confluence.informatics.qiagen.com/display/DEV/DOD
-frokost https://confluence.informatics.qiagen.com/pages/viewpage.action?pageId=97977048
-sharepoint http://projects/jlmpn/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fjlmpn%2FShared%20Documents%2F50%20WS%20NGS%20IVD%2F30_Project_SeqFlow_IVD_14-1029-2&View=%7BA33FF620-22F2-4C33-9BDD-261F93806BC4%7D
+sharepoint https://qiagen.sharepoint.com/sites/Projects/jlmpn/Shared%20Documents/Forms/AllItems.aspx?viewid=d9e489a9-b977-4441-9a7f-66546d92f710&id=%2Fsites%2FProjects%2Fjlmpn%2FShared%20Documents%2F50%20WS%20NGS%20IVD%2F30_Project_SeqFlow_IVD_14-1029-2
 gitlab plugin branches http://aargit01.informatics.qiagen.ads/seqflow-ivd/plugin/branches
 plat01 http://aarivdplat01.informatics.qiagen.ads:9089/tenant
 jira https://jira.informatics.qiagen.com/secure/Dashboard.jspa#Filter-Results/15105
@@ -20,3 +16,9 @@ polarion https://polarion-alm.qiagen.com/polarion/#/project/cancer2_plugin/home
 platform https://localhost:7443/tenant/monitor
 outlook https://outlook.office.com/mail/inbox
 jenkins-outside https://intranet.clcbio.com/aarjenkivd/blue/pipelines/
+burndown https://onedrive.live.com/View.aspx?resid=D965E5979FDCA00F!131&wdSkeletonState=%7B%22IsEnabled%22:true,%22Options%22:160%7D&wde=xlsx&wdp=3&wdForcedMode=Edit&wdInitialSession=3184f7df-9a1b-4203-8978-7618a5b4f88c&wdRldC=1&authkey=!Av2XzVPmalnl-IM
+plat02 http://aarivdplat02.informatics.qiagen.ads:9089/tenant/login?origin=
+PES https://qiagen.myetweb.com/ETWeb11Qiagen/
+QPN https://qiagen.sharepoint.com/sites/qpn/SitePages/QPN.aspx
+ehour https://intranet.clcbio.com/ehour/eh/login
+EMPOWER https://qiagen.sharepoint.com/sites/EMPOWERChangeBook/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2FEMPOWERChangeBook%2FSiteAssets%2FSitePages%2FIntroduction-to-EMPOWER%2F4234325077210113_QIAGEN+-+EMPOWER+Self-Assessment_DIN+A4.pdf&parent=%2Fsites%2FEMPOWERChangeBook%2FSiteAssets%2FSitePages%2FIntroduction-to-EMPOWER&isSPOFile=1
