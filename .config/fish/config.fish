@@ -35,8 +35,8 @@ function fish_prompt --description 'Write out the prompt'
   # PWD
   set_color $fish_color_cwd
   # echo -n (prompt_pwd)
-  # echo -n (pwd|sed "s=$HOME=~=")
-  echo -n (pwd | sed -e "s,^$HOME,~," -e "s%^.*/\(.*/.*/.*\)%\1%")
+  echo -n (pwd | sed "s=$HOME=~=")
+  # echo -n (pwd | sed -e "s,^$HOME,~," -e "s%^.*/\(.*/.*/.*\)%\1%")
   set_color normal
 
   printf '%s' (__fish_git_prompt)
@@ -206,8 +206,8 @@ set fish_greeting ""
 function less
         set file_extension (echo $argv | rev | cut -d "." -f 1 | rev)
         if cat /usr/lib/python3.*/site-packages/pygments/lexers/*.py | tr -d "\n" | grep -o -P "filenames = \[('(\*)*(\.)*[A-Za-z+_]*'(,( )*)*)+" | cut -d "[" -f 2 | grep -o -P "[A-Za-z+_]+" | grep -x $file_extension > /dev/null
-                pygmentize $argv | command less -R ^ /dev/null
-        else
+                pygmentize $argv | command less -R
+            else
                 command less -R $argv
         end
 end
@@ -244,3 +244,5 @@ end
 function csvcat
     cat $argv | column -t -s,
 end
+
+thefuck --alias | source
