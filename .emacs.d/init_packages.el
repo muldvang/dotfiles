@@ -412,7 +412,7 @@
   (setq-default org-hide-emphasis-markers t)
   (setq-default org-html-validation-link nil)
   (setq-default org-startup-with-inline-images t)
-  (setq org-ellipsis "  ")
+  (setq org-ellipsis " ˅ ")
 
   (add-hook 'org-mode-hook 'org-toggle-pretty-entities)
   (add-hook 'org-mode-hook 'org-indent-mode)
